@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card'; //react-bootstrap
 import CardGroup from 'react-bootstrap/CardGroup'; //react-bootstrap
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import '../styles/Home.css'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css' //date-picker css
+import Button from 'react-bootstrap/Button';
+
+// const SearchCampsite = () => {
+
+
+
 
 
 
@@ -11,13 +19,27 @@ import '../styles/Home.css'
 
 
 export default function Home() {
-
+    const [destination, setDestination] = useState('');
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null)
     return (
         <>
             <Card className='searchBar-Bg'>
-                <Card.Body>
-                    {/* <p>searchBar</p> */}
+
+                <Card.Body className='d-flex align-items-center searchBar '>
+                    <label >
+                        <input type="text" placeholder='Search destinations' className='searchInput' value={destination} onChange={(e) => setDestination(e.target.value)} />
+                    </label>
+                    <label>
+                        <DatePicker className='searchInput' placeholderText='pick date' selected={startDate} onChange={date => setStartDate(date)} />
+                    </label>
+                    <label>
+                        <DatePicker className='searchInput' placeholderText='pick date' selected={endDate} onChange={date => setEndDate(date)} />
+                    </label>
+                    <Button style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', width: '120px' }} >Search</Button>
+
                 </Card.Body>
+
             </Card>
             <Container className='mt-5 text-center'>
                 <h2 className='mb-4'>Welcome to EastCoastCamping</h2>
