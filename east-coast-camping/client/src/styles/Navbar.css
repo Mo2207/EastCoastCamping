@@ -1,0 +1,14 @@
+.sign-up {
+    background-color: greenyellow;
+    border-radius: 5px;
+    width: 70px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.login {
+    background-color: rgb(209, 207, 207);
+    border-radius: 5px;
+    width: 70px;
+    text-align: center;
+}
