@@ -8,8 +8,10 @@ import MyBookings from './pages/MyBookings';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
+
 import LoginForm from './pages/LoginForm';
 import NoMatch from './pages/NoMatch';
+
 
 
 
@@ -39,6 +41,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
+
             <Navbar />
             <Routes>
               <Route 
@@ -54,6 +57,7 @@ function App() {
                 element={<LoginForm />} 
               />
               {/* <Route 
+
                 path="/signup" 
                 element={<Signup />} 
               /> */}
@@ -72,8 +76,10 @@ function App() {
               <Route 
                 path="*" 
                 element={<NoMatch />} 
+
               />
             </Routes>
+
         </div>
       </Router>
     </ApolloProvider>
