@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
+import LoginForm from './components/loginForm';
 
 
 
@@ -24,6 +25,9 @@ export default function App() {
     }
     if (currentPage === 'Contact') {
       return <Contact />;
+    }
+    if (currentPage === 'Login') {
+      return <LoginForm />;
     }
   };
 

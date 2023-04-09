@@ -5,6 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'
 
+
 function NavTab({ currentPage, handlePageChange }) {
     return (
         <Navbar collapseOnSelect expand="lg" bg="white" className='text-dark'>
@@ -48,7 +49,7 @@ function NavTab({ currentPage, handlePageChange }) {
                         </NavDropdown> */}
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#Login" className='login' >Login</Nav.Link>
+                        <Nav.Link href="#Login" onClick={() => handlePageChange('Login')} className='login' >Login</Nav.Link>
                         <Nav.Link href="#signup" className='sign-up'>signup</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
