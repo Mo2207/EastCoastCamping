@@ -1,44 +1,79 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import LoginForm from './components/loginForm';
+import { setContext } from '@apollo/client/link/context';
 
 
 
 
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState('Home');
-
-  // This method is checking to see what the value of `currentPage` is. Depending on the value of currentPage, we return the corresponding component to render.
-  const renderPage = () => {
-    if (currentPage === 'Home') {
-      return <Home />;
-    }
-    if (currentPage === 'Contact') {
-      return <Contact />;
-    }
-    if (currentPage === 'Login') {
-      return <LoginForm />;
-    }
-  };
-
-  const handlePageChange = (page) => setCurrentPage(page);
-
+function App() {
   return (
     <ApolloProvider client={client}>
-      {/* We are passing the currentPage from state and the function to update it */}
-      <Navbar currentPage={currentPage} handlePageChange={handlePageChange} />
-      {/* Here we are calling the renderPage method which will return a component  */}
-      {renderPage()}
+      <Router>
+        <div>
+            <Navbar />
+            <Routes>
+              <Route 
+                path="/" 
+                element={<Home />} 
+              />
+              <Route 
+                path="/contact" 
+                element={<Contact />} 
+              />              
+              {/* <Route 
+                path="/login" 
+                element={<LoginForm />} 
+              /> */}
+              {/* <Route 
+                path="/signup" 
+                element={<Signup />} 
+              />
+              <Route 
+                path="/success" 
+                element={<Success />} 
+              />
+              <Route 
+                path="/orderHistory" 
+                element={<OrderHistory />} 
+              />
+              <Route 
+                path="/products/:id" 
+                element={<Detail />} 
+              />
+              <Route 
+                path="*" 
+                element={<NoMatch />} 
+              /> */}
+            </Routes>
+        </div>
+      </Router>
     </ApolloProvider>
   );
 }
+
+export default App;
