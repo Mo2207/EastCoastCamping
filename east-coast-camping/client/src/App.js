@@ -1,11 +1,15 @@
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
+
+import { setContext } from '@apollo/client/link/context';
+
+import MyBookings from './pages/MyBookings';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
-import LoginForm from './components/loginForm';
-import { setContext } from '@apollo/client/link/context';
+import LoginForm from './components/LoginForm';
+import NoMatch from './pages/NoMatch';
 
 
 
@@ -45,30 +49,30 @@ function App() {
                 path="/contact" 
                 element={<Contact />} 
               />              
-              {/* <Route 
+              <Route 
                 path="/login" 
                 element={<LoginForm />} 
-              /> */}
+              />
               {/* <Route 
                 path="/signup" 
                 element={<Signup />} 
-              />
-              <Route 
+              /> */}
+              {/* <Route 
                 path="/success" 
                 element={<Success />} 
-              />
+              /> */}
               <Route 
-                path="/orderHistory" 
-                element={<OrderHistory />} 
+                path="/myBookings" 
+                element={<MyBookings />} 
               />
-              <Route 
+              {/* <Route 
                 path="/products/:id" 
                 element={<Detail />} 
-              />
+              /> */}
               <Route 
                 path="*" 
                 element={<NoMatch />} 
-              /> */}
+              />
             </Routes>
         </div>
       </Router>

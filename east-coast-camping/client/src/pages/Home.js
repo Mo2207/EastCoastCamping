@@ -13,11 +13,6 @@ import Button from 'react-bootstrap/Button';
 
 
 
-
-
-
-
-
 export default function Home() {
     const [destination, setDestination] = useState('');
     const [startDate, setStartDate] = useState(null);
