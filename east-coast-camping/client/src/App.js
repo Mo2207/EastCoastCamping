@@ -4,7 +4,9 @@ import React, { useState } from 'react';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
+import LoginForm from './components/loginForm';
 import { setContext } from '@apollo/client/link/context';
+
 
 
 
@@ -45,7 +47,7 @@ function App() {
               />              
               {/* <Route 
                 path="/login" 
-                element={<Login />} 
+                element={<LoginForm />} 
               /> */}
               {/* <Route 
                 path="/signup" 
