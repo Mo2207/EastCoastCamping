@@ -5,12 +5,12 @@ const resolvers = {
 
   Query: 
   {
-    user: async (parent, args) => {
+    userById: async (parent, args) => {
       return await User.find((user) => {
         user.id == args.id
       });
     },
-    users: async (parent, args) => {
+    allUsers: async (parent, args) => {
       return await User.find();
     }
     
