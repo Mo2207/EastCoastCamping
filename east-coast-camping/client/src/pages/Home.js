@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'; //react-bootstrap
 import CardGroup from 'react-bootstrap/CardGroup'; //react-bootstrap
-import Col from 'react-bootstrap/Col';
+// import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import '../styles/Home.css'
 
