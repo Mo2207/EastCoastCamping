@@ -1,20 +1,19 @@
 
 const { User } = require('../models');
 
-// some starter data for testing 
-const users = [
-  { id: "1", name: "John" },
-  { id: "2", name: "Jane" },
-];
-
 const resolvers = {
 
-  Query: {
+  Query: 
+  {
     user: async (parent, args) => {
-      return users.find((user) => {
+      return await User.find((user) => {
         user.id == args.id
       });
+    },
+    users: async (parent, args) => {
+      return await User.find();
     }
+    
   },
 
   Mutation: {
