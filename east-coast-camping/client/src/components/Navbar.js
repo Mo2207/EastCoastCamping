@@ -1,8 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link } from 'react-router-dom';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
+// import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'
 
 function NavTab({ currentPage, handlePageChange }) {
@@ -28,7 +28,7 @@ function NavTab({ currentPage, handlePageChange }) {
                             className={currentPage === 'Home' ? 'nav-link active' : 'nav-link'}
                         >Home</Nav.Link>
 
-                        <Nav.Link href="#contact"
+                        <Nav.Link href="/contact"
                             onClick={() => handlePageChange('Contact')}
                             // Check to see if the currentPage is `Contact`, and if so we use the active link class from bootstrap. Otherwise, we set it to a normal nav-link
                             className={currentPage === 'Contact' ? 'nav-link active' : 'nav-link'}
