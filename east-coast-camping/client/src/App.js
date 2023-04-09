@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
-import LoginForm from './components/loginForm';
+import LoginForm from './components/loginForm'
 import { setContext } from '@apollo/client/link/context';
 
 
@@ -35,21 +35,21 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-            <Navbar />
-            <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
-              />
-              <Route 
-                path="/contact" 
-                element={<Contact />} 
-              />              
-              {/* <Route 
-                path="/login" 
-                element={<LoginForm />} 
-              /> */}
-              {/* <Route 
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              path="/contact"
+              element={<Contact />}
+            />
+            <Route
+              path="/login"
+              element={<LoginForm />}
+            />
+            {/* <Route 
                 path="/signup" 
                 element={<Signup />} 
               />
@@ -69,7 +69,7 @@ function App() {
                 path="*" 
                 element={<NoMatch />} 
               /> */}
-            </Routes>
+          </Routes>
         </div>
       </Router>
     </ApolloProvider>

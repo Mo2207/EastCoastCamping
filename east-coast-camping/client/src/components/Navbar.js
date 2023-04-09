@@ -49,7 +49,7 @@ function NavTab({ currentPage, handlePageChange }) {
                         </NavDropdown> */}
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#Login" onClick={() => handlePageChange('Login')} className='login' >Login</Nav.Link>
+                        <Nav.Link href="/login" onClick={() => handlePageChange('login')} className='login' >Login</Nav.Link>
                         <Nav.Link href="#signup" className='sign-up'>signup</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
