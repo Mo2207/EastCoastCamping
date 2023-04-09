@@ -15,12 +15,12 @@ export default function Contact() {
     });
     const [errors, setErrors] = useState({});
 
-    const handleChange = (event) => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value,
-        });
-    };
+    // const handleChange = (event) => {
+    //     setValues({
+    //         ...values,
+    //         [event.target.name]: event.target.value,
+    //     });
+    // };
 
     const validateForm = () => {
         let errors = {};
@@ -77,7 +77,7 @@ export default function Contact() {
                         name="name"
                         className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                         value={values.name}
-                        onChange={handleChange}
+                        // onChange={handleChange}
                     />
                     {/* to display the error msg if there is no input */}
                     {/* invalid-feedback is from bootstrap and used to show err msg */}
@@ -93,7 +93,7 @@ export default function Contact() {
                         name="email"
                         className={`form-control ${errors.email ? 'is-invalid' : ''}`}
                         value={values.email}
-                        onChange={handleChange}
+                        // onChange={handleChange}
                     />
                     {errors.email && (
                         <div className="invalid-feedback">{errors.email}</div>
@@ -107,7 +107,7 @@ export default function Contact() {
                         className={`form-control textbox-height ${errors.message ? 'is-invalid' : ''
                             }`}
                         value={values.message}
-                        onChange={handleChange}
+                        // onChange={handleChange}
                     />
                     {errors.message && (
                         <div className="invalid-feedback">{errors.message}</div>
