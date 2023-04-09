@@ -8,7 +8,7 @@ import MyBookings from './pages/MyBookings';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
-import LoginForm from './components/LoginForm';
+import LoginForm from './pages/LoginForm';
 import NoMatch from './pages/NoMatch';
 
 

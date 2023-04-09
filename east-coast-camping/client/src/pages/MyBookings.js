@@ -1,49 +1,52 @@
-import React from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import { useQuery } from '@apollo/client';
+import { QUERY_USER } from '../utils/queries';
 
-// import { useQuery } from '@apollo/client';
-// import { QUERY_USER } from '../utils/queries';
+
 
 function MyBookings() {
-//   const { data } = useQuery(QUERY_USER);
-//   let user;
+  const data  ={
+    user: [
+      {
+        id: 1,
+        firstName: 'Sayid',
+        lastName: 'Khan',
+      },
+      {
+        id: 2,
+        firstName: 'Sun-Hwa',
+        lastName: 'John',
+      },
+    ],
+  };
 
-//   if (data) {
-//     user = data.user;
-//   }
+console.log(data)
+  let user;
+
+  if (data) {
+    user = data.user;
+    console.log(user[0].firstName)
+  }
 
   return (
     <>
       <div className="container my-1">
-        <Link to="/">← Back to Home Page</Link>
+        <Navbar.Brand>Bookings History for {user[1].firstName} {user[1].lastName}</Navbar.Brand>            
+            <Navbar collapseOnSelect expand="lg" bg="white" className='text-dark'>                
+                <Container fluid>                    
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="/upcoming">Upcoming</Nav.Link>
+                            <Nav.Link href="/completed">Completed</Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar >
 
-        {/* {user ? (
-          <>
-            <h2>
-              Order History for {user.firstName} {user.lastName}
-            </h2>
-            {user.orders.map((order) => (
-              <div key={order._id} className="my-2">
-                <h3>
-                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
-                </h3>
-                <div className="flex-row">
-                  {order.products.map(({ _id, image, name, price }, index) => (
-                    <div key={index} className="card px-1 py-1">
-                      <Link to={`/products/${_id}`}>
-                        <img alt={name} src={`/images/${image}`} />
-                        <p>{name}</p>
-                      </Link>
-                      <div>
-                        <span>${price}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </>
-        ) : null} */}
       </div>
     </>
   );
