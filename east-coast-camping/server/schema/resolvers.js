@@ -1,11 +1,12 @@
 
-const { User, CampGround } = require('../models');
+const { User, CampGround, Review } = require('../models');
 
 const resolvers = {
 
   // QUERIES
   Query: 
   {
+
     // ---------- USER QUERIES ----------
     // get user by id
     userById: async (parent, args) => {
@@ -40,6 +41,7 @@ const resolvers = {
 
   // MUTATIONS
   Mutation: {
+
     // ---------- USER MUTATIONS ----------
     // create new user
     createUser: async (parent, args) => {
@@ -56,7 +58,8 @@ const resolvers = {
       } else {
         return deletedUser;
       }
-    }
+    },
+    
   }
 }
 

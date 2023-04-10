@@ -14,6 +14,21 @@ const typeDefs = gql `
     name: String!
   }
 
+  type Review {
+    _id: ID!
+    user: User!
+    campground: Campground!
+    rating: Float!
+    review: String!
+  }
+
+  input ReviewInput {
+    userId: ID!
+    campgroundId: ID!
+    rating: Float!
+    review: String!
+  }
+
   type Query {
     userById(id: ID!): User
     allUsers: [User]
@@ -24,6 +39,7 @@ const typeDefs = gql `
   type Mutation {
     createUser(name: String!, email: String!, password: String!): User!
     deleteUser(id: ID!): User
+    createReview(review: ReviewInput!): Review!
   }
 `
 
