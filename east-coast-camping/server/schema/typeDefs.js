@@ -17,16 +17,9 @@ const typeDefs = gql `
   type Review {
     _id: ID!
     user: User!
-    campground: Campground!
+    camp: CampGround!
     rating: Float!
-    review: String!
-  }
-
-  input ReviewInput {
-    userId: ID!
-    campgroundId: ID!
-    rating: Float!
-    review: String!
+    text: String!
   }
 
   type Query {
@@ -34,12 +27,13 @@ const typeDefs = gql `
     allUsers: [User]
     campById(id: ID!): CampGround
     allCamps: [CampGround]
+    allReviews: [Review]
   }
 
   type Mutation {
     createUser(name: String!, email: String!, password: String!): User!
     deleteUser(id: ID!): User
-    createReview(review: ReviewInput!): Review!
+    createReview(userId: ID!, campId: ID!, rating: Float!, text: String!): Review!
   }
 `
 

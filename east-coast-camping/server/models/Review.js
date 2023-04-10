@@ -1,20 +1,22 @@
 
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 const reviewSchema = new Schema ({
-  username: {
-    type: String,
-    required: true
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
   },
-  campname: {
-    type: String,
-    required: true
+  camp: {
+    type: Schema.Types.ObjectId,
+    ref: 'CampGround',
   },
   rating: {
-    type: Float,
-    required: true
+    type: Types.Decimal128,
+    required: true,
+    min: 0,
+    max: 5
   },
-  review: {
+  text: {
     type: String,
     required: true,
     minlength: 5

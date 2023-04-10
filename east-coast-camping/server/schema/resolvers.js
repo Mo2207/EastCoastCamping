@@ -36,6 +36,12 @@ const resolvers = {
     allCamps: async (parent, args) => {
       return await CampGround.find();
     },
+
+    // ---------- REVIEW QUERIES ----------
+    // get all reviews
+    allReviews: async (parent, args) => {
+      return await Review.find();
+    }
     
   },
 
@@ -59,7 +65,18 @@ const resolvers = {
         return deletedUser;
       }
     },
-    
+
+    // ---------- REVIEW MUTATIONS ----------
+    createReview: async (parent, { userId, campId, rating, text }) => {
+      
+      const newReview = new Review({
+        username: userId,
+        campname: campId,
+        rating,
+        text
+      })
+      return await newReview.save();
+    }
   }
 }
 
