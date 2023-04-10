@@ -40,7 +40,7 @@ const resolvers = {
     // ---------- REVIEW QUERIES ----------
     // get all reviews
     allReviews: async (parent, args) => {
-      return await Review.find();
+      return await Review.find().populate('user').populate('camp');
     }
     
   },
@@ -69,6 +69,7 @@ const resolvers = {
     // ---------- REVIEW MUTATIONS ----------
     createReview: async (parent, { userId, campId, rating, text }) => {
       
+      // validation to check if userId and campId exist
       const validUser = await User.findById(userId);
       if (!validUser) {
         throw new Error(`Invalid userId: ${userId}.`);
@@ -78,13 +79,14 @@ const resolvers = {
         throw new Error(`Invalid campground id: ${campId}`);
       }
 
+      // write the review and save
       const newReview = new Review({
         user: userId,
         camp: campId,
         rating,
         text
       })
-      console.log(newReview)
+      console.log(newReview);
       return await newReview.save();
     }
   }

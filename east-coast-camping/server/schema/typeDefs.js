@@ -7,6 +7,8 @@ const typeDefs = gql `
     name: String!
     email: String!
     password: String!
+    favourites: [CampGround]
+    reviews: [Review]
   }
 
   type CampGround {

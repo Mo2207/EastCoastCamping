@@ -2,7 +2,12 @@
   {
     "name": "Gabe",
     "email": "gabemorris1042@gmail.com",
-    "password": "gabepassword"
+    "password": "gabepassword",
+    "favourites": [
+      {
+        "name": "Amazing camp ground"
+      }
+    ]
   },
   {
     "name": "Stephen",
