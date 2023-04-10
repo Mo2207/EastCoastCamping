@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'
 
 
-function NavTab({ currentPage, handlePageChange }) {
+function NavTab() {
     return (
         <Navbar collapseOnSelect expand="lg" bg="white" className='text-dark'>
             <Container fluid>

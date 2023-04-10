@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 
 import LoginForm from './pages/LoginForm';
 import NoMatch from './pages/NoMatch';
+import Profile from './pages/Profile';
 
 
 
@@ -61,10 +62,10 @@ function App() {
                 path="/signup" 
                 element={<Signup />} 
               /> */}
-              {/* <Route 
-                path="/success" 
-                element={<Success />} 
-              /> */}
+              <Route 
+                path="/profile" 
+                element={<Profile />} 
+              />
               <Route 
                 path="/myBookings" 
                 element={<MyBookings />} 
