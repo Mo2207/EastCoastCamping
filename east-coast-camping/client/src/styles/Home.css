@@ -10,3 +10,30 @@
     width: 100px;
     height: auto;
 }
+
+.searchBar {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.searchInput {
+    height: 45px;
+    width: 200px;
+    text-align: center;
+    margin: 20px;
+    border-radius: 10px;
+    border: grey solid 1px;
+}
+
+.searchBtn {
+    background-color: red;
+    color: green;
+    border-radius: 5px;
+    width: 120px;
+    height: 45px;
+    text-align: center;
+    margin-left: 10px;
+
+}

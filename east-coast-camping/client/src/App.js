@@ -1,10 +1,19 @@
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
+
+import { setContext } from '@apollo/client/link/context';
+
+import MyBookings from './pages/MyBookings';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
-import { setContext } from '@apollo/client/link/context';
+
+import LoginForm from './pages/LoginForm';
+import NoMatch from './pages/NoMatch';
+import Profile from './pages/Profile';
+
+
 
 
 
@@ -33,6 +42,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
+
             <Navbar />
             <Routes>
               <Route 
@@ -43,31 +53,34 @@ function App() {
                 path="/contact" 
                 element={<Contact />} 
               />              
-              {/* <Route 
+              <Route 
                 path="/login" 
-                element={<Login />} 
-              /> */}
+                element={<LoginForm />} 
+              />
               {/* <Route 
+
                 path="/signup" 
                 element={<Signup />} 
+              /> */}
+              <Route 
+                path="/profile" 
+                element={<Profile />} 
               />
               <Route 
-                path="/success" 
-                element={<Success />} 
+                path="/myBookings" 
+                element={<MyBookings />} 
               />
-              <Route 
-                path="/orderHistory" 
-                element={<OrderHistory />} 
-              />
-              <Route 
+              {/* <Route 
                 path="/products/:id" 
                 element={<Detail />} 
-              />
+              /> */}
               <Route 
                 path="*" 
                 element={<NoMatch />} 
-              /> */}
+
+              />
             </Routes>
+
         </div>
       </Router>
     </ApolloProvider>
