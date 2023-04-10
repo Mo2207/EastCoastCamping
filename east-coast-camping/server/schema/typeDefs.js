@@ -6,6 +6,7 @@ const typeDefs = gql `
     _id: ID!
     name: String!
     email: String!
+    password: String!
   }
 
   type CampGround {
@@ -21,7 +22,8 @@ const typeDefs = gql `
   }
 
   type Mutation {
-    createUser(name: String!): User
+    createUser(name: String!, email: String!, password: String!): User!
+    deleteUser(id: ID!): User
   }
 `
 

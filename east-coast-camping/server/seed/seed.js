@@ -10,7 +10,7 @@ db.once('open', async () => {
   await User.deleteMany({});
   await CampGround.deleteMany({});
 
-  // inserts userData
+  // inserts data
   const users = await User.insertMany(userData);
   const campGrounds = await CampGround.insertMany(campData);
 
