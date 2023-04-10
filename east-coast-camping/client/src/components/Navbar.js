@@ -31,8 +31,8 @@ function NavTab() {
                         <Nav.Link href="/MyBookings" className='login' >My Bookings</Nav.Link>
                         <Nav.Link href="/Profile" className='login' >Profile</Nav.Link>
                         <Nav.Link href="/Login" className='login' >Login</Nav.Link>
-                        <Nav.Link href="/Login" className='login' >Logout</Nav.Link>                        
-                        <Nav.Link href="/signup" className='sign-up'>signup</Nav.Link>
+                        <Nav.Link href="/Login" className='login' >Logout</Nav.Link>
+                        <Nav.Link href="/register" className='sign-up'>signup</Nav.Link>
 
                     </Nav>
                 </Navbar.Collapse>

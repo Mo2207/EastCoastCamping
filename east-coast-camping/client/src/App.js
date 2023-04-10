@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import LoginForm from './pages/LoginForm';
 import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
+import SignupForm from './pages/SignupForm';
 
 
 
@@ -43,43 +44,43 @@ function App() {
       <Router>
         <div>
 
-            <Navbar />
-            <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
-              />
-              <Route 
-                path="/contact" 
-                element={<Contact />} 
-              />              
-              <Route 
-                path="/login" 
-                element={<LoginForm />} 
-              />
-              {/* <Route 
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              path="/contact"
+              element={<Contact />}
+            />
+            <Route
+              path="/login"
+              element={<LoginForm />}
+            />
+            <Route
 
-                path="/signup" 
-                element={<Signup />} 
-              /> */}
-              <Route 
-                path="/profile" 
-                element={<Profile />} 
-              />
-              <Route 
-                path="/myBookings" 
-                element={<MyBookings />} 
-              />
-              {/* <Route 
+              path="/register"
+              element={<SignupForm />}
+            />
+            <Route
+              path="/profile"
+              element={<Profile />}
+            />
+            <Route
+              path="/myBookings"
+              element={<MyBookings />}
+            />
+            {/* <Route 
                 path="/products/:id" 
                 element={<Detail />} 
               /> */}
-              <Route 
-                path="*" 
-                element={<NoMatch />} 
+            <Route
+              path="*"
+              element={<NoMatch />}
 
-              />
-            </Routes>
+            />
+          </Routes>
 
         </div>
       </Router>
