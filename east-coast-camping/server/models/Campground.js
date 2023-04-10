@@ -11,10 +11,6 @@ const campGroundSchema = new Schema({
   favourited: {
     type: Number,
   },
-  reviews: {
-    type: Array,
-    required: false
-  }
 })
 
 const CampGround = model('CampGround', campGroundSchema);
