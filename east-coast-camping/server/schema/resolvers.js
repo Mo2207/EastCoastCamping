@@ -9,7 +9,12 @@ const resolvers = {
     // ---------- USER QUERIES ----------
     // get user by id
     userById: async (parent, args) => {
-      return await User.findById(args.id);
+      const user = await User.findById(args.id);
+      if (!user) {
+        throw new Error(`user with id: ${args.id} not found!`);
+      } else {
+        return user;
+      }
     },
     // get all users
     allUsers: async (parent, args) => {
@@ -19,7 +24,12 @@ const resolvers = {
     // ---------- CAMPGROUND QUERIES ----------
     // get camp by id
     campById: async (parent, args) => {
-      return await CampGround.findById(args.id);
+      const camp = await CampGround.findById(args.id);
+      if (!camp) {
+        throw new Error(`camp with id: ${args.id} not found!`);
+      } else {
+        return camp;
+      }
     },
     // get all camps
     allCamps: async (parent, args) => {
@@ -41,7 +51,11 @@ const resolvers = {
     // delete user by id
     deleteUser: async (parent, args) => {
       const deletedUser = await User.findByIdAndDelete(args.id);
-      return {_id: deletedUser._id}
+      if (!deletedUser) {
+        throw new Error(`user with id: ${args.id} not found!`);
+      } else {
+        return deletedUser;
+      }
     }
   }
 }
