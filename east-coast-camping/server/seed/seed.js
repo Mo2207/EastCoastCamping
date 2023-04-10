@@ -1,6 +1,6 @@
 
 const db = require('../config/connection');
-const { User, CampGround } = require('../models');
+const { User, CampGround, Review } = require('../models');
 
 const userData = require('./userData.json');
 const campData = require('./campData.json');
@@ -9,6 +9,7 @@ db.once('open', async () => {
   // clears the existing data if any
   await User.deleteMany({});
   await CampGround.deleteMany({});
+  await Review.deleteMany({});
 
   // inserts data
   const users = await User.insertMany(userData);

@@ -1,5 +1,6 @@
 
 const { Schema, model, Types } = require('mongoose');
+const { User, CampGround } = require('./index');
 
 const reviewSchema = new Schema ({
   user: {
@@ -11,7 +12,7 @@ const reviewSchema = new Schema ({
     ref: 'CampGround',
   },
   rating: {
-    type: Types.Decimal128,
+    type: Number,
     required: true,
     min: 0,
     max: 5

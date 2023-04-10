@@ -69,12 +69,22 @@ const resolvers = {
     // ---------- REVIEW MUTATIONS ----------
     createReview: async (parent, { userId, campId, rating, text }) => {
       
+      const validUser = await User.findById(userId);
+      if (!validUser) {
+        throw new Error(`Invalid userId: ${userId}.`);
+      }
+      const validCamp = await CampGround.findById(campId);
+      if (!validCamp) {
+        throw new Error(`Invalid campground id: ${campId}`);
+      }
+
       const newReview = new Review({
-        username: userId,
-        campname: campId,
+        user: userId,
+        camp: campId,
         rating,
         text
       })
+      console.log(newReview)
       return await newReview.save();
     }
   }
