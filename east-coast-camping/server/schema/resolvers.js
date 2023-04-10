@@ -5,20 +5,22 @@ const resolvers = {
 
   Query: 
   {
+    // get user by id
     userById: async (parent, args) => {
-      return await User.find((user) => {
-        user.id == args.id
-      });
+      return await User.findOne({ _id: args.id });
     },
+    // get all users
     allUsers: async (parent, args) => {
       return await User.find();
     }
     
   },
 
-  Mutation: {
-    createUser: async () => {
+  // Mutation: {
+  //   createUser: async () => {
 
-    }
-  }
+  //   }
+  // }
 }
+
+module.exports = resolvers;
