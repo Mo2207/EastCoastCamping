@@ -22,10 +22,6 @@ const userSchema = new Schema ({
     type: Array,
     required: false
   },
-  reviews: {
-    type: Array,
-    required: false
-  }
 })
 
 const User = model('User', userSchema);

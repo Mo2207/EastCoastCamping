@@ -52,7 +52,7 @@ const resolvers = {
     // create new user
     createUser: async (parent, args) => {
       const { name, email, password } = args;
-      
+
       const newUser = new User(args);
       return await newUser.save();
     },
