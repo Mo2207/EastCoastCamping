@@ -7,6 +7,13 @@ const campGroundSchema = new Schema({
     required: true,
     unique: true,
     trim: true,
+  },
+  favourited: {
+    type: Number,
+  },
+  reviews: {
+    type: Array,
+    required: false
   }
 })
 

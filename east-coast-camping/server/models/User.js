@@ -17,6 +17,14 @@ const userSchema = new Schema ({
     type: String,
     required: true,
     minlength: 5,
+  },
+  favourites: {
+    type: Array,
+    required: false
+  },
+  reviews: {
+    type: Array,
+    required: false
   }
 })
 
