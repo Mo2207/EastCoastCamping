@@ -1,5 +1,5 @@
 
-const { User } = require('../models');
+const { User, CampGround } = require('../models');
 
 const resolvers = {
 
@@ -12,7 +12,16 @@ const resolvers = {
     // get all users
     allUsers: async (parent, args) => {
       return await User.find();
-    }
+    },
+
+    // get camp by id
+    campById: async (parent, args) => {
+      return await CampGround.findOne({ _id: args.id });
+    },
+    // get all camps
+    allCamps: async (parent, args) => {
+      return await CampGround.find();
+    },
     
   },
 
