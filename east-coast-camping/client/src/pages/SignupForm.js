@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Alert, Container } from 'react-bootstrap';
-import {  CREATE_USER } from '../utils/mutations';
-import {  USER_LOGIN } from '../utils/mutations';
+import {  CREATE_USER, USER_LOGIN } from '../utils/mutations';
 
 import '../styles/login-signUp.css'
 
