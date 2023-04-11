@@ -16,5 +16,8 @@
       "react-app",
       "react-app/jest"
     ]
-  }
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
  }
+}
