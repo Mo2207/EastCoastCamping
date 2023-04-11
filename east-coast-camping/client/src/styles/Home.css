@@ -37,3 +37,17 @@
     margin-left: 10px;
 
 }
+
+.searchBarPage {
+    margin-left: 200px;
+}
+
+.search-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f8f8f8;
+    padding: 10px;
+    z-index: 9999;
+}
