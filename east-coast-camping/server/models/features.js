@@ -21,8 +21,8 @@ const featuresSchema = new Schema({
     campfire:{
         type:String,
         required:false
-    },
-    
-
-      
+    }
 })
+const Features = model('Features', featuresSchema);
+
+module.exports = Features;
