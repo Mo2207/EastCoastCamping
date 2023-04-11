@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Navbar from 'react-bootstrap/Navbar';
@@ -53,7 +52,7 @@ console.log(data)
             <Completed />
             </Tab>
             <Tab eventKey="Savedcamps" title="Saved Camps">
-              {/* <Upcoming />  */}Saved Camps Info
+              Saved Camps Info
             </Tab>
           </Tabs>
       </div>

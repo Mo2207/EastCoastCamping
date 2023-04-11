@@ -71,6 +71,10 @@ function App() {
               path="/myBookings"
               element={<MyBookings />}
             />
+            {/* <Route
+              path="/bookNow"
+              element={<Booknow />}
+            /> */}
             {/* <Route 
                 path="/products/:id" 
                 element={<Detail />} 
