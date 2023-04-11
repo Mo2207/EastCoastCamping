@@ -39,7 +39,7 @@ console.log(data)
   return (
     <>
       <div className="container my-1">
-        <Navbar.Brand>My Bookings</Navbar.Brand>
+        <Navbar.Brand><h2>My Bookings</h2></Navbar.Brand>
           <Tabs
             defaultActiveKey="upcoming"
             id="uncontrolled-tab-example"
