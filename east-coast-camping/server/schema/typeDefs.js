@@ -26,18 +26,28 @@ const typeDefs = gql `
     text: String!
   }
 
+  type Booking {
+    _id:ID!
+    user: User!
+    camp: CampGround!
+    startDate: String!
+    endDate: String!
+  }
+
   type Query {
     userById(id: ID!): User
     allUsers: [User]
     campById(id: ID!): CampGround
     allCamps: [CampGround]
     allReviews: [Review]
+    allBookings:[Booking]
   }
 
   type Mutation {
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): User!
     deleteUser(id: ID!): User
     createReview(userId: ID!, campId: ID!, rating: Float!, text: String!): Review!
+    createBooking(userId:ID!, campId: ID!, startDate: String!, endDate: String!): Booking!
   }
 `
 

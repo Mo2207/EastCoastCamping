@@ -1,5 +1,5 @@
 
-const { User, CampGround, Review } = require('../models');
+const { User, CampGround, Review, Booking} = require('../models');
 
 const resolvers = {
 
@@ -41,9 +41,18 @@ const resolvers = {
     // get all reviews
     allReviews: async (parent, args) => {
       return await Review.find().populate('user').populate('camp');
-    }
+    },
+
+    // ------- BOOKING QUERIES _______
+    // get all Bookings
+    
+    allBookings: async (parent, args) => {
+      return await Booking.find();
+    },
     
   },
+  
+ 
 
   // MUTATIONS
   Mutation: {
@@ -88,6 +97,30 @@ const resolvers = {
       })
       console.log(newReview);
       return await newReview.save();
+    },
+
+    // Booking Mutations
+    createBooking: async (parent, { userId, campId, startDate, endDate }) => {
+      
+      // validation to check if userId and campId exist
+      const validUser = await User.findById(userId);
+      if (!validUser) {
+        throw new Error(`Invalid userId: ${userId}.`);
+      }
+      const validCamp = await CampGround.findById(campId);
+      if (!validCamp) {
+        throw new Error(`Invalid campground id: ${campId}`);
+      }
+
+      // write the Booking and save
+      const newBooking = new Booking({
+        user: userId,
+        camp: campId,
+        startDate,
+        endDate
+      })
+      console.log(newBooking);
+      return await newBooking.save();
     }
   }
 }

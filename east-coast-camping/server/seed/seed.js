@@ -10,6 +10,7 @@ db.once('open', async () => {
   await User.deleteMany({});
   await CampGround.deleteMany({});
   await Review.deleteMany({});
+  await Booking.deleteMany({});
 
   // inserts data
   const users = await User.insertMany(userData);
