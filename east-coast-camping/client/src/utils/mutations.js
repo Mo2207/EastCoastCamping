@@ -27,3 +27,12 @@ export const CREATE_REVIEW = gql`
     }
   }
 `;
+
+export const USER_LOGIN = gql `
+  mutation Mutation($email: String!, $password: String!) {
+    userLogin(email: $email, password: $password) {
+      password
+      email
+    }
+  }
+`
