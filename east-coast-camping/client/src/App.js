@@ -13,6 +13,7 @@ import LoginForm from './pages/LoginForm';
 import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
 import SignupForm from './pages/SignupForm';
+import SearchResult from './pages/SearchResult'
 
 
 
@@ -71,10 +72,10 @@ function App() {
               path="/myBookings"
               element={<MyBookings />}
             />
-            {/* <Route
-              path="/bookNow"
-              element={<Booknow />}
-            /> */}
+            <Route
+              path="/search"
+              element={<SearchResult />}
+            />
             {/* <Route 
                 path="/products/:id" 
                 element={<Detail />} 
