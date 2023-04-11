@@ -48,6 +48,7 @@ const typeDefs = gql `
     deleteUser(id: ID!): User
     createReview(userId: ID!, campId: ID!, rating: Float!, text: String!): Review!
     createBooking(userId:ID!, campId: ID!, startDate: String!, endDate: String!): Booking!
+    cancelBooking(id: ID!):Booking
   }
 `
 

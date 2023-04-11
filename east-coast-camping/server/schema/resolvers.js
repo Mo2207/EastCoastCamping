@@ -121,8 +121,15 @@ const resolvers = {
       })
       console.log(newBooking);
       return await newBooking.save();
-    }
+    },
+    cancelBooking: async (parent, args) => {
+      const cancelledBooking = await Booking.findByIdAndDelete(args.id);
+      if (!cancelledBooking) {
+        throw new Error(`Booking with id: ${args.id} not found!`);
+      } else {
+        return cancelledBooking;
+      }
   }
 }
-
+}
 module.exports = resolvers;
