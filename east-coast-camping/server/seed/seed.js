@@ -1,6 +1,6 @@
 
 const db = require('../config/connection');
-const { User, CampGround, Review } = require('../models');
+const { User, CampGround, Review, Booking } = require('../models');
 
 const userData = require('./userData.json');
 const campData = require('./campData.json');
