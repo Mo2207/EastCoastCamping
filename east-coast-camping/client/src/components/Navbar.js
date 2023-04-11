@@ -22,6 +22,9 @@ function NavTab() {
                 <Navbar.Brand>𝐄𝐚𝐬𝐭𝐂𝐨𝐚𝐬𝐭𝐂𝐚𝐦𝐩𝐢𝐧𝐠</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto">
+                        <Navbar.Brand>ⒺⒸⒸ</Navbar.Brand>
+                    </Nav>
                     <Nav>
                         <Nav.Link className='navbar-dark navbar' href="/">Home</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
