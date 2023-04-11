@@ -60,7 +60,7 @@ const resolvers = {
     // ---------- USER MUTATIONS ----------
     // create new user
     createUser: async (parent, args) => {
-      const { name, email, password } = args;
+      const { firstName, lastName, email, password } = args;
 
       // bcyrpt password authentication
       const saltRounds = 10;

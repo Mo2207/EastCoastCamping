@@ -7,10 +7,10 @@ const campData = require('./campData.json');
 
 db.once('open', async () => {
   // clears the existing data if any
-  await User.deleteMany({});
-  await CampGround.deleteMany({});
-  await Review.deleteMany({});
-  await Booking.deleteMany({});
+  await User.collection.drop();
+  await CampGround.collection.drop();
+  await Review.collection.drop();
+  await Booking.collection.drop();
 
   // inserts data
   const users = await User.insertMany(userData);
