@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Gabe",
+    "email": "gabemorris1042@gmail.com",
+    "password": "gabepassword",
+    "favourites": [
+      {
+        "name": "Amazing camp ground"
+      }
+    ]
+  },
+  {
+    "name": "Stephen",
+    "email": "stephen@email.com",
+    "password": "stephenpassword"
+  },
+  {
+    "name": "Yel",
+    "email": "yel@email.com",
+    "password": "yelpassword"
+  },
+  {
+    "name": "Aung",
+    "email": "aung@email.com",
+    "password": "aungpassword"
+  },
+  {
+    "name": "Bob",
+    "email": "bob@email.com",
+    "password": "bobpassword"
+  }
+]

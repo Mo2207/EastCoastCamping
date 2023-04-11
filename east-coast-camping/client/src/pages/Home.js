@@ -26,10 +26,10 @@ export default function Home() {
                         <input type="text" placeholder='Search destinations' className='searchInput' value={destination} onChange={(e) => setDestination(e.target.value)} />
                     </label>
                     <label>
-                        <DatePicker className='searchInput' placeholderText='pick date' selected={startDate} onChange={date => setStartDate(date)} />
+                        <DatePicker className='searchInput' placeholderText='check in' selected={startDate} onChange={date => setStartDate(date)} />
                     </label>
                     <label>
-                        <DatePicker className='searchInput' placeholderText='pick date' selected={endDate} onChange={date => setEndDate(date)} />
+                        <DatePicker className='searchInput' placeholderText='check out' selected={endDate} onChange={date => setEndDate(date)} />
                     </label>
                     <Button style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', width: '120px' }} >Search</Button>
 
