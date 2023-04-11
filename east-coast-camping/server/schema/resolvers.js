@@ -54,8 +54,11 @@ const resolvers = {
     createUser: async (parent, args) => {
       const { name, email, password } = args;
 
+      // bcyrpt password authentication
       const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+      // reset the args password to the new hashed password
       args.password = hashedPassword;
 
       const newUser = new User(args);
