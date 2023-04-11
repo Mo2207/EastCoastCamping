@@ -14,6 +14,8 @@ const typeDefs = gql `
   type CampGround {
     _id: ID!
     name: String!
+    availability: Int
+    available: Boolean!
   }
 
   type Review {

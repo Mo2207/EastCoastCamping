@@ -11,6 +11,14 @@ const campGroundSchema = new Schema({
   favourited: {
     type: Number,
   },
+  availability: {
+    type: Number,
+    required: true,
+  },
+  available: {
+    type: Boolean,
+    
+  }
 })
 
 const CampGround = model('CampGround', campGroundSchema);
