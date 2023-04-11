@@ -9,7 +9,14 @@
 .login {
     background-color: rgb(209, 207, 207);
     border-radius: 5px;
-    width: 70px;
+    width: 120px;
     text-align: center;
     margin-left: 10px;
+}
+
+.nav-links :hover {
+    background-color: rgb(27, 232, 27);
+    /*will change background-color of element on hover */
+    color: white;
+    /*will change color of text within the element on hover */
 }

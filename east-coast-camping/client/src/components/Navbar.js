@@ -22,17 +22,13 @@ function NavTab() {
                 <Navbar.Brand>𝐄𝐚𝐬𝐭𝐂𝐨𝐚𝐬𝐭𝐂𝐚𝐦𝐩𝐢𝐧𝐠</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/contact">Contact</Nav.Link>
-                        {/* <Nav.Link href="/bookNow">Book Now</Nav.Link> */}
-                    </Nav>
                     <Nav>
-
-                        <Nav.Link href="/MyBookings" className='login' >My Bookings</Nav.Link>
-                        <Nav.Link href="/Profile" className='login' >Profile</Nav.Link>
-                        <Nav.Link href="/Login" className='login' >Login</Nav.Link>
-                        <Nav.Link href="/Login" className='login' >Logout</Nav.Link>
+                        <Nav.Link className='navbar-dark navbar' href="/">Home</Nav.Link>
+                        <Nav.Link href="/contact">Contact</Nav.Link>
+                        <Nav.Link href="/MyBookings">My Bookings</Nav.Link>
+                        <Nav.Link href="/Profile">Profile</Nav.Link>
+                        <Nav.Link href="/Login">Login</Nav.Link>
+                        <Nav.Link href="/Login" >Logout</Nav.Link>
                         <Nav.Link href="/register" className='sign-up'>signup</Nav.Link>
 
                     </Nav>
