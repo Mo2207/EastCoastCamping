@@ -10,12 +10,8 @@ import {
   MDBBtn,
   MDBBreadcrumb,
   MDBBreadcrumbItem,
-  MDBProgress,
-  MDBProgressBar,
-  MDBIcon,
-  MDBListGroup,
-  MDBListGroupItem
 } from 'mdb-react-ui-kit';
+import { Button } from 'react-bootstrap';
 
 export default function Profile() {
   return (
@@ -48,10 +44,19 @@ export default function Profile() {
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Full Name</MDBCardText>
+                    <MDBCardText>First Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Johnatan Smith</MDBCardText>
+                    <MDBCardText className="text-muted">Johnatan</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Last Name</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">Smith</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -62,39 +67,20 @@ export default function Profile() {
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">example@example.com</MDBCardText>
                   </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Phone</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(097) 234-5678</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(098) 765-4321</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Address</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Bay Area</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
+                </MDBRow>                
               </MDBCardBody>
             </MDBCard>
+            <MDBRow>
+              <MDBCol sm="1">
+                <Button>Edit</Button> 
+              </MDBCol>
+              <MDBCol sm="1">
+                <Button>Save</Button> 
+              </MDBCol>
+            </MDBRow>   
           </MDBCol>
         </MDBRow>
-      </MDBContainer>
+      </MDBContainer>      
     </section>
   );
 }
