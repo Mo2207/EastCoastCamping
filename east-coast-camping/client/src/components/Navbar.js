@@ -25,6 +25,7 @@ function NavTab() {
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
+                        {/* <Nav.Link href="/bookNow">Book Now</Nav.Link> */}
                     </Nav>
                     <Nav>
 
