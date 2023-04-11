@@ -1,5 +1,6 @@
 
-const { User, CampGround, Review, Booking} = require('../models');
+const { User, CampGround, Review } = require('../models');
+const bcrypt = require('bcrypt');
 
 const resolvers = {
 
@@ -49,7 +50,6 @@ const resolvers = {
     allBookings: async (parent, args) => {
       return await Booking.find();
     },
-    
   },
   
  
@@ -61,6 +61,16 @@ const resolvers = {
     // create new user
     createUser: async (parent, args) => {
       const { firstName, lastName, email, password } = args;
+<<<<<<< HEAD
+=======
+
+      // bcyrpt password authentication
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+      // reset the args password to the new hashed password
+      args.password = hashedPassword;
+>>>>>>> a6c757d29d45bbfefe77e6f8a22bf28d2520d755
 
       const newUser = new User(args);
       return await newUser.save();
