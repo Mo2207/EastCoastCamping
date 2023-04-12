@@ -4,7 +4,8 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql `
   type User {
     _id: ID!
-    name: String!
+    firstName: String!
+    lastName: String!
     email: String!
     password: String!
     favourites: [CampGround]
@@ -13,6 +14,8 @@ const typeDefs = gql `
   type CampGround {
     _id: ID!
     name: String!
+    availability: Int
+    available: Boolean!
   }
 
   type Review {
@@ -23,18 +26,30 @@ const typeDefs = gql `
     text: String!
   }
 
+  type Booking {
+    _id:ID!
+    user: User!
+    camp: CampGround!
+    startDate: String!
+    endDate: String!
+  }
+
   type Query {
     userById(id: ID!): User
     allUsers: [User]
     campById(id: ID!): CampGround
     allCamps: [CampGround]
     allReviews: [Review]
+    allBookings:[Booking]
   }
 
   type Mutation {
-    createUser(name: String!, email: String!, password: String!): User!
+    createUser(firstName: String!, lastName: String!, email: String!, password: String!): User!
+    userLogin(email: String!, password: String!): User!
     deleteUser(id: ID!): User
     createReview(userId: ID!, campId: ID!, rating: Float!, text: String!): Review!
+    createBooking(userId:ID!, campId: ID!, startDate: String!, endDate: String!): Booking!
+    cancelBooking(id: ID!):Booking
   }
 `
 

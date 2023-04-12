@@ -1,14 +1,22 @@
 [
   {
-    "name": "Amazing camp ground"
+    "name": "Amazing camp ground",
+    "availability": 50,
+    "available": true
   },
   {
-    "name": "Boring camp"
+    "name": "Boring camp",
+    "availability": 50,
+    "available": true
   },
   {
-    "name": "Super fun camp"
+    "name": "Super fun camp",
+    "availability": 40,
+    "available": false
   },
   {
-    "name": "Jims Summer camp"
+    "name": "Jims Summer camp",
+    "availability": 100,
+    "available": true
   }
 ]

@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Alert, Container } from 'react-bootstrap';
-// import { LOGIN } from '../utils/mutations';
+import {  CREATE_USER, USER_LOGIN } from '../utils/mutations';
+
 import '../styles/login-signUp.css'
 
 // import Auth from '../utils/auth';
-// import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 function SignupForm(props) {
-    // const [formState, setFormState] = useState({ email: '', password: '' });
-    // const [addUser] = useMutation(ADD_USER);
+    const [formState, setFormState] = useState({ email: '', password: '' });
+    const [createUser] = useMutation(CREATE_USER);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // const mutationResponse = await addUser({
-        // variables: {
-        // email: formState.email,
-        // password: formState.password,
-        // firstName: formState.firstName,
-        // lastName: formState.lastName,
-        // },
-        // });
+        const mutationResponse = await createUser({
+        variables: {
+        email: formState.email,
+        password: formState.password,
+        firstName: formState.firstName,
+        lastName: formState.lastName,
+        },
+        });
         // const token = mutationResponse.data.addUser.token;
         // Auth.login(token);
     };
 
     const handleChange = (event) => {
-        // const { name, value } = event.target;
-        // setFormState({
-        // ...formState,
-        // [name]: value,
-        // });
+        const { name, value } = event.target;
+        setFormState({
+        ...formState,
+        [name]: value,
+        });
     };
 
     return (
@@ -38,7 +39,7 @@ function SignupForm(props) {
                 <Container className='form'>
                     <Form className='login-form' onSubmit={handleFormSubmit}>
                         <div className='top'>
-                            <span className='fs-5'>Have an acoount?<Link to="/login">
+                            <span className='fs-5'>Have an account?<Link to="/login">
                                 <img src='https://user-images.githubusercontent.com/112873819/230982834-830260c2-8729-4080-a610-2f3944172403.png'
                                     width="30"
                                     height="30"

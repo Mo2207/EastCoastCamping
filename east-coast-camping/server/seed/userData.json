@@ -1,6 +1,7 @@
 [
   {
-    "name": "Gabe",
+    "firstName": "Gabe",
+    "lastName": "Morris",
     "email": "gabemorris1042@gmail.com",
     "password": "gabepassword",
     "favourites": [
@@ -10,22 +11,26 @@
     ]
   },
   {
-    "name": "Stephen",
+    "firstName": "Stephen",
+    "lastName": "Brown",
     "email": "stephen@email.com",
     "password": "stephenpassword"
   },
   {
-    "name": "Yel",
+    "firstName": "Yel",
+    "lastName": "Aung",
     "email": "yel@email.com",
     "password": "yelpassword"
   },
   {
-    "name": "Aung",
+    "firstName": "Aung",
+    "lastName": "Han",
     "email": "aung@email.com",
     "password": "aungpassword"
   },
   {
-    "name": "Bob",
+    "firstName": "Bob",
+    "lastName": "Builder",
     "email": "bob@email.com",
     "password": "bobpassword"
   }

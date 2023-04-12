@@ -1,5 +1,6 @@
 
 const { User, CampGround, Review } = require('../models');
+const bcrypt = require('bcrypt');
 
 const resolvers = {
 
@@ -41,9 +42,17 @@ const resolvers = {
     // get all reviews
     allReviews: async (parent, args) => {
       return await Review.find().populate('user').populate('camp');
-    }
+    },
+
+    // ------- BOOKING QUERIES _______
+    // get all Bookings
     
+    allBookings: async (parent, args) => {
+      return await Booking.find();
+    },
   },
+  
+ 
 
   // MUTATIONS
   Mutation: {
@@ -51,7 +60,17 @@ const resolvers = {
     // ---------- USER MUTATIONS ----------
     // create new user
     createUser: async (parent, args) => {
-      const { name, email, password } = args;
+      const { firstName, lastName, email, password } = args;
+<<<<<<< HEAD
+=======
+
+      // bcyrpt password hashing
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+      // reset the args password to the new hashed password
+      args.password = hashedPassword;
+>>>>>>> a6c757d29d45bbfefe77e6f8a22bf28d2520d755
 
       const newUser = new User(args);
       return await newUser.save();
@@ -64,6 +83,22 @@ const resolvers = {
       } else {
         return deletedUser;
       }
+    },
+    // user login
+    userLogin: async (parent, {email, password}) => {
+      const user = await User.findOne({email});
+
+      // checks to make sure user with given email exists
+      if (!user) {
+        throw new Error(`user with email: ${args.email} not found!`);
+      } 
+
+      // bcrypt password comparing upon login
+      const validatePassword = await bcrypt.compare(password, user.password);
+      if (!validatePassword) {
+        throw new Error(`Invalid Email or Password provided.`);
+      }
+      return user;
     },
 
     // ---------- REVIEW MUTATIONS ----------
@@ -88,8 +123,39 @@ const resolvers = {
       })
       console.log(newReview);
       return await newReview.save();
-    }
+    },
+
+    // Booking Mutations
+    createBooking: async (parent, { userId, campId, startDate, endDate }) => {
+      
+      // validation to check if userId and campId exist
+      const validUser = await User.findById(userId);
+      if (!validUser) {
+        throw new Error(`Invalid userId: ${userId}.`);
+      }
+      const validCamp = await CampGround.findById(campId);
+      if (!validCamp) {
+        throw new Error(`Invalid campground id: ${campId}`);
+      }
+
+      // write the Booking and save
+      const newBooking = new Booking({
+        user: userId,
+        camp: campId,
+        startDate,
+        endDate
+      })
+      console.log(newBooking);
+      return await newBooking.save();
+    },
+    cancelBooking: async (parent, args) => {
+      const cancelledBooking = await Booking.findByIdAndDelete(args.id);
+      if (!cancelledBooking) {
+        throw new Error(`Booking with id: ${args.id} not found!`);
+      } else {
+        return cancelledBooking;
+      }
   }
 }
-
+}
 module.exports = resolvers;
