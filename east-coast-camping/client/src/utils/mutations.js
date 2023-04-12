@@ -1,23 +1,38 @@
 import { gql } from '@apollo/client';
 
-export const CREATE_MATCHUP = gql`
-  mutation createMatchup($tech1: String!, $tech2: String!) {
-    createMatchup(tech1: $tech1, tech2: $tech2) {
-      _id
-      tech1
-      tech2
+// createUser Query
+export const CREATE_USER = gql`
+  mutation Mutation($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    createUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+      email
+      password
+      firstName
+      lastName
     }
   }
 `;
 
-export const CREATE_VOTE = gql`
-  mutation createVote($_id: String!, $techNum: Int!) {
-    createVote(_id: $_id, techNum: $techNum) {
-      _id
-      tech1
-      tech2
-      tech1_votes
-      tech2_votes
+// createReview Query
+export const CREATE_REVIEW = gql`
+  mutation Mutation($userId: ID!, $campId: ID!, $rating: Float!, $text: String!) {
+    createReview(userId: $userId, campId: $campId, rating: $rating, text: $text) {
+      user {
+        _id
+      }
+      camp {
+        _id
+      }
+      rating
+      text
     }
   }
 `;
+
+export const USER_LOGIN = gql `
+  mutation Mutation($email: String!, $password: String!) {
+    userLogin(email: $email, password: $password) {
+      password
+      email
+    }
+  }
+`
