@@ -1,21 +1,25 @@
 [
   {
     "name": "Amazing camp ground",
+    "location":"Sussex",
     "availability": 50,
     "available": true
   },
   {
     "name": "Boring camp",
+    "location":"Moncton",
     "availability": 50,
     "available": true
   },
   {
     "name": "Super fun camp",
+    "location":"Sussex",
     "availability": 40,
     "available": false
   },
   {
     "name": "Jims Summer camp",
+    "location":"Saint John",
     "availability": 100,
     "available": true
   }

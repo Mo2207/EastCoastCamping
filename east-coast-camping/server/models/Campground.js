@@ -8,6 +8,10 @@ const campGroundSchema = new Schema({
     unique: true,
     trim: true,
   },
+  location:{
+     type:String,
+     required:true,
+  },
   favourited: {
     type: Number,
   },

@@ -14,6 +14,7 @@ const typeDefs = gql `
   type CampGround {
     _id: ID!
     name: String!
+    location: String!
     availability: Int
     available: Boolean!
   }
@@ -39,6 +40,7 @@ const typeDefs = gql `
     allUsers: [User]
     campById(id: ID!): CampGround
     allCamps: [CampGround]
+    campByLocation(location: String!): [CampGround]
     allReviews: [Review]
     allBookings:[Booking]
   }
