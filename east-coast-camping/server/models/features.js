@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-
+const { CampGround } = require('./index');
 const featuresSchema = new Schema({
     camp: {
         type: Schema.Types.ObjectId,
@@ -20,6 +20,10 @@ const featuresSchema = new Schema({
     }, 
     campfire:{
         type:String,
+        required:false
+    }, 
+    wifi:{
+        type:Boolean, 
         required:false
     }
 })

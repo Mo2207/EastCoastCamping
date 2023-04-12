@@ -21,8 +21,12 @@ const campGroundSchema = new Schema({
   },
   available: {
     type: Boolean,
-    
+    }, 
+  price:{
+    type:Number,
+    required:true,
   }
+
 })
 
 const CampGround = model('CampGround', campGroundSchema);

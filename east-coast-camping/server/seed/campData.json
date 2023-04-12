@@ -3,24 +3,28 @@
     "name": "Amazing camp ground",
     "location":"Sussex",
     "availability": 50,
-    "available": true
+    "available": true,
+    "price":40
   },
   {
     "name": "Boring camp",
     "location":"Moncton",
     "availability": 50,
-    "available": true
+    "available": true,
+    "price":25
   },
   {
     "name": "Super fun camp",
     "location":"Sussex",
     "availability": 40,
-    "available": false
+    "available": false,
+    "price":45
   },
   {
     "name": "Jims Summer camp",
     "location":"Saint John",
     "availability": 100,
-    "available": true
+    "available": true,
+    "price":50
   }
 ]
