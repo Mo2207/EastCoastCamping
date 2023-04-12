@@ -61,8 +61,6 @@ const resolvers = {
     // create new user
     createUser: async (parent, args) => {
       const { firstName, lastName, email, password } = args;
-<<<<<<< HEAD
-=======
 
       // bcyrpt password hashing
       const saltRounds = 10;
@@ -70,7 +68,6 @@ const resolvers = {
 
       // reset the args password to the new hashed password
       args.password = hashedPassword;
->>>>>>> a6c757d29d45bbfefe77e6f8a22bf28d2520d755
 
       const newUser = new User(args);
       return await newUser.save();
