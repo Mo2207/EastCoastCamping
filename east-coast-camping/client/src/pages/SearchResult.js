@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useLocation} from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -13,6 +14,8 @@ function SearchResult() {
     const [destination, setDestination] = useState('');
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null)
+    const location = useLocation();
+
     return (
         <>
 
@@ -49,13 +52,13 @@ function SearchResult() {
                     <Col className='ml-5 '>
                         <form className='d-flex flex-column  searchBarPage'>
                             <label> Search destination<br></br>
-                                <input type="text" placeholder='Search destinations' className='searchInput' value={destination} onChange={(e) => setDestination(e.target.value)} />
+                                <input type="text" placeholder={location.state.search} className='searchInput' value={destination} onChange={(e) => setDestination(e.target.value)} />
                             </label>
                             <label> Check in
-                                <DatePicker className='searchInput' placeholderText='check in' selected={startDate} onChange={date => setStartDate(date)} />
+                                <DatePicker className='searchInput' placeholderText={location.state.date1} selected={startDate} onChange={date => setStartDate(date)} />
                             </label>
                             <label> Check out
-                                <DatePicker className='searchInput' placeholderText='check out' selected={endDate} onChange={date => setEndDate(date)} />
+                                <DatePicker className='searchInput' placeholderText={location.state.date2} selected={endDate} onChange={date => setEndDate(date)} />
                             </label>
                             <Button style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', width: '120px', marginLeft: '60px' }} >Search</Button>
 
