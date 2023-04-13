@@ -33,6 +33,14 @@ const resolvers = {
         return camp;
       }
     },
+    //get camp by location
+    campByLocation: async (_, { location }) => {
+      const camps = await CampGround.find({ location });
+     // .populate({path:'location', model:'CampGround'});
+      
+      return camps
+    },
+    
     // get all camps
     allCamps: async (parent, args) => {
       return await CampGround.find();
@@ -61,8 +69,6 @@ const resolvers = {
     // create new user
     createUser: async (parent, args) => {
       const { firstName, lastName, email, password } = args;
-<<<<<<< HEAD
-=======
 
       // bcyrpt password hashing
       const saltRounds = 10;
@@ -70,7 +76,6 @@ const resolvers = {
 
       // reset the args password to the new hashed password
       args.password = hashedPassword;
->>>>>>> a6c757d29d45bbfefe77e6f8a22bf28d2520d755
 
       const newUser = new User(args);
       return await newUser.save();
