@@ -116,7 +116,7 @@ export default function Contact() {
                             <div className="invalid-feedback">{errors.message}</div>
                         )}
                     </div>
-                    <input type="submit" value="Send" className="btn btn-warning mt-4" />
+                    <input type="submit" value="Send" className="btn mt-4" style={{ backgroundColor: '#ADFB2F' }} />
                 </form>
             </div>
         </div>
