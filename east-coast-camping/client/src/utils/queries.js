@@ -20,6 +20,7 @@ export const QUERY_ME = gql`
       email
       firstName
       lastName
+      _id
     }
   }
 
