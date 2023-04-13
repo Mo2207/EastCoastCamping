@@ -1,10 +1,11 @@
 // see SignupForm.js for comments
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Button, Alert, Container } from 'react-bootstrap';
 import { USER_LOGIN } from '../utils/mutations';
 import '../styles/login-signUp.css'
 
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 import { useMutation } from "@apollo/react-hooks";
 
 const LoginForm = () => {
@@ -12,8 +13,8 @@ const LoginForm = () => {
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     
-    const [login, { error }] = useMutation(USER_LOGIN)
-
+    const [login, { error, data }] = useMutation(USER_LOGIN)
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setUserFormData({ ...userFormData, [name]: value });
@@ -21,7 +22,6 @@ const LoginForm = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
         // check if form has everything (as per react-bootstrap docs)
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -30,10 +30,13 @@ const LoginForm = () => {
         }
 
         try {
-            const { data } = await login({
+            const { data }  = await login({
                 variables: { ...userFormData },
             });
-            // Auth.login(data.login.token);
+            const data1 = Object.values(data)
+            console.log(data1[0]._id)
+            Auth.login(data1[0]._id);
+
         } catch (err) {
             console.error(err);
             setShowAlert(true);
@@ -50,6 +53,12 @@ const LoginForm = () => {
         <>
             <div className='bg-image'>
                 <Container className='form'>
+                    {data ? (
+                        <p>
+                            Success! You may now head{' '}
+                            <Link to="/">back to the homepage.</Link>
+                        </p>
+                    ) : (
                     <Form className='login-form' noValidate validated={validated} onSubmit={handleFormSubmit}>
                         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                             Something went wrong with your login credentials!
@@ -87,9 +96,15 @@ const LoginForm = () => {
                             Submit
                         </Button>
                     </Form>
+                    )}
+
+                    {error && (
+                        <div className="my-3 p-3 bg-danger text-white">
+                        {error.message}
+                        </div>
+                    )}
                 </Container>
             </div>
-
         </>
     );
 };
