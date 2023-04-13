@@ -70,7 +70,7 @@ const resolvers = {
     createUser: async (parent, args) => {
       const { firstName, lastName, email, password } = args;
 
-      // bcyrpt password authentication
+      // bcyrpt password hashing
       const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(password, saltRounds);
 
@@ -88,6 +88,22 @@ const resolvers = {
       } else {
         return deletedUser;
       }
+    },
+    // user login
+    userLogin: async (parent, {email, password}) => {
+      const user = await User.findOne({email});
+
+      // checks to make sure user with given email exists
+      if (!user) {
+        throw new Error(`user with email: ${args.email} not found!`);
+      } 
+
+      // bcrypt password comparing upon login
+      const validatePassword = await bcrypt.compare(password, user.password);
+      if (!validatePassword) {
+        throw new Error(`Invalid Email or Password provided.`);
+      }
+      return user;
     },
 
     // ---------- REVIEW MUTATIONS ----------

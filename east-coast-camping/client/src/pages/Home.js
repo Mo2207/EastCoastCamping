@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import Card from 'react-bootstrap/Card'; //react-bootstrap
 import CardGroup from 'react-bootstrap/CardGroup'; //react-bootstrap
 // import Col from 'react-bootstrap/Col';
@@ -7,6 +8,7 @@ import '../styles/Home.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css' //date-picker css
 import Button from 'react-bootstrap/Button';
+import SearchResult from './SearchResult';
 
 
 // const SearchCampsite = () => {
@@ -17,11 +19,23 @@ export default function Home() {
     const [destination, setDestination] = useState('');
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null)
+
+    const navigate = useNavigate();
+    const toSearchResult =()=>{
+        if( destination || startDate || endDate){
+        const start = `${startDate.getMonth()+1}/${startDate.getDate()}/${startDate.getFullYear()}`
+        const end = `${endDate.getMonth()+1}/${endDate.getDate()}/${endDate.getFullYear()}`
+        navigate('/search',{ state: { search: destination, date1: start , date2: end }});
+        } else {
+        navigate('/search');
+        }
+    }
+
+
     return (
         <>
             <div className='bg-white'>
                 <Card className='searchBar-Bg'>
-
                     <Card.Body className='d-flex align-items-center searchBar '>
                         <label >
                             <input type="text" placeholder='Search destinations' className='searchInput' value={destination} onChange={(e) => setDestination(e.target.value)} />
@@ -32,7 +46,7 @@ export default function Home() {
                         <label>
                             <DatePicker className='searchInput' placeholderText='check out' selected={endDate} onChange={date => setEndDate(date)} />
                         </label>
-                        <Button style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', width: '120px' }} >Search</Button>
+                        <Button onClick={()=>{toSearchResult()}} style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', width: '120px' }} >Search</Button>
 
                     </Card.Body>
 
