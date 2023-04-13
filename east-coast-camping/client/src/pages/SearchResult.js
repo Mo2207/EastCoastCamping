@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -8,6 +8,8 @@ import { Container } from 'react-bootstrap';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css' //date-picker css
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+
 
 
 function SearchResult() {
@@ -35,7 +37,9 @@ function SearchResult() {
                             {Array.from({ length: 4 }).map((_, idx) => (
                                 <Col>
                                     <Card>
-                                        <Card.Img variant="top" src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg" />
+                                        <Link to={`/campground`}>
+                                            <Card.Img variant="top" src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg" />
+                                        </Link>
                                         <Card.Body>
                                             <Card.Title>Card 1</Card.Title>
                                             <Card.Text>

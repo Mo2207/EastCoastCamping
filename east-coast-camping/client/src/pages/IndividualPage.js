@@ -63,7 +63,6 @@ function IndividualCampground() {
 
             </Row>
 
-            {/* display 3 dotted line at the center */}
 
             <Container className='mt-5'>
                 <Row>
