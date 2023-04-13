@@ -33,6 +33,14 @@ const resolvers = {
         return camp;
       }
     },
+    //get camp by location
+    campByLocation: async (_, { location }) => {
+      const camps = await CampGround.find({ location });
+     // .populate({path:'location', model:'CampGround'});
+      
+      return camps
+    },
+    
     // get all camps
     allCamps: async (parent, args) => {
       return await CampGround.find();
