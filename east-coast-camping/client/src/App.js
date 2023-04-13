@@ -14,6 +14,7 @@ import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
 import SignupForm from './pages/SignupForm';
 import SearchResult from './pages/SearchResult'
+import IndividualCampGround from './pages/IndividualPage';
 
 
 
@@ -65,7 +66,7 @@ function App() {
               element={<SignupForm />}
             />
             <Route
-              path="/profile"
+              path="/me"
               element={<Profile />}
             />
             <Route
@@ -76,10 +77,10 @@ function App() {
               path="/search"
               element={<SearchResult />}
             />
-            {/* <Route 
-                path="/products/:id" 
-                element={<Detail />} 
-              /> */}
+            <Route
+              path="/campground"
+              element={<IndividualCampGround />}
+            />
             <Route
               path="*"
               element={<NoMatch />}

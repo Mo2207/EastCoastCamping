@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const resolvers = {
 
   // QUERIES
-  Query: 
+  Query:
   {
 
     // ---------- USER QUERIES ----------
@@ -33,6 +33,14 @@ const resolvers = {
         return camp;
       }
     },
+    //get camp by location
+    campByLocation: async (_, { location }) => {
+      const camps = await CampGround.find({ location });
+     // .populate({path:'location', model:'CampGround'});
+      
+      return camps
+    },
+    
     // get all camps
     allCamps: async (parent, args) => {
       return await CampGround.find();
@@ -46,13 +54,13 @@ const resolvers = {
 
     // ------- BOOKING QUERIES _______
     // get all Bookings
-    
+
     allBookings: async (parent, args) => {
       return await Booking.find();
     },
   },
-  
- 
+
+
 
   // MUTATIONS
   Mutation: {
@@ -82,13 +90,13 @@ const resolvers = {
       }
     },
     // user login
-    userLogin: async (parent, {email, password}) => {
-      const user = await User.findOne({email});
+    userLogin: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
       // checks to make sure user with given email exists
       if (!user) {
         throw new Error(`user with email: ${args.email} not found!`);
-      } 
+      }
 
       // bcrypt password comparing upon login
       const validatePassword = await bcrypt.compare(password, user.password);
@@ -100,7 +108,7 @@ const resolvers = {
 
     // ---------- REVIEW MUTATIONS ----------
     createReview: async (parent, { userId, campId, rating, text }) => {
-      
+
       // validation to check if userId and campId exist
       const validUser = await User.findById(userId);
       if (!validUser) {
@@ -124,7 +132,7 @@ const resolvers = {
 
     // Booking Mutations
     createBooking: async (parent, { userId, campId, startDate, endDate }) => {
-      
+
       // validation to check if userId and campId exist
       const validUser = await User.findById(userId);
       if (!validUser) {
@@ -152,7 +160,7 @@ const resolvers = {
       } else {
         return cancelledBooking;
       }
+    }
   }
-}
 }
 module.exports = resolvers;

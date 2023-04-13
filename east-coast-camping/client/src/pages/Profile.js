@@ -1,4 +1,6 @@
 import React from 'react';
+import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 import {
   MDBCol,
   MDBContainer,
@@ -12,19 +14,30 @@ import {
   MDBBreadcrumbItem,
 } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
+import Auth from '../utils/auth';
+import { QUERY_ME } from '../utils/queries';
+import NoMatch from './NoMatch';
+
 
 export default function Profile() {
+  const user = "data";
+  const { loading, data } = useQuery(QUERY_ME);
+
+  const profile = data?.userById || {};
+  console.log(profile)
+  
   return (
+    <>
+    {user ? (
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol>
             <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-              <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
+              <MDBBreadcrumbItem active>MY PROFILE</MDBBreadcrumbItem>
             </MDBBreadcrumb>
           </MDBCol>
         </MDBRow>
-
         <MDBRow>
           <MDBCol lg="4">
             <MDBCard className="mb-4">
@@ -47,7 +60,7 @@ export default function Profile() {
                     <MDBCardText>First Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Johnatan</MDBCardText>
+                    <MDBCardText className="text-muted">{user.firstName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -82,5 +95,7 @@ export default function Profile() {
         </MDBRow>
       </MDBContainer>      
     </section>
+    ) : (<NoMatch />)}
+    </>
   );
 }

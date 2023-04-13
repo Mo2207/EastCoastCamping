@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-
+const { User, CampGround } = require('./index');
 const bookingSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
