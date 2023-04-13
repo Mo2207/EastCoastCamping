@@ -105,6 +105,15 @@ const resolvers = {
       }
       return user;
     },
+    // add camp to saved
+    saveCamp: async (parent, args) => {
+      const targetCamp = await CampGround.findById(args.id);
+      if (!targetCamp) {
+        throw new Error(`camp with id: ${args.id} not found!`);
+      } else {
+        const save = await User.findById()
+      }
+    },
 
     // ---------- REVIEW MUTATIONS ----------
     createReview: async (parent, { userId, campId, rating, text }) => {
