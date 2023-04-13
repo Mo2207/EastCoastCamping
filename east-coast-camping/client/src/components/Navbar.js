@@ -34,7 +34,7 @@ function NavTab() {
                             <>
                                 <Nav.Link href="/MyBookings">My Bookings</Nav.Link>
                                 <Nav.Link href="/me">Profile</Nav.Link>
-                                <Nav.Link href="/Login" >Logout</Nav.Link>
+                                <Nav.Link href="/Login" onClick={() => Auth.logout()}>Logout</Nav.Link>
                             </>
                         ):(
                             <>
