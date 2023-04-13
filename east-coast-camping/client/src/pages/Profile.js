@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
+import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import {
   MDBCol,
@@ -20,7 +20,7 @@ import NoMatch from './NoMatch';
 
 
 export default function Profile() {
-  const user= "data";
+  const user = "data";
   const { loading, data } = useQuery(QUERY_ME);
 
   const profile = data?.userById || {};
@@ -60,7 +60,7 @@ export default function Profile() {
                     <MDBCardText>First Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{profile.firstName}</MDBCardText>
+                    <MDBCardText className="text-muted">{user.firstName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
