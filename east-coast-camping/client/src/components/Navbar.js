@@ -3,10 +3,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 import '../styles/Navbar.css'
 
 
 function NavTab() {
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="white" className='text-dark'>
             <Container fluid>
@@ -28,12 +30,18 @@ function NavTab() {
                     <Nav>
                         <Nav.Link className='navbar-dark navbar' href="/">Home</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
-                        <Nav.Link href="/MyBookings">My Bookings</Nav.Link>
-                        <Nav.Link href="/Profile">Profile</Nav.Link>
-                        <Nav.Link href="/Login">Login</Nav.Link>
-                        <Nav.Link href="/Login" >Logout</Nav.Link>
-                        <Nav.Link href="/register" className='sign-up'>signup</Nav.Link>
-
+                        {Auth.loggedIn()?(
+                            <>
+                                <Nav.Link href="/MyBookings">My Bookings</Nav.Link>
+                                <Nav.Link href="/me">Profile</Nav.Link>
+                                <Nav.Link href="/Login" >Logout</Nav.Link>
+                            </>
+                        ):(
+                            <>
+                                <Nav.Link href="/Login">Login</Nav.Link>
+                                <Nav.Link href="/register" className='sign-up'>signup</Nav.Link>
+                            </>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

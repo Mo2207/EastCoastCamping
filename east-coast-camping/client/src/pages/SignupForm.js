@@ -7,13 +7,20 @@ import '../styles/login-signUp.css'
 
 // import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-function SignupForm(props) {
-    const [formState, setFormState] = useState({ email: '', password: '' });
-    const [createUser] = useMutation(CREATE_USER);
+function SignupForm() {
+    const [formState, setFormState] = useState({ 
+        firstName:'',
+        lastName:'',
+        email: '', 
+        password: '' 
+    });
+    const [ createUser, { error, data } ] = useMutation(CREATE_USER);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const mutationResponse = await createUser({
+        console.log(formState);
+
+        const { data } = await createUser({
         variables: {
         email: formState.email,
         password: formState.password,
@@ -37,6 +44,7 @@ function SignupForm(props) {
         <>
             <div className='bg-image'>
                 <Container className='form'>
+
                     <Form className='login-form' onSubmit={handleFormSubmit}>
                         <div className='top'>
                             <span className='fs-5'>Have an account?<Link to="/login">
@@ -47,50 +55,62 @@ function SignupForm(props) {
                                 ></img>Login</Link></span>
                             <header>Signup</header>
                         </div>
-                        <div className='input-field'>
-                            <label className='text-white' htmlFor="firstName">FirstName:</label>
-                            <input className='inputs'
-                                placeholder="First Name"
-                                name="firstName"
-                                type="firstName"
-                                id="firstName"
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className='input-field'>
-                            <label className='text-white' htmlFor="lastName">Last Name:</label>
-                            <input className='inputs'
-                                placeholder="Last Name"
-                                name="lastName"
-                                type="lastName"
-                                id="lastName"
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className='input-field'>
-                            <label className='text-white' htmlFor="email">Email:</label>
-                            <input className='inputs'
-                                placeholder="youremail@test.com"
-                                name="email"
-                                type="email"
-                                id="email"
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className='input-field'>
-                            <label className='text-white' htmlFor="pwd">Password:</label>
-                            <input className='inputs'
-                                placeholder="******"
-                                name="password"
-                                type="password"
-                                id="pwd"
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className='pb-5 mt-5' >
-                            <button className='submit' type="submit">Submit</button>
-                        </div>
+                        {data ? (
+                            <p>
+                                Success! You may now head{' '}
+                                <Link to="/">back to the homepage.</Link>
+                            </p>
+                        ) : (
+                            <>
+                                <div className='input-field'>
+                                    <label className='text-white' htmlFor="firstName">FirstName:</label>
+                                    <input className='inputs'
+                                        placeholder="First Name"
+                                        name="firstName"
+                                        type="firstName"
+                                        id="firstName"
+                                        onChange={handleChange} />
+                                </div>
+                                <div className='input-field'>
+                                    <label className='text-white' htmlFor="lastName">Last Name:</label>
+                                    <input className='inputs'
+                                        placeholder="Last Name"
+                                        name="lastName"
+                                        type="lastName"
+                                        id="lastName"
+                                        onChange={handleChange} />
+                                </div>
+                                <div className='input-field'>
+                                    <label className='text-white' htmlFor="email">Email:</label>
+                                    <input className='inputs'
+                                        placeholder="youremail@test.com"
+                                        name="email"
+                                        type="email"
+                                        id="email"
+                                        onChange={handleChange} />
+                                </div>
+                                <div className='input-field'>
+                                    <label className='text-white' htmlFor="pwd">Password:</label>
+                                    <input className='inputs'
+                                        placeholder="******"
+                                        name="password"
+                                        type="password"
+                                        id="pwd"
+                                        onChange={handleChange} />
+                                </div>
+                                <div className='pb-5 mt-5'>
+                                    <button className='submit' type="submit">Submit</button>
+                                </div>
+                            </>
+                        )}
+
+                        {error && (
+                            <div className="my-3 p-3 bg-danger text-white">
+                            {error.message}
+                            </div>
+                        )}
                     </Form>
+
                 </Container>
             </div>
 

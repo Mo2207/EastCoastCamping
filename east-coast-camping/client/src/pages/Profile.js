@@ -16,41 +16,25 @@ import {
 import { Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { QUERY_ME } from '../utils/queries';
+import NoMatch from './NoMatch';
 
 
 export default function Profile() {
+  const user = "data";
+  const { loading, data } = useQuery(QUERY_ME);
 
-  const { username: userParam } = useParams();
-  const { loading, data } = useQuery({ 
-    variables: { username: userParam },
-  })
-
-  const user = data?.me || data?.user || {};
+  const profile = data?.userById || {};
+  console.log(profile)
   
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/me" />;
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user?.username) {
-    return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    );
-  }
-
   return (
+    <>
+    {user ? (
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol>
             <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-              <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
+              <MDBBreadcrumbItem active>MY PROFILE</MDBBreadcrumbItem>
             </MDBBreadcrumb>
           </MDBCol>
         </MDBRow>
@@ -76,7 +60,7 @@ export default function Profile() {
                     <MDBCardText>First Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Johnatan</MDBCardText>
+                    <MDBCardText className="text-muted">{user.firstName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -111,5 +95,7 @@ export default function Profile() {
         </MDBRow>
       </MDBContainer>      
     </section>
+    ) : (<NoMatch />)}
+    </>
   );
 }

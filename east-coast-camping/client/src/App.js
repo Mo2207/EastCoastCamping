@@ -65,7 +65,7 @@ function App() {
               element={<SignupForm />}
             />
             <Route
-              path="/profile"
+              path="/me"
               element={<Profile />}
             />
             <Route
