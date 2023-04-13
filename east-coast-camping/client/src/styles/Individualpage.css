@@ -19,3 +19,14 @@ li {
 p {
     line-height: 40px;
 }
+
+.individualSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.searchInput {
+    margin-right: 90px;
+}

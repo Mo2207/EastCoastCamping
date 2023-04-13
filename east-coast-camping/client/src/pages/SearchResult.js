@@ -9,6 +9,8 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css' //date-picker css
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import '../styles/SearchResult.css'
+import { Form } from 'react-bootstrap';
 
 
 
@@ -17,6 +19,14 @@ function SearchResult() {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null)
     const location = useLocation();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log('Destination:', destination);
+        console.log('Start Date:', startDate);
+        console.log('End Date:', endDate);
+    };
 
     return (
         <>
@@ -54,19 +64,15 @@ function SearchResult() {
                         </Row>
                     </Col>
                     <Col className='ml-5 '>
-                        <form className='d-flex flex-column  searchBarPage'>
-                            <label> Search destination<br></br>
-                                <input type="text" placeholder={location.state.search} className='searchInput' value={destination} onChange={(e) => setDestination(e.target.value)} />
-                            </label>
-                            <label> Check in
-                                <DatePicker className='searchInput' placeholderText={location.state.date1} selected={startDate} onChange={date => setStartDate(date)} />
-                            </label>
-                            <label> Check out
-                                <DatePicker className='searchInput' placeholderText={location.state.date2} selected={endDate} onChange={date => setEndDate(date)} />
-                            </label>
-                            <Button style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', width: '120px', marginLeft: '60px' }} >Search</Button>
-
-                        </ form>
+                        <Form className='d-flex flex-column searchResult' onSubmit={handleSubmit}>
+                            <Form.Label>Search destination</Form.Label>
+                            <Form.Control type="text" placeholder={location.state.search} value={destination} onChange={(e) => setDestination(e.target.value)} className='searchInput' />
+                            <Form.Label>Check in</Form.Label>
+                            <DatePicker className='searchInput' placeholderText={location.state.date1} selected={startDate} onChange={date => setStartDate(date)} />
+                            <Form.Label>Check out</Form.Label>
+                            <DatePicker className='searchInput' placeholderText={location.state.date2} selected={endDate} onChange={date => setEndDate(date)} />
+                            <Button type="submit" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', width: '120px', marginLeft: '60px' }}>Search</Button>
+                        </Form>
                     </Col>
                 </Row>
 

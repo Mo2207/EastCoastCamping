@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const resolvers = {
 
   // QUERIES
-  Query: 
+  Query:
   {
 
     // ---------- USER QUERIES ----------
@@ -46,13 +46,13 @@ const resolvers = {
 
     // ------- BOOKING QUERIES _______
     // get all Bookings
-    
+
     allBookings: async (parent, args) => {
       return await Booking.find();
     },
   },
-  
- 
+
+
 
   // MUTATIONS
   Mutation: {
@@ -61,8 +61,6 @@ const resolvers = {
     // create new user
     createUser: async (parent, args) => {
       const { firstName, lastName, email, password } = args;
-<<<<<<< HEAD
-=======
 
       // bcyrpt password hashing
       const saltRounds = 10;
@@ -70,7 +68,6 @@ const resolvers = {
 
       // reset the args password to the new hashed password
       args.password = hashedPassword;
->>>>>>> a6c757d29d45bbfefe77e6f8a22bf28d2520d755
 
       const newUser = new User(args);
       return await newUser.save();
@@ -85,13 +82,13 @@ const resolvers = {
       }
     },
     // user login
-    userLogin: async (parent, {email, password}) => {
-      const user = await User.findOne({email});
+    userLogin: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
       // checks to make sure user with given email exists
       if (!user) {
         throw new Error(`user with email: ${args.email} not found!`);
-      } 
+      }
 
       // bcrypt password comparing upon login
       const validatePassword = await bcrypt.compare(password, user.password);
@@ -103,7 +100,7 @@ const resolvers = {
 
     // ---------- REVIEW MUTATIONS ----------
     createReview: async (parent, { userId, campId, rating, text }) => {
-      
+
       // validation to check if userId and campId exist
       const validUser = await User.findById(userId);
       if (!validUser) {
@@ -127,7 +124,7 @@ const resolvers = {
 
     // Booking Mutations
     createBooking: async (parent, { userId, campId, startDate, endDate }) => {
-      
+
       // validation to check if userId and campId exist
       const validUser = await User.findById(userId);
       if (!validUser) {
@@ -155,7 +152,7 @@ const resolvers = {
       } else {
         return cancelledBooking;
       }
+    }
   }
-}
 }
 module.exports = resolvers;

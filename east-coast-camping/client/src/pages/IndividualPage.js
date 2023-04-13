@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Form } from 'react-bootstrap';
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -21,7 +22,18 @@ function IndividualCampground() {
         { id: 2, author: 'Jane Smith', review: 'Had an amazing time camping here. Facilities were clean and well-maintained.' },
         { id: 3, author: 'Mike Johnson', review: 'One of the best campgrounds I have been to. Highly recommended!' }
     ]);
+    const [destination, setDestination] = useState('');
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null)
+    const location = useLocation();
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log('Destination:', destination);
+        console.log('Start Date:', startDate);
+        console.log('End Date:', endDate);
+    };
 
 
     return (
@@ -103,10 +115,17 @@ function IndividualCampground() {
                         Reservations can be made online or by calling our campground office. We offer both tent and RV camping options, and our friendly staff are always available to assist with any questions or special requests you may have. Don't miss out on the opportunity to experience the beauty of nature at Campground Name
                     </p>
 
-
-
-
                 </Row>
+                <h2>Book now</h2>
+                <Form onSubmit={handleSubmit} className='individualSearch'>
+
+                    <Form.Label>Check in</Form.Label>
+                    <Form.Control type="text" placeholder="Select check-in date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className='searchInput' />
+                    <Form.Label>Check out</Form.Label>
+                    <Form.Control type="text" placeholder="Select check-out date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className='searchInput' />
+                    <Button type="submit" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button>
+                </Form>
+
             </Container>
             <hr className='mx-5' />
             <Container className='mt-5'>
