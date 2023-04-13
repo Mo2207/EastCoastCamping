@@ -49,7 +49,6 @@ function IndividualCampground() {
 
                 </div>
             </div>
-
             <Row className='campInfo'>
                 <h1>Campground Name</h1>
                 <p className='mt-3'>
@@ -110,6 +109,7 @@ function IndividualCampground() {
 
                 </Row>
             </Container>
+
 
 
         </>
