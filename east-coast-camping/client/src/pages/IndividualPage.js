@@ -16,6 +16,11 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 
 function IndividualCampground() {
+    const [reviews, setReviews] = useState([
+        { id: 1, author: 'John Doe', review: 'Great campground! Beautiful views and friendly staff.' },
+        { id: 2, author: 'Jane Smith', review: 'Had an amazing time camping here. Facilities were clean and well-maintained.' },
+        { id: 3, author: 'Mike Johnson', review: 'One of the best campgrounds I have been to. Highly recommended!' }
+    ]);
 
 
 
@@ -58,11 +63,11 @@ function IndividualCampground() {
 
             </Row>
 
-
+            {/* display 3 dotted line at the center */}
 
             <Container className='mt-5'>
                 <Row>
-                    <Col className='border-end p-4'>
+                    <Col className='border-end mr-4'>
                         <h2>Facilities and Amenities</h2>
                         <ul>
                             <li>Spacious campsites with fire pits and picnic tables</li>
@@ -75,18 +80,7 @@ function IndividualCampground() {
                         </ul>
                     </Col>
 
-                    <Col className='p-4'>
-                        <h2>Reservation Information</h2>
-                        <p>
-                            Reservations can be made online or by calling our campground office. We offer both tent and RV camping options, and our friendly staff are always available to assist with any questions or special requests you may have. Don't miss out on the opportunity to experience the beauty of nature at Campground Name
-                        </p>
-                    </Col>
-
-                </Row>
-            </Container>
-            <Container className='mt-5'>
-                <Row>
-                    <Col>
+                    <Col className='pl-4'>
                         <h2>Campsite rules</h2>
                         <ul>
                             <li>Campsite is opened for vehicle and reception is opened always from 8:00 till 20:00.</li>
@@ -100,13 +94,33 @@ function IndividualCampground() {
                         </ul>
                     </Col>
 
-                    <Col>
-                        <h2>Reservation Information</h2>
-                        <p>
-                            Reservations can be made online or by calling our campground office. We offer both tent and RV camping options, and our friendly staff are always available to assist with any questions or special requests you may have. Don't miss out on the opportunity to experience the beauty of nature at Campground Name
-                        </p>
-                    </Col>
+                </Row>
+            </Container>
+            <Container className='mt-5'>
+                <Row>
 
+                    <h2>Reservation Information</h2>
+                    <p>
+                        Reservations can be made online or by calling our campground office. We offer both tent and RV camping options, and our friendly staff are always available to assist with any questions or special requests you may have. Don't miss out on the opportunity to experience the beauty of nature at Campground Name
+                    </p>
+
+
+
+
+                </Row>
+            </Container>
+            <hr className='mx-5' />
+            <Container className='mt-5'>
+                <Row>
+                    <Col>
+                        <h2>Customer Reviews</h2>
+                        {reviews.map(review => (
+                            <div key={review.id} className='mt-3'>
+                                <h4>{review.author}</h4>
+                                <p>{review.review}</p>
+                            </div>
+                        ))}
+                    </Col>
                 </Row>
             </Container>
 
