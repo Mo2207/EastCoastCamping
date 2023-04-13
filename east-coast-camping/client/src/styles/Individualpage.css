@@ -1,0 +1,32 @@
+.nextEl,
+.prevEl {
+
+    background-color: red;
+    color: white;
+}
+
+
+.campInfo {
+    padding: 70px;
+    max-width: 1500px;
+    margin-left: 40px;
+}
+
+li {
+    padding: 10px;
+}
+
+p {
+    line-height: 40px;
+}
+
+.individualSearch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.searchInput {
+    margin-right: 90px;
+}
