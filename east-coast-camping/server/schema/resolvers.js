@@ -100,19 +100,28 @@ const resolvers = {
 
       // bcrypt password comparing upon login
       const validatePassword = await bcrypt.compare(password, user.password);
+
       if (!validatePassword) {
         throw new Error(`Invalid Email or Password provided.`);
       }
       return user;
     },
     // add camp to saved
-    saveCamp: async (parent, args) => {
-      const targetCamp = await CampGround.findById(args.id);
-      if (!targetCamp) {
-        throw new Error(`camp with id: ${args.id} not found!`);
+    saveCamp: async (parent, { userId, campId }) => {
+      const user = await User.findById(userId);
+
+      if (!user) {
+        throw new Error(`user with id: ${userId} not found!`);
       } else {
-        const save = await User.findById()
+        user = await User.findByIdAndUpdate(
+          // update this user
+          userId,
+          // $addToSet prevents duplicates getting saved
+          {$addToSet: { saved: campId }},
+          {new: true}
+        );
       }
+      return user;
     },
 
     // ---------- REVIEW MUTATIONS ----------
