@@ -3,12 +3,7 @@
     "firstName": "Gabe",
     "lastName": "Morris",
     "email": "gabemorris1042@gmail.com",
-    "password": "gabepassword",
-    "favourites": [
-      {
-        "name": "Amazing camp ground"
-      }
-    ]
+    "password": "gabepassword"
   },
   {
     "firstName": "Stephen",
