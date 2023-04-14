@@ -24,7 +24,7 @@ const userSchema = new Schema ({
     required: true,
     minlength: 5,
   },
-  favourites: {
+  saved: {
     type: Array,
     required: false
   },

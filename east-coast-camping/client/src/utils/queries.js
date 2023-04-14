@@ -15,11 +15,12 @@ query AllCamps {
 
 
 export const QUERY_ME = gql`
-  query Query($userByIdId: ID!) {
-    userById(id: $userByIdId) {
+  query Query($userId: ID!) {
+    userById(id: $userId) {
       email
       firstName
       lastName
+      _id
     }
   }
 

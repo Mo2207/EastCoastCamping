@@ -8,6 +8,7 @@ export const CREATE_USER = gql`
       password
       firstName
       lastName
+      _id
     }
   }
 `;
@@ -37,4 +38,11 @@ export const USER_LOGIN = gql `
       lastName
     }
   }
+`
+export const DELETE_ME = gql `
+mutation Mutation($deleteUserId: ID!) {
+  deleteUser(id: $deleteUserId) {
+    _id
+  }
+}
 `
