@@ -128,10 +128,15 @@ function IndividualCampground() {
                 <Form onSubmit={handleSubmit} className='individualSearch'>
 
                     <Form.Label>Check in</Form.Label>
-                    <Form.Control type="text" placeholder="Select check-in date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className='searchInput' />
+
+                    <DatePicker type="text" placeholderText="Select check-in date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className='searchInput' />
+
                     <Form.Label>Check out</Form.Label>
-                    <Form.Control type="text" placeholder="Select check-out date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className='searchInput' />
+
+                    <DatePicker type="text" placeholderText="Select check-out date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className='searchInput' />
+
                     <Button type="submit" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button>
+
                 </Form>
 
             </Container>
