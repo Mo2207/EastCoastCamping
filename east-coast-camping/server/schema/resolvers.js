@@ -113,15 +113,20 @@ const resolvers = {
       if (!user) {
         throw new Error(`user with id: ${userId} not found!`);
       } else {
-        user = await User.findByIdAndUpdate(
+        await User.findByIdAndUpdate(
           // update this user
           userId,
           // $addToSet prevents duplicates getting saved
           {$addToSet: { saved: campId }},
           {new: true}
-        );
+        ).populate('saved');
       }
-      return user;
+        // Retrieve the saved campground from the user object
+  const savedCampground = user.saved.find((campground) => campground._id.toString() === campId);
+
+  // Return the name of the saved campground
+  return savedCampground.name;
+      
     },
 
     // ---------- REVIEW MUTATIONS ----------
