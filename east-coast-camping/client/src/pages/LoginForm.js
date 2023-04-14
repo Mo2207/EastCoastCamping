@@ -53,7 +53,7 @@ const LoginForm = () => {
         <>
             <div className='bg-image'>
                 <Container className='form'>
-                    {data ? (
+                    {Auth.loggedIn() ? (
                         <p>
                             Success! You may now head{' '}
                             <Link to="/">back to the homepage.</Link>
