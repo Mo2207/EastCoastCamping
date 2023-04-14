@@ -9,7 +9,7 @@ import GifComponent from '../components/Homepage/Gifcomponent';
 import Iconscomponent from '../components/Homepage/Iconscomponent';
 import AllCamps from '../components/Homepage/Allcamps';
 import CampsByLocation from '../components/Homepage/CampsByLocation';
-
+import Footer from '../components/Footer';
 
 
 
@@ -64,7 +64,7 @@ export default function Home() {
                 </Container>
 
                 <CampsByLocation />
-
+                <Footer />
             </div>
         </>
 

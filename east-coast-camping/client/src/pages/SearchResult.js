@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { Link, useLocation } from 'react-router-dom';
 import { QUERY_CAMPGROUNDBYLOCATION, QUERY_ALLCAMPS } from '../utils/queries';
 import { useLazyQuery, useQuery } from '@apollo/client';
+import Footer from '../components/Footer';
 
 function SearchResult() {
     const [destination, setDestination] = useState('');
@@ -87,7 +88,7 @@ function SearchResult() {
                                                 variant="top"
                                                 src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"
                                             />
-                                            <div> View Details</div>
+
 
                                             <Card.Body>
                                                 <Card.Title>{campground.name}</Card.Title>
@@ -109,6 +110,7 @@ function SearchResult() {
                     </Col>
                 </Row>
             </Container>
+            <Footer />
         </>
     );
 }
