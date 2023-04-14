@@ -17,10 +17,11 @@ query AllCamps {
 export const QUERY_ME = gql`
   query Query($userId: ID!) {
     userById(id: $userId) {
+      _id
       email
       firstName
       lastName
-      _id
+      saved
     }
   }
 
@@ -28,12 +29,27 @@ export const QUERY_ME = gql`
 
 
 export const QUERY_CAMPGROUNDBYLOCATION = gql`
-query CampByLocation($location: String!) {
+query AllCamps($location: String!) {
   campByLocation(location: $location) {
-    name
-    location
-    price
+    _id
+    availability
     available
+    location
+    name
+    price
+  }
+}
+`;
+
+export const QUERY_CAMPBYID = gql`
+query CampById($campById: ID!) {
+  campById(id: $campById) {
+    _id
+    availability
+    available
+    location
+    name
+    price
   }
 }
 `;
