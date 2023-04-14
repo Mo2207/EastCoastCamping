@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form } from 'react-bootstrap';
-import Footer from '../components/Footer';import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { SAVE_CAMP } from '../utils/mutations';
 import Auth from '../utils/auth';
 import Footer from '../components/Footer';
