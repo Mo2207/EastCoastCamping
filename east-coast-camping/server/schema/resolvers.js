@@ -108,30 +108,30 @@ const resolvers = {
     },
     // add camp to saved
     saveCamp: async (parent, { userId, campId }) => {
-      const user = await User.findById(userId);
-      const camp = await CampGround.findById(campId);
+      // check to make sure arguments are given
+      if (!userId) throw new Error(`userId required!`);
+      if (!campId) throw new Error(`campId required!`);
 
-      if (!user) {
-        throw new Error(`user with id: ${userId} not found!`);
-      } 
+      // checks to make sure camp with given id exists
+      const camp = await CampGround.findById(campId);
       if (!camp) {
         throw new Error(`camp with id: ${campId} not found!`);
       }
-      else {
-        // get the campground by id
-        const savedCampground = await CampGround.findById(campId);
 
-        // get the user by id
-        const updatedUser = await User.findByIdAndUpdate(
-          // update this user
-          userId,
-          // $addToSet prevents duplicates getting saved
-          {$addToSet: { saved: savedCampground }},
-          {new: true}
-        ).populate('saved');
+      // get the user by id
+      const updateUser = await User.findByIdAndUpdate(
+        // update this user
+        userId,
+        // $addToSet prevents duplicates getting saved
+        {$addToSet: { saved: campId }},
+        {new: true}
+      ).populate('saved');
 
-        return updatedUser;
+      console.log(updateUser)
+      if (!updateUser) {
+        throw new Error(`user with id: ${userId} not found!`);
       }
+      return updateUser;
     },
     // delete camp from saved
     deleteSavedCamp: async (parent, { userId, campId }) => {
@@ -141,12 +141,37 @@ const resolvers = {
         throw new Error(`user with id: ${userId} not found!`);
       } 
 
+      console.log(user.saved)
       // checks to make sure camp with given id exists in users saved list
+      user.saved.map(async (campground) => {
+        if (campground._id === campId) {
+          const deleteCamp = await user.saved.findByIdAndDelete(
+            // delete this camp
+            campId,
+            // pull from saved array
+            {$pull: { saved: campId }},
+            {new: true}
+          ).populate('saved');
+          return deleteCamp;
+        }
+      })
+
+
       const savedCamp = user.saved.indexOf(campId);
       if (savedCamp === -1) {
+      console.log(savedCamp)
+
         throw new Error(`camp with id: ${campId} not found in users saved list!`);
       }
-      
+      // delete the camp in users saved list
+      const deleteCamp = await user.saved.findByIdAndDelete(
+        // delete this camp
+        campId,
+        // pull from saved array
+        {$pull: { saved: campId }},
+        {new: true}
+      ).populate('saved');
+      return deleteCamp;
     },
 
     // ---------- REVIEW MUTATIONS ----------
