@@ -20,15 +20,25 @@ import NoMatch from './NoMatch';
 
 
 export default function Profile() {
-  const user= "data";
-  const { loading, data } = useQuery(QUERY_ME);
 
+  let id;
+
+  if(Auth.loggedIn()){
+    id = Auth.getToken()
+  };
+
+  console.log(id)
+  const user = "data";
+  const { loading, data } = useQuery(QUERY_ME, {
+    variables: { userByIdId:id }
+  });
+console.log(data)
   const profile = data?.userById || {};
-  console.log(profile)
+  
   
   return (
     <>
-    {user ? (
+    {Auth.loggedIn ? (
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-5">
         <MDBRow>
@@ -69,7 +79,7 @@ export default function Profile() {
                     <MDBCardText>Last Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Smith</MDBCardText>
+                    <MDBCardText className="text-muted">{profile.lastName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -78,7 +88,7 @@ export default function Profile() {
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">example@example.com</MDBCardText>
+                    <MDBCardText className="text-muted">{profile.email}</MDBCardText>
                   </MDBCol>
                 </MDBRow>                
               </MDBCardBody>

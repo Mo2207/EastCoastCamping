@@ -30,7 +30,7 @@ function NavTab() {
                     <Nav>
                         <Nav.Link className='navbar-dark navbar' href="/">Home</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
-                        {Auth.loggedIn()?(
+                        {Auth.loggedIn() ? (
                             <>
                                 <Nav.Link href="/MyBookings">My Bookings</Nav.Link>
                                 <Nav.Link href="/me">Profile</Nav.Link>
