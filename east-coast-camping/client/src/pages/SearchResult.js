@@ -5,12 +5,15 @@ import Row from 'react-bootstrap/Row';
 import { Container } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css'
 import { Link, useLocation } from 'react-router-dom';
-import { QUERY_CAMPGROUNDBYLOCATION } from '../utils/queries';
-import { useLazyQuery } from '@apollo/client';
+import { QUERY_CAMPGROUNDBYLOCATION, QUERY_ALLCAMPS } from '../utils/queries';
+import { useLazyQuery, useQuery } from '@apollo/client';
+import Footer from '../components/Footer';
 
 function SearchResult() {
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
+    const allCampsData = useQuery(QUERY_ALLCAMPS);
+    console.log(allCampsData)
     const location = useLocation();
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -25,7 +28,6 @@ function SearchResult() {
 
     // Retrieve destination value from URL query parameter on initial render
     // [] will run only once
-
     React.useEffect(() => {
         // create new object from 'location.search' that contain param from URL
         const searchParams = new URLSearchParams(location.search);
@@ -61,25 +63,27 @@ function SearchResult() {
                 </Card.Body>
             </Card>
 
-            <Card>
-                <Card.Body>
-                    <Card.Text>
-                        <header className='text-black p-5 '>Available Campsites</header>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+            {data && data.campByLocation && data.campByLocation.length > 0 && (
+                <Card>
+                    <Card.Body>
+                        <Card.Text>
+                            <header className='text-black p-5 '>Available Campsites</header>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            )}
 
             <Container>
-                <Row>
-                    <Col>
-                        <Row xs={1} md={2} className="g-4">
+                <Row >
+                    <Col >
+                        <Row xs={1} md={2} className="g-4 ">
                             {data &&
                                 data.campByLocation &&
                                 data.campByLocation.map((campground, idx) => (
-                                    <Col key={idx}>
-                                        <Card>
+                                    <Col className='p-4' key={idx}>
+                                        <Card style={{ marginBottom: '200px', width: '25rem' }}>
                                             {/* Pass the campground information as query parameters in the URL */}
-                                            <Link to={`/campground/${campground._id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
+                                            <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
                                                 View Details
                                                 <Card.Img
                                                     variant="top"
@@ -93,6 +97,12 @@ function SearchResult() {
                                                     Price: {campground.price}
                                                 </Card.Text>
                                             </Card.Body>
+                                            <div className='d-flex justify-content-end btn'>
+                                                <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
+                                                    <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
+                                                </Link>
+                                            </div>
+
                                         </Card>
                                     </Col>
                                 ))
@@ -101,6 +111,7 @@ function SearchResult() {
                     </Col>
                 </Row>
             </Container>
+            <Footer />
         </>
     );
 }

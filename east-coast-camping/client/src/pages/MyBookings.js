@@ -10,30 +10,54 @@ import Auth from '../utils/auth';
 import "../styles/Upcoming.css";
 import Upcoming from '../components/Upcoming';
 import Completed from '../components/Completed';
+import Footer from '../components/Footer';
+
+function MyBookings() {
+  const data = {
+    user: [
+      {
+        id: 1,
+        firstName: 'Sayid',
+        lastName: 'Khan',
+      },
+      {
+        id: 2,
+        firstName: 'Sun-Hwa',
+        lastName: 'John',
+      },
+    ],
+  };
+
+  console.log(data)
+  let user;
+
+  if (data) {
+    user = data.user;
+    console.log(user[0].firstName)
+  }
 
 
-export default function MyBookings() {
-  
   return (
     <>
       <div className="container my-1">
         <Navbar.Brand><h2>My Bookings</h2></Navbar.Brand>
-          <Tabs
-            defaultActiveKey="upcoming"
-            id="uncontrolled-tab-example"
-            className="mb-3"
-          > 
+        <Tabs
+          defaultActiveKey="upcoming"
+          id="uncontrolled-tab-example"
+          className="mb-3"
+        >
           <Tab eventKey="upcoming" title="Upcoming" >
             <Upcoming />
           </Tab>
-            <Tab eventKey="completed" title="Completed" >
+          <Tab eventKey="completed" title="Completed" >
             <Completed />
-            </Tab>
-            <Tab eventKey="Savedcamps" title="Saved Camps">
-              Saved Camps Info
-            </Tab>
-          </Tabs>
+          </Tab>
+          <Tab eventKey="Savedcamps" title="Saved Camps">
+            Saved Camps Info
+          </Tab>
+        </Tabs>
       </div>
+      <Footer />
     </>
   );
 }

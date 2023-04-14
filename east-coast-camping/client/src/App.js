@@ -21,6 +21,7 @@ import IndividualCampGround from './pages/IndividualPage';
 
 
 
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -91,7 +92,6 @@ function App() {
               element={<NoMatch />}
             />
           </Routes>
-
         </div>
       </Router>
     </ApolloProvider>
