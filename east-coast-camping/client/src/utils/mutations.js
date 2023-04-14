@@ -39,3 +39,10 @@ export const USER_LOGIN = gql `
     }
   }
 `
+export const DELETE_ME = gql `
+mutation Mutation($deleteUserId: ID!) {
+  deleteUser(id: $deleteUserId) {
+    _id
+  }
+}
+`

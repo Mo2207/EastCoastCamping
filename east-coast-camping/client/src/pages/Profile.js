@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import {
   MDBCol,
   MDBContainer,
@@ -16,29 +16,36 @@ import {
 import { Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { QUERY_ME } from '../utils/queries';
-import NoMatch from './NoMatch';
+import { DELETE_ME } from '../utils/mutations';
+// import NoMatch from './NoMatch';
 
 
 export default function Profile() {
 
   let id;
-
   if(Auth.loggedIn()){
     id = Auth.getToken()
   };
-
-  console.log(id)
-  const user = "data";
   const { loading, data } = useQuery(QUERY_ME, {
     variables: { userByIdId:id }
   });
-console.log(data)
   const profile = data?.userById || {};
   
+  const [ deleteMe ] = useMutation(DELETE_ME)
+  
+  function handleToDelete(deleteUserId){
+    const { data } = deleteMe({
+      variables: {deleteUserId}
+    })
+
+      console.log(data)
+      localStorage.removeItem('id_token');
+      window.location.assign('/regret');  
+  }
   
   return (
     <>
-    {Auth.loggedIn ? (
+    {Auth.loggedIn() ? (
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-5">
         <MDBRow>
@@ -100,12 +107,18 @@ console.log(data)
               <MDBCol sm="1">
                 <Button>Save</Button> 
               </MDBCol>
+              <MDBCol sm="1">
+                <Button                       
+                  className="btn-danger"
+                  onClick={() => {handleToDelete(id)}}>Delete</Button> 
+                {/* <DeleteUser /> */}
+              </MDBCol>
             </MDBRow>   
           </MDBCol>
         </MDBRow>
       </MDBContainer>      
     </section>
-    ) : (<NoMatch />)}
+    ) : null}
     </>
   );
 }

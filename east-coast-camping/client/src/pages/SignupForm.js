@@ -5,8 +5,9 @@ import {  CREATE_USER, USER_LOGIN } from '../utils/mutations';
 
 import '../styles/login-signUp.css'
 
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
+
 function SignupForm() {
     const [formState, setFormState] = useState({ 
         firstName:'',
@@ -31,6 +32,7 @@ function SignupForm() {
         // const token = responseData.data.userById._id;
         // Auth.login(token);
         // console.log(token)
+
     };
 
     const handleChange = (event) => {
