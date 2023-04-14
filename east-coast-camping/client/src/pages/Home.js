@@ -44,28 +44,14 @@ export default function Home() {
     // if (error) return <p>{error.message}</p>
 
 
-
     return (
         <>
             <div className='bg-white'>
                 <Card className='searchBar-Bg'>
-                    {/* <Card.Body className='d-flex align-items-center searchBar '>
-                        <label >
-                            <input type="text" placeholder='Search destinations' className='searchInput' value={destination} onChange={(e) => setDestination(e.target.value)} />
-                        </label>
-                        <label>
-                            <DatePicker className='searchInput' placeholderText='check in' selected={startDate} onChange={date => setStartDate(date)} />
-                        </label>
-                        <label>
-                            <DatePicker className='searchInput' placeholderText='check out' selected={endDate} onChange={date => setEndDate(date)} />
-                        </label>
-                        <Button onClick={() => { toSearchResult() }} style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', width: '120px' }} >Search</Button>
-
-                    </Card.Body> */}
+                    <h2 className='mb-4'>Welcome to EastCoastCamping</h2>
 
                 </Card>
                 <Container className='mt-5 text-center'>
-                    <h2 className='mb-4'>Welcome to EastCoastCamping</h2>
 
                     <p>Looking for a memorable camping experience? Look no further than EastCoastCamping, where we connect you with the best campsites and outdoor destinations. </p>
                     <p>  Whether you're a seasoned outdoor enthusiast or a first-time camper, our website makes it easy to plan and book your perfect camping trip. </p>
