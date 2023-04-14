@@ -80,6 +80,34 @@ const resolvers = {
       const newUser = new User(args);
       return await newUser.save();
     },
+    // edit user by id 
+    editUser: async (parent, {userId, firstName, lastName, email}) => {
+      // check to make sure arguments are given
+      if (!userId) throw new Error(`userId required!`);
+
+      // check to make sure user with the given id exists
+      const user = User.findById(userId);
+      if (!user) {
+        throw new Error(`user with id: ${userId} not found!`);
+      }
+
+      // this only updates the parameters that the user hands in, keeps the rest the same
+      const userEdits = {
+        firstName: firstName || user.firstName,
+        lastName: lastName || user.lastName,
+        email: email || user.email
+      }
+
+      const updateUser = await User.findByIdAndUpdate(
+        // edit this user
+        userId,
+        // make these edits
+        userEdits,
+        {new: true}
+      );
+
+      return updateUser;
+    },
     // delete user by id
     deleteUser: async (parent, args) => {
       const deletedUser = await User.findByIdAndDelete(args.id);
@@ -145,14 +173,14 @@ const resolvers = {
         throw new Error(`user with id: ${userId} not found!`);
       } 
 
-      user.saved.map(async (campground) => {
-        if (campground === campId) {
-          console.log(campId)
-          user.saved.pull(campId);
-        }
-        console.log(user.saved)
-        return user.saved;
-      })
+      // delete the campId from users saved list
+      if (user.saved.includes(campId)) {
+        user.saved.pull(campId);
+        await user.save();
+        return user;
+      } else {
+        throw new Error(`campId not found in saved list!`);
+      }
     },
 
     // ---------- REVIEW MUTATIONS ----------

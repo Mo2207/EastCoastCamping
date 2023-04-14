@@ -46,7 +46,9 @@ export default function Profile() {
     window.location.assign('/regret');
   }
 
+
   const [editMe] = useMutation(EDIT_ME);
+
 
   // edit mode when user pressed edit button
   const [editMode, setEditMode] = useState(false);
@@ -61,6 +63,10 @@ export default function Profile() {
     if (profile.lastName) setLastName(profile.lastName);
     if (profile.email) setEmail(profile.email);
   }, [profile])
+
+
+
+  
 
   // edit the users fields
   function handleToEdit() {
@@ -78,6 +84,10 @@ export default function Profile() {
       }
     })
   }
+
+
+  
+
 
   return (
     <>
@@ -155,16 +165,55 @@ export default function Profile() {
                   <MDBCol sm="1">
                     <Button onClick={() => setEditMode(true)}>Edit</Button>
                   </MDBCol>
+
                   <MDBCol sm="1">
                     <Button onClick={handleToEdit}>Save</Button>
-                  </MDBCol>
-                  <MDBCol sm="1">
-                    <Button
-                      className="btn-danger"
-                      onClick={() => { handleToDelete(id) }}>Delete</Button>
-                    {/* <DeleteUser /> */}
+
                   </MDBCol>
                 </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Last Name</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                      {editMode ? (
+                        <input type="text" id='lastName' value={lastNameState} onChange={(e) => setLastName(e.target.value)}>
+                        </input>
+                      ) : (
+                        <MDBCardText className="text-muted">{lastNameState}</MDBCardText>
+                      )}
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Email</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    {editMode ? (
+                        <input type="text" id='email' value={emailState} onChange={(e) => setEmail(e.target.value)}>
+                        </input>
+                      ) : (
+                        <MDBCardText className="text-muted">{emailState}</MDBCardText>
+                      )}
+                  </MDBCol>
+                </MDBRow>                
+              </MDBCardBody>
+            </MDBCard>
+            <MDBRow>
+              <MDBCol sm="1">
+                <Button onClick={() => setEditMode(true)}>Edit</Button> 
+              </MDBCol>
+              <MDBCol sm="1">
+                <Button onClick={handleToEdit}>Save</Button> 
+              </MDBCol>
+              <MDBCol sm="1">
+                <Button                       
+                  className="btn-danger"
+                  onClick={() => {handleToDelete(id)}}>Delete</Button> 
+                {/* <DeleteUser /> */}
+
               </MDBCol>
             </MDBRow>
           </MDBContainer>
