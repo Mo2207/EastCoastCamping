@@ -29,6 +29,7 @@ function NavTab() {
                     </Nav>
                     <Nav>
                         <Nav.Link className='navbar-dark navbar' href="/">Home</Nav.Link>
+                        <Nav.Link href="/search">Search Campground</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
                         {Auth.loggedIn() ? (
                             <>
@@ -36,7 +37,7 @@ function NavTab() {
                                 <Nav.Link href="/me">Profile</Nav.Link>
                                 <Nav.Link href="/Login" onClick={() => Auth.logout()}>Logout</Nav.Link>
                             </>
-                        ):(
+                        ) : (
                             <>
                                 <Nav.Link href="/Login">Login</Nav.Link>
                                 <Nav.Link href="/register" className='sign-up'>signup</Nav.Link>
