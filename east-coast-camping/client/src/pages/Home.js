@@ -7,10 +7,9 @@ import 'react-datepicker/dist/react-datepicker.css' //date-picker css
 import Button from 'react-bootstrap/Button';
 import GifComponent from '../components/Homepage/Gifcomponent';
 import Iconscomponent from '../components/Homepage/Iconscomponent';
-import Footer from '../components/Homepage/Footer';
 import AllCamps from '../components/Homepage/Allcamps';
 import CampsByLocation from '../components/Homepage/CampsByLocation';
-
+import Footer from '../components/Footer';
 
 
 

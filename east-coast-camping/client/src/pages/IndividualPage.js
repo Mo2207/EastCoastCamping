@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form } from 'react-bootstrap';
-
+import Footer from '../components/Footer';
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -154,7 +154,7 @@ function IndividualCampground() {
                     </Col>
                 </Row>
             </Container>
-
+            <Footer />
 
 
         </>
