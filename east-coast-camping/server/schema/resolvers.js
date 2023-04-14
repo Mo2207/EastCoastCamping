@@ -145,14 +145,14 @@ const resolvers = {
         throw new Error(`user with id: ${userId} not found!`);
       } 
 
-      user.saved.map(async (campground) => {
-        if (campground === campId) {
-          console.log(campId)
-          user.saved.pull(campId);
-        }
-        console.log(user.saved)
-        return user.saved;
-      })
+      // delete the campId from users saved list
+      if (user.saved.includes(campId)) {
+        user.saved.pull(campId);
+        await user.save();
+        return user;
+      } else {
+        throw new Error(`campId not found in saved list!`);
+      }
     },
 
     // ---------- REVIEW MUTATIONS ----------
