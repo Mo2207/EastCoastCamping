@@ -61,13 +61,11 @@ const resolvers = {
     },
 
     userReviews: async (parent, args) => {
-      const reviews = await Review.find({user:args.id});
-      if (!user) {
-        throw new Error(`user with id: ${args.id} not found!`);
-      } else {
-        return reviews;
+      const reviews = await Review.find({ user: args.id });
+      if (!reviews) {
+        throw new Error(`User with ID ${args.id} has no reviews.`);
       }
-    },
+      return reviews;},
     // ------- BOOKING QUERIES _______
     // get all Bookings
 
