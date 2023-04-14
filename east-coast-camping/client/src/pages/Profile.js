@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
+
 import {
   MDBCol,
   MDBContainer,
@@ -16,19 +17,37 @@ import {
 import { Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { QUERY_ME } from '../utils/queries';
-import NoMatch from './NoMatch';
+import { DELETE_ME } from '../utils/mutations';
+// import NoMatch from './NoMatch';
 
 
 export default function Profile() {
   const user = "data";
-  const { loading, data } = useQuery(QUERY_ME);
 
+  let id;
+  if(Auth.loggedIn()){
+    id = Auth.getToken()
+  };
+  const { loading, data } = useQuery(QUERY_ME, {
+    variables: { userId:id }
+  });
   const profile = data?.userById || {};
-  console.log(profile)
+  
+  const [ deleteMe ] = useMutation(DELETE_ME)
+  
+  function handleToDelete(deleteUserId){
+    const { data } = deleteMe({
+      variables: {deleteUserId}
+    })
+
+      console.log(data)
+      localStorage.removeItem('id_token');
+      window.location.assign('/regret');  
+  }
   
   return (
     <>
-    {user ? (
+    {Auth.loggedIn() ? (
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-5">
         <MDBRow>
@@ -69,7 +88,7 @@ export default function Profile() {
                     <MDBCardText>Last Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Smith</MDBCardText>
+                    <MDBCardText className="text-muted">{profile.lastName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -78,7 +97,7 @@ export default function Profile() {
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">example@example.com</MDBCardText>
+                    <MDBCardText className="text-muted">{profile.email}</MDBCardText>
                   </MDBCol>
                 </MDBRow>                
               </MDBCardBody>
@@ -90,12 +109,18 @@ export default function Profile() {
               <MDBCol sm="1">
                 <Button>Save</Button> 
               </MDBCol>
+              <MDBCol sm="1">
+                <Button                       
+                  className="btn-danger"
+                  onClick={() => {handleToDelete(id)}}>Delete</Button> 
+                {/* <DeleteUser /> */}
+              </MDBCol>
             </MDBRow>   
           </MDBCol>
         </MDBRow>
       </MDBContainer>      
     </section>
-    ) : (<NoMatch />)}
+    ) : null}
     </>
   );
 }
