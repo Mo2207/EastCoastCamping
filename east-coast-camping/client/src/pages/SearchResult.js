@@ -11,12 +11,14 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import '../styles/SearchResult.css'
 import { Form } from 'react-bootstrap';
-import { QUERY_CAMPGROUNDBYLOCATION } from '../utils/queries';
+import { QUERY_CAMPGROUNDBYLOCATION, QUERY_ALLCAMPS } from '../utils/queries';
 import { useLazyQuery } from '@apollo/client';
 
 function SearchResult() {
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
+
+    const [searchAllCamp, {load, err, allData}] = useLazyQuery(QUERY_ALLCAMPS);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -41,7 +43,7 @@ function SearchResult() {
                 <Card.Body className='d-flex align-items-center searchBar '>
                     <form onSubmit={handleSubmit}>
                         <select value={destination} onChange={(e) => setDestination(e.target.value)}>
-                            <option value="">Search destinations</option>
+                            <option value="">Please select your prefer location from the list</option>
                             <option value="Fredericton">Fredericton</option>
                             <option value="Saint John">Saint John</option>
                             <option value="Moncton">Moncton</option>
@@ -86,7 +88,8 @@ function SearchResult() {
                                             </Card.Body>
                                         </Card>
                                     </Col>
-                                ))}
+                                ))
+                            }
                         </Row>
                     </Col>
                 </Row>
