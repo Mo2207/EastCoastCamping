@@ -79,7 +79,7 @@ export default function Profile() {
                     <MDBCardText>First Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{user.firstName}</MDBCardText>
+                    <MDBCardText className="text-muted">{profile.firstName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
