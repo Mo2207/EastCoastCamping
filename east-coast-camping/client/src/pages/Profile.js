@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 
@@ -18,10 +18,14 @@ import { Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { QUERY_ME } from '../utils/queries';
 import { DELETE_ME } from '../utils/mutations';
+import { EDIT_ME } from '../utils/mutations';
 // import NoMatch from './NoMatch';
 
 
 export default function Profile() {
+  // edit mode when user pressed edit button
+  const [editMode, setEditMode] = useState(false);
+
   const user = "data";
 
   let id;
@@ -43,6 +47,22 @@ export default function Profile() {
       console.log(data)
       localStorage.removeItem('id_token');
       window.location.assign('/regret');  
+  }
+
+  function openEditor() {
+    setEditMode(true);
+  }
+
+  const [ editMe ] = useMutation(EDIT_ME);
+
+  function handleToEdit() {
+    console.log(data)
+
+    const { data } = editMe({
+      variables: {
+
+      }
+    })
   }
   
   return (
@@ -79,7 +99,7 @@ export default function Profile() {
                     <MDBCardText>First Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{user.firstName}</MDBCardText>
+                    <MDBCardText className="text-muted">{profile.firstName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -104,7 +124,7 @@ export default function Profile() {
             </MDBCard>
             <MDBRow>
               <MDBCol sm="1">
-                <Button>Edit</Button> 
+                <Button onClick={() => {handleToEdit(id)}}>Edit</Button> 
               </MDBCol>
               <MDBCol sm="1">
                 <Button>Save</Button> 
