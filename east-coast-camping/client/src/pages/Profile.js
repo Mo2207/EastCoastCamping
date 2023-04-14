@@ -1,6 +1,7 @@
 import React from 'react';
-// import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
+import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
+
 import {
   MDBCol,
   MDBContainer,
@@ -21,13 +22,14 @@ import { DELETE_ME } from '../utils/mutations';
 
 
 export default function Profile() {
+  const user = "data";
 
   let id;
   if(Auth.loggedIn()){
     id = Auth.getToken()
   };
   const { loading, data } = useQuery(QUERY_ME, {
-    variables: { userByIdId:id }
+    variables: { userId:id }
   });
   const profile = data?.userById || {};
   
@@ -77,7 +79,7 @@ export default function Profile() {
                     <MDBCardText>First Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{profile.firstName}</MDBCardText>
+                    <MDBCardText className="text-muted">{user.firstName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
