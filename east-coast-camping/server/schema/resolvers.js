@@ -135,43 +135,24 @@ const resolvers = {
     },
     // delete camp from saved
     deleteSavedCamp: async (parent, { userId, campId }) => {
+      // check to make sure arguments are given
+      if (!userId) throw new Error(`userId required!`);
+      if (!campId) throw new Error(`campId required!`);
+
       // checks to make sure user with given id exists
       const user = await User.findById(userId);
       if (!user) {
         throw new Error(`user with id: ${userId} not found!`);
       } 
 
-      console.log(user.saved)
-      // checks to make sure camp with given id exists in users saved list
       user.saved.map(async (campground) => {
-        if (campground._id === campId) {
-          const deleteCamp = await user.saved.findByIdAndDelete(
-            // delete this camp
-            campId,
-            // pull from saved array
-            {$pull: { saved: campId }},
-            {new: true}
-          ).populate('saved');
-          return deleteCamp;
+        if (campground === campId) {
+          console.log(campId)
+          user.saved.pull(campId);
         }
+        console.log(user.saved)
+        return user.saved;
       })
-
-
-      const savedCamp = user.saved.indexOf(campId);
-      if (savedCamp === -1) {
-      console.log(savedCamp)
-
-        throw new Error(`camp with id: ${campId} not found in users saved list!`);
-      }
-      // delete the camp in users saved list
-      const deleteCamp = await user.saved.findByIdAndDelete(
-        // delete this camp
-        campId,
-        // pull from saved array
-        {$pull: { saved: campId }},
-        {new: true}
-      ).populate('saved');
-      return deleteCamp;
     },
 
     // ---------- REVIEW MUTATIONS ----------
