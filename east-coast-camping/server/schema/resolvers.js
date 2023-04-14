@@ -46,6 +46,13 @@ const resolvers = {
       return await CampGround.find();
     },
 
+    // get array of camps
+    getArrayOfCamps: async (parent, {campIdArray}) => {
+      const allCamps = await CampGround.find(
+        { _id: { $in: campIdArray } });
+      return allCamps;
+    },
+
     // ---------- REVIEW QUERIES ----------
     // get all reviews
     allReviews: async (parent, args) => {
