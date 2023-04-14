@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 import SignupForm from './pages/SignupForm';
 import SearchResult from './pages/SearchResult'
 import IndividualCampGround from './pages/IndividualPage';
+import Footer from './components/Footer';
 
 
 
@@ -91,7 +92,7 @@ function App() {
               element={<NoMatch />}
             />
           </Routes>
-
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

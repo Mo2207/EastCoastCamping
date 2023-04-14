@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Footer.css'
 
 
 
@@ -7,7 +8,7 @@ import React from 'react';
 export default function Footer() {
     return (
 
-        <footer style={{ backgroundColor: 'black', maxHeight: '200px' }}>
+        <footer className='footer'>
             <h3 className='text-white text-center pt-5'>Life is better around the campfire</h3>
 
             <div className='text-white text-center py-4'>
