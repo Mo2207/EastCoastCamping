@@ -69,7 +69,9 @@ function SearchResult() {
                                 data.campByLocation.map((campground, idx) => (
                                     <Col key={idx}>
                                         <Card>
-                                            <Link to={`/campground`}>
+                                            {/* Pass the campground information as query parameters in the URL */}
+                                            <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
+                                                View Details
                                                 <Card.Img
                                                     variant="top"
                                                     src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"

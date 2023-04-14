@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form } from 'react-bootstrap';
+
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -27,6 +28,10 @@ function IndividualCampground() {
     const [endDate, setEndDate] = useState(null)
     const location = useLocation();
 
+    const campgroundId = location.pathname.split('/').pop();
+    const campgroundName = new URLSearchParams(location.search).get('name');
+    const campgroundLocation = new URLSearchParams(location.search).get('location');
+    const campgroundPrice = new URLSearchParams(location.search).get('price');
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -67,8 +72,11 @@ function IndividualCampground() {
                 </div>
             </div>
             <Row className='campInfo'>
-                <h1>Campground Name</h1>
+                <h1>Campground Name: {campgroundName}</h1>
+                <p>Location: {campgroundLocation}</p>
+                <p>Price: ${campgroundPrice}</p>
                 <p className='mt-3'>
+                    {/* display campground info */}
                     Welcome to Campground Name! Located in the heart of nature, our campground offers a serene and peaceful escape from the hustle and bustle of everyday life. With stunning views of the surrounding mountains and a variety of recreational activities, you're sure to have an unforgettable camping experience.
                 </p>
 
