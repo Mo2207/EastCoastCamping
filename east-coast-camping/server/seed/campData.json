@@ -4,7 +4,8 @@
     "location":"Sussex",
     "availability": 50,
     "available": true,
-    "price":40
+    "price":40,
+    "features":"Each lot has power and water, Campfires allowed after 8pm and Wifi available"
   },
   {
     "name": "Boring camp",

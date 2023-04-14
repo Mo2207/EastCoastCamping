@@ -1,5 +1,5 @@
 
-const { User, CampGround, Review } = require('../models');
+const { User, CampGround, Review, Features } = require('../models');
 const bcrypt = require('bcrypt');
 
 const resolvers = {
@@ -58,10 +58,8 @@ const resolvers = {
     allBookings: async (parent, args) => {
       return await Booking.find();
     },
+  
   },
-
-
-
   // MUTATIONS
   Mutation: {
 
@@ -78,7 +76,9 @@ const resolvers = {
       args.password = hashedPassword;
 
       const newUser = new User(args);
+      console.log(newUser);
       return await newUser.save();
+      
     },
     // delete user by id
     deleteUser: async (parent, args) => {
