@@ -178,6 +178,7 @@ export default function Profile() {
           </MDBContainer>
         </section>
       ) : null}
+
       < Footer />
     </>
 
