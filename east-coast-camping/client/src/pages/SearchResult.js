@@ -62,13 +62,15 @@ function SearchResult() {
                 </Card.Body>
             </Card>
 
-            <Card>
-                <Card.Body>
-                    <Card.Text>
-                        <header className='text-black p-5 '>Available Campsites</header>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+            {data && data.campByLocation && data.campByLocation.length > 0 && (
+                <Card>
+                    <Card.Body>
+                        <Card.Text>
+                            <header className='text-black p-5 '>Available Campsites</header>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            )}
 
             <Container>
                 <Row >
@@ -78,7 +80,7 @@ function SearchResult() {
                                 data.campByLocation &&
                                 data.campByLocation.map((campground, idx) => (
                                     <Col className='p-4' key={idx}>
-                                        <Card className='mb-5'>
+                                        <Card style={{ marginBottom: '200px', width: '25rem' }}>
                                             {/* Pass the campground information as query parameters in the URL */}
 
                                             <Card.Img
