@@ -15,8 +15,8 @@ query AllCamps {
 
 
 export const QUERY_ME = gql`
-  query Query($userByIdId: ID!) {
-    userById(id: $userByIdId) {
+  query Query($userId: ID!) {
+    userById(id: $userId) {
       email
       firstName
       lastName
@@ -25,3 +25,15 @@ export const QUERY_ME = gql`
   }
 
 `
+
+
+export const QUERY_CAMPGROUNDBYLOCATION = gql`
+query CampByLocation($location: String!) {
+  campByLocation(location: $location) {
+    name
+    location
+    price
+    available
+  }
+}
+`;

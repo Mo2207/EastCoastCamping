@@ -9,10 +9,10 @@ import { QUERY_USER } from '../utils/queries';
 import "../styles/Upcoming.css";
 import Upcoming from '../components/Upcoming';
 import Completed from '../components/Completed';
-
+import Footer from '../components/Footer';
 
 function MyBookings() {
-  const data  ={
+  const data = {
     user: [
       {
         id: 1,
@@ -27,7 +27,7 @@ function MyBookings() {
     ],
   };
 
-console.log(data)
+  console.log(data)
   let user;
 
   if (data) {
@@ -40,22 +40,23 @@ console.log(data)
     <>
       <div className="container my-1">
         <Navbar.Brand><h2>My Bookings</h2></Navbar.Brand>
-          <Tabs
-            defaultActiveKey="upcoming"
-            id="uncontrolled-tab-example"
-            className="mb-3"
-          > 
+        <Tabs
+          defaultActiveKey="upcoming"
+          id="uncontrolled-tab-example"
+          className="mb-3"
+        >
           <Tab eventKey="upcoming" title="Upcoming" >
             <Upcoming />
           </Tab>
-            <Tab eventKey="completed" title="Completed" >
+          <Tab eventKey="completed" title="Completed" >
             <Completed />
-            </Tab>
-            <Tab eventKey="Savedcamps" title="Saved Camps">
-              Saved Camps Info
-            </Tab>
-          </Tabs>
+          </Tab>
+          <Tab eventKey="Savedcamps" title="Saved Camps">
+            Saved Camps Info
+          </Tab>
+        </Tabs>
       </div>
+      <Footer />
     </>
   );
 }

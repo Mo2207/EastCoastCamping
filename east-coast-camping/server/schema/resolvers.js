@@ -80,6 +80,34 @@ const resolvers = {
       return await newUser.save();
       
     },
+    // edit user by id 
+    editUser: async (parent, {userId, firstName, lastName, email}) => {
+      // check to make sure arguments are given
+      if (!userId) throw new Error(`userId required!`);
+
+      // check to make sure user with the given id exists
+      const user = User.findById(userId);
+      if (!user) {
+        throw new Error(`user with id: ${userId} not found!`);
+      }
+
+      // this only updates the parameters that the user hands in, keeps the rest the same
+      const userEdits = {
+        firstName: firstName || user.firstName,
+        lastName: lastName || user.lastName,
+        email: email || user.email
+      }
+
+      const updateUser = await User.findByIdAndUpdate(
+        // edit this user
+        userId,
+        // make these edits
+        userEdits,
+        {new: true}
+      );
+
+      return updateUser;
+    },
     // delete user by id
     deleteUser: async (parent, args) => {
       const deletedUser = await User.findByIdAndDelete(args.id);
@@ -100,10 +128,59 @@ const resolvers = {
 
       // bcrypt password comparing upon login
       const validatePassword = await bcrypt.compare(password, user.password);
+
       if (!validatePassword) {
         throw new Error(`Invalid Email or Password provided.`);
       }
       return user;
+    },
+    // add camp to saved
+    saveCamp: async (parent, { userId, campId }) => {
+      // check to make sure arguments are given
+      if (!userId) throw new Error(`userId required!`);
+      if (!campId) throw new Error(`campId required!`);
+
+      // checks to make sure camp with given id exists
+      const camp = await CampGround.findById(campId);
+      if (!camp) {
+        throw new Error(`camp with id: ${campId} not found!`);
+      }
+
+      // get the user by id
+      const updateUser = await User.findByIdAndUpdate(
+        // update this user
+        userId,
+        // $addToSet prevents duplicates getting saved
+        {$addToSet: { saved: campId }},
+        {new: true}
+      ).populate('saved');
+
+      console.log(updateUser)
+      if (!updateUser) {
+        throw new Error(`user with id: ${userId} not found!`);
+      }
+      return updateUser;
+    },
+    // delete camp from saved
+    deleteSavedCamp: async (parent, { userId, campId }) => {
+      // check to make sure arguments are given
+      if (!userId) throw new Error(`userId required!`);
+      if (!campId) throw new Error(`campId required!`);
+
+      // checks to make sure user with given id exists
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error(`user with id: ${userId} not found!`);
+      } 
+
+      // delete the campId from users saved list
+      if (user.saved.includes(campId)) {
+        user.saved.pull(campId);
+        await user.save();
+        return user;
+      } else {
+        throw new Error(`campId not found in saved list!`);
+      }
     },
 
     // ---------- REVIEW MUTATIONS ----------

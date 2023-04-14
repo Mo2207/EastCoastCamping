@@ -11,10 +11,12 @@ import Navbar from './components/Navbar';
 
 import LoginForm from './pages/LoginForm';
 import NoMatch from './pages/NoMatch';
+import Regret from './components/Regret';
 import Profile from './pages/Profile';
 import SignupForm from './pages/SignupForm';
 import SearchResult from './pages/SearchResult'
 import IndividualCampGround from './pages/IndividualPage';
+
 
 
 
@@ -78,16 +80,18 @@ function App() {
               element={<SearchResult />}
             />
             <Route
-              path="/campground"
+              path="/campground/:id"
               element={<IndividualCampGround />}
+            />
+            <Route
+              path="/regret"
+              element={<Regret />}
             />
             <Route
               path="*"
               element={<NoMatch />}
-
             />
           </Routes>
-
         </div>
       </Router>
     </ApolloProvider>
