@@ -47,6 +47,7 @@ export default function Profile() {
   }
 
   const [ editMe ] = useMutation(EDIT_ME);
+
   // edit mode when user pressed edit button
   const [editMode, setEditMode] = useState(false);
   // state variables for user profile
@@ -54,17 +55,18 @@ export default function Profile() {
   const [lastNameState, setLastName] = useState('');
   const [emailState, setEmail] = useState('');
 
+  // everytime profile changes useEffect is called and sets the states
   useEffect(() => {
     if (profile.firstName) setFirstName(profile.firstName);
     if (profile.lastName) setLastName(profile.lastName);
     if (profile.email) setEmail(profile.email);
   }, [profile])
   
-  console.log(profile)
-
+  // edit the users fields
   function handleToEdit() {
+    // get the users id to hand into editMe
     const userId = Auth.getToken();
-    console.log(`userId is: ${userId}`)
+    // console.log(`userId is: ${userId}`)
 
     setEditMode(false);
     editMe({
