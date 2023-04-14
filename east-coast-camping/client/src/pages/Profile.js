@@ -160,12 +160,15 @@ export default function Profile() {
               </MDBCol>
             </MDBRow>
             <MDBRow>
+            {editMode ? (
+              <MDBCol sm="1">
+              <Button onClick={handleToEdit}>Save</Button> 
+            </MDBCol>
+            ):(
               <MDBCol sm="1">
                 <Button onClick={() => setEditMode(true)}>Edit</Button> 
               </MDBCol>
-              <MDBCol sm="1">
-                <Button onClick={handleToEdit}>Save</Button> 
-              </MDBCol>
+              )}
               <MDBCol sm="1">
                 <Button                       
                   className="btn-danger"
