@@ -53,7 +53,12 @@ export default function Profile() {
   const [firstNameState, setFirstName] = useState('');
   const [lastNameState, setLastName] = useState('');
   const [emailState, setEmail] = useState('');
-  useEffect()
+
+  useEffect(() => {
+    if (profile.firstName) setFirstName(profile.firstName);
+    if (profile.lastName) setLastName(profile.lastName);
+    if (profile.email) setEmail(profile.email);
+  }, [profile])
   
   console.log(profile)
 
@@ -107,7 +112,7 @@ export default function Profile() {
                   </MDBCol>
                   <MDBCol sm="9">
                     {editMode ? (
-                      <input type="text" id='firstName' defaultValue={firstNameState} onChange={(e) => setFirstName(e.target.value)}>
+                      <input type="text" id='firstName' value={firstNameState} onChange={(e) => setFirstName(e.target.value)}>
                       </input>
                     ) : (
                       <MDBCardText className="text-muted">{firstNameState}</MDBCardText>
@@ -124,7 +129,7 @@ export default function Profile() {
                         <input type="text" id='lastName' value={lastNameState} onChange={(e) => setLastName(e.target.value)}>
                         </input>
                       ) : (
-                        <MDBCardText className="text-muted">{profile.lastName}</MDBCardText>
+                        <MDBCardText className="text-muted">{lastNameState}</MDBCardText>
                       )}
                   </MDBCol>
                 </MDBRow>
@@ -138,7 +143,7 @@ export default function Profile() {
                         <input type="text" id='email' value={emailState} onChange={(e) => setEmail(e.target.value)}>
                         </input>
                       ) : (
-                        <MDBCardText className="text-muted">{profile.email}</MDBCardText>
+                        <MDBCardText className="text-muted">{emailState}</MDBCardText>
                       )}
                   </MDBCol>
                 </MDBRow>                
