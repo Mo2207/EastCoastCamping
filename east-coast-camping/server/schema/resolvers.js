@@ -85,11 +85,18 @@ const resolvers = {
       // check to make sure arguments are given
       if (!userId) throw new Error(`userId required!`);
 
-      // this only updates the parameters that the user hands in
-      const userEdits = {};
-      if (firstName) userEdits.firstName = firstName;
-      if (lastName) userEdits.lastName = lastName;
-      if (email) userEdits.email = email;
+      // check to make sure user with the given id exists
+      const user = User.findById(userId);
+      if (!user) {
+        throw new Error(`user with id: ${userId} not found!`);
+      }
+
+      // this only updates the parameters that the user hands in, keeps the rest the same
+      const userEdits = {
+        firstName: firstName || user.firstName,
+        lastName: lastName || user.lastName,
+        email: email || user.email
+      }
 
       const updateUser = await User.findByIdAndUpdate(
         // edit this user
@@ -98,10 +105,6 @@ const resolvers = {
         userEdits,
         {new: true}
       );
-      // check to make sure user with the given id exists
-      if (!updateUser) {
-        throw new Error(`user with id: ${userId} not found!`);
-      }
 
       return updateUser;
     },
