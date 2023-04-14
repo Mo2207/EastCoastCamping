@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import Footer from '../components/Footer';
 
@@ -85,10 +85,6 @@ export default function Profile() {
     })
   }
 
-
-  
-
-
   return (
     <>
       {Auth.loggedIn() ? (
@@ -123,9 +119,9 @@ export default function Profile() {
                         <MDBCardText>First Name</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        {editMode ? (
-                          <input type="text" id='firstName' value={firstNameState} onChange={(e) => setFirstName(e.target.value)}>
-                          </input>
+                        {editMode ? (                          
+                            <input type="text" id='firstName' value={firstNameState} onChange={(e) => setFirstName(e.target.value)}>
+                            </input>                          
                         ) : (
                           <MDBCardText className="text-muted">{firstNameState}</MDBCardText>
                         )}
@@ -161,46 +157,8 @@ export default function Profile() {
                     </MDBRow>
                   </MDBCardBody>
                 </MDBCard>
-                <MDBRow>
-                  <MDBCol sm="1">
-                    <Button onClick={() => setEditMode(true)}>Edit</Button>
-                  </MDBCol>
-
-                  <MDBCol sm="1">
-                    <Button onClick={handleToEdit}>Save</Button>
-
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Last Name</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                      {editMode ? (
-                        <input type="text" id='lastName' value={lastNameState} onChange={(e) => setLastName(e.target.value)}>
-                        </input>
-                      ) : (
-                        <MDBCardText className="text-muted">{lastNameState}</MDBCardText>
-                      )}
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Email</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    {editMode ? (
-                        <input type="text" id='email' value={emailState} onChange={(e) => setEmail(e.target.value)}>
-                        </input>
-                      ) : (
-                        <MDBCardText className="text-muted">{emailState}</MDBCardText>
-                      )}
-                  </MDBCol>
-                </MDBRow>                
-              </MDBCardBody>
-            </MDBCard>
+              </MDBCol>
+            </MDBRow>
             <MDBRow>
               <MDBCol sm="1">
                 <Button onClick={() => setEditMode(true)}>Edit</Button> 

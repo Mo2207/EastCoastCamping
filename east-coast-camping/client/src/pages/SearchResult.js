@@ -13,7 +13,7 @@ function SearchResult() {
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
     const allCampsData = useQuery(QUERY_ALLCAMPS);
-    console.log(allCampsData)
+    
     const location = useLocation();
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,8 +43,6 @@ function SearchResult() {
 
     if (error) return <p>{error.message}</p>;
 
-    console.log(data);
-    // console.log(data.CampByLocation)
 
     return (
         <>
