@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
+import Footer from '../components/Footer';
 
 import {
   MDBCol,
@@ -170,6 +171,8 @@ export default function Profile() {
           </MDBContainer>
         </section>
       ) : null}
+      < Footer />
     </>
+
   );
 }
