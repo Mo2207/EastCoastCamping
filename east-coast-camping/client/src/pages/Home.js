@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
 import Card from 'react-bootstrap/Card'; //react-bootstrap
 import CardGroup from 'react-bootstrap/CardGroup'; //react-bootstrap
-// import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import '../styles/Home.css'
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css' //date-picker css
 import Button from 'react-bootstrap/Button';
 import GifComponent from '../components/Homepage/Gifcomponent';
@@ -20,6 +17,7 @@ import CampsByLocation from '../components/Homepage/CampsByLocation';
 
 
 export default function Home() {
+
 
     // const [destination, setDestination] = useState('');
     // const [startDate, setStartDate] = useState(null);
@@ -52,6 +50,7 @@ export default function Home() {
                     <h2 className='mb-4'>Welcome to EastCoastCamping</h2>
 
                 </Card>
+
                 <Container className='mt-5 text-center'>
 
                     <p>Looking for a memorable camping experience? Look no further than EastCoastCamping, where we connect you with the best campsites and outdoor destinations. </p>

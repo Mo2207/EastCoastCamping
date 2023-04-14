@@ -44,7 +44,7 @@ function IndividualCampground() {
     return (
         <>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ width: '100%', height: '70vh', overflow: 'hidden' }}>
+                <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
                     <Swiper
                         loop={true}
                         autoplay={{
