@@ -80,6 +80,25 @@ const resolvers = {
       const newUser = new User(args);
       return await newUser.save();
     },
+    // edit user by id 
+    editUser: async (parent, {userId, firstName, lastName, email}) => {
+      // check to make sure arguments are given
+      if (!userId) throw new Error(`userId required!`);
+
+      const updateUser = await User.findByIdAndUpdate(
+        // edit this user
+        userId,
+        // make these edits
+        { firstName, lastName, email },
+        {new: true}
+      );
+      // check to make sure user with the given id exists
+      if (!updateUser) {
+        throw new Error(`user with id: ${userId} not found!`);
+      }
+
+      return updateUser;
+    },
     // delete user by id
     deleteUser: async (parent, args) => {
       const deletedUser = await User.findByIdAndDelete(args.id);
