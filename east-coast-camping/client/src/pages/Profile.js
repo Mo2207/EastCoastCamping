@@ -25,6 +25,10 @@ import { EDIT_ME } from '../utils/mutations';
 export default function Profile() {
   // edit mode when user pressed edit button
   const [editMode, setEditMode] = useState(false);
+  // state variables for user profile
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
 
   const user = "data";
 
@@ -49,22 +53,25 @@ export default function Profile() {
       window.location.assign('/regret');  
   }
 
-  function toggleEditMode() {
-    editMode ? setEditMode(false) : setEditMode(true);
-    console.log(`editMode on: ${editMode}`);
-  }
-
   const [ editMe ] = useMutation(EDIT_ME);
 
-  // function handleToEdit() {
-  //   console.log(data)
+  function handleToEdit() {
+    const userId = Auth.getToken();
+    console.log(`userId is: ${userId}`)
 
-  //   const { data } = editMe({
-  //     variables: {
+    setEditMode(false);
+    editMe({
+      variables: {
+        userId: userId,
+        firstName: firstName,
+        lastName: lastName,
+        email: email
+      }
+    })
+    .then(() => {
 
-  //     }
-  //   })
-  // }
+    })
+  }
   
   return (
     <>
@@ -101,7 +108,7 @@ export default function Profile() {
                   </MDBCol>
                   <MDBCol sm="9">
                     {editMode ? (
-                      <input type="text" id='firstName' value={profile.firstName} onChange={(e) => console.log(e.target.value)}>
+                      <input type="text" id='firstName' value={profile.firstName} onChange={(e) => setFirstName(e.target.value)}>
                       </input>
                     ) : (
                       <MDBCardText className="text-muted">{profile.firstName}</MDBCardText>
@@ -115,7 +122,7 @@ export default function Profile() {
                   </MDBCol>
                   <MDBCol sm="9">
                       {editMode ? (
-                        <input type="text" id='lastName' value={profile.lastName} onChange={(e) => console.log(e.target.value)}>
+                        <input type="text" id='lastName' value={profile.lastName} onChange={(e) => setLastName(e.target.value)}>
                         </input>
                       ) : (
                         <MDBCardText className="text-muted">{profile.lastName}</MDBCardText>
@@ -129,7 +136,7 @@ export default function Profile() {
                   </MDBCol>
                   <MDBCol sm="9">
                     {editMode ? (
-                        <input type="text" id='email' value={profile.email} onChange={(e) => console.log(e.target.value)}>
+                        <input type="text" id='email' value={profile.email} onChange={(e) => setEmail(e.target.value)}>
                         </input>
                       ) : (
                         <MDBCardText className="text-muted">{profile.email}</MDBCardText>
@@ -140,10 +147,10 @@ export default function Profile() {
             </MDBCard>
             <MDBRow>
               <MDBCol sm="1">
-                <Button onClick={() => toggleEditMode()}>Edit</Button> 
+                <Button onClick={() => setEditMode(true)}>Edit</Button> 
               </MDBCol>
               <MDBCol sm="1">
-                <Button onClick={() => toggleEditMode()}>Save</Button> 
+                <Button onClick={handleToEdit}>Save</Button> 
               </MDBCol>
               <MDBCol sm="1">
                 <Button                       
