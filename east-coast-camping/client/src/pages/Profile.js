@@ -138,6 +138,8 @@ export default function Profile() {
                     </MDBRow>
                   </MDBCardBody>
                 </MDBCard>
+                <MDBCard>
+                  <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="1">
                     <Button>Edit</Button>
