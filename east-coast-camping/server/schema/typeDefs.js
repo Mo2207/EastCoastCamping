@@ -51,6 +51,7 @@ const typeDefs = gql `
     userLogin(email: String!, password: String!): User!
     deleteUser(id: ID!): User
     saveCamp(userId: ID!, campId: ID!): User
+    deleteSavedCamp(userId: ID!, campId: ID!): User
     createReview(userId: ID!, campId: ID!, rating: Float!, text: String!): Review!
     createBooking(userId:ID!, campId: ID!, startDate: String!, endDate: String!): Booking!
     cancelBooking(id: ID!):Booking

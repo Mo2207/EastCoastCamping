@@ -133,6 +133,21 @@ const resolvers = {
         return updatedUser;
       }
     },
+    // delete camp from saved
+    deleteSavedCamp: async (parent, { userId, campId }) => {
+      // checks to make sure user with given id exists
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error(`user with id: ${userId} not found!`);
+      } 
+
+      // checks to make sure camp with given id exists in users saved list
+      const savedCamp = user.saved.indexOf(campId);
+      if (savedCamp === -1) {
+        throw new Error(`camp with id: ${campId} not found in users saved list!`);
+      }
+      
+    },
 
     // ---------- REVIEW MUTATIONS ----------
     createReview: async (parent, { userId, campId, rating, text }) => {
