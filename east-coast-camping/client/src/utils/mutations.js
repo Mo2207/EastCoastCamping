@@ -38,11 +38,22 @@ export const USER_LOGIN = gql `
       lastName
     }
   }
-`
-export const DELETE_ME = gql `
-mutation Mutation($deleteUserId: ID!) {
-  deleteUser(id: $deleteUserId) {
-    _id
+`;
+
+export const EDIT_ME = gql `
+  mutation Mutation($userId: ID!, $firstName: String, $lastName: String, $email: String) {
+    editUser(userId: $userId, firstName: $firstName, lastName: $lastName, email: $email) {
+      firstName
+      lastName
+      email
+    }
   }
-}
-`
+`;
+
+export const DELETE_ME = gql `
+  mutation Mutation($deleteUserId: ID!) {
+    deleteUser(id: $deleteUserId) {
+      _id
+    }
+  }
+`;

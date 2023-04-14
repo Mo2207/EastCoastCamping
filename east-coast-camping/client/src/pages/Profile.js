@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import Footer from '../components/Footer';
@@ -18,6 +18,7 @@ import { Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { QUERY_ME } from '../utils/queries';
 import { DELETE_ME } from '../utils/mutations';
+import { EDIT_ME } from '../utils/mutations';
 // import NoMatch from './NoMatch';
 
 
@@ -44,6 +45,41 @@ export default function Profile() {
     localStorage.removeItem('id_token');
     window.location.assign('/regret');
   }
+
+
+  const [ editMe ] = useMutation(EDIT_ME);
+
+  // edit mode when user pressed edit button
+  const [editMode, setEditMode] = useState(false);
+  // state variables for user profile
+  const [firstNameState, setFirstName] = useState('');
+  const [lastNameState, setLastName] = useState('');
+  const [emailState, setEmail] = useState('');
+
+  // everytime profile changes useEffect is called and sets the states
+  useEffect(() => {
+    if (profile.firstName) setFirstName(profile.firstName);
+    if (profile.lastName) setLastName(profile.lastName);
+    if (profile.email) setEmail(profile.email);
+  }, [profile])
+  
+  // edit the users fields
+  function handleToEdit() {
+    // get the users id to hand into editMe
+    const userId = Auth.getToken();
+    // console.log(`userId is: ${userId}`)
+
+    setEditMode(false);
+    editMe({
+      variables: {
+        userId: userId,
+        firstName: firstNameState,
+        lastName: lastNameState,
+        email: emailState
+      }
+    })
+  }
+  
 
   return (
     <>
@@ -106,16 +142,60 @@ export default function Profile() {
                   <MDBCol sm="1">
                     <Button>Edit</Button>
                   </MDBCol>
-                  <MDBCol sm="1">
-                    <Button>Save</Button>
-                  </MDBCol>
-                  <MDBCol sm="1">
-                    <Button
-                      className="btn-danger"
-                      onClick={() => { handleToDelete(id) }}>Delete</Button>
-                    {/* <DeleteUser /> */}
+
+
+                  <MDBCol sm="9">
+                    {editMode ? (
+                      <input type="text" id='firstName' value={firstNameState} onChange={(e) => setFirstName(e.target.value)}>
+                      </input>
+                    ) : (
+                      <MDBCardText className="text-muted">{firstNameState}</MDBCardText>
+                    )}
                   </MDBCol>
                 </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Last Name</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                      {editMode ? (
+                        <input type="text" id='lastName' value={lastNameState} onChange={(e) => setLastName(e.target.value)}>
+                        </input>
+                      ) : (
+                        <MDBCardText className="text-muted">{lastNameState}</MDBCardText>
+                      )}
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Email</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    {editMode ? (
+                        <input type="text" id='email' value={emailState} onChange={(e) => setEmail(e.target.value)}>
+                        </input>
+                      ) : (
+                        <MDBCardText className="text-muted">{emailState}</MDBCardText>
+                      )}
+                  </MDBCol>
+                </MDBRow>                
+              </MDBCardBody>
+            </MDBCard>
+            <MDBRow>
+              <MDBCol sm="1">
+                <Button onClick={() => setEditMode(true)}>Edit</Button> 
+              </MDBCol>
+              <MDBCol sm="1">
+                <Button onClick={handleToEdit}>Save</Button> 
+              </MDBCol>
+              <MDBCol sm="1">
+                <Button                       
+                  className="btn-danger"
+                  onClick={() => {handleToDelete(id)}}>Delete</Button> 
+                {/* <DeleteUser /> */}
+
               </MDBCol>
             </MDBRow>
           </MDBContainer>
