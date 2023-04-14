@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import CardGroup from 'react-bootstrap/CardGroup';
 import { Container } from 'react-bootstrap';
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
-import '../styles/SearchResult.css'
-import { Form } from 'react-bootstrap';
+import { Link, useLocation } from 'react-router-dom';
 import { QUERY_CAMPGROUNDBYLOCATION } from '../utils/queries';
 import { useLazyQuery } from '@apollo/client';
 
 function SearchResult() {
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
+    const location = useLocation();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -25,11 +20,26 @@ function SearchResult() {
             return false;
         }
 
-        searchCampgrounds({ variables: { location: destination } });
+        // Update URL with query parameter when form is submitted
+        window.location.href = `/search?destination=${destination}`;
     }
 
+    // Retrieve destination value from URL query parameter on initial render
+    // [] will run only once
+
+    React.useEffect(() => {
+        // create new object from 'location.search' that contain param from URL
+        const searchParams = new URLSearchParams(location.search);
+        // to retrieve the value of destination
+        const locationParam = searchParams.get('destination');
+        if (locationParam) {
+            setDestination(locationParam);
+            searchCampgrounds({ variables: { location: locationParam } });
+        }
+    }, []);
 
     if (loading) return <p>Loading...</p>;
+
     if (error) return <p>{error.message}</p>;
 
     console.log(data);
