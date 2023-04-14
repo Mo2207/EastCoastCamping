@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
-import Footer from '../components/Footer';
+
 import {
   MDBCol,
   MDBContainer,
@@ -47,7 +47,8 @@ export default function Profile() {
   }
 
 
-  const [ editMe ] = useMutation(EDIT_ME);
+  const [editMe] = useMutation(EDIT_ME);
+
 
   // edit mode when user pressed edit button
   const [editMode, setEditMode] = useState(false);
@@ -62,7 +63,11 @@ export default function Profile() {
     if (profile.lastName) setLastName(profile.lastName);
     if (profile.email) setEmail(profile.email);
   }, [profile])
+
+
+
   
+
   // edit the users fields
   function handleToEdit() {
     // get the users id to hand into editMe
@@ -79,7 +84,10 @@ export default function Profile() {
       }
     })
   }
+
+
   
+
 
   return (
     <>
@@ -115,7 +123,12 @@ export default function Profile() {
                         <MDBCardText>First Name</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">{user.firstName}</MDBCardText>
+                        {editMode ? (
+                          <input type="text" id='firstName' value={firstNameState} onChange={(e) => setFirstName(e.target.value)}>
+                          </input>
+                        ) : (
+                          <MDBCardText className="text-muted">{firstNameState}</MDBCardText>
+                        )}
                       </MDBCol>
                     </MDBRow>
                     <hr />
@@ -124,7 +137,12 @@ export default function Profile() {
                         <MDBCardText>Last Name</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">{profile.lastName}</MDBCardText>
+                        {editMode ? (
+                          <input type="text" id='lastName' value={lastNameState} onChange={(e) => setLastName(e.target.value)}>
+                          </input>
+                        ) : (
+                          <MDBCardText className="text-muted">{lastNameState}</MDBCardText>
+                        )}
                       </MDBCol>
                     </MDBRow>
                     <hr />
@@ -133,24 +151,24 @@ export default function Profile() {
                         <MDBCardText>Email</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
-                        <MDBCardText className="text-muted">{profile.email}</MDBCardText>
+                        {editMode ? (
+                          <input type="text" id='email' value={emailState} onChange={(e) => setEmail(e.target.value)}>
+                          </input>
+                        ) : (
+                          <MDBCardText className="text-muted">{emailState}</MDBCardText>
+                        )}
                       </MDBCol>
                     </MDBRow>
                   </MDBCardBody>
                 </MDBCard>
                 <MDBRow>
                   <MDBCol sm="1">
-                    <Button>Edit</Button>
+                    <Button onClick={() => setEditMode(true)}>Edit</Button>
                   </MDBCol>
 
+                  <MDBCol sm="1">
+                    <Button onClick={handleToEdit}>Save</Button>
 
-                  <MDBCol sm="9">
-                    {editMode ? (
-                      <input type="text" id='firstName' value={firstNameState} onChange={(e) => setFirstName(e.target.value)}>
-                      </input>
-                    ) : (
-                      <MDBCardText className="text-muted">{firstNameState}</MDBCardText>
-                    )}
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -201,7 +219,6 @@ export default function Profile() {
           </MDBContainer>
         </section>
       ) : null}
-      <Footer />
     </>
   );
 }
