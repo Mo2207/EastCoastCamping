@@ -39,3 +39,12 @@ export const USER_LOGIN = gql `
     }
   }
 `
+export const DELETE_USER = gql `
+mutation Mutation($deleteUserId: ID!) {
+  deleteUser(id: $deleteUserId) {
+    firstName
+    lastName
+    email
+  }
+}
+`

@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import {
   MDBCol,
   MDBContainer,
@@ -16,13 +16,13 @@ import {
 import { Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { QUERY_ME } from '../utils/queries';
+import { DELETE_USER } from '../utils/mutations';
 import NoMatch from './NoMatch';
 
 
 export default function Profile() {
 
   let id;
-
   if(Auth.loggedIn()){
     id = Auth.getToken()
   };
@@ -35,6 +35,7 @@ export default function Profile() {
 console.log(data)
   const profile = data?.userById || {};
   
+
   
   return (
     <>
@@ -99,6 +100,11 @@ console.log(data)
               </MDBCol>
               <MDBCol sm="1">
                 <Button>Save</Button> 
+              </MDBCol>
+              <MDBCol sm="1">
+                <Button                       
+                  className="btn-danger"
+                  onClick={() => ''}>Delete</Button> 
               </MDBCol>
             </MDBRow>   
           </MDBCol>
