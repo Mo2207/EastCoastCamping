@@ -48,6 +48,7 @@ export default function Home() {
         <>
             <div className='bg-white'>
                 <Card className='searchBar-Bg'>
+
                     <h2 className='mb-4'>Welcome to EastCoastCamping</h2>
 
                 </Card>
