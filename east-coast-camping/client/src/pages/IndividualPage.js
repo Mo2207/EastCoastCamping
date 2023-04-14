@@ -11,11 +11,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form } from 'react-bootstrap';
+import { useMutation } from '@apollo/client';
+import { SAVE_CAMP } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
-
-
 
 function IndividualCampground() {
     const [reviews, setReviews] = useState([
@@ -23,6 +24,12 @@ function IndividualCampground() {
         { id: 2, author: 'Jane Smith', review: 'Had an amazing time camping here. Facilities were clean and well-maintained.' },
         { id: 3, author: 'Mike Johnson', review: 'One of the best campgrounds I have been to. Highly recommended!' }
     ]);
+
+    let id;
+    if(Auth.loggedIn()){
+      id = Auth.getToken()
+    };
+
     const [destination, setDestination] = useState('');
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null)
@@ -32,6 +39,7 @@ function IndividualCampground() {
     const campgroundName = new URLSearchParams(location.search).get('name');
     const campgroundLocation = new URLSearchParams(location.search).get('location');
     const campgroundPrice = new URLSearchParams(location.search).get('price');
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -40,6 +48,13 @@ function IndividualCampground() {
         console.log('End Date:', endDate);
     };
 
+    const [ saveCamp ] = useMutation(SAVE_CAMP);
+
+    function handleSaveCamp(id, campgroundId) {
+        const{ savedData } = saveCamp({
+            variables: { userId: id, campId: campgroundId}
+        })
+    }
 
     return (
         <>
@@ -113,28 +128,20 @@ function IndividualCampground() {
             </Container>
             <Container className='mt-5'>
                 <Row>
-
                     <h2>Reservation Information</h2>
                     <p>
                         Reservations can be made online or by calling our campground office. We offer both tent and RV camping options, and our friendly staff are always available to assist with any questions or special requests you may have. Don't miss out on the opportunity to experience the beauty of nature at Campground Name
                     </p>
-
                 </Row>
-                <h2>Book now</h2>
+                <h2>Please select the date</h2>
                 <Form onSubmit={handleSubmit} className='individualSearch'>
-
                     <Form.Label>Check in</Form.Label>
-
                     <DatePicker type="text" placeholderText="Select check-in date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className='searchInput' />
-
                     <Form.Label>Check out</Form.Label>
-
                     <DatePicker type="text" placeholderText="Select check-out date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className='searchInput' />
-
                     <Button type="submit" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button>
-
-                </Form>
-
+                    <Button onClick={() => {handleSaveCamp(id, campgroundId)}} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
+                </Form>                
             </Container>
             <hr className='mx-5' />
             <Container className='mt-5'>

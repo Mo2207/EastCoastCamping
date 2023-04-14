@@ -79,7 +79,7 @@ function SearchResult() {
                                     <Col key={idx}>
                                         <Card>
                                             {/* Pass the campground information as query parameters in the URL */}
-                                            <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
+                                            <Link to={`/campground/${campground._id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
                                                 View Details
                                                 <Card.Img
                                                     variant="top"

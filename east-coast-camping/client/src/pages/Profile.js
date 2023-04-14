@@ -27,16 +27,14 @@ export default function Profile() {
   const { loading, data } = useQuery(QUERY_ME, {
     variables: { userId:id }
   });
+  
   const profile = data?.userById || {};
   
-  const [ deleteMe ] = useMutation(DELETE_ME)
-  
+  const [ deleteMe ] = useMutation(DELETE_ME)  
   function handleToDelete(deleteUserId){
     const { data } = deleteMe({
       variables: {deleteUserId}
     })
-
-      console.log(data)
       localStorage.removeItem('id_token');
       window.location.assign('/regret');  
   }
