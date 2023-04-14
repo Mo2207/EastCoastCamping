@@ -47,9 +47,11 @@ const resolvers = {
     },
 
     // get array of camps
-    getArrayOfCamps: async (parent, {campIdArray}) => {
+    getArrayOfCamps: async (parent, {ids}) => {
+      console.log(ids)
       const allCamps = await CampGround.find(
-        { _id: { $in: campIdArray } });
+        { _id: { $in: ids } });
+        console.log(allCamps)
       return allCamps;
     },
 
