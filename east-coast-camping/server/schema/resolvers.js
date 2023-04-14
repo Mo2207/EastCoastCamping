@@ -109,10 +109,15 @@ const resolvers = {
     // add camp to saved
     saveCamp: async (parent, { userId, campId }) => {
       const user = await User.findById(userId);
+      const camp = await CampGround.findById(campId);
 
       if (!user) {
         throw new Error(`user with id: ${userId} not found!`);
-      } else {
+      } 
+      if (!camp) {
+        throw new Error(`camp with id: ${campId} not found!`);
+      }
+      else {
         // get the campground by id
         const savedCampground = await CampGround.findById(campId);
 
