@@ -11,3 +11,8 @@
 .searchInput {
     min-width: 400px;
 }
+
+.detailsBtn {
+    background-color: red;
+
+}
