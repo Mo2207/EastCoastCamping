@@ -79,11 +79,7 @@ function IndividualCampground() {
                     {/* display campground info */}
                     Welcome to Campground Name! Located in the heart of nature, our campground offers a serene and peaceful escape from the hustle and bustle of everyday life. With stunning views of the surrounding mountains and a variety of recreational activities, you're sure to have an unforgettable camping experience.
                 </p>
-
-
             </Row>
-
-
             <Container className='mt-5'>
                 <Row>
                     <Col className='border-end mr-4'>
@@ -154,9 +150,6 @@ function IndividualCampground() {
                     </Col>
                 </Row>
             </Container>
-
-
-
         </>
     )
 };

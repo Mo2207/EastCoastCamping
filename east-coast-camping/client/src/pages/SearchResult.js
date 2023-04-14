@@ -11,7 +11,7 @@ import { useLazyQuery } from '@apollo/client';
 function SearchResult() {
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
-
+    const location = useLocation();
     const handleSubmit = async (event) => {
         event.preventDefault();
 

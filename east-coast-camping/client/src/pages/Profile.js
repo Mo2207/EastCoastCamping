@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 
 import {
@@ -10,7 +9,6 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-  MDBBtn,
   MDBBreadcrumb,
   MDBBreadcrumbItem,
 } from 'mdb-react-ui-kit';
@@ -18,8 +16,6 @@ import { Button } from 'react-bootstrap';
 import Auth from '../utils/auth';
 import { QUERY_ME } from '../utils/queries';
 import { DELETE_ME } from '../utils/mutations';
-// import NoMatch from './NoMatch';
-
 
 export default function Profile() {
   const user = "data";
@@ -79,7 +75,7 @@ export default function Profile() {
                     <MDBCardText>First Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{user.firstName}</MDBCardText>
+                    <MDBCardText className="text-muted">{profile.firstName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -113,7 +109,6 @@ export default function Profile() {
                 <Button                       
                   className="btn-danger"
                   onClick={() => {handleToDelete(id)}}>Delete</Button> 
-                {/* <DeleteUser /> */}
               </MDBCol>
             </MDBRow>   
           </MDBCol>
