@@ -78,7 +78,7 @@ function App() {
               element={<SearchResult />}
             />
             <Route
-              path="/campground"
+              path="/campground/:id"
               element={<IndividualCampGround />}
             />
             <Route
