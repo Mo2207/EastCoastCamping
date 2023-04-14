@@ -8,8 +8,9 @@ import '../styles/Home.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css' //date-picker css
 import Button from 'react-bootstrap/Button';
-import GifComponent from '../components/Gifcomponent';
-import Iconscomponent from '../components/Iconscomponent';
+import GifComponent from '../components/Homepage/Gifcomponent';
+import Iconscomponent from '../components/Homepage/Iconscomponent';
+import Footer from '../components/Homepage/Footer';
 
 
 
@@ -74,6 +75,7 @@ export default function Home() {
                 <Container >
                     <GifComponent />
                 </Container>
+                <Footer />
             </div>
         </>
 
