@@ -47,6 +47,7 @@ function SearchResult() {
 
     return (
         <>
+            {/* ------------------dropdown for search campground-------------------- */}
             <Card>
                 <Card.Body className='d-flex align-items-center searchBar '>
                     <form onSubmit={handleSubmit}>
