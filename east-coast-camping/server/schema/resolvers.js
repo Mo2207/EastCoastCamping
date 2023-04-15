@@ -16,11 +16,18 @@ const resolvers = {
       if (!user) {
         throw new Error(`user with id: ${args.id} not found!`);
       } else {
-        
-        const allCamps = await CampGround.find(
-          { _id: { $in: user.saved } });
-        const object = JSON.stringify(allCamps)   
-        user.campdata.push(object)     
+        // const arrayKey = ["_id","name","location","image","price"]
+        // const allCamps = await CampGround.find(
+        //   { _id: { $in: user.saved } 
+        // });
+
+        // var allCampsObj =Object.values(Object.values(allCamps))
+        // console.log(allCampsObj)
+        // var result = Object.keys(allCampsObj[0]).map((key)=>[key, allCampsObj[0][key]]);
+        // console.log(result)
+        // user.campdata = result.toString();
+        // console.log(JSON.stringify(allCampsObj))
+        // user.campdata = JSON.stringify(allCampsObj);
         return user;
       }
     },
@@ -58,6 +65,7 @@ const resolvers = {
       console.log(ids)
       const allCamps = await CampGround.find(
         { _id: { $in: ids } });
+      console.log(allCamps)
       return allCamps;
     },
 

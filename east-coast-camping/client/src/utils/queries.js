@@ -31,11 +31,12 @@ export const QUERY_ME = gql`
 `
 
 export const QUERY_CAMPGROUNDBYLOCATION = gql`
-query CampByLocation($location: String!) {
+query Query($location: String!) {
   campByLocation(location: $location) {
     _id
     availability
     available
+    image
     location
     name
     price
@@ -46,12 +47,11 @@ query CampByLocation($location: String!) {
 export const QUERY_CAMPBYARRAY = gql`
 query GetArrayOfCamps($ids: [ID!]!) {
   getArrayOfCamps(ids: $ids) {
-    _id
-    availability
-    available
+    image
     location
     name
     price
+    _id
   }
 }
 `;

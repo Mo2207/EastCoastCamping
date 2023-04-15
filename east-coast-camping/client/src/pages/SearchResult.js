@@ -42,7 +42,7 @@ function SearchResult() {
     if (loading) return <p>Loading...</p>;
 
     if (error) return <p>{error.message}</p>;
-
+    // console.log(data.campByLocation)
     
     return (
         <>
@@ -90,7 +90,7 @@ function SearchResult() {
 
                                                 <Card.Img
                                                     variant="top"
-                                                    src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"
+                                                    src={campground.image}
                                                 />
                                             <Card.Body>
                                                 <Card.Title>{campground.name}</Card.Title>

@@ -3,26 +3,35 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-import { useQuery } from '@apollo/client';
-import { QUERY_CAMPBYID, QUERY_ME } from '../utils/queries';
+import { useLazyQuery, useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import "../styles/Upcoming.css";
 import Upcoming from '../components/Upcoming';
 import Completed from '../components/Completed';
 import Footer from '../components/Footer';
-
-// async function QueryCamps(){
-//   const savedData = Auth.loaded();
-//   console.log(savedData)
-//   const [ data1 ] = await useQuery(QUERY_CAMPBYID, {
-//     variables: {ids: savedData }
-//   })
-// }
+import Favorite from '../components/Favorite';
 
 function MyBookings() {
-  // QueryCamps();
+  // let id;
+  // if (Auth.loggedIn()) {
+  //   id = Auth.getToken()
+  // };
+  const [querryMe] = useQuery(QUERY_ME)
+  //   , {variables: { userId: id }
+  // });
+  // const profile = data?.userById || {};
+  // const data1 = (profile.saved)
+  // localStorage.setItem("saved",data1)
 
 
+  // Auth.loggedIn()
+  // .then((id)=>{
+  //   querryMe({
+  //     variables: { userId: id }
+  //   })})
+  // .then((data)=>console.log(data))
+  
   return (
     <>
       <div className="container my-1" style={{ minHeight: '100vh' }}>
@@ -38,8 +47,8 @@ function MyBookings() {
           <Tab eventKey="completed" title="Completed" >
             <Completed />
           </Tab>
-          <Tab eventKey="Savedcamps" title="Saved Camps">
-            Saved Camps Info
+          <Tab eventKey="favorite" title="Favorited Camps">
+            <Favorite />
           </Tab>
         </Tabs>
       </div>
