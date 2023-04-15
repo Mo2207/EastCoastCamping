@@ -59,7 +59,7 @@ mutation Mutation($deleteUserId: ID!) {
 `
 
 export const SAVE_CAMP = gql `
-mutation SaveCamp($userId: ID!, $campId: ID!) {
+mutation Mutation($userId: ID!, $campId: ID!) {
   saveCamp(userId: $userId, campId: $campId) {
     saved
   }

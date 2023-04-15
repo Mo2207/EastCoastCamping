@@ -43,7 +43,7 @@ function SearchResult() {
 
     if (error) return <p>{error.message}</p>;
 
-
+    
     return (
         <>
             <Card>
@@ -92,21 +92,18 @@ function SearchResult() {
                                                     variant="top"
                                                     src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"
                                                 />
-
-
-
-                                                <Card.Body>
-                                                    <Card.Title>{campground.name}</Card.Title>
-                                                    <Card.Text>
-                                                        Location: {campground.location}<br />
-                                                        Price: {campground.price}
-                                                    </Card.Text>
-                                                </Card.Body>
-                                                <div className='d-flex justify-content-end btn'>
-                                                    <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
-                                                        <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
-                                                    </Link>
-                                                </div>
+                                            <Card.Body>
+                                                <Card.Title>{campground.name}</Card.Title>
+                                                <Card.Text>
+                                                    Location: {campground.location}<br />
+                                                    Price: {campground.price}
+                                                </Card.Text>
+                                            </Card.Body>
+                                            <div className='d-flex justify-content-end btn'>
+                                                <Link to={`/campground/${campground._id}?name=${campground.name}`}>
+                                                    <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
+                                                </Link>
+                                            </div>
 
                                             </Card>
                                         </Col>
@@ -115,7 +112,6 @@ function SearchResult() {
                         </Col>
                     </Row>
                 </Container>
-
             </Container>
             <Footer />
         </>
