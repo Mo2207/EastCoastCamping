@@ -76,9 +76,13 @@ const resolvers = {
       }
     },
 
-    // campReviews: async (parent, args) => {
-    //   const reviews = await 
-    // },
+    campReviews: async (parent, {campId}) => {
+      const reviews = await CampGround.findById(campId)
+      .populate('reviews')
+      .exec()
+      console.log(camp.reviews);
+      return reviews;
+    },
 
     // ------- BOOKING QUERIES _______
     // get all Bookings
