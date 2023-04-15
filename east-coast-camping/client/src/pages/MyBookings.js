@@ -17,20 +17,13 @@ function MyBookings() {
   // if (Auth.loggedIn()) {
   //   id = Auth.getToken()
   // };
-  const [querryMe] = useQuery(QUERY_ME)
+  //  useQuery(QUERY_ME)
   //   , {variables: { userId: id }
   // });
   // const profile = data?.userById || {};
   // const data1 = (profile.saved)
   // localStorage.setItem("saved",data1)
 
-
-  // Auth.loggedIn()
-  // .then((id)=>{
-  //   querryMe({
-  //     variables: { userId: id }
-  //   })})
-  // .then((data)=>console.log(data))
   
   return (
     <>
