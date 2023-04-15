@@ -46,6 +46,7 @@ function SearchResult() {
 
     return (
         <>
+            {/* ------------------dropdown for search campground-------------------- */}
             <Card>
                 <Card.Body className='d-flex align-items-center searchBar '>
                     <form onSubmit={handleSubmit}>
@@ -55,6 +56,10 @@ function SearchResult() {
                             <option value="Saint John">Saint John</option>
                             <option value="Moncton">Moncton</option>
                             <option value="Sussex">Sussex</option>
+                            <option value="Minto">Minto</option>
+                            <option value="Edmundston">Edmundston</option>
+                            <option value="Shediac">Shediac</option>
+                            <option value="Miramichi">Miramichi</option>
                         </select>
                         <button type="submit">Search</button>
                     </form>
