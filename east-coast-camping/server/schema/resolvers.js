@@ -228,21 +228,24 @@ const resolvers = {
         throw new Error(`Invalid campground id: ${campId}`);
       }
 
-      // write the review and save
+      // write the newReview
       const newReview = new Review({
         user: userId,
         camp: campId,
         rating,
         text
       })
-      newReview.save();
-
+      // save the newReview to database
+      await newReview.save()
+      
+      // find the newReview now that it is saved and populate it with user & camp data
       const populateReview = await Review.findById(newReview._id)
         .populate('user')
-        .execPopulate()
-
-      console.log(newReview);
-      return await newReview.save();
+        .populate('camp')
+        .exec();
+        
+      // console.log(`POPULATEREVIEW: ${populateReview}`);
+      return populateReview;
     },
 
     // Booking Mutations
