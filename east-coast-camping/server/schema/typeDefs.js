@@ -40,10 +40,15 @@ const typeDefs = gql `
     userById(id: ID!): User
     allUsers: [User]
     campById(id: ID!): CampGround
+    getArrayOfCamps(ids: [ID!]!): [CampGround!]!
     allCamps: [CampGround]
     campByLocation(location: String!): [CampGround]
     allReviews: [Review]
     allBookings:[Booking]
+    userBookings:[Booking]
+    userReviews(id: ID!):[Review]
+    
+    
   }
 
   type Mutation {

@@ -51,9 +51,17 @@ export const EDIT_ME = gql `
 `;
 
 export const DELETE_ME = gql `
-  mutation Mutation($deleteUserId: ID!) {
-    deleteUser(id: $deleteUserId) {
-      _id
-    }
+mutation Mutation($deleteUserId: ID!) {
+  deleteUser(id: $deleteUserId) {
+    _id
   }
-`;
+}
+`
+
+export const SAVE_CAMP = gql `
+mutation SaveCamp($userId: ID!, $campId: ID!) {
+  saveCamp(userId: $userId, campId: $campId) {
+    saved
+  }
+}
+`

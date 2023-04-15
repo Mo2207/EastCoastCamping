@@ -13,9 +13,8 @@ function SearchResult() {
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
     const allCampsData = useQuery(QUERY_ALLCAMPS);
-    console.log(allCampsData)
+    
     const location = useLocation();
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -44,8 +43,6 @@ function SearchResult() {
 
     if (error) return <p>{error.message}</p>;
 
-    console.log(data);
-    // console.log(data.CampByLocation)
 
     return (
         <>
@@ -53,6 +50,7 @@ function SearchResult() {
                 <Card.Body className='d-flex align-items-center searchBar '>
                     <form onSubmit={handleSubmit}>
                         <select value={destination} onChange={(e) => setDestination(e.target.value)}>
+                            <option value="">Please select your prefer location from the list</option>
                             <option value="Fredericton">Fredericton</option>
                             <option value="Saint John">Saint John</option>
                             <option value="Moncton">Moncton</option>
@@ -62,6 +60,7 @@ function SearchResult() {
                     </form>
                 </Card.Body>
             </Card>
+
 
             <Container style={{ minHeight: '100vh' }}>
                 <h3>Search campground</h3>
@@ -88,10 +87,12 @@ function SearchResult() {
                                             <Card style={{ marginBottom: '200px', width: '25rem' }}>
                                                 {/* Pass the campground information as query parameters in the URL */}
 
+
                                                 <Card.Img
                                                     variant="top"
                                                     src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"
                                                 />
+
 
 
                                                 <Card.Body>
@@ -114,6 +115,7 @@ function SearchResult() {
                         </Col>
                     </Row>
                 </Container>
+
             </Container>
             <Footer />
         </>

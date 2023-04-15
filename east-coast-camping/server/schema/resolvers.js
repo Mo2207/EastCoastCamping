@@ -1,7 +1,7 @@
 
-const { User, CampGround, Review } = require('../models');
+const { User, CampGround, Review, Booking } = require('../models');
 const bcrypt = require('bcrypt');
-
+const { signToken } = require('../utils/auth');
 const resolvers = {
 
   // QUERIES
@@ -46,22 +46,36 @@ const resolvers = {
       return await CampGround.find();
     },
 
+    // get array of camps
+    getArrayOfCamps: async (parent, {ids}) => {
+      // find all camps from CampGround
+      const allCamps = await CampGround.find(
+        { _id: { $in: ids } });
+      return allCamps;
+    },
+
     // ---------- REVIEW QUERIES ----------
     // get all reviews
     allReviews: async (parent, args) => {
       return await Review.find().populate('user').populate('camp');
     },
 
+    userReviews: async (parent, args) => {
+      const reviews = await Review.find({user:args.id});
+      if (!user) {
+        throw new Error(`user with id: ${args.id} not found!`);
+      } else {
+        return reviews;
+      }
+    },
     // ------- BOOKING QUERIES _______
     // get all Bookings
 
     allBookings: async (parent, args) => {
       return await Booking.find();
     },
+  
   },
-
-
-
   // MUTATIONS
   Mutation: {
 
@@ -78,7 +92,11 @@ const resolvers = {
       args.password = hashedPassword;
 
       const newUser = new User(args);
-      return await newUser.save();
+      console.log(newUser);
+      const token = signToken(newIser);
+      await newUser.save();
+      return { token, newUser };
+      
     },
     // edit user by id 
     editUser: async (parent, {userId, firstName, lastName, email}) => {
@@ -132,7 +150,8 @@ const resolvers = {
       if (!validatePassword) {
         throw new Error(`Invalid Email or Password provided.`);
       }
-      return user;
+      const token = signToken(user)
+      return { token, user};
     },
     // add camp to saved
     saveCamp: async (parent, { userId, campId }) => {

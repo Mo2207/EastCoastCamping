@@ -4,7 +4,8 @@ import Tabs from 'react-bootstrap/Tabs';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { QUERY_CAMPBYID, QUERY_ME } from '../utils/queries';
+import Auth from '../utils/auth';
 
 import "../styles/Upcoming.css";
 import Upcoming from '../components/Upcoming';

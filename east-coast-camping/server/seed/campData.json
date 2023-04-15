@@ -4,7 +4,8 @@
     "location":"Sussex",
     "availability": 50,
     "available": true,
-    "price":40
+    "price":40,
+    "features":"Each lot has power and water, Campfires allowed after 8pm and Wifi available"
   },
   {
     "name": "Boring camp",
@@ -26,5 +27,80 @@
     "availability": 100,
     "available": true,
     "price":50
+  },
+  {
+    "name": "River's Edge Campground",
+    "location": "Fredericton",
+    "availability": 30,
+    "available": true,
+    "price": 35,
+    "features": "River access for fishing and swimming, campfires allowed in designated areas, pet friendly"
+  },
+  {
+    "name": "Pine Grove Campground",
+    "location": "Moncton",
+    "availability": 15,
+    "available": true,
+    "price": 45,
+    "features": "Wooded campsites with picnic tables and fire pits, flush toilets and hot showers, playground and basketball court"
+  },
+  {
+    "name": "Bay of Fundy Campground",
+    "location": "Saint John",
+    "availability": 20,
+    "available": true,
+    "price": 50,
+    "features": "Oceanfront campsites with stunning views, access to hiking trails, on-site restaurant and gift shop"
+  },
+  {
+    "name": "Grand Lake Camping",
+    "location": "Minto",
+    "availability": 10,
+    "available": true,
+    "price": 30,
+    "features": "Private lakeside campsites, boat rentals available, camp store with groceries and supplies"
+  },
+  {
+    "name": "Magnetic Hill Campground",
+    "location": "Moncton",
+    "availability": 25,
+    "available": true,
+    "price": 40,
+    "features": "Close to popular tourist attractions, including Magnetic Hill and Zoo, swimming pool and mini golf on site"
+  },
+ 
+  {
+    "name": "Bayview Campground",
+    "location": "Saint John",
+    "availability": 10,
+    "available": true,
+    "price": 50,
+    "features": "Overlooking the Bay of Fundy, fully serviced lots with electrical, water, and sewer hookups, free wifi, and a heated swimming pool."
+  },
+  {
+    "name": "Woodsy Hollow Campground",
+    "location": "Miramichi",
+    "availability": 30,
+    "available": true,
+    "price": 25,
+    "features": "Surrounded by lush forest, spacious lots with picnic tables, fire pits, and nearby hiking trails. No electricity or water hookups available."
+  },
+  {
+    "name": "Sandy Shoreline Campground",
+    "location": "Shediac",
+    "availability": 15,
+    "available": true,
+    "price": 45,
+    "features": "Located on a sandy beach, fully serviced lots with electrical, water, and sewer hookups, free hot showers, and a playground for kids."
+  },
+  {
+    "name": "Rustic Retreat Campground",
+    "location": "Edmundston",
+    "availability": 5,
+    "available": true,
+    "price": 20,
+    "features": "Secluded sites in the woods, no electricity or water hookups available, campfires allowed, and a nearby stream for fishing."
   }
+
+
 ]
