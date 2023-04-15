@@ -21,9 +21,7 @@ import { EDIT_ME } from '../utils/mutations';
 // import NoMatch from './NoMatch';
 
 
-export default function Profile() {
-  const user = "data";
-
+function Profile() {
   let id;
   if (Auth.loggedIn()) {
     id = Auth.getToken()
@@ -33,6 +31,10 @@ export default function Profile() {
   });
   
   const profile = data?.userById || {};
+  console.log(profile.campdata)
+  // const convertData = JSON.parse(profile.campdata[0])
+  // console.log(convertData)
+
 
   const [deleteMe] = useMutation(DELETE_ME)
 
@@ -41,7 +43,6 @@ export default function Profile() {
       variables: { deleteUserId }
     })
 
-    console.log(data)
     localStorage.removeItem('id_token');
     window.location.assign('/regret');
   }
@@ -63,10 +64,6 @@ export default function Profile() {
     if (profile.lastName) setLastName(profile.lastName);
     if (profile.email) setEmail(profile.email);
   }, [profile])
-
-
-
-  
 
   // edit the users fields
   function handleToEdit() {
@@ -184,3 +181,5 @@ export default function Profile() {
 
   );
 }
+
+export default Profile;

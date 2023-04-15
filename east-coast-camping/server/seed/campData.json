@@ -2,6 +2,7 @@
   {
     "name": "Amazing camp ground",
     "location":"Sussex",
+    "image":"https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
     "availability": 50,
     "available": true,
     "price":40
@@ -9,6 +10,7 @@
   {
     "name": "Boring camp",
     "location":"Moncton",
+    "image":"https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
     "availability": 50,
     "available": true,
     "price":25
@@ -16,6 +18,7 @@
   {
     "name": "Super fun camp",
     "location":"Sussex",
+    "image":"https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
     "availability": 40,
     "available": false,
     "price":45
@@ -23,6 +26,7 @@
   {
     "name": "Jims Summer camp",
     "location":"Saint John",
+    "image":"https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
     "availability": 100,
     "available": true,
     "price":50

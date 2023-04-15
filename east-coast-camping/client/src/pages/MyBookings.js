@@ -6,35 +6,21 @@ import Container from 'react-bootstrap/Container';
 import { useQuery } from '@apollo/client';
 import { QUERY_CAMPBYID, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
-
 import "../styles/Upcoming.css";
 import Upcoming from '../components/Upcoming';
 import Completed from '../components/Completed';
 import Footer from '../components/Footer';
 
+// async function QueryCamps(){
+//   const savedData = Auth.loaded();
+//   console.log(savedData)
+//   const [ data1 ] = await useQuery(QUERY_CAMPBYID, {
+//     variables: {ids: savedData }
+//   })
+// }
+
 function MyBookings() {
-  const data = {
-    user: [
-      {
-        id: 1,
-        firstName: 'Sayid',
-        lastName: 'Khan',
-      },
-      {
-        id: 2,
-        firstName: 'Sun-Hwa',
-        lastName: 'John',
-      },
-    ],
-  };
-
-  console.log(data)
-  let user;
-
-  if (data) {
-    user = data.user;
-    console.log(user[0].firstName)
-  }
+  // QueryCamps();
 
 
   return (

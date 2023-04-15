@@ -12,6 +12,10 @@ const campGroundSchema = new Schema({
      type:String,
      required:true,
   },
+  image:{
+    type:String,
+    required:false,
+ },
   favourited: {
     type: Number,
   },
@@ -26,7 +30,6 @@ const campGroundSchema = new Schema({
     type:Number,
     required:true,
   }
-
 })
 
 const CampGround = model('CampGround', campGroundSchema);

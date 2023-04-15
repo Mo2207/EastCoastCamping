@@ -43,7 +43,7 @@ function SearchResult() {
 
     if (error) return <p>{error.message}</p>;
 
-
+    
     return (
         <>
             <Card>
@@ -81,7 +81,7 @@ function SearchResult() {
                                     <Col className='p-4' key={idx}>
                                         <Card style={{ marginBottom: '200px', width: '25rem' }}>
                                             {/* Pass the campground information as query parameters in the URL */}
-                                            <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
+                                            <Link to={`/campground/${campground._id}?name=${campground.name}`}>
                                                 View Details
                                                 <Card.Img
                                                     variant="top"
@@ -96,7 +96,7 @@ function SearchResult() {
                                                 </Card.Text>
                                             </Card.Body>
                                             <div className='d-flex justify-content-end btn'>
-                                                <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
+                                                <Link to={`/campground/${campground._id}?name=${campground.name}`}>
                                                     <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
                                                 </Link>
                                             </div>
