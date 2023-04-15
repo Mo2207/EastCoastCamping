@@ -61,13 +61,22 @@ const resolvers = {
       return allCamps;
     },
 
-    getUserAndSavedCamps: async (parent, {}) => {
-      const user = await User.findById(args.id);
+    getUserAndSavedCamps: async (parent, {userId}, context) => {
+      const user = await User.findById(userId);
       if (!user) {
-        throw new Error(`user with id: ${args.id} not found!`);
-      } else {
-        console.log(user);
+        throw new Error(`User with ID ${userId} not found!`);
       }
+      console.log(user.saved)
+
+      const savedCampIds = [];
+      user.saved.map((id) => savedCampIds.push(id))
+
+      console.log(typeof savedCampIds)
+      console.log(`USER SAVED: ${savedCampIds}`)
+      const savedCamps = 
+      await context.getArrayOfCamps({ ids: savedCampIds }, context)
+
+      return { user, savedCamps };
     },
 
     // ---------- REVIEW QUERIES ----------

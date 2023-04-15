@@ -1,6 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+const { CampGround } = require('./models');
 
 const { typeDefs, resolvers } = require('./schema');
 const db = require('./config/connection');
@@ -11,7 +12,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async () => ({
-    getArrayOfCamps: async (ids) => {
+    getArrayOfCamps: async (ids, context) => {
       const allCamps = await CampGround.find(
         { _id: { $in: ids } });
       return allCamps;
