@@ -8,12 +8,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { QUERY_CAMPGROUNDBYLOCATION, QUERY_ALLCAMPS } from '../utils/queries';
 import { useLazyQuery, useQuery } from '@apollo/client';
 import Footer from '../components/Footer';
+import AllCamps from '../components/Homepage/Allcamps';
 
 function SearchResult() {
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
     const allCampsData = useQuery(QUERY_ALLCAMPS);
-    
+
     const location = useLocation();
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,7 +44,7 @@ function SearchResult() {
 
     if (error) return <p>{error.message}</p>;
 
-    
+
     return (
         <>
             <Card>
@@ -62,8 +63,21 @@ function SearchResult() {
             </Card>
 
 
-            <Container style={{ minHeight: '100vh' }}>
-                <h3>Search campground</h3>
+            <div style={{ minHeight: '100vh' }}>
+                {/* {data && data.campByLocation && data.campByLocation.length > 0 && ( */}
+                <Card>
+                    <Card.Body>
+                        <Card.Text>
+                            <header className='text-black '>All Camps</header>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+
+
+                {/* )} */}
+                <AllCamps />
+
+
 
 
                 {data && data.campByLocation && data.campByLocation.length > 0 && (
@@ -85,25 +99,25 @@ function SearchResult() {
                                     data.campByLocation.map((campground, idx) => (
                                         <Col className='p-4' key={idx}>
                                             <Card style={{ marginBottom: '200px', width: '25rem' }}>
-                                                {/* Pass the campground information as query parameters in the URL */}
+
 
 
                                                 <Card.Img
                                                     variant="top"
-                                                    src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"
+                                                    src={campground.image}
                                                 />
-                                            <Card.Body>
-                                                <Card.Title>{campground.name}</Card.Title>
-                                                <Card.Text>
-                                                    Location: {campground.location}<br />
-                                                    Price: {campground.price}
-                                                </Card.Text>
-                                            </Card.Body>
-                                            <div className='d-flex justify-content-end btn'>
-                                                <Link to={`/campground/${campground._id}?name=${campground.name}`}>
-                                                    <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
-                                                </Link>
-                                            </div>
+                                                <Card.Body>
+                                                    <Card.Title>{campground.name}</Card.Title>
+                                                    <Card.Text>
+                                                        Location: {campground.location}<br />
+                                                        Price: {campground.price}
+                                                    </Card.Text>
+                                                </Card.Body>
+                                                <div className='d-flex justify-content-end btn'>
+                                                    <Link to={`/campground/${campground._id}?name=${campground.name}`}>
+                                                        <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
+                                                    </Link>
+                                                </div>
 
                                             </Card>
                                         </Col>
@@ -112,7 +126,7 @@ function SearchResult() {
                         </Col>
                     </Row>
                 </Container>
-            </Container>
+            </div >
             <Footer />
         </>
     );
