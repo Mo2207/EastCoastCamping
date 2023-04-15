@@ -100,11 +100,7 @@ const resolvers = {
 
       const newUser = new User(args);
       console.log(newUser);
-<<<<<<< HEAD
       // const token = signToken(newUser);
-=======
-      const token = signToken(newUser);
->>>>>>> 4465d91ab578a525a0dee2e6cf1c978faba20424
       await newUser.save();
       return newUser;
       
