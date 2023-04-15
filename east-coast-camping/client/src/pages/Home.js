@@ -59,11 +59,13 @@ export default function Home() {
 
                 <Iconscomponent />
 
+                <CampsByLocation />
+                <hr />
+
                 <Container >
                     <GifComponent />
                 </Container>
 
-                <CampsByLocation />
                 <Footer />
             </div>
         </>

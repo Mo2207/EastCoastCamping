@@ -105,9 +105,9 @@ const resolvers = {
 
       const newUser = new User(args);
       console.log(newUser);
-      const token = signToken(newUser);
+      // const token = signToken(newUser);
       await newUser.save();
-      return { token, newUser };
+      return newUser;
       
     },
     // edit user by id 
@@ -150,20 +150,21 @@ const resolvers = {
     // user login
     userLogin: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
+      console.log(email, password)
       // checks to make sure user with given email exists
       if (!user) {
-        throw new Error(`user with email: ${args.email} not found!`);
+        throw new Error(`user with email: ${email} not found!`);
       }
-
+      console.log(user)
       // bcrypt password comparing upon login
       const validatePassword = await bcrypt.compare(password, user.password);
-
+      console.log(validatePassword)
       if (!validatePassword) {
         throw new Error(`Invalid Email or Password provided.`);
       }
-      const token = signToken(user)
-      return { token, user};
+      // const token = signToken(user)
+      // return
+      return user;
     },
     // add camp to saved
     saveCamp: async (parent, { userId, campId }) => {
