@@ -75,6 +75,7 @@ function IndividualCampground() {
 
     // toggle Review component visibility
     const [isVisible, setIsVisible] = useState(false);
+
     function handleToggleReview() {
         setIsVisible(!isVisible);
     }
