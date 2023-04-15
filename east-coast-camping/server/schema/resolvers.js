@@ -72,7 +72,15 @@ const resolvers = {
     allBookings: async (parent, args) => {
       return await Booking.find();
     },
-  
+
+    userBookings: async (parent, args) => {
+      const bookings = await Booking.find({ user: args.id });
+      if (!bookings) {
+        throw new Error(`User with ID ${args.id} has no Bookings.`);
+      }
+      return bookings;
+    },
+
   },
   // MUTATIONS
   Mutation: {
