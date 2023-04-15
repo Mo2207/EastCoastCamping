@@ -66,6 +66,13 @@ const resolvers = {
         throw new Error(`User with ID ${args.id} has no reviews.`);
       }
       return reviews;},
+
+    campReviews: async (parent, args) => {
+        const reviews = await Review.find({ camp: args.id }).populate('user').populate('camp');
+        if (!reviews) {
+          throw new Error(`User with ID ${args.id} has no reviews.`);
+        }
+        return reviews;},
     // ------- BOOKING QUERIES _______
     // get all Bookings
 
