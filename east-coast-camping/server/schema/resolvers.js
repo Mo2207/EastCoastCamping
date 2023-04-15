@@ -61,7 +61,7 @@ const resolvers = {
     },
 
     userReviews: async (parent, args) => {
-      const reviews = await Review.find({ user: args.id });
+      const reviews = await Review.find({ user: args.id }).populate('user').populate('camp');
       if (!reviews) {
         throw new Error(`User with ID ${args.id} has no reviews.`);
       }
@@ -70,11 +70,11 @@ const resolvers = {
     // get all Bookings
 
     allBookings: async (parent, args) => {
-      return await Booking.find();
+      return await Booking.find().populate('user').populate(`camp`);
     },
 
     userBookings: async (parent, args) => {
-      const bookings = await Booking.find({ user: args.id });
+      const bookings = await Booking.find({ user: args.id }).populate('user').populate('camp');
       if (!bookings) {
         throw new Error(`User with ID ${args.id} has no Bookings.`);
       }
