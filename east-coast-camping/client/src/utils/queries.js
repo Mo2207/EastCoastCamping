@@ -69,3 +69,17 @@ query Query($campById: ID!) {
   }
 }
 `;
+
+export const GET_CAMP_REVIEWS = gql`
+  query Query($campId: ID!) {
+    campReviews(campId: $campId) {
+      _id
+      rating
+      text
+      user {
+        firstName
+        lastName
+      }
+    }
+  }
+`
