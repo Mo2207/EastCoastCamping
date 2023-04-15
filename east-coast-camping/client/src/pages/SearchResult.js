@@ -64,18 +64,22 @@ function SearchResult() {
 
 
             <div style={{ minHeight: '100vh' }}>
-                {/* {data && data.campByLocation && data.campByLocation.length > 0 && ( */}
-                <Card>
-                    <Card.Body>
-                        <Card.Text>
-                            <header className='text-black '>All Camps</header>
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
+                {!data || !data.campByLocation || data.campByLocation.length === 0 ? (
+                    <Card>
+                        <Card.Body>
+                            <Card.Text>
+                                <header className='text-black '>All Camps</header>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
 
 
-                {/* )} */}
-                <AllCamps />
+                ) : null}
+
+                {!data || !data.campByLocation || data.campByLocation.length === 0 ? (
+                    <AllCamps />
+                ) : null}
+
 
 
 
