@@ -16,6 +16,7 @@ import { SAVE_CAMP, CREATE_REVIEW} from '../utils/mutations';
 import { QUERY_CAMPBYID, GET_CAMP_REVIEWS } from '../utils/queries';
 import Auth from '../utils/auth';
 import Footer from '../components/Footer';
+import Review from '../components/Review';
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -72,9 +73,11 @@ function IndividualCampground() {
         // console.log(savedData)
     }
 
-    // function handleOpenReviewInput() {
-
-    // }
+    // toggle Review component visibility
+    const [isVisible, setIsVisible] = useState(false);
+    function handleToggleReview() {
+        setIsVisible(!isVisible);
+    }
 
     // const [ createReview ] = useMutation(CREATE_REVIEW)
 
@@ -184,9 +187,10 @@ function IndividualCampground() {
                 <Row>
                     <Col>
                         <h2>Customer Reviews</h2>
-                        {/* <button onClick={handleOpenReviewInput} style={{ border: 'none', color: 'grey', maxHeight: '50px', marginLeft: '150px' }}>
-                            Leave a Review
-                        </button> */}
+                        <button onClick={handleToggleReview} style={{ border: 'none', color: 'grey', maxHeight: '50px', marginLeft: '150px' }}>
+                            {isVisible ? <Review /> : 'Leave a Review'}
+                        </button>
+                        {/* {isVisible && <Review />} */}
                         {reviews.map(review => (
                             <div key={review.id} className='mt-3'>
                                 <h4>{review.user.firstName} {review.user.lastName} {review.rating}</h4>
