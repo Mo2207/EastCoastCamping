@@ -61,6 +61,15 @@ const resolvers = {
       return allCamps;
     },
 
+    getUserAndSavedCamps: async (parent, {}) => {
+      const user = await User.findById(args.id);
+      if (!user) {
+        throw new Error(`user with id: ${args.id} not found!`);
+      } else {
+        console.log(user);
+      }
+    },
+
     // ---------- REVIEW QUERIES ----------
     // get all reviews
     allReviews: async (parent, args) => {

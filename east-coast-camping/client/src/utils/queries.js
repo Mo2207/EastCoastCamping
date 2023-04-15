@@ -14,8 +14,6 @@ query AllCamps {
 }
 `;
 
-
-
 export const QUERY_ME = gql`
   query Query($userId: ID!) {
     userById(id: $userId) {
@@ -27,7 +25,6 @@ export const QUERY_ME = gql`
       campdata
     }
   }
-
 `
 
 export const QUERY_CAMPGROUNDBYLOCATION = gql`
@@ -55,7 +52,6 @@ query GetArrayOfCamps($ids: [ID!]!) {
   }
 }
 `;
-
 
 export const QUERY_CAMPBYID = gql`
 query Query($campById: ID!) {
