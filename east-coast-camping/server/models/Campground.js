@@ -33,8 +33,11 @@ const campGroundSchema = new Schema({
   features:{
     type:String,
     required:false,
+  },
+  reviews: {
+    type: String,
+    required: false,
   }
-
 })
 
 const CampGround = model('CampGround', campGroundSchema);

@@ -77,15 +77,28 @@ const resolvers = {
 
     userReviews: async (parent, args) => {
       const reviews = await Review.find({user:args.id});
-      if (!user) {
+      if (!reviews) {
         throw new Error(`user with id: ${args.id} not found!`);
       } else {
         return reviews;
       }
     },
-    // ------- BOOKING QUERIES _______
-    // get all Bookings
 
+    campReviews: async (parent, {campId}) => {
+      // find all reviews associated with campId
+      const reviews = await Review.find({
+        camp: campId,
+      })
+      // populate user and camp for return data
+      .populate('user')
+      .populate('camp')
+      .exec()
+      
+      return reviews;
+    },
+
+    // ---------- BOOKING QUERIES ----------
+    // get all Bookings
     allBookings: async (parent, args) => {
       return await Booking.find();
     },
@@ -222,24 +235,33 @@ const resolvers = {
     createReview: async (parent, { userId, campId, rating, text }) => {
 
       // validation to check if userId and campId exist
-      const validUser = await User.findById(userId);
-      if (!validUser) {
+      const user = await User.findById(userId);
+      if (!user) {
         throw new Error(`Invalid userId: ${userId}.`);
       }
-      const validCamp = await CampGround.findById(campId);
-      if (!validCamp) {
+      const camp = await CampGround.findById(campId);
+      if (!camp) {
         throw new Error(`Invalid campground id: ${campId}`);
       }
 
-      // write the review and save
+      // write the newReview
       const newReview = new Review({
         user: userId,
         camp: campId,
         rating,
         text
       })
-      console.log(newReview);
-      return await newReview.save();
+      // save the newReview to database
+      await newReview.save()
+      
+      // find the newReview now that it is saved and populate it with user & camp data
+      const populateReview = await Review.findById(newReview._id)
+        .populate('user')
+        .populate('camp')
+        .exec();
+        
+      // console.log(`POPULATEREVIEW: ${populateReview}`);
+      return populateReview;
     },
 
     // Booking Mutations
