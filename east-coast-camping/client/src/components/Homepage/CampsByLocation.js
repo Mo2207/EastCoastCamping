@@ -12,31 +12,31 @@ const CampsByLocation = () => {
 
     return (
         <Container>
+            <h2 className="text-center">Find your next getaway</h2>
             <Row>
                 <Col>
-                    <CardGroup>
-                        {/* Add buttons or links for each location */}
-                        <Button onClick={() => handleLocationSelection("Sussex")}>
+                    <CardGroup className="d-flex flex-wrap justify-content-center mb-5">
+                        <Button className="btn btn-light m-4" onClick={() => handleLocationSelection("Sussex")}>
                             <Card className='m-3 border-0 d-flex align-items-center'>
-                                <Card.Img className='campIcons mb-3' variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
+                                <Card.Img style={{ width: '10rem' }} variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
                                 <Card.Body>
-                                    <Card.Title>Caravan Sites</Card.Title>
+                                    <Card.Title className="text-black">Sussex</Card.Title>
                                 </Card.Body>
-                            </Card>    Sussex</Button>
-                        <Button onClick={() => handleLocationSelection("Moncton")}>
+                            </Card></Button>
+                        <Button className="btn btn-light m-4" onClick={() => handleLocationSelection("Moncton")}>
                             <Card className='m-3 border-0 d-flex align-items-center'>
-                                <Card.Img className='campIcons mb-3' variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
+                                <Card.Img style={{ width: '10rem' }} variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
                                 <Card.Body>
-                                    <Card.Title>Caravan Sites</Card.Title>
+                                    <Card.Title>Moncton</Card.Title>
                                 </Card.Body>
-                            </Card> Moncton</Button>
-                        <Button onClick={() => handleLocationSelection("Saint John")}>
+                            </Card></Button>
+                        <Button className="btn btn-light m-4" onClick={() => handleLocationSelection("Saint John")}>
                             <Card className='m-3 border-0 d-flex align-items-center'>
-                                <Card.Img className='campIcons mb-3' variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
+                                <Card.Img style={{ width: '10rem' }} variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
                                 <Card.Body>
-                                    <Card.Title>Caravan Sites</Card.Title>
+                                    <Card.Title>Saint John</Card.Title>
                                 </Card.Body>
-                            </Card> Saint John</Button>
+                            </Card></Button>
                     </CardGroup>
                 </Col>
             </Row>

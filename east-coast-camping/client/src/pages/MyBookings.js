@@ -25,7 +25,7 @@ function MyBookings() {
 
   return (
     <>
-      <div className="container my-1">
+      <div className="container my-1" style={{ minHeight: '100vh' }}>
         <Navbar.Brand><h2>My Bookings</h2></Navbar.Brand>
         <Tabs
           defaultActiveKey="upcoming"
