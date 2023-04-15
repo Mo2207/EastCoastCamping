@@ -11,10 +11,16 @@ const resolvers = {
     // ---------- USER QUERIES ----------
     // get user by id
     userById: async (parent, args) => {
+      
       const user = await User.findById(args.id);
       if (!user) {
         throw new Error(`user with id: ${args.id} not found!`);
       } else {
+        
+        const allCamps = await CampGround.find(
+          { _id: { $in: user.saved } });
+        const object = JSON.stringify(allCamps)   
+        user.campdata.push(object)     
         return user;
       }
     },
@@ -49,6 +55,7 @@ const resolvers = {
     // get array of camps
     getArrayOfCamps: async (parent, {ids}) => {
       // find all camps from CampGround
+      console.log(ids)
       const allCamps = await CampGround.find(
         { _id: { $in: ids } });
       return allCamps;
