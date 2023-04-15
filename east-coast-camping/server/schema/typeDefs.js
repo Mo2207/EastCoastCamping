@@ -45,7 +45,7 @@ const typeDefs = gql `
     campByLocation(location: String!): [CampGround]
     allReviews: [Review]
     allBookings:[Booking]
-    userBookings:[Booking]
+    userBookings(id: ID!):[Booking]
     userReviews(id: ID!):[Review]
     
     
