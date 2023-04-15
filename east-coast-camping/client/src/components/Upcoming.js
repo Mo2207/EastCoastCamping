@@ -79,7 +79,7 @@ export default function Upcoming() {
                   </Row>
                 </Card.Body>
                 <Row>
-                  <Col md="9" className="mb-1 ml-2"><p onClick={chaticon}>{chaticon} Submit your review</p></Col>
+                  <Col md="9" className="mb-1 ml-2"><p >{chaticon} Submit your review</p></Col>
                   {/* <Col md="2" className="mb-1 ml-5">
                     <Button color="primary" size="sm">
                         View Details
