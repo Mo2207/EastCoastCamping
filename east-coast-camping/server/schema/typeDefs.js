@@ -21,6 +21,7 @@ const typeDefs = gql`
     available: Boolean!
     price: Int
     campImages: [String]
+
   }
 
   type Review {
@@ -47,11 +48,10 @@ const typeDefs = gql`
     allCamps: [CampGround]
     campByLocation(location: String!): [CampGround]
     allReviews: [Review]
+    campReviews(campId: ID!): [Review]
     allBookings:[Booking]
     userBookings:[Booking]
     userReviews(id: ID!):[Review]
-    
-    
   }
 
   type Mutation {

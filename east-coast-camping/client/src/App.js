@@ -21,7 +21,6 @@ import Footer from './components/Footer';
 
 
 
-
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -75,6 +74,7 @@ function App() {
               path="/myBookings"
               element={<MyBookings />}
             />
+     
             <Route
               path="/search"
               element={<SearchResult />}

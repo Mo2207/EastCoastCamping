@@ -31,7 +31,7 @@ function Profile() {
   });
   
   const profile = data?.userById || {};
-  console.log(profile.campdata)
+  console.log(profile)
   // const convertData = JSON.parse(profile.campdata[0])
   // console.log(convertData)
 
