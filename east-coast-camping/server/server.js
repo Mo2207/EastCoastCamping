@@ -9,7 +9,14 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: async () => ({
+    getArrayOfCamps: async (ids) => {
+      const allCamps = await CampGround.find(
+        { _id: { $in: ids } });
+      return allCamps;
+    }
+  })
 });
 
 app.use(express.urlencoded({ extended: false }));
