@@ -93,7 +93,7 @@ const resolvers = {
 
       const newUser = new User(args);
       console.log(newUser);
-      const token = signToken(newIser);
+      const token = signToken(newUser);
       await newUser.save();
       return { token, newUser };
       
