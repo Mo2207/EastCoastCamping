@@ -63,52 +63,57 @@ function SearchResult() {
                 </Card.Body>
             </Card>
 
-            {data && data.campByLocation && data.campByLocation.length > 0 && (
-                <Card>
-                    <Card.Body>
-                        <Card.Text>
-                            <header className='text-black p-5 '>Available Campsites</header>
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            )}
-
-            <Container>
-                <Row >
-                    <Col >
-                        <Row xs={1} md={2} className="g-4 ">
-                            {data &&
-                                data.campByLocation &&
-                                data.campByLocation.map((campground, idx) => (
-                                    <Col className='p-4' key={idx}>
-                                        <Card style={{ marginBottom: '200px', width: '25rem' }}>
-                                            {/* Pass the campground information as query parameters in the URL */}
-
-                                            <Card.Img
-                                                variant="top"
-                                                src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"
-                                            />
+            <Container style={{ minHeight: '100vh' }}>
+                <h3>Search campground</h3>
 
 
-                                            <Card.Body>
-                                                <Card.Title>{campground.name}</Card.Title>
-                                                <Card.Text>
-                                                    Location: {campground.location}<br />
-                                                    Price: {campground.price}
-                                                </Card.Text>
-                                            </Card.Body>
-                                            <div className='d-flex justify-content-end btn'>
-                                                <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
-                                                    <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
-                                                </Link>
-                                            </div>
+                {data && data.campByLocation && data.campByLocation.length > 0 && (
+                    <Card>
+                        <Card.Body>
+                            <Card.Text>
+                                <header className='text-black p-5 '>Available Campsites</header>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                )}
 
-                                        </Card>
-                                    </Col>
-                                ))}
-                        </Row>
-                    </Col>
-                </Row>
+                <Container>
+                    <Row >
+                        <Col >
+                            <Row xs={1} md={2} className="g-4 ">
+                                {data &&
+                                    data.campByLocation &&
+                                    data.campByLocation.map((campground, idx) => (
+                                        <Col className='p-4' key={idx}>
+                                            <Card style={{ marginBottom: '200px', width: '25rem' }}>
+                                                {/* Pass the campground information as query parameters in the URL */}
+
+                                                <Card.Img
+                                                    variant="top"
+                                                    src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"
+                                                />
+
+
+                                                <Card.Body>
+                                                    <Card.Title>{campground.name}</Card.Title>
+                                                    <Card.Text>
+                                                        Location: {campground.location}<br />
+                                                        Price: {campground.price}
+                                                    </Card.Text>
+                                                </Card.Body>
+                                                <div className='d-flex justify-content-end btn'>
+                                                    <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
+                                                        <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
+                                                    </Link>
+                                                </div>
+
+                                            </Card>
+                                        </Col>
+                                    ))}
+                            </Row>
+                        </Col>
+                    </Row>
+                </Container>
             </Container>
             <Footer />
         </>
