@@ -4,7 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { useLazyQuery, useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME, QUERY_CAMPBYARRAY } from '../utils/queries';
 import Auth from '../utils/auth';
 import "../styles/Upcoming.css";
 import Upcoming from '../components/Upcoming';
@@ -13,16 +13,17 @@ import Footer from '../components/Footer';
 import Favorite from '../components/Favorite';
 
 function MyBookings() {
-  // let id;
+  let id=["643aa6bbe8d851d4fbe54193"];
   // if (Auth.loggedIn()) {
-  //   id = Auth.getToken()
+  //   id = ((localStorage.getItem("saved")).split(","))
   // };
-  //  useQuery(QUERY_ME)
-  //   , {variables: { userId: id }
-  // });
-  // const profile = data?.userById || {};
-  // const data1 = (profile.saved)
-  // localStorage.setItem("saved",data1)
+  
+  // console.log(id[0]);
+  const  [ querryCampData, { loading, data }]  = useLazyQuery(QUERY_CAMPBYARRAY)
+  
+  if (loading) return <p>Loading....</p>;
+  
+  console.log(data)
 
   
   return (
@@ -40,9 +41,9 @@ function MyBookings() {
           <Tab eventKey="completed" title="Completed" >
             <Completed />
           </Tab>
-          <Tab eventKey="favorite" title="Favorited Camps">
+          <button eventKey="favorite" onClick={()=> querryCampData({ variables: {ids: id }})} title="Favorited Camps">
             <Favorite />
-          </Tab>
+          </button>
         </Tabs>
       </div>
       <Footer />

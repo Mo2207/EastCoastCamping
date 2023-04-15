@@ -31,7 +31,7 @@ function Profile() {
   });
   
   const profile = data?.userById || {};
-  console.log(profile)
+  // console.log(profile)
   // const convertData = JSON.parse(profile.campdata[0])
   // console.log(convertData)
 
@@ -90,7 +90,7 @@ function Profile() {
             <MDBRow>
               <MDBCol>
                 <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-                  <MDBBreadcrumbItem active>MY PROFILE</MDBBreadcrumbItem>
+                  <MDBBreadcrumbItem active className="text-center">MY PROFILE</MDBBreadcrumbItem>
                 </MDBBreadcrumb>
               </MDBCol>
             </MDBRow>
@@ -142,7 +142,7 @@ function Profile() {
                     <MDBRow>
                       <MDBCol sm="3">
                         <MDBCardText>Email</MDBCardText>
-                      </MDBCol>
+                      </MDBCol>                      
                       <MDBCol sm="9">
                         {editMode ? (
                           <input type="text" id='email' value={emailState} onChange={(e) => setEmail(e.target.value)}>
@@ -151,9 +151,12 @@ function Profile() {
                           <MDBCardText className="text-muted">{emailState}</MDBCardText>
                         )}
                       </MDBCol>
-                    </MDBRow>
-                  </MDBCardBody>
+                    </MDBRow>                    
+                  </MDBCardBody>                  
                 </MDBCard>
+                <MDBCol sm="3">
+              <Button>Favorite Camp</Button> 
+            </MDBCol>
               </MDBCol>
             </MDBRow>
             <MDBRow>
