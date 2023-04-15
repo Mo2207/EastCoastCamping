@@ -77,16 +77,20 @@ const resolvers = {
     },
 
     campReviews: async (parent, {campId}) => {
-      const reviews = await CampGround.findById(campId)
-      .populate('reviews')
+      // find all reviews associated with campId
+      const reviews = await Review.find({
+        camp: campId,
+      })
+      // populate user and camp for return data
+      .populate('user')
+      .populate('camp')
       .exec()
-      console.log(camp.reviews);
+      
       return reviews;
     },
 
-    // ------- BOOKING QUERIES _______
+    // ---------- BOOKING QUERIES ----------
     // get all Bookings
-
     allBookings: async (parent, args) => {
       return await Booking.find();
     },
