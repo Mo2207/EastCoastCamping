@@ -46,6 +46,10 @@ const typeDefs = gql `
     campByLocation(location: String!): [CampGround]
     allReviews: [Review]
     allBookings:[Booking]
+    userBookings:[Booking]
+    userReviews(id: ID!):[Review]
+    
+    
   }
 
   type Mutation {

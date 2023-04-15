@@ -29,7 +29,12 @@ const campGroundSchema = new Schema({
   price:{
     type:Number,
     required:true,
+  },
+  features:{
+    type:String,
+    required:false,
   }
+
 })
 
 const CampGround = model('CampGround', campGroundSchema);
