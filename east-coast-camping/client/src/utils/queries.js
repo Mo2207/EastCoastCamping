@@ -69,6 +69,7 @@ query Query($campById: ID!) {
     location
     name
     price
+    campImages
   }
 }
 `;

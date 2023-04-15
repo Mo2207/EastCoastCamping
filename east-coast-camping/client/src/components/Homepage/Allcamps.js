@@ -26,12 +26,12 @@ const AllCamps = () => {
         <Container>
             <Row>
                 <Col>
-                    <Row xs={1} md={2} className="g-4">
+                    <Row xs={1} md={3} className="g-4">
                         {data &&
                             data.allCamps &&
                             data.allCamps.map((campground, idx) => (
                                 <Col key={idx}>
-                                    <Card style={{ marginBottom: '200px', width: '25rem', marginLeft: '100px' }}>
+                                    <Card style={{ marginBottom: '200px', width: '25rem', minHeight: '450px', margin: '50px' }}>
                                         {/* Pass the campground information as query parameters in the URL */}
 
                                         <Card.Img

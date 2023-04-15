@@ -97,12 +97,12 @@ function SearchResult() {
                 <Container>
                     <Row >
                         <Col >
-                            <Row xs={1} md={2} className="g-4 ">
+                            <Row xs={1} md={3} className="g-4 ">
                                 {data &&
                                     data.campByLocation &&
                                     data.campByLocation.map((campground, idx) => (
-                                        <Col className='p-4' key={idx}>
-                                            <Card style={{ marginBottom: '200px', width: '25rem' }}>
+                                        <Col className='p-2' key={idx}>
+                                            <Card style={{ marginBottom: '200px', width: '25rem', minHeight: '450px', margin: '50px' }}>
 
 
 

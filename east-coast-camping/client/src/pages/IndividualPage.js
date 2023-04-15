@@ -27,8 +27,8 @@ function IndividualCampground() {
     ]);
 
     let id;
-    if(Auth.loggedIn()){
-      id = Auth.getToken()
+    if (Auth.loggedIn()) {
+        id = Auth.getToken()
     };
 
     const [destination, setDestination] = useState('');
@@ -37,9 +37,9 @@ function IndividualCampground() {
     const location = useLocation();
 
     const campgroundId = location.pathname.split('/').pop();
-    
-    const {loading, data} = useQuery(QUERY_CAMPBYID, {
-        variables: {campById: campgroundId}
+
+    const { loading, data } = useQuery(QUERY_CAMPBYID, {
+        variables: { campById: campgroundId }
     })
     const campInfo = data?.campById || {};
     console.log(campInfo)
@@ -52,10 +52,10 @@ function IndividualCampground() {
         console.log('End Date:', endDate);
     };
 
-    const [ saveCamp ] = useMutation(SAVE_CAMP);
+    const [saveCamp] = useMutation(SAVE_CAMP);
 
     function handleSaveCamp(id, campgroundId) {
-        const{ savedData } = saveCamp({
+        const { savedData } = saveCamp({
             variables: { userId: id, campId: campgroundId }
         })
         console.log(savedData)
@@ -63,8 +63,9 @@ function IndividualCampground() {
 
     return (
         <>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ width: '80%', height: '80%', overflow: 'hidden' }}>
+            {/*----------------------- camp images to display on page using swiper.js -------------------------------*/}
+            <div className='100vh' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxHeight: '400px', maxWidth: '100%' }}>
+                <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
                     <Swiper
                         loop={true}
                         autoplay={{
@@ -76,24 +77,18 @@ function IndividualCampground() {
                             prevEl: '.swiper-button-prev',
                         }}
                         pagination={true}
-                        style={{ maxWidth: '600px', margin: '0 auto' }} // Update styles for Swiper component
+                        style={{ maxWidth: '600px', margin: '0 auto' }}
                     >
-                        <SwiperSlide>
-                            <img src="https://user-images.githubusercontent.com/112873819/231563918-7600766f-0214-44d6-930a-b3439892bb0f.jpg" alt="Campground 1" style={{ width: '100%', height: '100%' }} /> {/* Update styles for image */}
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img src="https://user-images.githubusercontent.com/112873819/231563923-2f00bb59-76fb-4e76-8f8b-41f6bc01bfc2.jpg" alt="Campground 2" style={{ width: '100%', height: '100%' }} /> {/* Update styles for image */}
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img src="https://user-images.githubusercontent.com/112873819/231563928-ae67fa79-3d28-4166-8420-3594edf60d67.jpg" alt="Campground 3" style={{ width: '100%', height: '100%' }} /> {/* Update styles for image */}
-                        </SwiperSlide>
-                        {/* <SwiperSlide>
-                            <img src={campgroundImage}/>
-                        </SwiperSlide> */}
+                        {campInfo && campInfo.campImages && campInfo.campImages.map((image, index) => (
+                            <SwiperSlide key={index}>
+                                <img src={image} alt={`Campground ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                            </SwiperSlide>
+                        ))}
                     </Swiper>
-
                 </div>
             </div>
+
+
             <Row className='campInfo'>
                 <h1>Campground Name: {campInfo.name}</h1>
                 <p>Location: {campInfo.location}</p>
@@ -148,8 +143,8 @@ function IndividualCampground() {
                     <Form.Label>Check out</Form.Label>
                     <DatePicker type="text" placeholderText="Select check-out date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className='searchInput' />
                     <Button type="submit" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button> */}
-                    <Button onClick={() => {handleSaveCamp(id, campgroundId)}} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
-                </Form>                
+                    <Button onClick={() => { handleSaveCamp(id, campgroundId) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
+                </Form>
             </Container>
             <hr className='mx-5' />
             <Container className='mt-5'>
