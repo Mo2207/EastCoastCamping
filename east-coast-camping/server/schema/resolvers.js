@@ -62,7 +62,7 @@ const resolvers = {
 
     userReviews: async (parent, args) => {
       const reviews = await Review.find({user:args.id});
-      if (!user) {
+      if (!reviews) {
         throw new Error(`user with id: ${args.id} not found!`);
       } else {
         return reviews;
