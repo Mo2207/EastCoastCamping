@@ -19,6 +19,7 @@ const typeDefs = gql `
     availability: Int
     available: Boolean!
     price: Int
+    image: String
   }
 
   type Review {
