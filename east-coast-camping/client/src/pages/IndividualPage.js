@@ -12,19 +12,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form } from 'react-bootstrap';
 import { useMutation, useQuery } from '@apollo/client';
-import { SAVE_CAMP } from '../utils/mutations';
-import { QUERY_CAMPBYID } from '../utils/queries';
+import { SAVE_CAMP, CREATE_REVIEW} from '../utils/mutations';
+import { QUERY_CAMPBYID, GET_CAMP_REVIEWS } from '../utils/queries';
 import Auth from '../utils/auth';
 import Footer from '../components/Footer';
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 function IndividualCampground() {
-    const [reviews, setReviews] = useState([
-        { id: 1, author: 'John Doe', review: 'Great campground! Beautiful views and friendly staff.' },
-        { id: 2, author: 'Jane Smith', review: 'Had an amazing time camping here. Facilities were clean and well-maintained.' },
-        { id: 3, author: 'Mike Johnson', review: 'One of the best campgrounds I have been to. Highly recommended!' }
-    ]);
+    // const [reviews, setReviews] = useState([
+    //     { id: 1, author: 'John Doe', review: 'Great campground! Beautiful views and friendly staff.' },
+    //     { id: 2, author: 'Jane Smith', review: 'Had an amazing time camping here. Facilities were clean and well-maintained.' },
+    //     { id: 3, author: 'Mike Johnson', review: 'One of the best campgrounds I have been to. Highly recommended!' }
+    // ]);
+
+    // const [reviews, setReviews] = useState('');
 
     let id;
     if(Auth.loggedIn()){
@@ -37,19 +39,28 @@ function IndividualCampground() {
     const location = useLocation();
 
     const campgroundId = location.pathname.split('/').pop();
+
+    // query individual camp reviews
+    const { data: reviewData } = useQuery(GET_CAMP_REVIEWS, {
+        variables: {campId: campgroundId}
+    });
+
+    const reviews = reviewData ?. campReviews || [];
+    // console.log(`CAMPREVIEWS: ${reviews}`)
     
+    // query individual camp data
     const {loading, data} = useQuery(QUERY_CAMPBYID, {
         variables: {campById: campgroundId}
     })
     const campInfo = data?.campById || {};
-    console.log(campInfo)
+    // console.log(campInfo)
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log('Destination:', destination);
-        console.log('Start Date:', startDate);
-        console.log('End Date:', endDate);
+        // console.log('Destination:', destination);
+        // console.log('Start Date:', startDate);
+        // console.log('End Date:', endDate);
     };
 
     const [ saveCamp ] = useMutation(SAVE_CAMP);
@@ -58,8 +69,25 @@ function IndividualCampground() {
         const{ savedData } = saveCamp({
             variables: { userId: id, campId: campgroundId }
         })
-        console.log(savedData)
+        // console.log(savedData)
     }
+
+    // function handleOpenReviewInput() {
+
+    // }
+
+    // const [ createReview ] = useMutation(CREATE_REVIEW)
+
+    // function handleCreateReview(userId, campId, rating, text) {
+    //     const { leaveReview } = createReview({
+    //         variables: {
+    //             user: userId,
+    //             camp: campId,
+    //             rating: rating,
+    //             text: text
+    //         }
+    //     })
+    // }
 
     return (
         <>
@@ -156,10 +184,13 @@ function IndividualCampground() {
                 <Row>
                     <Col>
                         <h2>Customer Reviews</h2>
+                        {/* <button onClick={handleOpenReviewInput} style={{ border: 'none', color: 'grey', maxHeight: '50px', marginLeft: '150px' }}>
+                            Leave a Review
+                        </button> */}
                         {reviews.map(review => (
                             <div key={review.id} className='mt-3'>
-                                <h4>{review.author}</h4>
-                                <p>{review.review}</p>
+                                <h4>{review.user.firstName} {review.user.lastName} {review.rating}</h4>
+                                <p>{review.text}</p>
                             </div>
                         ))}
                     </Col>
