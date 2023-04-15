@@ -68,6 +68,11 @@ const resolvers = {
         return reviews;
       }
     },
+
+    // campReviews: async (parent, args) => {
+    //   const reviews = await 
+    // },
+
     // ------- BOOKING QUERIES _______
     // get all Bookings
 
@@ -93,7 +98,7 @@ const resolvers = {
 
       const newUser = new User(args);
       console.log(newUser);
-      const token = signToken(newIser);
+      const token = signToken(newlser);
       await newUser.save();
       return { token, newUser };
       
@@ -206,12 +211,12 @@ const resolvers = {
     createReview: async (parent, { userId, campId, rating, text }) => {
 
       // validation to check if userId and campId exist
-      const validUser = await User.findById(userId);
-      if (!validUser) {
+      const user = await User.findById(userId);
+      if (!user) {
         throw new Error(`Invalid userId: ${userId}.`);
       }
-      const validCamp = await CampGround.findById(campId);
-      if (!validCamp) {
+      const camp = await CampGround.findById(campId);
+      if (!camp) {
         throw new Error(`Invalid campground id: ${campId}`);
       }
 
@@ -222,6 +227,12 @@ const resolvers = {
         rating,
         text
       })
+      newReview.save();
+
+      const populateReview = await Review.findById(newReview._id)
+        .populate('user')
+        .execPopulate()
+
       console.log(newReview);
       return await newReview.save();
     },
