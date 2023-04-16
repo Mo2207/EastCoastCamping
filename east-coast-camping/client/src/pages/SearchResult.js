@@ -65,8 +65,7 @@ function SearchResult() {
                     </form>
                 </Card.Body>
             </Card>
-
-
+            
             <div style={{ minHeight: '100vh' }}>
                 {!data || !data.campByLocation || data.campByLocation.length === 0 ? (
                     <Card>
@@ -83,10 +82,6 @@ function SearchResult() {
                 {!data || !data.campByLocation || data.campByLocation.length === 0 ? (
                     <AllCamps />
                 ) : null}
-
-
-
-
 
                 {data && data.campByLocation && data.campByLocation.length > 0 && (
                     <Card>
@@ -107,9 +102,6 @@ function SearchResult() {
                                     data.campByLocation.map((campground, idx) => (
                                         <Col className='p-2' key={idx}>
                                             <Card style={{ marginBottom: '200px', width: '25rem', minHeight: '450px', margin: '50px' }}>
-
-
-
                                                 <Card.Img
                                                     variant="top"
                                                     src={campground.image}
@@ -126,7 +118,6 @@ function SearchResult() {
                                                         <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
                                                     </Link>
                                                 </div>
-
                                             </Card>
                                         </Col>
                                     ))}
