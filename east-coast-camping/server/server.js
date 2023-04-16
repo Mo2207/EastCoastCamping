@@ -1,6 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+const { CampGround } = require('./models');
+const mongoose = require('mongoose');
 
 const { typeDefs, resolvers } = require('./schema');
 const db = require('./config/connection');
@@ -9,7 +11,18 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: async () => ({
+    getArrayOfCamps: async (ids, context) => {
+      // converts string ids to object ids
+      const objectIds = ids.map(id => mongoose.Types.ObjectId(id));
+
+      //find all camps based on the object ids
+      const allCamps = await CampGround.find({ _id: { $in: objectIds } });
+
+      return allCamps;
+    }
+  })
 });
 
 app.use(express.urlencoded({ extended: false }));
