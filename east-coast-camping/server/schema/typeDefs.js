@@ -50,7 +50,7 @@ const typeDefs = gql`
     allUsers: [User]
     campById(id: ID!): CampGround
     getArrayOfCamps(ids: [ID!]!): [CampGround!]!
-    getUserAndSavedCamps(userId: ID!): UserSavedCamps!
+    getCampsAndBookingByUserId(userId: ID!): UserSavedCamps!
     allCamps: [CampGround]
     campByLocation(location: String!): [CampGround]
     allReviews: [Review]

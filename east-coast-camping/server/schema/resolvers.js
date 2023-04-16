@@ -72,7 +72,7 @@ const resolvers = {
     },
 
     // combination of userById and getArrayOfCamps
-    getUserAndSavedCamps: async (parent, {userId}, context) => {
+    getCampsAndBookingByUserId: async (parent, {userId}, context) => {
       const user = await User.findById(userId);
       if (!user) {
         throw new Error(`User with ID ${userId} not found!`);
