@@ -31,7 +31,7 @@ export default function Footer() {
                 ) : null}
                 <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
                     © 2023 Copyright:
-                    <a className='text-white' href='https://eastcoastcamping.com/'>
+                    <a className='text-white' href='/'>
                         EastCoastCamping
                     </a>
                 </div>
