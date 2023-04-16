@@ -81,7 +81,12 @@ const resolvers = {
       const savedCamps = 
       await context.getArrayOfCamps(user.saved, context)
 
-      return { user, savedCamps };
+      let userBookings =
+      await context.bookingByUserId(userId, context)
+    
+      console.log(userBookings)
+
+      return { user, savedCamps, userBookings };
     },
 
     // ---------- REVIEW QUERIES ----------
@@ -138,9 +143,8 @@ const resolvers = {
       .populate('camp')
       .exec()
 
-      return userBookings[0];
+      return userBookings;
     }
-  
   },
   // MUTATIONS
   Mutation: {

@@ -1,7 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-const { CampGround, User } = require('./models');
+const { CampGround, User, Booking } = require('./models');
 const mongoose = require('mongoose');
 
 const { typeDefs, resolvers } = require('./schema');
