@@ -9,8 +9,8 @@
     min-height: 90vh;
 }
 
-.login-form {
-    text-align: center;
+label {
+    padding-left: 10px;
 }
 
 .logo {
@@ -21,20 +21,15 @@
 }
 
 span {
-    color: #fff;
+    color: #0d0e0d;
     font-size: small;
     display: flex;
     justify-content: center;
     padding: 10px 0 10px 0;
 }
 
-header {
-    color: #fff;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0 10px 0;
-}
+
+
 
 .input-field .inputs {
     height: 45px;
@@ -46,7 +41,7 @@ header {
     padding: 0 0 0 45px;
     background: rgba(243, 232, 232, 0.6);
     outline: none;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     margin-left: 10px;
 
 }
@@ -56,20 +51,6 @@ header {
     opacity: 0.4;
 }
 
-
-.submit {
-    border: none;
-    border-radius: 30px;
-    font-size: 20px;
-    height: 45px;
-    outline: none;
-    width: 400px;
-    color: black;
-    background: rgba(54, 174, 18, 0.7);
-    cursor: pointer;
-    transition: .3s;
-    margin-left: 10px;
-}
 
 .submit:hover {
     box-shadow: 1px 5px 7px 1px rgba(145, 119, 119, 0.2);
