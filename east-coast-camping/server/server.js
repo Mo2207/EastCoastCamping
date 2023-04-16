@@ -13,6 +13,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async () => ({
+
     getArrayOfCamps: async (ids, context) => {
       // converts string ids to object ids
       const objectIds = ids.map(id => mongoose.Types.ObjectId(id));
@@ -21,7 +22,9 @@ const server = new ApolloServer({
       const allCamps = await CampGround.find({ _id: { $in: objectIds } });
 
       return allCamps;
-    }
+    },
+
+    
   })
 });
 

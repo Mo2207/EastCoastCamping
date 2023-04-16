@@ -115,7 +115,14 @@ const resolvers = {
     // ---------- BOOKING QUERIES ----------
     // get all Bookings
     allBookings: async (parent, args) => {
-      return await Booking.find();
+      const bookings = await Booking.find();
+
+      const populateBooking = await Booking.find(bookings._id)
+      .populate('user')
+      .populate('camp')
+      .exec()
+
+      return populateBooking;
     },
   
   },
