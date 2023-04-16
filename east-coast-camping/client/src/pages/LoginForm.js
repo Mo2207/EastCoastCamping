@@ -83,8 +83,8 @@ const LoginForm = () => {
                                             />
                                             <h3 className="mb-0 text-dark pl-5">𝐄𝐚𝐬𝐭𝐂𝐨𝐚𝐬𝐭𝐂𝐚𝐦𝐩𝐢𝐧𝐠</h3>
                                         </div>
-                                        <h5 className=" my-4 pb-3" style={{ letterSpacing: '1px' }}>Sign into your account</h5>
-                                        <Form.Group className='input-field'>
+                                        <h5 className=" my-4 pb-3 text-center" style={{ letterSpacing: '1px' }}>Sign into your account</h5>
+                                        <Form.Group className='input-field pb-4'>
                                             <Form.Control className='inputs'
                                                 type='text'
                                                 placeholder='Your email'
@@ -96,7 +96,7 @@ const LoginForm = () => {
                                             <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
                                         </Form.Group>
 
-                                        <Form.Group className='input-field'>
+                                        <Form.Group className='input-field  pb-4'>
                                             <Form.Control className='inputs'
                                                 type='password'
                                                 placeholder='Your password'
@@ -107,10 +107,12 @@ const LoginForm = () => {
                                             />
                                             <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
                                         </Form.Group>
-                                        <Button className='mb-4 px-5' type='submit' >
-                                            Log In
-                                        </Button>
-                                        <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>Don't have an account? <a href="/register" style={{ color: '#393f81' }}>Register here</a></p>
+                                        <div className='pt-2 text-center'>
+                                            <Button className='mb-5 px-5' type='submit' >
+                                                Log In
+                                            </Button>
+                                        </div>
+                                        <p className="mb-5 pb-lg-2 text-center" style={{ color: '#393f81' }}>Don't have an account? <a href="/register" style={{ color: '#393f81' }}>Register here</a></p>
                                     </Form>
 
                                 )}
