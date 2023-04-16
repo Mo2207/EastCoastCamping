@@ -145,6 +145,7 @@ const resolvers = {
 
       return userBookings;
     }
+
   },
   // MUTATIONS
   Mutation: {

@@ -31,8 +31,8 @@ const AllCamps = () => {
                         {data &&
                             data.allCamps &&
                             data.allCamps.map((campground, idx) => (
-                                <Col key={idx} className="row  d-flex flex-sm-wrap justify-content-around mb-3 " style={{ marginRight: '20px' }}>
-                                    <Card style={{ marginBottom: '200px', minWidth: '25rem', minHeight: '450px', margin: '100px' }}>
+                                <Col key={idx} className="row  d-flex flex-sm-wrap justify-content-around mb-3 " style={{ marginRight: '15px' }}>
+                                    <Card style={{ minWidth: '25rem', minHeight: '450px', margin: '20px' }}>
 
 
                                         {/* Pass the campground information as query parameters in the URL */}
@@ -40,6 +40,7 @@ const AllCamps = () => {
                                         < Card.Img
                                             variant="top"
                                             src={campground.image}
+                                            style={{marginTop: '10px'}}
                                         />
 
                                         <Card.Body>

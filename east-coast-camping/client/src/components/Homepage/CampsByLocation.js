@@ -1,8 +1,22 @@
 import React from "react";
+import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button, CardGroup } from "react-bootstrap";
+import { QUERY_ALLCAMPS } from "../../utils/queries";
 
 const CampsByLocation = () => {
+    const { loading, error, data } = useQuery(QUERY_ALLCAMPS);
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error.message}</p>;
+    }
+
+    // used new Set to removes duplicate location
+    const availableLocations = [...new Set(data.allCamps.map(camp => camp.location))];
 
     // Function to handle location selection
     const handleLocationSelection = (destination) => {
@@ -16,27 +30,16 @@ const CampsByLocation = () => {
             <Row>
                 <Col>
                     <CardGroup className="d-flex flex-wrap justify-content-center mb-5">
-                        <Button className="btn btn-light m-4" onClick={() => handleLocationSelection("Sussex")}>
-                            <Card className='m-3 border-0 d-flex align-items-center'>
-                                <Card.Img style={{ width: '10rem' }} variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
-                                <Card.Body>
-                                    <Card.Title className="text-black">Sussex</Card.Title>
-                                </Card.Body>
-                            </Card></Button>
-                        <Button className="btn btn-light m-4" onClick={() => handleLocationSelection("Moncton")}>
-                            <Card className='m-3 border-0 d-flex align-items-center'>
-                                <Card.Img style={{ width: '10rem' }} variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
-                                <Card.Body>
-                                    <Card.Title>Moncton</Card.Title>
-                                </Card.Body>
-                            </Card></Button>
-                        <Button className="btn btn-light m-4" onClick={() => handleLocationSelection("Saint John")}>
-                            <Card className='m-3 border-0 d-flex align-items-center'>
-                                <Card.Img style={{ width: '10rem' }} variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
-                                <Card.Body>
-                                    <Card.Title>Saint John</Card.Title>
-                                </Card.Body>
-                            </Card></Button>
+                        {availableLocations.map((location, index) => (
+                            <Button key={index} className="btn btn-light m-4" onClick={() => handleLocationSelection(location)}>
+                                <Card className='m-3 border-0 d-flex align-items-center'>
+                                    <Card.Img style={{ width: '10rem' }} variant="top" src="https://user-images.githubusercontent.com/112873819/232092269-05ac1015-4674-454e-ba49-e6969a252085.png" />
+                                    <Card.Body>
+                                        <Card.Title className="text-black">{location}</Card.Title>
+                                    </Card.Body>
+                                </Card>
+                            </Button>
+                        ))}
                     </CardGroup>
                 </Col>
             </Row>

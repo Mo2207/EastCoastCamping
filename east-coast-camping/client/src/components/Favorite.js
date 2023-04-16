@@ -14,18 +14,18 @@ import "../styles/Upcoming.css";
 import Footer from '../components/Footer';
 import Auth from '../utils/auth';
 import { useLazyQuery, useQuery } from '@apollo/client';
-import { QUERY_CAMPBYARRAY } from "../utils/queries";
+import { QUERY_CAMPBYARRAY, GET_USER_SAVECAMP } from "../utils/queries";
 import { Link } from 'react-router-dom';
 
 export default function Favorite() {
-
   let id;
-  if (Auth.loggedIn()) {
-    const savedCamp = localStorage.getItem('saved')
-    id=(savedCamp.split(","))
-  };
-  const { loading, error, data } = useQuery(QUERY_CAMPBYARRAY, {
-    variables: { ids: id }
+  var profile;
+
+  if(Auth.loggedIn()){
+    id = localStorage.getItem('id_token');
+  }
+  const { loading, error, data } = useQuery(GET_USER_SAVECAMP, {
+    variables: { userId: id }
   });
   if (loading) {
     return <p>Loading...</p>;
@@ -33,14 +33,37 @@ export default function Favorite() {
   if (error) {
       return <p>Error: {error.message}</p>;
   }
-  // console.log(id)
-  var profile;
-  try {
-    profile = data?.getArrayOfCamps || {};
+
+    try {
+    profile = data?.getUserAndSavedCamps.savedCamps || {};
     // profile.map((data,index)=>console.log(data));
   } catch(err){
     console.log(err)
   }
+  console.log(data)
+  console.log(profile)
+  // let id;
+  // if (Auth.loggedIn()) {
+  //   const savedCamp = localStorage.getItem('saved')
+  //   id=(savedCamp.split(","))
+  // };
+  // const { loading, error, data } = useQuery(QUERY_CAMPBYARRAY, {
+  //   variables: { ids: id }
+  // });
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
+  // if (error) {
+  //     return <p>Error: {error.message}</p>;
+  // }
+  // // console.log(id)
+
+  // try {
+  //   profile = data?.getArrayOfCamps || {};
+  //   // profile.map((data,index)=>console.log(data));
+  // } catch(err){
+  //   console.log(err)
+  // }
   
 
 

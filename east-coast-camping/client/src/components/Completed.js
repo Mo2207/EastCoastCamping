@@ -49,7 +49,7 @@ export default function Completed() {
             <Button variant="primary" size="sm">Completed</Button>
           </a>{" "}
           <a href="/favorite">
-            <Button variant="secondary" size="sm">Upcoming</Button>
+            <Button variant="secondary" size="sm">Favorite Camps</Button>
           </a>
           <Tabs
             defaultActiveKey="completed"
