@@ -124,6 +124,15 @@ const resolvers = {
 
       return populateBooking;
     },
+
+    bookingByUserId: async (parent, {userId}) => {
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error(`User with ID ${userId} not found!`);
+      }
+
+      
+    }
   
   },
   // MUTATIONS

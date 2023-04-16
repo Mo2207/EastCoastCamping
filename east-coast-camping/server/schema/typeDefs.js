@@ -57,6 +57,7 @@ const typeDefs = gql`
     campReviews(campId: ID!): [Review]
     allBookings:[Booking]
     userBookings:[Booking]
+    bookingByUserId(userId: ID!): Booking!
     userReviews(id: ID!):[Review]
   }
 
