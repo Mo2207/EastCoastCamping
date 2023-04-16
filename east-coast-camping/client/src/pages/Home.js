@@ -10,6 +10,7 @@ import Iconscomponent from '../components/Homepage/Iconscomponent';
 import AllCamps from '../components/Homepage/Allcamps';
 import CampsByLocation from '../components/Homepage/CampsByLocation';
 import Footer from '../components/Footer';
+import { Link } from "react-router-dom";
 
 
 
@@ -45,9 +46,12 @@ export default function Home() {
         <>
             <div className='bg-white'>
                 <Card className='searchBar-Bg'>
-                    <Container className='text-white'>
+                    <Container className='text-white p-5 mt-5'>
                         <h2 className='mb-4'>Welcome to EastCoastCamping</h2>
                         <p>Looking for a memorable camping experience? Look no further than EastCoastCamping, where we connect you with the best campsites and outdoor destinations. </p>
+                        <Link to="/search">
+                            <button className='btn' style={{ background: '#ADFB2F' }} >Search Now</button>
+                        </Link>
                     </Container>
 
 
