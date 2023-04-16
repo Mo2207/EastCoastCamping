@@ -43,6 +43,7 @@ const typeDefs = gql`
   type UserSavedCamps {
     user: User!
     savedCamps: [CampGround!]!
+    bookings: [Booking!]!
   }
 
   type Query {
