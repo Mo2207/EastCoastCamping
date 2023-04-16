@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { setContext } from '@apollo/client/link/context';
 
 import MyBookings from './pages/MyBookings';
+import Completed from './components/Completed';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
@@ -17,6 +18,7 @@ import SignupForm from './pages/SignupForm';
 import SearchResult from './pages/SearchResult'
 import IndividualCampGround from './pages/IndividualPage';
 import Footer from './components/Footer';
+import Favorite from './components/Favorite';
 
 
 
@@ -74,7 +76,14 @@ function App() {
               path="/myBookings"
               element={<MyBookings />}
             />
-     
+            <Route
+              path="/completed"
+              element={<Completed />}
+            />     
+            <Route
+              path="/favorite"
+              element={<Favorite />}
+            />                
             <Route
               path="/search"
               element={<SearchResult />}
