@@ -32,8 +32,8 @@ function IndividualCampground() {
     };
 
     const [destination, setDestination] = useState('');
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null)
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const location = useLocation();
 
     const campgroundId = location.pathname.split('/').pop();
@@ -138,11 +138,11 @@ function IndividualCampground() {
                 </Row>
                 <h2>Please select the date</h2>
                 <Form onSubmit={handleSubmit} className='individualSearch'>
-                    {/* <Form.Label>Check in</Form.Label>
-                    <DatePicker type="text" placeholderText="Select check-in date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className='searchInput' />
+                    <Form.Label>Check in</Form.Label>
+                    <DatePicker selected={startDate} placeholderText="Select check-in date" onChange={(date) => setStartDate(date)} />
                     <Form.Label>Check out</Form.Label>
-                    <DatePicker type="text" placeholderText="Select check-out date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className='searchInput' />
-                    <Button type="submit" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button> */}
+                    <DatePicker selected={endDate} placeholderText="Select check-out date" onChange={(date) => setEndDate(date)} />
+                    <Button type="submit" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button>
                     <Button onClick={() => { handleSaveCamp(id, campgroundId) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
                 </Form>
             </Container>
