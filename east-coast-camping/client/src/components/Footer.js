@@ -17,7 +17,7 @@ export default function Footer() {
         <>
             <MDBFooter className='text-center text-white' style={{ backgroundColor: '#0a4275' }}>
 
-                {auth.loggedIn() ? (
+                {!auth.loggedIn() ? (
                     <MDBContainer className='p-4 pb-0'>
                         <section className=''>
                             <p className='d-flex justify-content-center align-items-center'>

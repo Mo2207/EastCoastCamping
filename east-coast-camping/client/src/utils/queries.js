@@ -47,13 +47,15 @@ query Query($location: String!) {
 `;
 
 export const QUERY_CAMPBYARRAY = gql`
-query GetArrayOfCamps($ids: [ID!]!) {
+query Query($ids: [ID!]!) {
   getArrayOfCamps(ids: $ids) {
+    _id
+    availability
+    available
     image
     location
     name
     price
-    _id
   }
 }
 `;

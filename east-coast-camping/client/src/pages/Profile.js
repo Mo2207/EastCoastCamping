@@ -31,9 +31,8 @@ function Profile() {
   });
   
   const profile = data?.userById || {};
-  console.log(profile)
-  // const convertData = JSON.parse(profile.campdata[0])
-  // console.log(convertData)
+//  console.log(profile.saved)
+ Auth.setSaved(profile.saved)
 
 
   const [deleteMe] = useMutation(DELETE_ME)
@@ -87,7 +86,7 @@ function Profile() {
       {Auth.loggedIn() ? (
         <section style={{ backgroundColor: '#eee' }}>
           <MDBContainer className="py-5">
-            <MDBRow>
+            <MDBRow className="text-center">
               <MDBCol>
                 <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
                   <MDBBreadcrumbItem active>MY PROFILE</MDBBreadcrumbItem>
@@ -142,7 +141,7 @@ function Profile() {
                     <MDBRow>
                       <MDBCol sm="3">
                         <MDBCardText>Email</MDBCardText>
-                      </MDBCol>
+                      </MDBCol>                      
                       <MDBCol sm="9">
                         {editMode ? (
                           <input type="text" id='email' value={emailState} onChange={(e) => setEmail(e.target.value)}>
@@ -151,9 +150,37 @@ function Profile() {
                           <MDBCardText className="text-muted">{emailState}</MDBCardText>
                         )}
                       </MDBCol>
-                    </MDBRow>
-                  </MDBCardBody>
+                    </MDBRow>                    
+                  </MDBCardBody>                  
                 </MDBCard>
+                <MDBRow className="text-center">
+              <MDBCol>
+                <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
+                <MDBRow>
+                  <MDBBreadcrumbItem active>MY BOOKING</MDBBreadcrumbItem>
+                  <MDBRow>
+                  <MDBCol sm="4">
+                    <a href="/myBookings">
+                      <Button>Upcoming</Button>
+                    </a>
+                  </MDBCol> 
+                  <MDBCol sm="3">
+                    <a href="/completed">
+                      <Button>Completed</Button>
+                    </a>
+                  </MDBCol> 
+                  <MDBCol sm="4">                
+                    <a href="/favorite">
+                      <Button>Favorite Camps</Button>
+                    </a>
+                  </MDBCol>           
+                </MDBRow>
+                </MDBRow>
+                </MDBBreadcrumb>
+
+              </MDBCol>
+            </MDBRow>
+
               </MDBCol>
             </MDBRow>
             <MDBRow>

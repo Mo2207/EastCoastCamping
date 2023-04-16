@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, Alert, Container } from 'react-bootstrap';
-import {  CREATE_USER, USER_LOGIN } from '../utils/mutations';
+import { Form,  Container } from 'react-bootstrap';
+import {  CREATE_USER } from '../utils/mutations';
 
 import '../styles/login-signUp.css'
 
-import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 
 function SignupForm() {
@@ -21,7 +20,7 @@ function SignupForm() {
         event.preventDefault();
         console.log(formState);
 
-        const responseData = await createUser({
+        await createUser({
         variables: {
         email: formState.email,
         password: formState.password,

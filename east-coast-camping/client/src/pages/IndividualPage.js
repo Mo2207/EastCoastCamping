@@ -13,7 +13,7 @@ import Col from 'react-bootstrap/Col';
 import { Form } from 'react-bootstrap';
 import { useMutation, useQuery } from '@apollo/client';
 import { SAVE_CAMP, CREATE_REVIEW} from '../utils/mutations';
-import { QUERY_CAMPBYID, GET_CAMP_REVIEWS } from '../utils/queries';
+import { QUERY_CAMPBYID, GET_CAMP_REVIEWS, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import Footer from '../components/Footer';
 // Install Swiper modules
@@ -70,10 +70,10 @@ function IndividualCampground() {
     function handleSaveCamp(id, campgroundId) {
         const { savedData } = saveCamp({
             variables: { userId: id, campId: campgroundId }
-        })
-        // console.log(savedData)
-    }
+        })  
 
+        
+    }
     // function handleOpenReviewInput() {
 
     // }
@@ -94,7 +94,7 @@ function IndividualCampground() {
     return (
         <>
             {/*----------------------- camp images to display on page using swiper.js -------------------------------*/}
-            <div className='100vh' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxHeight: '400px', maxWidth: '100%' }}>
+            <div className='100vh mt-3' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxHeight: '400px', maxWidth: '100%' }}>
                 <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
                     <Swiper
                         loop={true}
@@ -173,7 +173,9 @@ function IndividualCampground() {
                     <Form.Label>Check out</Form.Label>
                     <DatePicker type="text" placeholderText="Select check-out date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className='searchInput' />
                     <Button type="submit" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button> */}
-                    <Button onClick={() => { handleSaveCamp(id, campgroundId) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
+                    <Button onClick={() => { 
+                        handleSaveCamp(id, campgroundId);
+                        }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
                 </Form>
             </Container>
             <hr className='mx-5' />
