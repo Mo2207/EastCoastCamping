@@ -27,17 +27,27 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  login(idToken) {
+  login(idToken, saved) {
     localStorage.setItem('id_token', idToken);
+    localStorage.setItem("saved", saved)
     window.location.assign('/me');
   }
 
   logout() {
-    localStorage.removeItem('id_token', 'saved');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('saved');
     window.location.reload();
   }
 
+  getSaved(){
+    const data = localStorage.getItem('saved');    
+    // localStorage.removeItem('saved');
+    return data;
+  }
 
+  setSaved(id){
+    localStorage.setItem('saved', id);
+  }
 }
 
 export default new AuthService();

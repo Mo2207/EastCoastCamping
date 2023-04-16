@@ -24,38 +24,43 @@ const AllCamps = () => {
 
     return (
         <Container>
-            <Row>
-                <Col>
-                    <Row xs={1} md={2} className="g-4">
+            <Row >
+                <Col >
+                    <Row xs={1} md={4} className="g-4  d-flex justify-content-around"
+                    >
                         {data &&
                             data.allCamps &&
                             data.allCamps.map((campground, idx) => (
-                                <Col key={idx}>
-                                    <Card>
+                                <Col key={idx} className="row  d-flex flex-sm-wrap justify-content-around mb-3 " style={{ marginRight: '20px' }}>
+                                    <Card style={{ marginBottom: '200px', minWidth: '25rem', minHeight: '450px', margin: '100px' }}>
+
+
                                         {/* Pass the campground information as query parameters in the URL */}
-                                        <Link
-                                            to={`/campground/${campground._id}?name=${campground.name}&availability=${campground.availability}&available=${campground.available}`}
-                                        >
-                                            View Details
-                                            <Card.Img
-                                                variant="top"
-                                                src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"
-                                            />
-                                        </Link>
+
+                                        < Card.Img
+                                            variant="top"
+                                            src={campground.image}
+                                        />
+
                                         <Card.Body>
                                             <Card.Title>{campground.name}</Card.Title>
                                             <Card.Text>
-                                                Location: {campground.availability}<br />
-                                                Price: {campground.available ? "Yes" : "No"}
+                                                Location: {campground.location}<br />
+                                                Price: {campground.price}
                                             </Card.Text>
                                         </Card.Body>
+                                        <div className='d-flex justify-content-end btn'>
+                                            <Link to={`/campground/${campground._id}?name=${campground.name}`}>
+                                                <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
+                                            </Link>
+                                        </div>
                                     </Card>
                                 </Col>
                             ))}
                     </Row>
                 </Col>
-            </Row>
-        </Container>
+            </Row >
+        </Container >
 
 
     );
