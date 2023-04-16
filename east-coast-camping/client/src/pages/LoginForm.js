@@ -56,7 +56,7 @@ const LoginForm = () => {
                 <Card>
                     <Row className='g-0'>
                         <Col md='6'>
-                            <Image src='https://user-images.githubusercontent.com/112873819/232332432-4e2e0ad9-7647-4166-aefc-720457ab531f.jpg' alt="login form" className='rounded-start w-100' />
+                            <Image src='https://user-images.githubusercontent.com/112873819/232332432-4e2e0ad9-7647-4166-aefc-720457ab531f.jpg' alt="login form" className='w-100 h-100 rounded' />
                         </Col>
                         <Col md='6'>
                             <Card.Body className='d-flex flex-column'>
