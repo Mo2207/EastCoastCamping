@@ -2,6 +2,7 @@
 const { User, CampGround, Review, Booking } = require('../models');
 const bcrypt = require('bcrypt');
 const { signToken } = require('../utils/auth');
+const mongoose = require('mongoose');
 const resolvers = {
 
   // QUERIES
@@ -54,10 +55,12 @@ const resolvers = {
 
     // get array of camps
     getArrayOfCamps: async (parent, {ids}) => {
-      // find all camps from CampGround
-      console.log(ids)
-      const allCamps = await CampGround.find(
-        { _id: { $in: ids } });
+      // converts string ids to object ids
+      const objectIds = ids.map(id => mongoose.Types.ObjectId(id));
+
+      //find all camps based on the object ids
+      const allCamps = await CampGround.find({ _id: { $in: objectIds } });
+
       return allCamps;
     },
 
@@ -66,15 +69,15 @@ const resolvers = {
       if (!user) {
         throw new Error(`User with ID ${userId} not found!`);
       }
-      console.log(user.saved)
 
-      const savedCampIds = [];
-      user.saved.map((id) => savedCampIds.push(id))
-
-      console.log(typeof savedCampIds)
-      console.log(`USER SAVED: ${savedCampIds}`)
+      // console.log(user.saved)
+      // const savedCampIds = [];
+      // user.saved.map((id) => savedCampIds.push(id))
+      // console.log(typeof savedCampIds)
+      // console.log(`USER SAVED: ${savedCampIds}`)
+      
       const savedCamps = 
-      await context.getArrayOfCamps({ ids: savedCampIds }, context)
+      await context.getArrayOfCamps(user.saved, context)
 
       return { user, savedCamps };
     },
