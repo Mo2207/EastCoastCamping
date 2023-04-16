@@ -84,3 +84,21 @@ export const GET_CAMP_REVIEWS = gql`
     }
   }
 `
+
+export const GET_USER_SAVECAMP = gql`
+query Query($userId: ID!) {
+  getUserAndSavedCamps(userId: $userId) {
+    savedCamps {
+      _id
+      name
+      image
+      location
+    }
+    user {
+      _id
+      email
+      saved
+    }
+  }
+}
+`
