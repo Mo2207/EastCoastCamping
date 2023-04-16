@@ -71,18 +71,13 @@ const resolvers = {
       return allCamps;
     },
 
+    // combination of userById and getArrayOfCamps
     getUserAndSavedCamps: async (parent, {userId}, context) => {
       const user = await User.findById(userId);
       if (!user) {
         throw new Error(`User with ID ${userId} not found!`);
       }
 
-      // console.log(user.saved)
-      // const savedCampIds = [];
-      // user.saved.map((id) => savedCampIds.push(id))
-      // console.log(typeof savedCampIds)
-      // console.log(`USER SAVED: ${savedCampIds}`)
-      
       const savedCamps = 
       await context.getArrayOfCamps(user.saved, context)
 
@@ -297,16 +292,25 @@ const resolvers = {
         throw new Error(`Invalid campground id: ${campId}`);
       }
 
-      // write the Booking and save
+      // write the Booking
       const newBooking = new Booking({
         user: userId,
         camp: campId,
         startDate,
         endDate
       })
-      console.log(newBooking);
-      return await newBooking.save();
+      // save the booking
+      await newBooking.save();
+
+      // find the newBooking now that it is saved and populate it with user & camp data
+      const populateBooking = await Booking.findById(newBooking._id)
+        .populate('user')
+        .populate('camp')
+        .exec();
+
+      return populateBooking;
     },
+
     cancelBooking: async (parent, args) => {
       const cancelledBooking = await Booking.findByIdAndDelete(args.id);
       if (!cancelledBooking) {

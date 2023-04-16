@@ -1,6 +1,6 @@
 [
   {
-    "name": "Amazing camp ground",
+    "name": "Whispering Woods Retreat",
     "location": "Sussex",
     "image": "https://user-images.githubusercontent.com/112873819/232251157-0aa1ae9e-7930-4b30-b64e-0496fad5bf7c.jpeg",
     "availability": 50,
@@ -16,7 +16,7 @@
     ]
   },
   {
-    "name": "Boring camp",
+    "name": "Shady Grove Campground",
     "location": "Moncton",
     "image": "https://user-images.githubusercontent.com/112873819/232251266-b5623504-0292-4546-977e-543a1d1e3a57.jpeg",
     "availability": 50,
@@ -30,7 +30,7 @@
     ]
   },
   {
-    "name": "Super fun camp",
+    "name": "Meadowview Campground",
     "location": "Sussex",
     "image": "https://user-images.githubusercontent.com/112873819/232252226-efbe6fc2-880e-4a3e-af67-42acf3d2f512.jpg",
     "availability": 40,
@@ -44,7 +44,7 @@
     ]
   },
   {
-    "name": "Jims Summer camp",
+    "name": "Sunrise Pines Resort",
     "location": "Saint John",
     "image": "https://user-images.githubusercontent.com/112873819/232252347-ae2cc86a-deff-4745-9670-a3e40195d43a.jpg",
     "availability": 100,
