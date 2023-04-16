@@ -18,7 +18,7 @@ const bookingSchema = new Schema({
   endDate: {
     type: String,
     required: true
-  }
+  },
 });
 
 const Booking = model('Booking', bookingSchema);

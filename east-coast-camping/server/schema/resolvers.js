@@ -117,6 +117,7 @@ const resolvers = {
     allBookings: async (parent, args) => {
       const bookings = await Booking.find();
 
+      // populate booking and return
       const populateBooking = await Booking.find(bookings._id)
       .populate('user')
       .populate('camp')
@@ -131,7 +132,13 @@ const resolvers = {
         throw new Error(`User with ID ${userId} not found!`);
       }
 
-      
+      // populate userBookings and return
+      const userBookings = await Booking.find({ user: userId })
+      .populate('user')
+      .populate('camp')
+      .exec()
+
+      return userBookings[0];
     }
   
   },
