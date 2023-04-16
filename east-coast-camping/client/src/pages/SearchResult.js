@@ -61,11 +61,11 @@ function SearchResult() {
                             <option value="Shediac">Shediac</option>
                             <option value="Miramichi">Miramichi</option>
                         </select>
-                        <button type="submit">Search</button>
+                        <button className='btn mt-3 m' style={{ background: '#ADFB2F' }} type="submit">Search</button>
                     </form>
                 </Card.Body>
             </Card>
-            
+
             <div style={{ minHeight: '100vh' }}>
                 {!data || !data.campByLocation || data.campByLocation.length === 0 ? (
                     <Card>
