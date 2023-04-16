@@ -45,8 +45,6 @@ function MyBookings() {
   var ratePerNight = 100;
   var totalAmount = ratePerNight * totalNight;
 
-
-
   
   return (
     <>
@@ -59,7 +57,7 @@ function MyBookings() {
           <Button variant="secondary" size="sm">Completed</Button>
         </a>{" "}
         <a href="/favorite">
-          <Button variant="secondary" size="sm">Upcoming</Button>
+          <Button variant="secondary" size="sm">Favorite Camps</Button>
         </a>
         <Tabs
           defaultActiveKey="upcoming"
