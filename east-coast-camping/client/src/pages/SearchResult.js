@@ -44,7 +44,6 @@ function SearchResult() {
 
     if (error) return <p>{error.message}</p>;
 
-
     return (
         <>
             {/* ------------------dropdown for search campground-------------------- */}

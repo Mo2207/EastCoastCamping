@@ -16,11 +16,18 @@ const resolvers = {
       if (!user) {
         throw new Error(`user with id: ${args.id} not found!`);
       } else {
-        
-        const allCamps = await CampGround.find(
-          { _id: { $in: user.saved } });
-        const object = JSON.stringify(allCamps)   
-        user.campdata.push(object)     
+        // const arrayKey = ["_id","name","location","image","price"]
+        // const allCamps = await CampGround.find(
+        //   { _id: { $in: user.saved } 
+        // });
+
+        // var allCampsObj =Object.values(Object.values(allCamps))
+        // console.log(allCampsObj)
+        // var result = Object.keys(allCampsObj[0]).map((key)=>[key, allCampsObj[0][key]]);
+        // console.log(result)
+        // user.campdata = result.toString();
+        // console.log(JSON.stringify(allCampsObj))
+        // user.campdata = JSON.stringify(allCampsObj);
         return user;
       }
     },
@@ -58,6 +65,7 @@ const resolvers = {
       console.log(ids)
       const allCamps = await CampGround.find(
         { _id: { $in: ids } });
+      console.log(allCamps)
       return allCamps;
     },
 
@@ -69,15 +77,28 @@ const resolvers = {
 
     userReviews: async (parent, args) => {
       const reviews = await Review.find({user:args.id});
-      if (!user) {
+      if (!reviews) {
         throw new Error(`user with id: ${args.id} not found!`);
       } else {
         return reviews;
       }
     },
-    // ------- BOOKING QUERIES _______
-    // get all Bookings
 
+    campReviews: async (parent, {campId}) => {
+      // find all reviews associated with campId
+      const reviews = await Review.find({
+        camp: campId,
+      })
+      // populate user and camp for return data
+      .populate('user')
+      .populate('camp')
+      .exec()
+      
+      return reviews;
+    },
+
+    // ---------- BOOKING QUERIES ----------
+    // get all Bookings
     allBookings: async (parent, args) => {
       return await Booking.find();
     },
@@ -100,9 +121,9 @@ const resolvers = {
 
       const newUser = new User(args);
       console.log(newUser);
-      const token = signToken(newUser);
+      // const token = signToken(newUser);
       await newUser.save();
-      return { token, newUser };
+      return newUser;
       
     },
     // edit user by id 
@@ -145,20 +166,21 @@ const resolvers = {
     // user login
     userLogin: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
+      console.log(email, password)
       // checks to make sure user with given email exists
       if (!user) {
-        throw new Error(`user with email: ${args.email} not found!`);
+        throw new Error(`user with email: ${email} not found!`);
       }
-
+      console.log(user)
       // bcrypt password comparing upon login
       const validatePassword = await bcrypt.compare(password, user.password);
-
+      console.log(validatePassword)
       if (!validatePassword) {
         throw new Error(`Invalid Email or Password provided.`);
       }
-      const token = signToken(user)
-      return { token, user};
+      // const token = signToken(user)
+      // return
+      return user;
     },
     // add camp to saved
     saveCamp: async (parent, { userId, campId }) => {
@@ -213,24 +235,33 @@ const resolvers = {
     createReview: async (parent, { userId, campId, rating, text }) => {
 
       // validation to check if userId and campId exist
-      const validUser = await User.findById(userId);
-      if (!validUser) {
+      const user = await User.findById(userId);
+      if (!user) {
         throw new Error(`Invalid userId: ${userId}.`);
       }
-      const validCamp = await CampGround.findById(campId);
-      if (!validCamp) {
+      const camp = await CampGround.findById(campId);
+      if (!camp) {
         throw new Error(`Invalid campground id: ${campId}`);
       }
 
-      // write the review and save
+      // write the newReview
       const newReview = new Review({
         user: userId,
         camp: campId,
         rating,
         text
       })
-      console.log(newReview);
-      return await newReview.save();
+      // save the newReview to database
+      await newReview.save()
+      
+      // find the newReview now that it is saved and populate it with user & camp data
+      const populateReview = await Review.findById(newReview._id)
+        .populate('user')
+        .populate('camp')
+        .exec();
+        
+      // console.log(`POPULATEREVIEW: ${populateReview}`);
+      return populateReview;
     },
 
     // Booking Mutations
