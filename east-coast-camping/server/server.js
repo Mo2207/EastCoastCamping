@@ -36,7 +36,7 @@ const server = new ApolloServer({
       .populate('camp')
       .exec()
 
-      return userBookings[0];
+      return userBookings;
     }
   })
 });
