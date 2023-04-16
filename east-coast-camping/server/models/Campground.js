@@ -8,9 +8,13 @@ const campGroundSchema = new Schema({
     unique: true,
     trim: true,
   },
-  location:{
-     type:String,
-     required:true,
+  location: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: false,
   },
   favourited: {
     type: Number,
@@ -21,17 +25,18 @@ const campGroundSchema = new Schema({
   },
   available: {
     type: Boolean,
-    }, 
-  price:{
-    type:Number,
-    required:true,
   },
-  features:{
-    type:String,
-    required:false,
+  price: {
+    type: Number,
+    required: true,
+  },
+  features: {
+    type: String,
+    required: false,
+  },
+  campImages: {
+    type: Array
   }
-
-
 })
 
 const CampGround = model('CampGround', campGroundSchema);

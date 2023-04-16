@@ -7,7 +7,9 @@
 
 
 .campInfo {
-    padding: 70px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     max-width: 1500px;
     margin-left: 40px;
 }

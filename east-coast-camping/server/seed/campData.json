@@ -1,114 +1,195 @@
 [
   {
-    "name": "Amazing camp ground",
-    "location":"Sussex",
+    "name": "Whispering Woods Retreat",
+    "location": "Sussex",
+    "image": "https://user-images.githubusercontent.com/112873819/232251157-0aa1ae9e-7930-4b30-b64e-0496fad5bf7c.jpeg",
     "availability": 50,
     "available": true,
-    "price":40,
-    "features":"Each lot has power and water, Campfires allowed after 8pm and Wifi available"
+    "price": 40,
+    "features": "Each lot has power and water, Campfires allowed after 8pm and Wifi available",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232245107-0cd16a71-5126-45b6-adee-562334553469.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232245110-cd5a208f-393d-4c9a-9eee-eacd3e9589bd.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232245111-2ec24273-8b94-467d-ab33-3c42ec036acc.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232245112-a83731a7-b8d3-4593-9ff7-572f65cf1d25.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232245114-ca8b9221-43be-4791-90fd-0fe9d196b8b7.jpeg"
+    ]
   },
   {
-    "name": "Boring camp",
-    "location":"Moncton",
+    "name": "Shady Grove Campground",
+    "location": "Moncton",
+    "image": "https://user-images.githubusercontent.com/112873819/232251266-b5623504-0292-4546-977e-543a1d1e3a57.jpeg",
     "availability": 50,
     "available": true,
-    "price":25
+    "price": 25,
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232251266-b5623504-0292-4546-977e-543a1d1e3a57.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232251306-532c5c71-bb91-40aa-a2fc-35a19f04e4af.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232251307-a7ff0cfe-5b92-4e60-9461-163be89187c5.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232251308-8e2cf360-babc-4431-a93d-2a83fcc927ea.jpeg"
+    ]
   },
   {
-    "name": "Super fun camp",
-    "location":"Sussex",
+    "name": "Meadowview Campground",
+    "location": "Sussex",
+    "image": "https://user-images.githubusercontent.com/112873819/232252226-efbe6fc2-880e-4a3e-af67-42acf3d2f512.jpg",
     "availability": 40,
     "available": false,
-    "price":45
+    "price": 45,
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232252226-efbe6fc2-880e-4a3e-af67-42acf3d2f512.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252250-aa6dcc56-ea1a-4356-b467-1652ac6e8099.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252252-642d0c8d-e318-47fe-88fe-7b80efbf20f6.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252255-2d37cfd8-57a2-4e6d-ba3f-cb6c654f711d.jpg"
+    ]
   },
   {
-    "name": "Jims Summer camp",
-    "location":"Saint John",
+    "name": "Sunrise Pines Resort",
+    "location": "Saint John",
+    "image": "https://user-images.githubusercontent.com/112873819/232252347-ae2cc86a-deff-4745-9670-a3e40195d43a.jpg",
     "availability": 100,
     "available": true,
-    "price":50
+    "price": 50,
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232252347-ae2cc86a-deff-4745-9670-a3e40195d43a.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252350-69d3c3f6-1535-4153-9ce1-abd772ba734b.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252352-03170951-99dc-4f5b-a36d-a6ec34299a9a.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252353-03342b40-6964-401c-91df-2d499b590f55.jpg"
+    ]
   },
   {
     "name": "River's Edge Campground",
     "location": "Fredericton",
+    "image": "https://user-images.githubusercontent.com/112873819/232252565-b678a770-8977-4f5e-aeb4-e0c9162ba318.jpg",
     "availability": 30,
     "available": true,
     "price": 35,
-    "features": "River access for fishing and swimming, campfires allowed in designated areas, pet friendly"
+    "features": "River access for fishing and swimming, campfires allowed in designated areas, pet friendly",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232252563-e0855fc9-81c2-4048-b702-b88416b33c8b.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252565-b678a770-8977-4f5e-aeb4-e0c9162ba318.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252562-18651c92-338d-4b78-a6b8-7028b1c39ea0.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252560-4b547a06-a4e4-4a0f-b66b-4c9c29763d4f.jpg"
+    ]
   },
   {
     "name": "Pine Grove Campground",
     "location": "Moncton",
+    "image": "https://user-images.githubusercontent.com/112873819/232253021-11714aea-024b-4a19-8e77-b1e1146b9f6e.jpg",
     "availability": 15,
     "available": true,
     "price": 45,
-    "features": "Wooded campsites with picnic tables and fire pits, flush toilets and hot showers, playground and basketball court"
+    "features": "Wooded campsites with picnic tables and fire pits, flush toilets and hot showers, playground and basketball court",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232252781-8da7448b-10fd-408c-834c-3ede950bf37d.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252779-9d7396bb-744e-499c-95aa-eca329df584e.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252780-91b04c76-88aa-4b09-8198-7efdc2b64991.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252782-484efb78-58cf-4f29-a197-d81c66d4fd77.jpg"
+    ]
   },
   {
     "name": "Bay of Fundy Campground",
     "location": "Saint John",
+    "image": "https://user-images.githubusercontent.com/112873819/232252878-6be72d5d-0bb4-459c-a4cc-9291ceb5d3f0.jpg",
     "availability": 20,
     "available": true,
     "price": 50,
-    "features": "Oceanfront campsites with stunning views, access to hiking trails, on-site restaurant and gift shop"
+    "features": "Oceanfront campsites with stunning views, access to hiking trails, on-site restaurant and gift shop",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232252878-6be72d5d-0bb4-459c-a4cc-9291ceb5d3f0.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252875-d0f6ca59-cc26-4622-8411-ecfb5e93b43b.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252879-229b28e6-3892-4041-9bd8-aacf94752de0.jpg"
+    ]
   },
   {
     "name": "Grand Lake Camping",
-    "location": "Fredericton",
+    "location": "Minto",
+    "image": "https://user-images.githubusercontent.com/112873819/232252781-8da7448b-10fd-408c-834c-3ede950bf37d.jpg",
     "availability": 10,
     "available": true,
     "price": 30,
-    "features": "Private lakeside campsites, boat rentals available, camp store with groceries and supplies"
+    "features": "Private lakeside campsites, boat rentals available, camp store with groceries and supplies",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232252781-8da7448b-10fd-408c-834c-3ede950bf37d.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252779-9d7396bb-744e-499c-95aa-eca329df584e.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252780-91b04c76-88aa-4b09-8198-7efdc2b64991.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252782-484efb78-58cf-4f29-a197-d81c66d4fd77.jpg"
+    ]
   },
   {
     "name": "Magnetic Hill Campground",
     "location": "Moncton",
+    "image": "https://user-images.githubusercontent.com/112873819/232251306-532c5c71-bb91-40aa-a2fc-35a19f04e4af.jpeg",
     "availability": 25,
     "available": true,
     "price": 40,
-    "features": "Close to popular tourist attractions, including Magnetic Hill and Zoo, swimming pool and mini golf on site"
+    "features": "Close to popular tourist attractions, including Magnetic Hill and Zoo, swimming pool and mini golf on site",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232251266-b5623504-0292-4546-977e-543a1d1e3a57.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232251306-532c5c71-bb91-40aa-a2fc-35a19f04e4af.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232251307-a7ff0cfe-5b92-4e60-9461-163be89187c5.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232251308-8e2cf360-babc-4431-a93d-2a83fcc927ea.jpeg"
+    ]
   },
- 
   {
     "name": "Bayview Campground",
     "location": "Saint John",
+    "image": "https://user-images.githubusercontent.com/112873819/232252250-aa6dcc56-ea1a-4356-b467-1652ac6e8099.jpg",
     "availability": 10,
     "available": true,
     "price": 50,
-    "features": "Overlooking the Bay of Fundy, fully serviced lots with electrical, water, and sewer hookups, free wifi, and a heated swimming pool."
+    "features": "Overlooking the Bay of Fundy, fully serviced lots with electrical, water, and sewer hookups, free wifi, and a heated swimming pool.",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232252226-efbe6fc2-880e-4a3e-af67-42acf3d2f512.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252250-aa6dcc56-ea1a-4356-b467-1652ac6e8099.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252252-642d0c8d-e318-47fe-88fe-7b80efbf20f6.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252255-2d37cfd8-57a2-4e6d-ba3f-cb6c654f711d.jpg"
+    ]
   },
   {
     "name": "Woodsy Hollow Campground",
     "location": "Fredericton",
+    "image": "https://user-images.githubusercontent.com/112873819/232252353-03342b40-6964-401c-91df-2d499b590f55.jpg",
     "availability": 30,
     "available": true,
     "price": 25,
-    "features": "Surrounded by lush forest, spacious lots with picnic tables, fire pits, and nearby hiking trails. No electricity or water hookups available."
+    "features": "Surrounded by lush forest, spacious lots with picnic tables, fire pits, and nearby hiking trails. No electricity or water hookups available.",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232252347-ae2cc86a-deff-4745-9670-a3e40195d43a.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252350-69d3c3f6-1535-4153-9ce1-abd772ba734b.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252352-03170951-99dc-4f5b-a36d-a6ec34299a9a.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252353-03342b40-6964-401c-91df-2d499b590f55.jpg"
+    ]
   },
   {
     "name": "Sandy Shoreline Campground",
-    "location": "Saint John",
+    "location": "Shediac",
+    "image": "https://user-images.githubusercontent.com/112873819/232252563-e0855fc9-81c2-4048-b702-b88416b33c8b.jpg",
     "availability": 15,
     "available": true,
     "price": 45,
-    "features": "Located on a sandy beach, fully serviced lots with electrical, water, and sewer hookups, free hot showers, and a playground for kids."
+    "features": "Located on a sandy beach, fully serviced lots with electrical, water, and sewer hookups, free hot showers, and a playground for kids.",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232252563-e0855fc9-81c2-4048-b702-b88416b33c8b.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252565-b678a770-8977-4f5e-aeb4-e0c9162ba318.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252562-18651c92-338d-4b78-a6b8-7028b1c39ea0.jpg",
+      "https://user-images.githubusercontent.com/112873819/232252560-4b547a06-a4e4-4a0f-b66b-4c9c29763d4f.jpg"
+    ]
   },
   {
     "name": "Rustic Retreat Campground",
-    "location": "Moncton",
+    "location": "Edmundston",
+    "image": "https://user-images.githubusercontent.com/112873819/232245111-2ec24273-8b94-467d-ab33-3c42ec036acc.jpeg",
     "availability": 5,
     "available": true,
     "price": 20,
-    "features": "Secluded sites in the woods, no electricity or water hookups available, campfires allowed, and a nearby stream for fishing."
-  },
-  {
-    "name": "Un-Reel Campground",
-    "location": "Sussex",
-    "availability": 5,
-    "available": true,
-    "price": 20,
-    "features": "Drive in theater, electricity and water hookups available, campfires allowed, and a canteen to get the POPCORN!"
+    "features": "Secluded sites in the woods, no electricity or water hookups available, campfires allowed, and a nearby stream for fishing.",
+    "campImages": [
+      "https://user-images.githubusercontent.com/112873819/232245107-0cd16a71-5126-45b6-adee-562334553469.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232245110-cd5a208f-393d-4c9a-9eee-eacd3e9589bd.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232245111-2ec24273-8b94-467d-ab33-3c42ec036acc.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232245112-a83731a7-b8d3-4593-9ff7-572f65cf1d25.jpeg",
+      "https://user-images.githubusercontent.com/112873819/232245114-ca8b9221-43be-4791-90fd-0fe9d196b8b7.jpeg"
+    ]
   }
-
-
 ]

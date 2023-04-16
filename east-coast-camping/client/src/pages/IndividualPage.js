@@ -11,54 +11,90 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Form } from 'react-bootstrap';
-import { useMutation } from '@apollo/client';
-import { SAVE_CAMP } from '../utils/mutations';
+import { useMutation, useQuery } from '@apollo/client';
+import { SAVE_CAMP, CREATE_REVIEW} from '../utils/mutations';
+import { QUERY_CAMPBYID, GET_CAMP_REVIEWS, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import Footer from '../components/Footer';
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 function IndividualCampground() {
-    const [reviews, setReviews] = useState([
-        { id: 1, author: 'John Doe', review: 'Great campground! Beautiful views and friendly staff.' },
-        { id: 2, author: 'Jane Smith', review: 'Had an amazing time camping here. Facilities were clean and well-maintained.' },
-        { id: 3, author: 'Mike Johnson', review: 'One of the best campgrounds I have been to. Highly recommended!' }
-    ]);
+    // const [reviews, setReviews] = useState([
+    //     { id: 1, author: 'John Doe', review: 'Great campground! Beautiful views and friendly staff.' },
+    //     { id: 2, author: 'Jane Smith', review: 'Had an amazing time camping here. Facilities were clean and well-maintained.' },
+    //     { id: 3, author: 'Mike Johnson', review: 'One of the best campgrounds I have been to. Highly recommended!' }
+    // ]);
+
+    // const [reviews, setReviews] = useState('');
 
     let id;
-    if(Auth.loggedIn()){
-      id = Auth.getToken()
+    if (Auth.loggedIn()) {
+        id = Auth.getToken()
     };
 
     const [destination, setDestination] = useState('');
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null)
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const location = useLocation();
 
     const campgroundId = location.pathname.split('/').pop();
-    const campgroundName = new URLSearchParams(location.search).get('name');
-    const campgroundLocation = new URLSearchParams(location.search).get('location');
-    const campgroundPrice = new URLSearchParams(location.search).get('price');
 
-    const handleSubmit = (e) => {
+
+    // query individual camp reviews
+    const { data: reviewData } = useQuery(GET_CAMP_REVIEWS, {
+        variables: {campId: campgroundId}
+    });
+
+    const reviews = reviewData ?. campReviews || [];
+    // console.log(`CAMPREVIEWS: ${reviews}`)
+    
+    // query individual camp data
+    const {loading, data} = useQuery(QUERY_CAMPBYID, {
+        variables: {campById: campgroundId}
+
+    })
+    const campInfo = data?.campById || {};
+    // console.log(campInfo)
+
+    const handleBook = (e) => {
         e.preventDefault();
+        // console.log('Destination:', destination);
+        // console.log('Start Date:', startDate);
+        // console.log('End Date:', endDate);
 
-        console.log('Destination:', destination);
-        console.log('Start Date:', startDate);
-        console.log('End Date:', endDate);
     };
 
-    const [ saveCamp ] = useMutation(SAVE_CAMP);
+    const [saveCamp] = useMutation(SAVE_CAMP);
 
     function handleSaveCamp(id, campgroundId) {
-        const{ savedData } = saveCamp({
-            variables: { userId: id, campId: campgroundId}
-        })
+        const { savedData } = saveCamp({
+            variables: { userId: id, campId: campgroundId }
+        })  
+
+        
     }
+    // function handleOpenReviewInput() {
+
+    // }
+
+    // const [ createReview ] = useMutation(CREATE_REVIEW)
+
+    // function handleCreateReview(userId, campId, rating, text) {
+    //     const { leaveReview } = createReview({
+    //         variables: {
+    //             user: userId,
+    //             camp: campId,
+    //             rating: rating,
+    //             text: text
+    //         }
+    //     })
+    // }
 
     return (
         <>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {/*----------------------- camp images to display on page using swiper.js -------------------------------*/}
+            <div className='100vh mt-3' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxHeight: '400px', maxWidth: '100%' }}>
                 <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
                     <Swiper
                         loop={true}
@@ -71,25 +107,22 @@ function IndividualCampground() {
                             prevEl: '.swiper-button-prev',
                         }}
                         pagination={true}
-                        style={{ maxWidth: '800px', margin: '0 auto' }} // Update styles for Swiper component
+                        style={{ maxWidth: '600px', margin: '0 auto' }}
                     >
-                        <SwiperSlide>
-                            <img src="https://user-images.githubusercontent.com/112873819/231563918-7600766f-0214-44d6-930a-b3439892bb0f.jpg" alt="Campground 1" style={{ width: '100%', height: '100%' }} /> {/* Update styles for image */}
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img src="https://user-images.githubusercontent.com/112873819/231563923-2f00bb59-76fb-4e76-8f8b-41f6bc01bfc2.jpg" alt="Campground 2" style={{ width: '100%', height: '100%' }} /> {/* Update styles for image */}
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img src="https://user-images.githubusercontent.com/112873819/231563928-ae67fa79-3d28-4166-8420-3594edf60d67.jpg" alt="Campground 3" style={{ width: '100%', height: '100%' }} /> {/* Update styles for image */}
-                        </SwiperSlide>
+                        {campInfo && campInfo.campImages && campInfo.campImages.map((image, index) => (
+                            <SwiperSlide key={index}>
+                                <img src={image} alt={`Campground ${index + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                            </SwiperSlide>
+                        ))}
                     </Swiper>
-
                 </div>
             </div>
+
+
             <Row className='campInfo'>
-                <h1>Campground Name: {campgroundName}</h1>
-                <p>Location: {campgroundLocation}</p>
-                <p>Price: ${campgroundPrice}</p>
+                <h1>Campground Name: {campInfo.name}</h1>
+                <p>Location: {campInfo.location}</p>
+                <p>Price: {campInfo.price}</p>
                 <p className='mt-3'>
                     {/* display campground info */}
                     Welcome to Campground Name! Located in the heart of nature, our campground offers a serene and peaceful escape from the hustle and bustle of everyday life. With stunning views of the surrounding mountains and a variety of recreational activities, you're sure to have an unforgettable camping experience.
@@ -134,32 +167,39 @@ function IndividualCampground() {
                     </p>
                 </Row>
                 <h2>Please select the date</h2>
-                <Form onSubmit={handleSubmit} className='individualSearch'>
+
+                <Form onSubmit={handleBook} className='individualSearch'>
                     <Form.Label>Check in</Form.Label>
-                    <DatePicker type="text" placeholderText="Select check-in date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className='searchInput' />
+                    <DatePicker selected={startDate} placeholderText="Select check-in date" onChange={(date) => setStartDate(date)} />
                     <Form.Label>Check out</Form.Label>
-                    <DatePicker type="text" placeholderText="Select check-out date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className='searchInput' />
-                    <Button type="submit" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button>
-                    <Button onClick={() => {handleSaveCamp(id, campgroundId)}} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
-                </Form>                
+                    <DatePicker selected={endDate} placeholderText="Select check-out date" onChange={(date) => setEndDate(date)} />
+                    <Row className='mt-5'>
+                        <Col>
+                            <Button type="submit" size="sm" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button>
+                        </Col>
+                        <Col>
+                            <Button onClick={() => { handleSaveCamp(id, campgroundId) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
+                        </Col>
+                    </Row>
+                </Form>
             </Container>
             <hr className='mx-5' />
             <Container className='mt-5'>
                 <Row>
                     <Col>
                         <h2>Customer Reviews</h2>
+                        {/* <button onClick={handleOpenReviewInput} style={{ border: 'none', color: 'grey', maxHeight: '50px', marginLeft: '150px' }}>
+                            Leave a Review
+                        </button> */}
                         {reviews.map(review => (
                             <div key={review.id} className='mt-3'>
-                                <h4>{review.author}</h4>
-                                <p>{review.review}</p>
+                                <h4>{review.user.firstName} {review.user.lastName} {review.rating}</h4>
+                                <p>{review.text}</p>
                             </div>
                         ))}
                     </Col>
                 </Row>
             </Container>
-
-
-
         </>
     )
 };

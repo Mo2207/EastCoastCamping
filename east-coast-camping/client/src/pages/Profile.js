@@ -21,9 +21,7 @@ import { EDIT_ME } from '../utils/mutations';
 // import NoMatch from './NoMatch';
 
 
-export default function Profile() {
-  const user = "data";
-
+function Profile() {
   let id;
   if (Auth.loggedIn()) {
     id = Auth.getToken()
@@ -33,6 +31,9 @@ export default function Profile() {
   });
   
   const profile = data?.userById || {};
+//  console.log(profile.saved)
+ Auth.setSaved(profile.saved)
+
 
   const [deleteMe] = useMutation(DELETE_ME)
 
@@ -41,7 +42,6 @@ export default function Profile() {
       variables: { deleteUserId }
     })
 
-    console.log(data)
     localStorage.removeItem('id_token');
     window.location.assign('/regret');
   }
@@ -63,10 +63,6 @@ export default function Profile() {
     if (profile.lastName) setLastName(profile.lastName);
     if (profile.email) setEmail(profile.email);
   }, [profile])
-
-
-
-  
 
   // edit the users fields
   function handleToEdit() {
@@ -90,7 +86,7 @@ export default function Profile() {
       {Auth.loggedIn() ? (
         <section style={{ backgroundColor: '#eee' }}>
           <MDBContainer className="py-5">
-            <MDBRow>
+            <MDBRow className="text-center">
               <MDBCol>
                 <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
                   <MDBBreadcrumbItem active>MY PROFILE</MDBBreadcrumbItem>
@@ -145,7 +141,7 @@ export default function Profile() {
                     <MDBRow>
                       <MDBCol sm="3">
                         <MDBCardText>Email</MDBCardText>
-                      </MDBCol>
+                      </MDBCol>                      
                       <MDBCol sm="9">
                         {editMode ? (
                           <input type="text" id='email' value={emailState} onChange={(e) => setEmail(e.target.value)}>
@@ -154,18 +150,49 @@ export default function Profile() {
                           <MDBCardText className="text-muted">{emailState}</MDBCardText>
                         )}
                       </MDBCol>
-                    </MDBRow>
-                  </MDBCardBody>
+                    </MDBRow>                    
+                  </MDBCardBody>                  
                 </MDBCard>
+                <MDBRow className="text-center">
+              <MDBCol>
+                <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
+                <MDBRow>
+                  <MDBBreadcrumbItem active>MY BOOKING</MDBBreadcrumbItem>
+                  <MDBRow>
+                  <MDBCol sm="4">
+                    <a href="/myBookings">
+                      <Button>Upcoming</Button>
+                    </a>
+                  </MDBCol> 
+                  <MDBCol sm="3">
+                    <a href="/completed">
+                      <Button>Completed</Button>
+                    </a>
+                  </MDBCol> 
+                  <MDBCol sm="4">                
+                    <a href="/favorite">
+                      <Button>Favorite Camps</Button>
+                    </a>
+                  </MDBCol>           
+                </MDBRow>
+                </MDBRow>
+                </MDBBreadcrumb>
+
+              </MDBCol>
+            </MDBRow>
+
               </MDBCol>
             </MDBRow>
             <MDBRow>
+            {editMode ? (
+              <MDBCol sm="1">
+              <Button onClick={handleToEdit}>Save</Button> 
+            </MDBCol>
+            ):(
               <MDBCol sm="1">
                 <Button onClick={() => setEditMode(true)}>Edit</Button> 
               </MDBCol>
-              <MDBCol sm="1">
-                <Button onClick={handleToEdit}>Save</Button> 
-              </MDBCol>
+              )}
               <MDBCol sm="1">
                 <Button                       
                   className="btn-danger"
@@ -181,3 +208,5 @@ export default function Profile() {
 
   );
 }
+
+export default Profile;

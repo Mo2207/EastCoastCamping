@@ -6,13 +6,14 @@ query AllCamps {
   allCamps {
     _id
     name
-    availability
+    location
+    price
+    image
     available
+    availability
   }
 }
 `;
-
-
 
 export const QUERY_ME = gql`
   query Query($userId: ID!) {
@@ -22,18 +23,33 @@ export const QUERY_ME = gql`
       firstName
       lastName
       saved
+      campdata
     }
   }
-
 `
 
-
 export const QUERY_CAMPGROUNDBYLOCATION = gql`
-query AllCamps($location: String!) {
+query Query($location: String!) {
   campByLocation(location: $location) {
+    _id
+    name
+    location
+    price
+    image
+    available
+    availability
+  }
+}
+
+`;
+
+export const QUERY_CAMPBYARRAY = gql`
+query Query($ids: [ID!]!) {
+  getArrayOfCamps(ids: $ids) {
     _id
     availability
     available
+    image
     location
     name
     price
@@ -42,7 +58,7 @@ query AllCamps($location: String!) {
 `;
 
 export const QUERY_CAMPBYID = gql`
-query CampById($campById: ID!) {
+query Query($campById: ID!) {
   campById(id: $campById) {
     _id
     availability
@@ -50,6 +66,39 @@ query CampById($campById: ID!) {
     location
     name
     price
+    campImages
   }
 }
 `;
+
+export const GET_CAMP_REVIEWS = gql`
+  query Query($campId: ID!) {
+    campReviews(campId: $campId) {
+      _id
+      rating
+      text
+      user {
+        firstName
+        lastName
+      }
+    }
+  }
+`
+
+export const GET_USER_SAVECAMP = gql`
+query Query($userId: ID!) {
+  getUserAndSavedCamps(userId: $userId) {
+    savedCamps {
+      _id
+      name
+      image
+      location
+    }
+    user {
+      _id
+      email
+      saved
+    }
+  }
+}
+`

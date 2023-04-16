@@ -30,14 +30,16 @@ export const CREATE_REVIEW = gql`
 `;
 
 export const USER_LOGIN = gql `
-  mutation Mutation($email: String!, $password: String!) {
-    userLogin(email: $email, password: $password) {
-      _id
-      email
-      firstName
-      lastName
-    }
+mutation Mutation($email: String!, $password: String!) {
+  userLogin(email: $email, password: $password) {
+    _id
+    campdata
+    email
+    firstName
+    lastName
+    saved
   }
+}
 `;
 
 export const EDIT_ME = gql `
@@ -59,7 +61,7 @@ mutation Mutation($deleteUserId: ID!) {
 `
 
 export const SAVE_CAMP = gql `
-mutation SaveCamp($userId: ID!, $campId: ID!) {
+mutation Mutation($userId: ID!, $campId: ID!) {
   saveCamp(userId: $userId, campId: $campId) {
     saved
   }

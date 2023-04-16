@@ -8,12 +8,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { QUERY_CAMPGROUNDBYLOCATION, QUERY_ALLCAMPS } from '../utils/queries';
 import { useLazyQuery, useQuery } from '@apollo/client';
 import Footer from '../components/Footer';
+import AllCamps from '../components/Homepage/Allcamps';
 
 function SearchResult() {
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
     const allCampsData = useQuery(QUERY_ALLCAMPS);
-    
+
     const location = useLocation();
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,9 +44,9 @@ function SearchResult() {
 
     if (error) return <p>{error.message}</p>;
 
-
     return (
         <>
+            {/* ------------------dropdown for search campground-------------------- */}
             <Card>
                 <Card.Body className='d-flex align-items-center searchBar '>
                     <form onSubmit={handleSubmit}>
@@ -55,60 +56,76 @@ function SearchResult() {
                             <option value="Saint John">Saint John</option>
                             <option value="Moncton">Moncton</option>
                             <option value="Sussex">Sussex</option>
+                            <option value="Minto">Minto</option>
+                            <option value="Edmundston">Edmundston</option>
+                            <option value="Shediac">Shediac</option>
+                            <option value="Miramichi">Miramichi</option>
                         </select>
                         <button type="submit">Search</button>
                     </form>
                 </Card.Body>
             </Card>
+            
+            <div style={{ minHeight: '100vh' }}>
+                {!data || !data.campByLocation || data.campByLocation.length === 0 ? (
+                    <Card>
+                        <Card.Body>
+                            <Card.Text>
+                                <header className='text-black '>All Camps</header>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
 
-            {data && data.campByLocation && data.campByLocation.length > 0 && (
-                <Card>
-                    <Card.Body>
-                        <Card.Text>
-                            <header className='text-black p-5 '>Available Campsites</header>
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            )}
 
-            <Container>
-                <Row >
-                    <Col >
-                        <Row xs={1} md={2} className="g-4 ">
-                            {data &&
-                                data.campByLocation &&
-                                data.campByLocation.map((campground, idx) => (
-                                    <Col className='p-4' key={idx}>
-                                        <Card style={{ marginBottom: '200px', width: '25rem' }}>
-                                            {/* Pass the campground information as query parameters in the URL */}
-                                            <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
-                                                View Details
+                ) : null}
+
+                {!data || !data.campByLocation || data.campByLocation.length === 0 ? (
+                    <AllCamps />
+                ) : null}
+
+                {data && data.campByLocation && data.campByLocation.length > 0 && (
+                    <Card>
+                        <Card.Body>
+                            <Card.Text>
+                                <header className='text-black p-5 '>Available Campsites</header>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                )}
+
+                <Container>
+                    <Row >
+                        <Col >
+                            <Row xs={1} md={3} className="g-4 ">
+                                {data &&
+                                    data.campByLocation &&
+                                    data.campByLocation.map((campground, idx) => (
+                                        <Col className='p-2' key={idx}>
+                                            <Card style={{ marginBottom: '200px', width: '25rem', minHeight: '450px', margin: '50px' }}>
                                                 <Card.Img
                                                     variant="top"
-                                                    src="https://user-images.githubusercontent.com/112873819/231262296-5bbbe70c-886e-4501-ab8c-df9403029aa3.jpg"
+                                                    src={campground.image}
                                                 />
-                                            </Link>
-                                            <Card.Body>
-                                                <Card.Title>{campground.name}</Card.Title>
-                                                <Card.Text>
-                                                    Location: {campground.location}<br />
-                                                    Price: {campground.price}
-                                                </Card.Text>
-                                            </Card.Body>
-                                            <div className='d-flex justify-content-end btn'>
-                                                <Link to={`/campground/${campground.id}?name=${campground.name}&location=${campground.location}&price=${campground.price}`}>
-                                                    <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
-                                                </Link>
-                                            </div>
-
-                                        </Card>
-                                    </Col>
-                                ))
-                            }
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
+                                                <Card.Body>
+                                                    <Card.Title>{campground.name}</Card.Title>
+                                                    <Card.Text>
+                                                        Location: {campground.location}<br />
+                                                        Price: {campground.price}
+                                                    </Card.Text>
+                                                </Card.Body>
+                                                <div className='d-flex justify-content-end btn'>
+                                                    <Link to={`/campground/${campground._id}?name=${campground.name}`}>
+                                                        <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
+                                                    </Link>
+                                                </div>
+                                            </Card>
+                                        </Col>
+                                    ))}
+                            </Row>
+                        </Col>
+                    </Row>
+                </Container>
+            </div >
             <Footer />
         </>
     );

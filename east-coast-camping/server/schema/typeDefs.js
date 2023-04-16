@@ -1,7 +1,7 @@
 
 const { gql } = require('apollo-server-express');
 
-const typeDefs = gql `
+const typeDefs = gql`
   type User {
     _id: ID!
     firstName: String!
@@ -9,15 +9,19 @@ const typeDefs = gql `
     email: String!
     password: String!
     saved: [String]
+    campdata: [String]
   }
 
   type CampGround {
     _id: ID!
     name: String!
     location: String!
+    image: String
     availability: Int
     available: Boolean!
     price: Int
+    campImages: [String]
+
   }
 
   type Review {
@@ -36,20 +40,24 @@ const typeDefs = gql `
     endDate: String!
   }
 
+  type UserSavedCamps {
+    user: User!
+    savedCamps: [CampGround!]!
+  }
+
   type Query {
     userById(id: ID!): User
     allUsers: [User]
     campById(id: ID!): CampGround
     getArrayOfCamps(ids: [ID!]!): [CampGround!]!
+    getUserAndSavedCamps(userId: ID!): UserSavedCamps!
     allCamps: [CampGround]
     campByLocation(location: String!): [CampGround]
     allReviews: [Review]
+    campReviews(campId: ID!): [Review]
     allBookings:[Booking]
     userBookings(id: ID!):[Booking]
     userReviews(id: ID!):[Review]
-    campReviews(id: ID!): [Review]
-    
-    
   }
 
   type Mutation {

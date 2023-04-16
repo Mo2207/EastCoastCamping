@@ -2,6 +2,7 @@
 const { User, CampGround, Review, Booking } = require('../models');
 const bcrypt = require('bcrypt');
 const { signToken } = require('../utils/auth');
+const mongoose = require('mongoose');
 const resolvers = {
 
   // QUERIES
@@ -11,10 +12,23 @@ const resolvers = {
     // ---------- USER QUERIES ----------
     // get user by id
     userById: async (parent, args) => {
+      
       const user = await User.findById(args.id);
       if (!user) {
         throw new Error(`user with id: ${args.id} not found!`);
       } else {
+        // const arrayKey = ["_id","name","location","image","price"]
+        // const allCamps = await CampGround.find(
+        //   { _id: { $in: user.saved } 
+        // });
+
+        // var allCampsObj =Object.values(Object.values(allCamps))
+        // console.log(allCampsObj)
+        // var result = Object.keys(allCampsObj[0]).map((key)=>[key, allCampsObj[0][key]]);
+        // console.log(result)
+        // user.campdata = result.toString();
+        // console.log(JSON.stringify(allCampsObj))
+        // user.campdata = JSON.stringify(allCampsObj);
         return user;
       }
     },
@@ -48,10 +62,26 @@ const resolvers = {
 
     // get array of camps
     getArrayOfCamps: async (parent, {ids}) => {
-      // find all camps from CampGround
-      const allCamps = await CampGround.find(
-        { _id: { $in: ids } });
+      // converts string ids to object ids
+      const objectIds = ids.map(id => mongoose.Types.ObjectId(id));
+
+      //find all camps based on the object ids
+      const allCamps = await CampGround.find({ _id: { $in: objectIds } });
+
       return allCamps;
+    },
+
+    // combination of userById and getArrayOfCamps
+    getUserAndSavedCamps: async (parent, {userId}, context) => {
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error(`User with ID ${userId} not found!`);
+      }
+
+      const savedCamps = 
+      await context.getArrayOfCamps(user.saved, context)
+
+      return { user, savedCamps };
     },
 
     // ---------- REVIEW QUERIES ----------
@@ -61,21 +91,29 @@ const resolvers = {
     },
 
     userReviews: async (parent, args) => {
-      const reviews = await Review.find({ user: args.id }).populate('user').populate('camp');
+      const reviews = await Review.find({user:args.id});
       if (!reviews) {
-        throw new Error(`User with ID ${args.id} has no reviews.`);
+        throw new Error(`user with id: ${args.id} not found!`);
+      } else {
+        return reviews;
       }
-      return reviews;},
+    },
 
-    campReviews: async (parent, args) => {
-        const reviews = await Review.find({ camp: args.id }).populate('user').populate('camp');
-        if (!reviews) {
-          throw new Error(`User with ID ${args.id} has no reviews.`);
-        }
-        return reviews;},
-    // ------- BOOKING QUERIES _______
+    campReviews: async (parent, {campId}) => {
+      // find all reviews associated with campId
+      const reviews = await Review.find({
+        camp: campId,
+      })
+      // populate user and camp for return data
+      .populate('user')
+      .populate('camp')
+      .exec()
+      
+      return reviews;
+    },
+
+    // ---------- BOOKING QUERIES ----------
     // get all Bookings
-
     allBookings: async (parent, args) => {
       return await Booking.find().populate('user').populate(`camp`);
     },
@@ -106,9 +144,9 @@ const resolvers = {
 
       const newUser = new User(args);
       console.log(newUser);
-      const token = signToken(newIser);
+      // const token = signToken(newUser);
       await newUser.save();
-      return { token, newUser };
+      return newUser;
       
     },
     // edit user by id 
@@ -151,20 +189,21 @@ const resolvers = {
     // user login
     userLogin: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
+      console.log(email, password)
       // checks to make sure user with given email exists
       if (!user) {
-        throw new Error(`user with email: ${args.email} not found!`);
+        throw new Error(`user with email: ${email} not found!`);
       }
-
+      console.log(user)
       // bcrypt password comparing upon login
       const validatePassword = await bcrypt.compare(password, user.password);
-
+      console.log(validatePassword)
       if (!validatePassword) {
         throw new Error(`Invalid Email or Password provided.`);
       }
-      const token = signToken(user)
-      return { token, user};
+      // const token = signToken(user)
+      // return
+      return user;
     },
     // add camp to saved
     saveCamp: async (parent, { userId, campId }) => {
@@ -219,24 +258,33 @@ const resolvers = {
     createReview: async (parent, { userId, campId, rating, text }) => {
 
       // validation to check if userId and campId exist
-      const validUser = await User.findById(userId);
-      if (!validUser) {
+      const user = await User.findById(userId);
+      if (!user) {
         throw new Error(`Invalid userId: ${userId}.`);
       }
-      const validCamp = await CampGround.findById(campId);
-      if (!validCamp) {
+      const camp = await CampGround.findById(campId);
+      if (!camp) {
         throw new Error(`Invalid campground id: ${campId}`);
       }
 
-      // write the review and save
+      // write the newReview
       const newReview = new Review({
         user: userId,
         camp: campId,
         rating,
         text
       })
-      console.log(newReview);
-      return await newReview.save();
+      // save the newReview to database
+      await newReview.save()
+      
+      // find the newReview now that it is saved and populate it with user & camp data
+      const populateReview = await Review.findById(newReview._id)
+        .populate('user')
+        .populate('camp')
+        .exec();
+        
+      // console.log(`POPULATEREVIEW: ${populateReview}`);
+      return populateReview;
     },
 
     // Booking Mutations
@@ -252,16 +300,25 @@ const resolvers = {
         throw new Error(`Invalid campground id: ${campId}`);
       }
 
-      // write the Booking and save
+      // write the Booking
       const newBooking = new Booking({
         user: userId,
         camp: campId,
         startDate,
         endDate
       })
-      console.log(newBooking);
-      return await newBooking.save();
+      // save the booking
+      await newBooking.save();
+
+      // find the newBooking now that it is saved and populate it with user & camp data
+      const populateBooking = await Booking.findById(newBooking._id)
+        .populate('user')
+        .populate('camp')
+        .exec();
+
+      return populateBooking;
     },
+
     cancelBooking: async (parent, args) => {
       const cancelledBooking = await Booking.findByIdAndDelete(args.id);
       if (!cancelledBooking) {

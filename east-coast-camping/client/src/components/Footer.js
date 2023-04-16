@@ -1,6 +1,12 @@
 import React from 'react';
-import '../styles/Footer.css'
-import { useLocation } from "react-router-dom";
+import {
+    MDBFooter,
+    MDBContainer,
+    MDBCol,
+    MDBRow,
+    MDBBtn
+} from 'mdb-react-ui-kit';
+import auth from '../utils/auth';
 
 
 
@@ -8,15 +14,29 @@ import { useLocation } from "react-router-dom";
 
 export default function Footer() {
     return (
-        <footer className='footer'>
-            <h3 className='text-white text-center pt-3'>Life is better around the campfire</h3>
+        <>
+            <MDBFooter className='text-center text-white' style={{ backgroundColor: '#0a4275' }}>
 
-            <div className='text-white text-center py-4'>
-                <small >&copy; 2023 EastCoastCamping. All rights reserved.</small>
-            </div>
+                {!auth.loggedIn() ? (
+                    <MDBContainer className='p-4 pb-0'>
+                        <section className=''>
+                            <p className='d-flex justify-content-center align-items-center'>
+                                <span className='me-3'>Register for free</span>
+                                <MDBBtn href='register' type='button' outline color="light" rounded>
+                                    Sign up!
+                                </MDBBtn>
+                            </p>
+                        </section>
+                    </MDBContainer>
+                ) : null}
+                <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+                    © 2023 Copyright:
+                    <a className='text-white' href='/'>
+                        EastCoastCamping
+                    </a>
+                </div>
+            </MDBFooter>
+        </>
+    );
 
-
-        </footer>
-
-    )
 }

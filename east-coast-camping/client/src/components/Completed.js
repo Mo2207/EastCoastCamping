@@ -1,14 +1,18 @@
 import React from "react";
 import { 
-    Container,
-    Row,
-    Col,
-    Card,
-    Image,
-    Button 
-  } from 'react-bootstrap';
+  Container,
+  Row,
+  Col,
+  Card,
+  Image,
+  Button,
+  Navbar,
+  Tab,
+  Tabs
+} from 'react-bootstrap';
 import "../styles/Upcoming.css";
 import greentick from "./images/greentick.png"
+import Footer from '../components/Footer';
 
 const days = ( date1 , date2 ) => {
   let difference = date2.getTime() - date1.getTime();
@@ -35,65 +39,90 @@ export default function Completed() {
   var totalAmount = ratePerNight * totalNight;
 
   return (
-    <>
-      <Container fluid>
-        <Row className="justify-content-center mb-0">
-            <Col md="12" xl="10">
-              <Card className="shadow-0 border rounded-3 mt-5 mb-3">
-                <Card.Body>
-                  <Row>
-                    <Col md="12" lg="3" className="mb-4 mb-lg-0">
-                        <Image
-                          src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                          fluid
-                          className="w-100"
-                        />                      
-                    </Col>
-                    <Col md="6">
-                      <Card.Title>Camper</Card.Title>
-                      <Card.Subtitle>Booking ID:536854069</Card.Subtitle>
-                      <hr/>
-                      <Card.Text >
-                      <Image
-                          src={greentick}
-                          fluid
-                          style={{
-                            height: 20,
-                            width: 20,
-                          }}
-                        /> Completed
-                      </Card.Text>
-                    </Col>
-                    <Col
-                      md="6"
-                      lg="3"
-                      className="border-sm-start-none border-start"
-                    >
-                      <Row>
-                        <Col sm="5" className="ml-1"><Row>CHECK IN</Row><Row>{startdate}</Row></Col>
-                        <Col sm="5" className="ml-1"><Row>CHECK OUT</Row><Row>{enddate}</Row></Col>
-                      </Row>
-                      <br/>
-                      <div className="d-flex flex-row align-items-center mb-1">
-                        <h4 className="mb-1 me-1">CAD ${totalAmount}</h4>                              
-                      </div>
-                      <h6 className="text-success">{totalNight} Nights </h6>
-
-                    </Col>
-                  </Row>
-                </Card.Body>
-                <Row>
-                  <Col md="9" className="mb-1 ml-2"><p onClick={chaticon}>{chaticon} Submit your review</p></Col>
-                  {/* <Col md="2" className="mb-1 ml-5">
-                    <Button color="primary" size="sm">
-                        View Details
-                    </Button>
-                  </Col> */}
-              </Row>
-              </Card>
-            </Col>
-        </Row>                
-      </Container>    
-    </>
-  );
+      <>
+        <div className="container my-1" style={{ minHeight: '100vh' }}>
+          <Navbar.Brand><h2>My Bookings</h2></Navbar.Brand>
+          <a href="/myBookings">
+            <Button variant="secondary" size="sm">Upcoming</Button>
+          </a>{" "}
+          <a href="/completed">
+            <Button variant="primary" size="sm">Completed</Button>
+          </a>{" "}
+          <a href="/favorite">
+            <Button variant="secondary" size="sm">Favorite Camps</Button>
+          </a>
+          <Tabs
+            defaultActiveKey="completed"
+            id="uncontrolled-tab-example"
+            className="mb-3"
+          >
+            <Tab eventKey="upcoming"></Tab>
+            <Tab eventKey="completed">
+              <>
+                <Container fluid>
+                  <Row className="justify-content-center mb-0">
+                      <Col md="12" xl="10">
+                        <Card className="shadow-0 border rounded-3 mt-5 mb-3">
+                          <Card.Body>
+                            <Row>
+                              <Col md="12" lg="3" className="mb-4 mb-lg-0">
+                                  <Image
+                                    src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                    fluid
+                                    className="w-100"
+                                  />                      
+                              </Col>
+                              <Col md="6">
+                                <Card.Title>Camper</Card.Title>
+                                <Card.Subtitle>Booking ID:536854069</Card.Subtitle>
+                                <hr/>
+                                <Card.Text >
+                                <Image
+                                    src={greentick}
+                                    fluid
+                                    style={{
+                                      height: 20,
+                                      width: 20,
+                                    }}
+                                  /> Completed
+                                </Card.Text>
+                              </Col>
+                              <Col
+                                md="6"
+                                lg="3"
+                                className="border-sm-start-none border-start"
+                              >
+                                <Row>
+                                  <Col sm="5" className="ml-1"><Row>CHECK IN</Row><Row>{startdate}</Row></Col>
+                                  <Col sm="5" className="ml-1"><Row>CHECK OUT</Row><Row>{enddate}</Row></Col>
+                                </Row>
+                                <br/>
+                                <div className="d-flex flex-row align-items-center mb-1">
+                                  <h4 className="mb-1 me-1">CAD ${totalAmount}</h4>                              
+                                </div>
+                                <h6 className="text-success">{totalNight} Nights </h6>
+          
+                              </Col>
+                            </Row>
+                          </Card.Body>
+                          <Row>
+                            <Col md="9" className="mb-1 ml-2"><p >{chaticon} Submit your review</p></Col>
+                            {/* <Col md="2" className="mb-1 ml-5">
+                              <Button color="primary" size="sm">
+                                  View Details
+                              </Button>
+                            </Col> */}
+                        </Row>
+                        </Card>
+                      </Col>
+                  </Row>                
+                </Container>    
+              </>
+            </Tab>
+            <Tab eventKey="favorite"></Tab>
+          </Tabs>
+        </div>
+        <Footer />
+      </>
+    );
 }

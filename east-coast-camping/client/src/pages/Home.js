@@ -10,6 +10,7 @@ import Iconscomponent from '../components/Homepage/Iconscomponent';
 import AllCamps from '../components/Homepage/Allcamps';
 import CampsByLocation from '../components/Homepage/CampsByLocation';
 import Footer from '../components/Footer';
+import { Link } from "react-router-dom";
 
 
 
@@ -45,25 +46,33 @@ export default function Home() {
         <>
             <div className='bg-white'>
                 <Card className='searchBar-Bg'>
+                    <Container className='text-white p-5 mt-5'>
+                        <h2 className='mb-4'>Welcome to EastCoastCamping</h2>
+                        <p>Looking for a memorable camping experience? Look no further than EastCoastCamping, where we connect you with the best campsites and outdoor destinations. </p>
+                        <Link to="/search">
+                            <button className='btn' style={{ background: '#ADFB2F' }} >Search Now</button>
+                        </Link>
+                    </Container>
 
-                    <h2 className='mb-4'>Welcome to EastCoastCamping</h2>
 
                 </Card>
 
                 <Container className='mt-5 text-center'>
-
-                    <p>Looking for a memorable camping experience? Look no further than EastCoastCamping, where we connect you with the best campsites and outdoor destinations. </p>
+                    <h2>Your One-Stop Destination for Booking Your Perfect Camping Adventure!</h2>
                     <p>  Whether you're a seasoned outdoor enthusiast or a first-time camper, our website makes it easy to plan and book your perfect camping trip. </p>
                     <p> Our user-friendly platform makes it easy to find and reserve the perfect campsite for your next outdoor adventure.</p>
+                    <p>With EastCoastCamping, you can browse through a selection of coamgrounds, read review, and book your preferred campsite with just a few clicks,making planning your next camp</p>
                 </Container>
 
                 <Iconscomponent />
+
+                <CampsByLocation />
+                <hr />
 
                 <Container >
                     <GifComponent />
                 </Container>
 
-                <CampsByLocation />
                 <Footer />
             </div>
         </>

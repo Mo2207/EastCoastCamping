@@ -35,7 +35,7 @@ const LoginForm = () => {
             });
             const data1 = Object.values(data)
             console.log(data1[0]._id)
-            Auth.login(data1[0]._id);
+            Auth.login( data1[0]._id, data1[0].saved);
 
         } catch (err) {
             console.error(err);
