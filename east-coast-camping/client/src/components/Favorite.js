@@ -37,7 +37,7 @@ export default function Favorite() {
   var profile;
   try {
     profile = data?.getArrayOfCamps || {};
-    profile.map((data,index)=>console.log(data));
+    // profile.map((data,index)=>console.log(data));
   } catch(err){
     console.log(err)
   }
