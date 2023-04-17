@@ -38,3 +38,9 @@ li,
 label {
     color: #808386;
 }
+
+
+.react-datepicker__navigation {
+    padding-top: 20px;
+    color: black;
+}

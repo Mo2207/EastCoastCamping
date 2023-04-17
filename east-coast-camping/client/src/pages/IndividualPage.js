@@ -123,7 +123,7 @@ function IndividualCampground() {
             {/*----------------------- camp images to display on page using swiper.js -------------------------------*/}
 
 
-
+            {/*----------------------- camp info -------------------------------*/}
             <Row className='campInfo'>
                 <h3> {campInfo.name}</h3>
                 <h4 className='mt-2'>{campInfo.location}</h4>
@@ -133,27 +133,50 @@ function IndividualCampground() {
                     Welcome to {campInfo.name} .Located in the heart of nature, our campground offers a serene and peaceful escape from the hustle and bustle of everyday life. With stunning views of the surrounding mountains and a variety of recreational activities, you're sure to have an unforgettable camping experience.
                 </p>
             </Row>
+            {/*----------------------- camp info -------------------------------*/}
+
+
+            {/*----------------------- Amenities -------------------------------*/}
             <Amenities />
+            {/*----------------------- Amenities -------------------------------*/}
+
+
 
             <Container className='mt-5'>
+                {/*----------------------- Reservation info -------------------------------*/}
                 <ReservationInfo />
+                {/*----------------------- Reservation info -------------------------------*/}
+
+
+                {/*----------------------- calendar to pick the dates (Datepicker) -------------------------------*/}
                 <h4>Please select the date</h4>
 
                 <Form onSubmit={handleBook} className='individualSearch'>
-                    <Form.Label>Check in</Form.Label>
-                    <DatePicker selected={startDate} placeholderText="Select check-in date" onChange={(date) => setStartDate(date)} />
-                    <Form.Label>Check out</Form.Label>
-                    <DatePicker selected={endDate} placeholderText="Select check-out date" onChange={(date) => setEndDate(date)} />
+                    <Row>
+                        <Col>
+                            <Form.Label>Check in</Form.Label>
+                            <DatePicker className='rounded' selected={startDate} placeholderText="Select check-in date" onChange={(date) => setStartDate(date)} />
+                        </Col>
+                        <Col>
+                            <Form.Label>Check out</Form.Label>
+                            <DatePicker className='rounded' selected={endDate} placeholderText="Select check-out date" onChange={(date) => setEndDate(date)} />
+                        </Col>
+                    </Row>
                     <Row className='mt-5'>
                         <Col>
-                            <Button type="submit" size="sm" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button>
+                            <Button type="submit" className='btn btn-primary' style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px', width: '100px' }}>Book now</Button>
                         </Col>
                         <Col>
                             <Button onClick={() => { handleSaveCamp(id, campgroundId) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
                         </Col>
                     </Row>
                 </Form>
+
             </Container>
+            {/*----------------------- calendar to pick the dates (Datepicker) -------------------------------*/}
+
+
+            {/*----------------------- review section -------------------------------*/}
             <hr className='mx-5' />
             <Container className='mt-5'>
                 <Row>
@@ -170,6 +193,7 @@ function IndividualCampground() {
                         ))}
                     </Col>
                 </Row>
+                {/*----------------------- review section -------------------------------*/}
             </Container>
         </>
     )
