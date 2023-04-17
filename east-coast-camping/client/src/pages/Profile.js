@@ -103,7 +103,7 @@ function Profile() {
                       className="rounded-circle"
                       style={{ width:'135px'}}
                       fluid />
-                    <p className="text-muted mb-1">Full Stack Developer</p>
+                    <p className="text-muted mb-1">{firstNameState} {lastNameState}</p>
                   </MDBCardBody>
                 </MDBCard>
                 <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">

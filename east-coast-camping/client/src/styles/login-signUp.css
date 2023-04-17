@@ -35,7 +35,7 @@ span {
 .input-field .inputs {
     height: 45px;
     width: 400px;
-    border: none;
+    border: 1px grey solid;
     border-radius: 30px;
     color: rgb(35, 18, 69);
     font-size: 15px;
