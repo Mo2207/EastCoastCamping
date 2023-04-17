@@ -32,7 +32,7 @@ function Profile() {
   
   const profile = data?.userById || {};
 //  console.log(profile.saved)
- Auth.setSaved(profile.saved)
+ Auth.setInfo(profile.firstName, profile.lastName, profile.email)
 
 
   const [deleteMe] = useMutation(DELETE_ME)
@@ -86,33 +86,54 @@ function Profile() {
       {Auth.loggedIn() ? (
         <section style={{ backgroundColor: '#eee' }}>
           <MDBContainer className="py-5">
-            <MDBRow className="text-center">
+            <MDBRow >
               <MDBCol>
-                <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-                  <MDBBreadcrumbItem active>MY PROFILE</MDBBreadcrumbItem>
-                </MDBBreadcrumb>
+                <MDBRow className="bg-light rounded-3 p-3 mb-3">
+                  <h5 className="text-center">MY PROFILE</h5>
+                </MDBRow>
               </MDBCol>
             </MDBRow>
             <MDBRow>
-              <MDBCol lg="4">
+              <MDBCol lg="5" >
                 <MDBCard className="mb-4">
                   <MDBCardBody className="text-center">
                     <MDBCardImage
                       src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                       alt="avatar"
                       className="rounded-circle"
-                      style={{ width: '150px' }}
+                      style={{ width:'135px'}}
                       fluid />
                     <p className="text-muted mb-1">Full Stack Developer</p>
                   </MDBCardBody>
                 </MDBCard>
+                <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
+                  <MDBRow>
+                    <MDBBreadcrumbItem active>ACCOUNT SETTING</MDBBreadcrumbItem>
+                      <MDBRow>
+                        {editMode ? (
+                        <MDBCol size="6">
+                          <Button onClick={handleToEdit}>Save</Button> 
+                        </MDBCol>
+                        ):(
+                        <MDBCol size="6">
+                          <Button onClick={() => setEditMode(true)}>Edit</Button> 
+                        </MDBCol>
+                        )}
+                        <MDBCol size="6">
+                          <Button                       
+                            className="btn-danger"
+                            onClick={() => {handleToDelete(id)}}>Delete</Button> 
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBRow>
+                  </MDBBreadcrumb>
               </MDBCol>
-              <MDBCol lg="8">
+              <MDBCol lg="7" >
                 <MDBCard className="mb-4">
-                  <MDBCardBody>
-                    <MDBRow>
-                      <MDBCol sm="3">
-                        <MDBCardText>First Name</MDBCardText>
+                  <MDBCardBody  >
+                    <MDBRow >
+                      <MDBCol  sm="3">
+                        <MDBCardText >First Name</MDBCardText>
                       </MDBCol>
                       <MDBCol sm="9">
                         {editMode ? (                          
@@ -154,51 +175,33 @@ function Profile() {
                   </MDBCardBody>                  
                 </MDBCard>
                 <MDBRow className="text-center">
-              <MDBCol>
-                <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-                <MDBRow>
-                  <MDBBreadcrumbItem active>MY BOOKING</MDBBreadcrumbItem>
-                  <MDBRow>
-                  <MDBCol sm="4">
-                    <a href="/myBookings">
-                      <Button>Upcoming</Button>
-                    </a>
-                  </MDBCol> 
-                  <MDBCol sm="3">
-                    <a href="/completed">
-                      <Button>Completed</Button>
-                    </a>
-                  </MDBCol> 
-                  <MDBCol sm="4">                
-                    <a href="/favorite">
-                      <Button>Favorite Camps</Button>
-                    </a>
-                  </MDBCol>           
+                  <MDBCol>
+                    <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
+                    <MDBRow>
+                      <MDBBreadcrumbItem active>MY BOOKING</MDBBreadcrumbItem>
+                        <MDBRow >
+                          <MDBCol sm="3" size="md" className="align-items-center">
+                            <a href="/myBookings">
+                              <Button>Upcoming</Button>
+                            </a>
+                          </MDBCol> 
+                          <MDBCol sm="3" size="md" className="align-items-center">
+                            <a href="/completed">
+                              <Button>Completed</Button>
+                            </a>
+                          </MDBCol> 
+                          <MDBCol sm="5" size="md" className="align-items-center">                
+                            <a href="/favorite">
+                              <Button>Favorite Camps</Button>
+                            </a>
+                          </MDBCol>           
+                        </MDBRow>
+                      </MDBRow>
+                    </MDBBreadcrumb>
+                  </MDBCol>
                 </MDBRow>
-                </MDBRow>
-                </MDBBreadcrumb>
-
               </MDBCol>
-            </MDBRow>
-
-              </MDBCol>
-            </MDBRow>
-            <MDBRow>
-            {editMode ? (
-              <MDBCol sm="1">
-              <Button onClick={handleToEdit}>Save</Button> 
-            </MDBCol>
-            ):(
-              <MDBCol sm="1">
-                <Button onClick={() => setEditMode(true)}>Edit</Button> 
-              </MDBCol>
-              )}
-              <MDBCol sm="1">
-                <Button                       
-                  className="btn-danger"
-                  onClick={() => {handleToDelete(id)}}>Delete</Button> 
-              </MDBCol>
-            </MDBRow>
+            </MDBRow>            
           </MDBContainer>
         </section>
       ) : null}

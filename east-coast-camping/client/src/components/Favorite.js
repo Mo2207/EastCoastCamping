@@ -13,14 +13,14 @@ import {
 import "../styles/Upcoming.css";
 import Footer from '../components/Footer';
 import Auth from '../utils/auth';
-import { useLazyQuery, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { QUERY_CAMPBYARRAY, GET_USER_SAVECAMP } from "../utils/queries";
 import { Link } from 'react-router-dom';
 
 export default function Favorite() {
   let id;
   var profile;
-
+// Grab User ID from Local Stroage and retreive data from server
   if(Auth.loggedIn()){
     id = localStorage.getItem('id_token');
   }
@@ -35,13 +35,13 @@ export default function Favorite() {
   }
 
     try {
-    profile = data?.getUserAndSavedCamps.savedCamps || {};
-    // profile.map((data,index)=>console.log(data));
+    profile = data?.getUserAndSavedCamps.savedCamps || {};   
   } catch(err){
     console.log(err)
   }
   console.log(data)
   console.log(profile)
+
   // let id;
   // if (Auth.loggedIn()) {
   //   const savedCamp = localStorage.getItem('saved')
@@ -74,7 +74,7 @@ export default function Favorite() {
     <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
   </svg>;
 
-if (profile){  
+
     return (
       <>
         <div className="container my-1" style={{ minHeight: '100vh' }}>
@@ -96,6 +96,7 @@ if (profile){
             <Tab eventKey="upcoming" ></Tab>
             <Tab eventKey="completed"></Tab>
             <Tab eventKey="favorite">
+              {profile.length ? (
               <>    
                 <Container fluid>
                     <Row className="justify-content-center mb-0">
@@ -116,7 +117,7 @@ if (profile){
                                 <hr/>
                                 <Card.Subtitle>Location:{campground.location}</Card.Subtitle>
                                 <br/>
-                                <Card.Subtitle>Price:{campground.price}</Card.Subtitle>                              
+                                <Card.Subtitle>Price: CAD$ {campground.price}</Card.Subtitle>                              
                               </Col>                
                             </Row>
                             <Row>
@@ -134,34 +135,7 @@ if (profile){
                     </Row>                
                 </Container>       
               </>
-            </Tab>
-          </Tabs>
-        </div>
-        <Footer />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <div className="container my-1" style={{ minHeight: '100vh' }}>
-          <Navbar.Brand><h2>My Bookings</h2></Navbar.Brand>
-          <a href="/myBookings">
-            <Button variant="secondary" size="sm">Upcoming</Button>
-          </a>{" "}
-          <a href="/completed">
-            <Button variant="secondary" size="sm">Completed</Button>
-          </a>{" "}
-          <a href="/favorite">
-            <Button variant="primary" size="sm">Favorite Camps</Button>
-          </a>
-          <Tabs
-            defaultActiveKey="favorite"
-            id="uncontrolled-tab-example"
-            className="mb-3"
-          >
-            <Tab eventKey="upcoming" ></Tab>
-            <Tab eventKey="completed"></Tab>
-            <Tab eventKey="favorite">
+              ):(
               <>    
                 <Container fluid>
                     <Row className="justify-content-center mb-0">
@@ -169,11 +143,12 @@ if (profile){
                     </Row>                
                 </Container>       
               </>
+              )}
             </Tab>
           </Tabs>
         </div>
         <Footer />
       </>
     );
-  }
-}
+} 
+

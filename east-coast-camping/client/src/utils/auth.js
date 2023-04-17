@@ -1,3 +1,4 @@
+import { fieldNameFromStoreName } from '@apollo/client/cache';
 import decode from 'jwt-decode';
 
 class AuthService {
@@ -27,9 +28,9 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  login(idToken, saved) {
+  login(idToken) {
     localStorage.setItem('id_token', idToken);
-    localStorage.setItem("saved", saved)
+
     window.location.assign('/me');
   }
 
@@ -39,14 +40,20 @@ class AuthService {
     window.location.reload();
   }
 
-  getSaved(){
-    const data = localStorage.getItem('saved');    
+  getName(){
+    const data = localStorage.getItem('name');    
+    // localStorage.removeItem('saved');
+    return data;
+  }
+  getEmail(){
+    const data = localStorage.getItem('email');    
     // localStorage.removeItem('saved');
     return data;
   }
 
-  setSaved(id){
-    localStorage.setItem('saved', id);
+  setInfo( firstName, lastName, email){
+    localStorage.setItem("name", firstName+" "+lastName )
+    localStorage.setItem("email", email )
   }
 }
 
