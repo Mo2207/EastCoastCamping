@@ -1,7 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-const { CampGround } = require('./models');
+const { CampGround, User, Booking } = require('./models');
 const mongoose = require('mongoose');
 
 const { typeDefs, resolvers } = require('./schema');
@@ -13,6 +13,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async () => ({
+
     getArrayOfCamps: async (ids, context) => {
       // converts string ids to object ids
       const objectIds = ids.map(id => mongoose.Types.ObjectId(id));
@@ -21,6 +22,21 @@ const server = new ApolloServer({
       const allCamps = await CampGround.find({ _id: { $in: objectIds } });
 
       return allCamps;
+    },
+
+    bookingByUserId: async (userId, context) => {
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error(`User with ID ${userId} not found!`);
+      }
+
+      // populate userBookings and return
+      const userBookings = await Booking.find({ user: userId })
+      .populate('user')
+      .populate('camp')
+      .exec()
+
+      return userBookings;
     }
   })
 });

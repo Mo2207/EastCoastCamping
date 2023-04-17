@@ -43,6 +43,7 @@ const typeDefs = gql`
   type UserSavedCamps {
     user: User!
     savedCamps: [CampGround!]!
+    bookings: [Booking!]
   }
 
   type Query {
@@ -50,13 +51,13 @@ const typeDefs = gql`
     allUsers: [User]
     campById(id: ID!): CampGround
     getArrayOfCamps(ids: [ID!]!): [CampGround!]!
-    getUserAndSavedCamps(userId: ID!): UserSavedCamps!
+    getCampsAndBookingByUserId(userId: ID!): UserSavedCamps!
     allCamps: [CampGround]
     campByLocation(location: String!): [CampGround]
     allReviews: [Review]
     campReviews(campId: ID!): [Review]
     allBookings:[Booking]
-    userBookings:[Booking]
+    bookingByUserId(userId: ID!): [Booking!]
     userReviews(id: ID!):[Review]
   }
 

@@ -72,7 +72,7 @@ const resolvers = {
     },
 
     // combination of userById and getArrayOfCamps
-    getUserAndSavedCamps: async (parent, {userId}, context) => {
+    getCampsAndBookingByUserId: async (parent, {userId}, context) => {
       const user = await User.findById(userId);
       if (!user) {
         throw new Error(`User with ID ${userId} not found!`);
@@ -81,7 +81,12 @@ const resolvers = {
       const savedCamps = 
       await context.getArrayOfCamps(user.saved, context)
 
-      return { user, savedCamps };
+      let userBookings =
+      await context.bookingByUserId(userId, context)
+    
+      console.log(userBookings)
+
+      return { user, savedCamps, userBookings };
     },
 
     // ---------- REVIEW QUERIES ----------
@@ -115,9 +120,32 @@ const resolvers = {
     // ---------- BOOKING QUERIES ----------
     // get all Bookings
     allBookings: async (parent, args) => {
-      return await Booking.find();
+      const bookings = await Booking.find();
+
+      // populate booking and return
+      const populateBooking = await Booking.find(bookings._id)
+      .populate('user')
+      .populate('camp')
+      .exec()
+
+      return populateBooking;
     },
-  
+
+    bookingByUserId: async (parent, {userId}) => {
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error(`User with ID ${userId} not found!`);
+      }
+
+      // populate userBookings and return
+      const userBookings = await Booking.find({ user: userId })
+      .populate('user')
+      .populate('camp')
+      .exec()
+
+      return userBookings;
+    }
+
   },
   // MUTATIONS
   Mutation: {
