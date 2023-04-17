@@ -1,4 +1,3 @@
-import { fieldNameFromStoreName } from '@apollo/client/cache';
 import decode from 'jwt-decode';
 
 class AuthService {

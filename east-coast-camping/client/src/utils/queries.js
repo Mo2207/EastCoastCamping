@@ -103,3 +103,18 @@ query Query($userId: ID!) {
   }
 }
 `
+export const GET_USER_BOOKING = gql`
+query Query($userId: ID!) {
+  bookingByUserId(userId: $userId) {
+    _id
+    camp {
+      image
+      location
+      name
+      price
+    }
+    startDate
+    endDate
+  }
+}
+`
