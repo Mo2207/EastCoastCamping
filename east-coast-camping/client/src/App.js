@@ -19,6 +19,7 @@ import SearchResult from './pages/SearchResult'
 import IndividualCampGround from './pages/IndividualPage';
 import Footer from './components/Footer';
 import Favorite from './components/Favorite';
+import Reservation from './components/Reservation'
 
 
 
@@ -96,6 +97,10 @@ function App() {
               path="/regret"
               element={<Regret />}
             />
+            <Route
+              path="/reservation"
+              element={<Reservation />}
+              />
             <Route
               path="*"
               element={<NoMatch />}
