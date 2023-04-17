@@ -103,3 +103,54 @@ query Query($userId: ID!) {
   }
 }
 `
+export const GET_USER_BOOKING_SAVED = gql`
+query Query($userId: ID!) {
+  getCampsAndBookingByUserId(userId: $userId) {
+    savedCamps {
+      image
+      name
+      location
+      _id
+    }
+    user {
+      email
+      firstName
+      lastName
+    }
+    userBookings {
+      camp {
+        image
+        location
+        name
+        price
+      }
+      endDate
+      startDate
+    }
+  }
+}
+`
+
+export const GET_USER_BOOKING = gql`
+query Query($userId: ID!) {
+  bookingByUserId(userId: $userId) {
+    bookingID
+    startDate
+    endDate
+    totalN
+    price
+    totalP
+    camp {
+      image
+      location
+      name
+      price
+    }
+    user {
+      email
+      firstName
+      lastName
+    }
+  }
+}
+`

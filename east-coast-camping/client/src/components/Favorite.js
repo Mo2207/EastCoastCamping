@@ -14,7 +14,7 @@ import "../styles/Upcoming.css";
 import Footer from '../components/Footer';
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
-import { QUERY_CAMPBYARRAY, GET_USER_SAVECAMP } from "../utils/queries";
+import { GET_USER_BOOKING_SAVED } from "../utils/queries";
 import { Link } from 'react-router-dom';
 
 export default function Favorite() {
@@ -24,7 +24,7 @@ export default function Favorite() {
   if(Auth.loggedIn()){
     id = localStorage.getItem('id_token');
   }
-  const { loading, error, data } = useQuery(GET_USER_SAVECAMP, {
+  const { loading, error, data } = useQuery(GET_USER_BOOKING_SAVED, {
     variables: { userId: id }
   });
   if (loading) {
@@ -35,39 +35,10 @@ export default function Favorite() {
   }
 
     try {
-    profile = data?.getUserAndSavedCamps.savedCamps || {};   
+    profile = data?.getCampsAndBookingByUserId.savedCamps || {};   
   } catch(err){
     console.log(err)
   }
-  console.log(data)
-  console.log(profile)
-
-  // let id;
-  // if (Auth.loggedIn()) {
-  //   const savedCamp = localStorage.getItem('saved')
-  //   id=(savedCamp.split(","))
-  // };
-  // const { loading, error, data } = useQuery(QUERY_CAMPBYARRAY, {
-  //   variables: { ids: id }
-  // });
-  // if (loading) {
-  //   return <p>Loading...</p>;
-  // }
-  // if (error) {
-  //     return <p>Error: {error.message}</p>;
-  // }
-  // // console.log(id)
-
-  // try {
-  //   profile = data?.getArrayOfCamps || {};
-  //   // profile.map((data,index)=>console.log(data));
-  // } catch(err){
-  //   console.log(err)
-  // }
-  
-
-
-
 
   const chaticon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-square-text" viewBox="0 0 16 16">
     <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>

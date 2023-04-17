@@ -1,6 +1,6 @@
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React from 'react';
 
 import { setContext } from '@apollo/client/link/context';
 
@@ -17,7 +17,6 @@ import Profile from './pages/Profile';
 import SignupForm from './pages/SignupForm';
 import SearchResult from './pages/SearchResult'
 import IndividualCampGround from './pages/IndividualPage';
-import Footer from './components/Footer';
 import Favorite from './components/Favorite';
 import Reservation from './components/Reservation'
 
