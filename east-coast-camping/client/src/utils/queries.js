@@ -93,6 +93,7 @@ query Query($userId: ID!) {
       name
       image
       location
+      price
     }
     user {
       _id
