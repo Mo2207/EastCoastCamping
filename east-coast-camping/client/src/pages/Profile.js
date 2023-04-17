@@ -32,7 +32,7 @@ function Profile() {
   
   const profile = data?.userById || {};
 //  console.log(profile.saved)
- Auth.setSaved(profile.saved)
+ Auth.setInfo(profile.firstName, profile.lastName, profile.email)
 
 
   const [deleteMe] = useMutation(DELETE_ME)
