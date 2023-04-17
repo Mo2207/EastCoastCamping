@@ -15,8 +15,36 @@ import "../../styles/Upcoming.css";
 import greentick from "../images/greentick.png"
 import reservation from '../images/reservation.png'
 import creditcard from '../images/card.png'
+import { useLocation } from 'react-router-dom'
+import NoMatch from "../../pages/NoMatch";
+import Auth from '../../utils/auth';
 
-function Profile() {
+const days = ( date1 , date2 ) => {
+    let difference = date2.getTime() - date1.getTime();
+    let total = Math.ceil( difference / (1000 * 3600 * 24))-1;
+    return total;
+  }
+
+function Reservation() {
+
+    const location = useLocation();
+    console.log(location.state)
+    const name = Auth.getName()
+    const email = Auth.getEmail()
+    console.log((location.state.checkin).toString())
+
+    var date1 = new Date(location.state.checkin);
+    var date2 = new Date(location.state.checkout);
+    var totalNight = days(date1,date2);
+    
+    var shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format;
+    // var shortMonth = shortMonthName(date); // "Jul"  
+  
+    var startdate = `${shortMonthName(date1)} ${date1.getDate()}, ${date1.getFullYear()}`;
+    var enddate = `${shortMonthName(date2)} ${date2.getDate()}, ${date2.getFullYear()}`;
+    var ratePerNight = location.state.campPrice;
+    var totalAmount = ratePerNight * totalNight;
+    console.log(location.state.price)
 
   return (
     <>
@@ -36,22 +64,22 @@ function Profile() {
                                 <Col md="4" lg="4">
                                     <Row style={{ height:'50%', marginTop:30 }}>
                                         <Card.Title className="text-center" >Reservation Details</Card.Title>
-                                        <Card.Subtitle>Name of Camp:</Card.Subtitle>
+                                        <Card.Subtitle>Name of Camp: {location.state.campName}</Card.Subtitle>
                                         <Card.Subtitle>Location:</Card.Subtitle>
                                         <Row className="text-center">
-                                            <Col sm="5" className="ml-1"><Row><Card.Subtitle>Check-in</Card.Subtitle></Row><Row><Card.Text>{'startdate'}</Card.Text></Row></Col>
-                                            <Col sm="5" className="ml-1"><Row><Card.Subtitle>Check-out</Card.Subtitle></Row><Row><Card.Text>{'enddate'}</Card.Text></Row></Col>
+                                            <Col sm="5" className="ml-1"><Row><Card.Subtitle>Check-in:</Card.Subtitle></Row><Row><Card.Text>{startdate}</Card.Text></Row></Col>
+                                            <Col sm="5" className="ml-1"><Row><Card.Subtitle>Check-out</Card.Subtitle></Row><Row><Card.Text>{enddate}</Card.Text></Row></Col>
                                         </Row>
-                                        <Card.Subtitle>Total Nights:</Card.Subtitle>
-                                        <Card.Subtitle>Total Amounts: CAD $</Card.Subtitle>
+                                        <Card.Subtitle>Total Nights:  <strong>{totalNight} Nights</strong></Card.Subtitle>
+                                        <Card.Subtitle>Total Amounts: CAD $ <strong>{totalAmount}</strong></Card.Subtitle>
                                     </Row>
                                     <br/>
                                     <Row style={{ height:'30%' }}>
                                         <Card.Title className="text-center">Personal info</Card.Title>
                                         <Card.Subtitle>Reservation Name</Card.Subtitle>
-                                        <Card.Text>{'startdate'}</Card.Text>
+                                        <Card.Text>{name}</Card.Text>
                                         <Card.Subtitle>Email Address</Card.Subtitle>
-                                        <Card.Text>{'startdate'}</Card.Text>
+                                        <Card.Text>{email}</Card.Text>
                                     </Row>
                                 </Col>
                                 <Col
@@ -115,4 +143,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Reservation;

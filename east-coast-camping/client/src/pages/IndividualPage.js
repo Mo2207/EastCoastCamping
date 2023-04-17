@@ -3,14 +3,18 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import '../styles/Individualpage.css'
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css' //date-picker css
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Form } from 'react-bootstrap';
+import { 
+    Container,
+    Row,
+    Col,
+    Form,
+    Button,
+    OverlayTrigger,
+    Popover
+  } from 'react-bootstrap';
 import { useMutation, useQuery } from '@apollo/client';
 import { SAVE_CAMP, CREATE_REVIEW} from '../utils/mutations';
 import { QUERY_CAMPBYID, GET_CAMP_REVIEWS, QUERY_ME } from '../utils/queries';
@@ -18,6 +22,12 @@ import Auth from '../utils/auth';
 import Footer from '../components/Footer';
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
+
+const days = ( date1 , date2 ) => {
+    let difference = date2.getTime() - date1.getTime();
+    let total = Math.ceil( difference / (1000 * 3600 * 24))-1;
+    return total;
+  }
 
 function IndividualCampground() {
     // const [reviews, setReviews] = useState([
@@ -57,23 +67,59 @@ function IndividualCampground() {
     const campInfo = data?.campById || {};
     // console.log(campInfo)
 
-    const handleBook = (e) => {
-        e.preventDefault();
-        // console.log('Destination:', destination);
-        // console.log('Start Date:', startDate);
-        // console.log('End Date:', endDate);
+    const navigate = useNavigate();
+    const popover = (
+        <Popover id="popover-basic">
+          <Popover.Header as="h3"></Popover.Header>
+          <Popover.Body style={{ color: 'red' }}>
+            "Please select start date and end date to proceed reservation."
+          </Popover.Body>
+        </Popover>
+      );
 
+    const handleBook = (id, campId, campground, start, end, price) => {
+
+        // var date1 = new Date('4/23/2023');
+        // var date2 = new Date('4/28/2023');
+        // var totalNight = days(date1,date2);
+        
+        // var shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format;
+        // // var shortMonth = shortMonthName(date); // "Jul"  
+      
+        // var start = `${shortMonthName(date1)} ${date1.getDate()}, ${date1.getFullYear()}`;
+        // var end = `${shortMonthName(date2)} ${date2.getDate()}, ${date2.getFullYear()}`;
+
+        // var ratePerNight = price;
+        // var totalAmount = ratePerNight * totalNight;
+
+        // e.preventDefault();
+        console.log("1", id, campId, campground, start, end, price)
+        if(start && end ){
+        navigate('/reservation', {state:{userid: id, campid: campgroundId, campName: campInfo.name, campPrice: campInfo.price, checkin: startDate, checkout: endDate}})
+        }         
     };
 
     const [saveCamp] = useMutation(SAVE_CAMP);
 
     function handleSaveCamp(id, campgroundId) {
+        console.log("2", id, campgroundId)
         const { savedData } = saveCamp({
             variables: { userId: id, campId: campgroundId }
-        })  
-
-        
+        })          
+        console.log(savedData)
     }
+
+    function handleSwitch(e,start,end){
+        switch(e){
+            case 1: 
+                handleBook(id, campgroundId, campInfo.name, campInfo.location, campInfo.price, start, end);
+                break;
+            case 2: 
+                handleSaveCamp(id, campgroundId);
+                break;
+        }
+    }
+
     // function handleOpenReviewInput() {
 
     // }
@@ -123,12 +169,12 @@ function IndividualCampground() {
                 <h1>Campground Name: {campInfo.name}</h1>
                 <p>Location: {campInfo.location}</p>
                 <p>Price: {campInfo.price}</p>
-                <p className='mt-3'>
+                <p className='mt-2'>
                     {/* display campground info */}
                     Welcome to Campground Name! Located in the heart of nature, our campground offers a serene and peaceful escape from the hustle and bustle of everyday life. With stunning views of the surrounding mountains and a variety of recreational activities, you're sure to have an unforgettable camping experience.
                 </p>
             </Row>
-            <Container className='mt-5'>
+            <Container className='mt-2'>
                 <Row>
                     <Col className='border-end mr-4'>
                         <h2>Facilities and Amenities</h2>
@@ -168,20 +214,41 @@ function IndividualCampground() {
                 </Row>
                 <h2>Please select the date</h2>
 
-                <Form onSubmit={handleBook} className='individualSearch'>
+                <Form className='individualSearch'>
                     <Form.Label>Check in</Form.Label>
                     <DatePicker selected={startDate} placeholderText="Select check-in date" onChange={(date) => setStartDate(date)} />
                     <Form.Label>Check out</Form.Label>
-                    <DatePicker selected={endDate} placeholderText="Select check-out date" onChange={(date) => setEndDate(date)} />
-                    <Row className='mt-5'>
-                        <Col>
-                            <Button type="submit" size="sm" style={{ backgroundColor: '#ADFB2F', border: 'none', color: 'black', maxHeight: '50px', marginLeft: '150px' }}>Book now</Button>
+                    <DatePicker selected={endDate} placeholderText="Select check-out date" onChange={(date) => setEndDate(date)} />                    
+                </Form>
+                {Auth.loggedIn()?( 
+                    <Row className='mt-5'>                        
+                        <Col >
+                            { (!startDate && !endDate) ? (
+                            <>
+                                <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                                <Button style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px'}} >Book Now</Button>
+                                </OverlayTrigger>
+                            </> ):(
+                            <>
+                                <Button key='1' onClick={() => { handleSwitch(1, startDate, endDate) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px'}} >Book Now</Button>
+                            </>)}
+                            
                         </Col>
-                        <Col>
-                            <Button onClick={() => { handleSaveCamp(id, campgroundId) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px' }}>Favorite</Button>
+                        <Col >
+                            <Button key='2' onClick={() => { handleSwitch(2, startDate, endDate)}} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px'}} >Favorite</Button>
                         </Col>
                     </Row>
-                </Form>
+                ):(
+                <Row className='mt-5'>
+                    <p className="mb-5 pb-lg-2 text-center" style={{ color: '#393f81' }}>Please <a href="/Login" style={{ color: '#393f81' }}>sign in</a> to continue.Don't have an account? <a href="/register" style={{ color: '#393f81' }}>Register here</a></p>
+                    <Col >
+                        <Button type="submit" size="sm" variant="success" disabled>Book now</Button>
+                    </Col>
+                    <Col >
+                        <Button onClick={() => { handleSaveCamp(id, campgroundId) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px'}} disabled>Favorite</Button>
+                    </Col>
+                </Row>
+                )}
             </Container>
             <hr className='mx-5' />
             <Container className='mt-5'>
