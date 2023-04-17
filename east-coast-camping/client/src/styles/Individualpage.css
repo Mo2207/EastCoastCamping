@@ -32,3 +32,9 @@ p {
 .searchInput {
     margin-right: 90px;
 }
+
+p,
+li,
+label {
+    color: #808386;
+}
