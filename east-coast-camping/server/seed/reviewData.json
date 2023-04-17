@@ -1,313 +1,313 @@
 [
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000001",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000001",
     "rating": 4.2,
     "text": "Good facilities and helpful staff."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000001",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000001",
     "rating": 4.5,
     "text": "Beautiful scenery and great amenities!"
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000001",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000001",
     "rating": 4.8,
     "text": "One of the best camping experiences I've had!"
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000001",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000001",
     "rating": 4.3,
     "text": "Decent facilities, but could use some updates."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000002",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000002",
     "rating": 4.7,
     "text": "Great place to escape and relax."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000002",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000002",
     "rating": 4.6,
     "text": "Peaceful atmosphere and beautiful views."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000002",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000002",
     "rating": 4.4,
     "text": "Decent facilities, but could use more activities."
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000002",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000002",
     "rating": 4.9,
     "text": "Incredible scenery and great amenities!"
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000003",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000003",
     "rating": 4.5,
     "text": "Good value for the price, would recommend to others."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000003",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000003",
     "rating": 4.8,
     "text": "Great location for fishing and hiking."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000003",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000003",
     "rating": 4.7,
     "text": "Plenty of activities and great facilities."
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000003",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000003",
     "rating": 4.6,
     "text": "Peaceful and relaxing setting, perfect for a family getaway."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000004",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000004",
     "rating": 4.3,
     "text": "Good facilities and friendly staff, but the location was a bit far from town."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000004",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000004",
     "rating": 4.5,
     "text": "Beautiful natural setting and great activities for kids."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000004",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000004",
     "rating": 4.7,
     "text": "Amazing hiking trails and peaceful atmosphere."
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000004",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000004",
     "rating": 4.2,
     "text": "Facilities were clean but a bit outdated, and there wasn't much to do on site."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000005",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000005",
     "rating": 4.8,
     "text": "One of the best camping experiences I've ever had! Beautiful location and lots of fun activities."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000005",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000005",
     "rating": 4.6,
     "text": "Quiet and relaxing atmosphere, perfect for a weekend getaway."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000005",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000005",
     "rating": 4.9,
     "text": "Absolutely stunning views and plenty of outdoor activities to keep everyone entertained."
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000005",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000005",
     "rating": 4.4,
     "text": "The facilities were decent but could use some updates. Overall, a great place to stay."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000006",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000006",
     "rating": 4.5,
     "text": "Great location and friendly staff. The only downside was the noise from nearby construction."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000006",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000006",
     "rating": 4.7,
     "text": "Beautiful surroundings and plenty of fun activities for the whole family."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000006",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000006",
     "rating": 4.8,
     "text": "One of the best camping trips I've had in a long time. Can't wait to come back!"
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000006",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000006",
     "rating": 4.3,
     "text": "The facilities were a bit outdated, but the staff was friendly and helpful."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000007",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000007",
     "rating": 4.9,
     "text": "Absolutely loved this campsite! The facilities were top-notch and the staff was incredibly helpful."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000007",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000007",
     "rating": 4.7,
     "text": "Great location and plenty of activities for the whole family."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000007",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000007",
     "rating": 4.5,
     "text": "The facilities were clean and well-maintained, but the noise from nearby construction was a bit of a bother."
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000007",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000007",
     "rating": 4.4,
     "text": "Decent facilities, but could use more variety in terms of activities."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000008",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000008",
     "rating": 4.6,
     "text": "Good value for the price, but the facilities were a bit outdated."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000008",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000008",
     "rating": 4.8,
     "text": "Great location and plenty of outdoor activities to keep everyone entertained."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000008",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000008",
     "rating": 4.9,
     "text": "Absolutely stunning scenery and great amenities!"
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000008",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000008",
     "rating": 4.3,
     "text": "Decent facilities, but could use some updates."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000009",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000009",
     "rating": 4.7,
     "text": "Had a great time at this campsite. The facilities were clean and the staff was helpful."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000009",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000009",
     "rating": 4.5,
     "text": "Beautiful location with plenty of outdoor activities. The only downside was the noise from nearby construction."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000009",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000009",
     "rating": 4.9,
     "text": "Absolutely stunning scenery and top-notch amenities. Can't wait to come back!"
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000009",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000009",
     "rating": 4.2,
     "text": "Decent facilities, but could use some updates. Overall, a great place to stay."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000010",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000010",
     "rating": 4.6,
     "text": "Good value for the price, but the facilities were a bit outdated."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000010",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000010",
     "rating": 4.8,
     "text": "Great location and plenty of outdoor activities to keep everyone entertained."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000010",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000010",
     "rating": 4.7,
     "text": "Had a great time at this campsite. The facilities were clean and well-maintained."
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000010",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000010",
     "rating": 4.5,
     "text": "Beautiful location with plenty of fun activities, but the facilities could use some updates."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000011",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000011",
     "rating": 4.5,
     "text": "Had a great time at this campsite, but the facilities could use some updating."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000011",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000011",
     "rating": 4.7,
     "text": "Loved the location and the variety of activities available."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000011",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000011",
     "rating": 4.9,
     "text": "This was one of the best camping experiences I've ever had. The scenery was breathtaking and the amenities were top-notch."
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000011",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000011",
     "rating": 4.3,
     "text": "Decent facilities, but could use some more updates and variety in terms of activities."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000012",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000012",
     "rating": 4.6,
     "text": "Good value for the price, but the facilities were a bit outdated."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000012",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000012",
     "rating": 4.8,
     "text": "This campsite was absolutely beautiful and there were plenty of fun activities to keep us entertained."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000012",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000012",
     "rating": 4.9,
     "text": "The scenery was breathtaking and the amenities were top-notch. Can't wait to come back!"
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000012",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000012",
     "rating": 4.4,
     "text": "Facilities were clean, but could use some updates. Overall, a great place to stay."
   },
   {
-    "userId": "000000000000000000000001",
-    "campId": "000000000000000000000013",
+    "user": "000000000000000000000001",
+    "camp": "000000000000000000000013",
     "rating": 4.7,
     "text": "Great location and plenty of fun activities for the whole family."
   },
   {
-    "userId": "000000000000000000000002",
-    "campId": "000000000000000000000013",
+    "user": "000000000000000000000002",
+    "camp": "000000000000000000000013",
     "rating": 4.5,
     "text": "Quiet and relaxing atmosphere, perfect for a weekend getaway."
   },
   {
-    "userId": "000000000000000000000003",
-    "campId": "000000000000000000000013",
+    "user": "000000000000000000000003",
+    "camp": "000000000000000000000013",
     "rating": 4.9,
     "text": "Absolutely stunning views and plenty of outdoor activities to keep everyone entertained."
   },
   {
-    "userId": "000000000000000000000004",
-    "campId": "000000000000000000000013",
+    "user": "000000000000000000000004",
+    "camp": "000000000000000000000013",
     "rating": 4.4,
     "text": "The facilities were decent but could use some updates. Overall, a great place to stay."
   }
