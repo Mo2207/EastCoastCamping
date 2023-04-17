@@ -16,10 +16,13 @@ import {
     Popover
   } from 'react-bootstrap';
 import { useMutation, useQuery } from '@apollo/client';
-import { SAVE_CAMP, CREATE_REVIEW} from '../utils/mutations';
+import { SAVE_CAMP, CREATE_REVIEW } from '../utils/mutations';
 import { QUERY_CAMPBYID, GET_CAMP_REVIEWS, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import Footer from '../components/Footer';
+import Amenities from '../components/detailPage/Amenities';
+import ReservationInfo from '../components/detailPage/ReservationInfo';
+
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -53,15 +56,15 @@ function IndividualCampground() {
 
     // query individual camp reviews
     const { data: reviewData } = useQuery(GET_CAMP_REVIEWS, {
-        variables: {campId: campgroundId}
+        variables: { campId: campgroundId }
     });
 
-    const reviews = reviewData ?. campReviews || [];
+    const reviews = reviewData?.campReviews || [];
     // console.log(`CAMPREVIEWS: ${reviews}`)
-    
+
     // query individual camp data
-    const {loading, data} = useQuery(QUERY_CAMPBYID, {
-        variables: {campById: campgroundId}
+    const { loading, data } = useQuery(QUERY_CAMPBYID, {
+        variables: { campById: campgroundId }
 
     })
     const campInfo = data?.campById || {};
@@ -105,6 +108,7 @@ function IndividualCampground() {
         console.log("2", id, campgroundId)
         const { savedData } = saveCamp({
             variables: { userId: id, campId: campgroundId }
+
         })          
         console.log(savedData)
     }
@@ -118,6 +122,7 @@ function IndividualCampground() {
                 handleSaveCamp(id, campgroundId);
                 break;
         }
+
     }
 
     // function handleOpenReviewInput() {
@@ -163,56 +168,39 @@ function IndividualCampground() {
                     </Swiper>
                 </div>
             </div>
+            {/*----------------------- camp images to display on page using swiper.js -------------------------------*/}
 
 
+            {/*----------------------- camp info -------------------------------*/}
             <Row className='campInfo'>
-                <h1>Campground Name: {campInfo.name}</h1>
-                <p>Location: {campInfo.location}</p>
-                <p>Price: {campInfo.price}</p>
-                <p className='mt-2'>
+
+                <h3> {campInfo.name}</h3>
+                <h4 className='mt-2'>{campInfo.location}</h4>
+                <p className='text-secondary'>${campInfo.price} | 2-6 persons | 30m2</p>
+                <p className='mt-3'>
                     {/* display campground info */}
-                    Welcome to {campInfo.name}! Located in the heart of nature, our campground offers a serene and peaceful escape from the hustle and bustle of everyday life. With stunning views of the surrounding mountains and a variety of recreational activities, you're sure to have an unforgettable camping experience.
+                    Welcome to {campInfo.name} .Located in the heart of nature, our campground offers a serene and peaceful escape from the hustle and bustle of everyday life. With stunning views of the surrounding mountains and a variety of recreational activities, you're sure to have an unforgettable camping experience.
                 </p>
             </Row>
-            <Container className='mt-2'>
-                <Row>
-                    <Col className='border-end mr-4'>
-                        <h2>Facilities and Amenities</h2>
-                        <ul>
-                            <li>Spacious campsites with fire pits and picnic tables</li>
-                            <li>Modern restroom facilities with hot showers</li>
-                            <li>RV hookups and dump station</li>
-                            <li>Hiking trails and nature walks</li>
-                            <li>Fishing and boating opportunities</li>
-                            <li>Camp store with camping supplies</li>
-                            <li>On-site playground for kids</li>
-                        </ul>
-                    </Col>
+            {/*----------------------- camp info -------------------------------*/}
 
-                    <Col className='pl-4'>
-                        <h2>Campsite rules</h2>
-                        <ul>
-                            <li>Campsite is opened for vehicle and reception is opened always from 8:00 till 20:00.</li>
-                            <li>The earliest check in time is 08:00 and latest check out time is 11:30.</li>
-                            <li>All roads in the camp site must remain free.</li>
-                            <li>Emptying chemical toilets is allowed only on designated place</li>
-                            <li>Guests should keep their pitch area clear and tidy.</li>
-                            <li>Quiet hours are from 14:00 till 16:t00 afternoon and from 22:00 till 7:00.</li>
-                            <li>Use of electric stoves, and heating is not allowed and can result in power shut down.</li>
-                            <li>Smoking inside caravan/rented tents/cabins is strictly forbidden ...</li>
-                        </ul>
-                    </Col>
 
-                </Row>
-            </Container>
+            {/*----------------------- Amenities -------------------------------*/}
+            <Amenities />
+            {/*----------------------- Amenities -------------------------------*/}
+
+
+
+
             <Container className='mt-5'>
-                <Row>
-                    <h2>Reservation Information</h2>
-                    <p>
-                        Reservations can be made online or by calling our campground office. We offer both tent and RV camping options, and our friendly staff are always available to assist with any questions or special requests you may have. Don't miss out on the opportunity to experience the beauty of nature at Campground Name
-                    </p>
-                </Row>
-                <h2>Please select the date</h2>
+                {/*----------------------- Reservation info -------------------------------*/}
+                <ReservationInfo />
+                {/*----------------------- Reservation info -------------------------------*/}
+
+
+                {/*----------------------- calendar to pick the dates (Datepicker) -------------------------------*/}
+                <h4>Please select the date</h4>
+
 
                 <Form className='individualSearch'>
                     <Form.Label>Check in</Form.Label>
@@ -233,11 +221,13 @@ function IndividualCampground() {
                                 <Button key='1' onClick={() => { handleSwitch(1, startDate, endDate) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px'}} >Book Now</Button>
                             </>)}
                             
+
                         </Col>
                         <Col >
                             <Button key='2' onClick={() => { handleSwitch(2, startDate, endDate)}} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px'}} >Favorite</Button>
                         </Col>
                     </Row>
+
                 ):(
                 <Row className='mt-5'>
                     <p className="mb-5 pb-lg-2 text-center" style={{ color: '#393f81' }}>Please <a href="/Login" style={{ color: '#393f81' }}>sign in</a> to continue.Don't have an account? <a href="/register" style={{ color: '#393f81' }}>Register here</a></p>
@@ -249,12 +239,17 @@ function IndividualCampground() {
                     </Col>
                 </Row>
                 )}
+
             </Container>
+            {/*----------------------- calendar to pick the dates (Datepicker) -------------------------------*/}
+
+
+            {/*----------------------- review section -------------------------------*/}
             <hr className='mx-5' />
             <Container className='mt-5'>
                 <Row>
                     <Col>
-                        <h2>Customer Reviews</h2>
+                        <h4>Customer Reviews</h4>
                         {/* <button onClick={handleOpenReviewInput} style={{ border: 'none', color: 'grey', maxHeight: '50px', marginLeft: '150px' }}>
                             Leave a Review
                         </button> */}
@@ -266,6 +261,7 @@ function IndividualCampground() {
                         ))}
                     </Col>
                 </Row>
+                {/*----------------------- review section -------------------------------*/}
             </Container>
         </>
     )
