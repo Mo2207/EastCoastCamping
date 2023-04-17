@@ -26,27 +26,15 @@ import ReservationInfo from '../components/detailPage/ReservationInfo';
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
-const days = ( date1 , date2 ) => {
-    let difference = date2.getTime() - date1.getTime();
-    let total = Math.ceil( difference / (1000 * 3600 * 24))-1;
-    return total;
-  }
 
 function IndividualCampground() {
-    // const [reviews, setReviews] = useState([
-    //     { id: 1, author: 'John Doe', review: 'Great campground! Beautiful views and friendly staff.' },
-    //     { id: 2, author: 'Jane Smith', review: 'Had an amazing time camping here. Facilities were clean and well-maintained.' },
-    //     { id: 3, author: 'Mike Johnson', review: 'One of the best campgrounds I have been to. Highly recommended!' }
-    // ]);
-
-    // const [reviews, setReviews] = useState('');
 
     let id;
     if (Auth.loggedIn()) {
         id = Auth.getToken()
     };
 
-    const [destination, setDestination] = useState('');
+    // const [destination, setDestination] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const location = useLocation();

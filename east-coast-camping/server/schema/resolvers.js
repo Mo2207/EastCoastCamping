@@ -308,7 +308,23 @@ const resolvers = {
     },
 
     // Booking Mutations
-    createBooking: async (parent, { userId, campId, startDate, endDate }) => {
+    createBooking: async (parent, { userId, campId, startDate, endDate, price, totalP, totalN, bookingID }) => {
+      
+      const days = ( date1 , date2 ) => {
+        let difference = date2.getTime() - date1.getTime();
+        let total = Math.ceil( difference / (1000 * 3600 * 24))-1;
+        return total;
+      }
+
+        //Calculate duration of nights and total
+        var date1 = new Date(startDate);
+        var date2 = new Date(endDate);
+        totalN = days(date1,date2);       
+        
+        totalP = price * totalN;      
+        //Generate Booking ID
+        bookingID = Math.floor(Math.random() * 900000000) + 100000000;
+      
 
       // validation to check if userId and campId exist
       const validUser = await User.findById(userId);
@@ -325,7 +341,11 @@ const resolvers = {
         user: userId,
         camp: campId,
         startDate,
-        endDate
+        endDate,
+        price,
+        totalP,
+        totalN,
+        bookingID
       })
       // save the booking
       await newBooking.save();

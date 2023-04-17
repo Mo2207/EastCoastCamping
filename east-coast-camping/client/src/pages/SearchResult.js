@@ -5,15 +5,14 @@ import Row from 'react-bootstrap/Row';
 import { Container } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css'
 import { Link, useLocation } from 'react-router-dom';
-import { QUERY_CAMPGROUNDBYLOCATION, QUERY_ALLCAMPS } from '../utils/queries';
-import { useLazyQuery, useQuery } from '@apollo/client';
+import { QUERY_CAMPGROUNDBYLOCATION } from '../utils/queries';
+import { useLazyQuery } from '@apollo/client';
 import Footer from '../components/Footer';
 import AllCamps from '../components/Homepage/Allcamps';
 
 function SearchResult() {
     const [destination, setDestination] = useState('');
-    const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
-    const allCampsData = useQuery(QUERY_ALLCAMPS);
+    const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);    
 
     const location = useLocation();
     const handleSubmit = async (event) => {
@@ -100,26 +99,31 @@ function SearchResult() {
                                 {data &&
                                     data.campByLocation &&
                                     data.campByLocation.map((campground, idx) => (
-                                        <Col className='p-2' key={idx}>
-                                            <Card style={{ marginBottom: '200px', width: '25rem', minHeight: '450px', margin: '50px' }}>
-                                                <Card.Img
-                                                    variant="top"
-                                                    src={campground.image}
-                                                />
-                                                <Card.Body>
-                                                    <Card.Title>{campground.name}</Card.Title>
-                                                    <Card.Text>
-                                                        Location: {campground.location}<br />
-                                                        Price: {campground.price}
-                                                    </Card.Text>
-                                                </Card.Body>
-                                                <div className='d-flex justify-content-end btn'>
-                                                    <Link to={`/campground/${campground._id}?name=${campground.name}`}>
-                                                        <button className='btn' style={{ backgroundColor: '#ADFB2F' }}>View Details</button>
-                                                    </Link>
-                                                </div>
-                                            </Card>
-                                        </Col>
+                                        <Col key={idx}
+                                        className="row d-flex flex-wrap justify-content-center mb-3"
+                                        style={{ marginRight: '15px' }}>
+                                               
+                                        <Card className="card" style={{ minWidth: '19rem', minHeight: '450px', margin: '20px' }}>
+                                          <Card.Img
+                                            variant="top"
+                                            src={campground.image}
+                                            alt={campground.name}
+                                            style={{ marginTop: '10px' }}
+                                          />
+                                          <Card.Body>
+                                            <Card.Title>{campground.name}</Card.Title>
+                                            <Card.Text>
+                                              Location: {campground.location}<br />
+                                              Price: {campground.price}
+                                            </Card.Text>
+                                          </Card.Body>
+                                          <div className="d-flex justify-content-end btn">
+                                            <Link to={`/campground/${campground._id}?name=${campground.name}`}>
+                                              <button className="btn btn-primary">View Details</button>
+                                            </Link>
+                                          </div>
+                                        </Card>
+                                      </Col>   
                                     ))}
                             </Row>
                         </Col>

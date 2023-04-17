@@ -1,7 +1,6 @@
 // importing necessary dependencies
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { Link } from 'react-router-dom';
 // importing style for contact page
 import Footer from '../components/Footer';
 
