@@ -20,6 +20,8 @@ import IndividualCampGround from './pages/IndividualPage';
 import Footer from './components/Footer';
 import Favorite from './components/Favorite';
 import Reservation from './components/Reservation'
+import StripeCheckout from './components/Stripe';
+
 
 
 
@@ -80,11 +82,11 @@ function App() {
             <Route
               path="/completed"
               element={<Completed />}
-            />     
+            />
             <Route
               path="/favorite"
               element={<Favorite />}
-            />                
+            />
             <Route
               path="/search"
               element={<SearchResult />}
@@ -100,7 +102,13 @@ function App() {
             <Route
               path="/reservation"
               element={<Reservation />}
-              />
+            />
+
+            <Route
+              path="/checkout"
+              element={<StripeCheckout />}
+            />
+
             <Route
               path="*"
               element={<NoMatch />}

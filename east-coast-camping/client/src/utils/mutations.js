@@ -29,7 +29,7 @@ export const CREATE_REVIEW = gql`
   }
 `;
 
-export const USER_LOGIN = gql `
+export const USER_LOGIN = gql`
 mutation Mutation($email: String!, $password: String!) {
   userLogin(email: $email, password: $password) {
     _id
@@ -42,7 +42,7 @@ mutation Mutation($email: String!, $password: String!) {
 }
 `;
 
-export const EDIT_ME = gql `
+export const EDIT_ME = gql`
   mutation Mutation($userId: ID!, $firstName: String, $lastName: String, $email: String) {
     editUser(userId: $userId, firstName: $firstName, lastName: $lastName, email: $email) {
       firstName
@@ -52,7 +52,7 @@ export const EDIT_ME = gql `
   }
 `;
 
-export const DELETE_ME = gql `
+export const DELETE_ME = gql`
 mutation Mutation($deleteUserId: ID!) {
   deleteUser(id: $deleteUserId) {
     _id
@@ -60,7 +60,7 @@ mutation Mutation($deleteUserId: ID!) {
 }
 `
 
-export const SAVE_CAMP = gql `
+export const SAVE_CAMP = gql`
 mutation Mutation($userId: ID!, $campId: ID!) {
   saveCamp(userId: $userId, campId: $campId) {
     saved
@@ -82,3 +82,11 @@ mutation Mutation($userId: ID!, $campId: ID!, $startDate: String!, $endDate: Str
   }
 }
 `
+
+export const CREATE_STRIPE_PAYMENT = gql`
+  mutation CreateStripePayment($amount: Int!) {
+    createStripePayment(amount: $amount) {
+      clientSecret
+    }
+  }
+`;

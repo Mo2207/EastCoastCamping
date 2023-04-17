@@ -48,34 +48,34 @@ function Reservation() {
     console.log(location.state.price)
 
 
-    // -------------------Stripe Section---------------- // 
-    const [cardNumber, setCardNumber] = useState('');
-    const [cardHolder, setCardHolder] = useState('');
-    const [expDate, setExpDate] = useState('');
+    // // -------------------Stripe Section---------------- // 
+    // const [cardNumber, setCardNumber] = useState('');
+    // const [cardHolder, setCardHolder] = useState('');
+    // const [expDate, setExpDate] = useState('');
 
-    const [processPayment, { loading, error }] = useMutation(PROCESS_PAYMENT_MUTATION);
+    // const [processPayment, { loading, error }] = useMutation(PROCESS_PAYMENT_MUTATION);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
 
 
-        const result = await processPayment({
-            variables: {
-                cardNumber,
-                cardHolder,
-                expDate
-            }
-        });
+    //     const result = await processPayment({
+    //         variables: {
+    //             cardNumber,
+    //             cardHolder,
+    //             expDate
+    //         }
+    //     });
 
-        // Handle the result of the mutation
-        if (result.data.processPayment) {
-            // Payment successful, show success
-            console.log('Payment successful:', result.data.processPayment);
-        } else {
-            // Payment failed, show error
-            console.error('Payment failed:', error);
-        }
-    };
+    //     // Handle the result of the mutation
+    //     if (result.data.processPayment) {
+    //         // Payment successful, show success
+    //         console.log('Payment successful:', result.data.processPayment);
+    //     } else {
+    //         // Payment failed, show error
+    //         console.error('Payment failed:', error);
+    //     }
+    // };
 
 
     return (
@@ -125,7 +125,7 @@ function Reservation() {
 
                                         <Row style={{ marginTop: 30, alignItems: 'center' }}>
                                             <Card.Title className="text-center" >Payment</Card.Title>
-                                            <Form onSubmit={handleSubmit}>
+                                            <Form>
                                                 <Form.Text className="text-muted">PAYMENT METHOD</Form.Text>
                                                 <Form.Select className="mb-3" aria-label="Default select example">
                                                     <option value="1">Creditcard</option>
@@ -139,8 +139,7 @@ function Reservation() {
                                                         type="text"
                                                         placeholder="1234 5678 1234 5678"
                                                         wrapperClass="mb-3"
-                                                        value={cardNumber}
-                                                        onChange={(e) => setCardNumber(e.target.value)}
+
                                                     />
                                                 </InputGroup>
 
@@ -151,8 +150,7 @@ function Reservation() {
                                                                 placeholder="Card Holder"
                                                                 aria-label="CARD HOLDER"
                                                                 aria-describedby="basic-addon2"
-                                                                value={cardHolder}
-                                                                onChange={(e) => setCardHolder(e.target.value)}
+
                                                             />
                                                         </Col>
                                                         <Col md='4'>
@@ -160,8 +158,7 @@ function Reservation() {
                                                                 placeholder="05 19"
                                                                 aria-label="EXP DATE"
                                                                 aria-describedby="basic-addon2"
-                                                                value={expDate}
-                                                                onChange={(e) => setExpDate(e.target.value)}
+
                                                             />
                                                         </Col>
                                                     </Row>

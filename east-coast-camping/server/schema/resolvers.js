@@ -352,34 +352,12 @@ const resolvers = {
     // ----------------Stripe payment----------------------//
 
 
-    processPayment: async (_, { cardNumber, cardHolder, expDate }) => {
-      try {
-        // Perform payment processing logic using Stripe or any other payment gateway
-        const charge = await stripe.charges.create({
-          amount: 1000,
-          currency: 'usd',
-          source: cardNumber,
-          metadata: {
-            cardHolder,
-            expDate
-          }
-        });
-
-
-        const payment = {
-          id: charge.id,
-          cardNumber,
-          cardHolder,
-          expDate
-        };
-
-        // Return the Payment object as the result
-        return payment;
-
-      } catch (error) {
-        // Handle payment errors
-        throw new Error('Payment failed');
-      }
+    createStripePayment: async (_, { amount }) => {
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: Math.round(amount * 100),
+        currency: 'usd',
+      });
+      return paymentIntent.client_secret;
     },
   }
 }
