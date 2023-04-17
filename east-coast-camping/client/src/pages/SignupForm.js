@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, Alert, Container, Card, Row, Col, Image } from 'react-bootstrap';
+import { Form, Button, Container, Card, Row, Col, Image } from 'react-bootstrap';
 import { CREATE_USER } from '../utils/mutations';
 
 import '../styles/login-signUp.css'
@@ -28,10 +28,6 @@ function SignupForm() {
                 lastName: formState.lastName,
             },
         });
-        // const token = responseData.data.userById._id;
-        // Auth.login(token);
-        // console.log(token)
-
     };
 
     const handleChange = (event) => {

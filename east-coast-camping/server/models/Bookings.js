@@ -21,6 +21,20 @@ const bookingSchema = new Schema({
     type: String,
     required: true
   },
+  price: {
+    type: Number,
+    required: true
+  },
+  totalP: {
+    type: Number,
+  },
+  totalN: {
+    type: Number,
+  },
+  bookingID: {
+    type: Number,
+  }  
+
 });
 
 const Booking = model('Booking', bookingSchema);

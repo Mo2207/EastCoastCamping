@@ -8,7 +8,7 @@ import '../styles/Navbar.css'
 
 
 function NavTab() {
-
+    //Nav Bar on top of page
     return (
         <Navbar collapseOnSelect expand="lg" bg="white" className='text-dark'>
             <Container fluid>

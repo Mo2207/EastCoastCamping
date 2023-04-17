@@ -8,15 +8,11 @@ import {
   Form,
   Button,
   InputGroup,
-  Dropdown,
-  Tabs
 } from 'react-bootstrap';
 import "../../styles/Upcoming.css";
-import greentick from "../images/greentick.png"
 import reservation from '../images/reservation.png'
 import creditcard from '../images/card.png'
 import { useLocation } from 'react-router-dom'
-import NoMatch from "../../pages/NoMatch";
 import Auth from '../../utils/auth';
 
 const days = ( date1 , date2 ) => {
@@ -26,13 +22,14 @@ const days = ( date1 , date2 ) => {
   }
 
 function Reservation() {
-
+    //Grab camp data from individual page and use for reservation page
     const location = useLocation();
     console.log(location.state)
     const name = Auth.getName()
     const email = Auth.getEmail()
     console.log((location.state.checkin).toString())
 
+    // Calculate Total Nights and Amount
     var date1 = new Date(location.state.checkin);
     var date2 = new Date(location.state.checkout);
     var totalNight = days(date1,date2);
