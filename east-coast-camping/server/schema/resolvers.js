@@ -1,4 +1,4 @@
-
+const stripe = require('stripe')('sk_test_51Mxv6VH5nMicWc7Be0OaN1K36NYHqV28ZazmJDtU50IEw5sHlN5RN8HmQuVGOBxZFoLb95hzABSa74lHkLL5MD3E00XPQ2v2ky');
 const { User, CampGround, Review, Booking } = require('../models');
 const bcrypt = require('bcrypt');
 const { signToken } = require('../utils/auth');
@@ -12,7 +12,7 @@ const resolvers = {
     // ---------- USER QUERIES ----------
     // get user by id
     userById: async (parent, args) => {
-      
+
       const user = await User.findById(args.id);
       if (!user) {
         throw new Error(`user with id: ${args.id} not found!`);
@@ -50,18 +50,18 @@ const resolvers = {
     //get camp by location
     campByLocation: async (_, { location }) => {
       const camps = await CampGround.find({ location });
-     // .populate({path:'location', model:'CampGround'});
-      
+      // .populate({path:'location', model:'CampGround'});
+
       return camps
     },
-    
+
     // get all camps
     allCamps: async (parent, args) => {
       return await CampGround.find();
     },
 
     // get array of camps
-    getArrayOfCamps: async (parent, {ids}) => {
+    getArrayOfCamps: async (parent, { ids }) => {
       // converts string ids to object ids
       const objectIds = ids.map(id => mongoose.Types.ObjectId(id));
 
@@ -72,18 +72,18 @@ const resolvers = {
     },
 
     // combination of userById and getArrayOfCamps
-    getCampsAndBookingByUserId: async (parent, {userId}, context) => {
+    getCampsAndBookingByUserId: async (parent, { userId }, context) => {
       const user = await User.findById(userId);
       if (!user) {
         throw new Error(`User with ID ${userId} not found!`);
       }
 
-      const savedCamps = 
-      await context.getArrayOfCamps(user.saved, context)
+      const savedCamps =
+        await context.getArrayOfCamps(user.saved, context)
 
       let userBookings =
-      await context.bookingByUserId(userId, context)
-    
+        await context.bookingByUserId(userId, context)
+
       console.log(userBookings)
 
       return { user, savedCamps, userBookings };
@@ -96,7 +96,7 @@ const resolvers = {
     },
 
     userReviews: async (parent, args) => {
-      const reviews = await Review.find({user:args.id});
+      const reviews = await Review.find({ user: args.id });
       if (!reviews) {
         throw new Error(`user with id: ${args.id} not found!`);
       } else {
@@ -104,16 +104,16 @@ const resolvers = {
       }
     },
 
-    campReviews: async (parent, {campId}) => {
+    campReviews: async (parent, { campId }) => {
       // find all reviews associated with campId
       const reviews = await Review.find({
         camp: campId,
       })
-      // populate user and camp for return data
-      .populate('user')
-      .populate('camp')
-      .exec()
-      
+        // populate user and camp for return data
+        .populate('user')
+        .populate('camp')
+        .exec()
+
       return reviews;
     },
 
@@ -124,14 +124,14 @@ const resolvers = {
 
       // populate booking and return
       const populateBooking = await Booking.find(bookings._id)
-      .populate('user')
-      .populate('camp')
-      .exec()
+        .populate('user')
+        .populate('camp')
+        .exec()
 
       return populateBooking;
     },
 
-    bookingByUserId: async (parent, {userId}) => {
+    bookingByUserId: async (parent, { userId }) => {
       const user = await User.findById(userId);
       if (!user) {
         throw new Error(`User with ID ${userId} not found!`);
@@ -139,9 +139,9 @@ const resolvers = {
 
       // populate userBookings and return
       const userBookings = await Booking.find({ user: userId })
-      .populate('user')
-      .populate('camp')
-      .exec()
+        .populate('user')
+        .populate('camp')
+        .exec()
 
       return userBookings;
     }
@@ -167,10 +167,10 @@ const resolvers = {
       // const token = signToken(newUser);
       await newUser.save();
       return newUser;
-      
+
     },
     // edit user by id 
-    editUser: async (parent, {userId, firstName, lastName, email}) => {
+    editUser: async (parent, { userId, firstName, lastName, email }) => {
       // check to make sure arguments are given
       if (!userId) throw new Error(`userId required!`);
 
@@ -192,7 +192,7 @@ const resolvers = {
         userId,
         // make these edits
         userEdits,
-        {new: true}
+        { new: true }
       );
 
       return updateUser;
@@ -242,8 +242,8 @@ const resolvers = {
         // update this user
         userId,
         // $addToSet prevents duplicates getting saved
-        {$addToSet: { saved: campId }},
-        {new: true}
+        { $addToSet: { saved: campId } },
+        { new: true }
       ).populate('saved');
 
       console.log(updateUser)
@@ -262,7 +262,7 @@ const resolvers = {
       const user = await User.findById(userId);
       if (!user) {
         throw new Error(`user with id: ${userId} not found!`);
-      } 
+      }
 
       // delete the campId from users saved list
       if (user.saved.includes(campId)) {
@@ -296,13 +296,13 @@ const resolvers = {
       })
       // save the newReview to database
       await newReview.save()
-      
+
       // find the newReview now that it is saved and populate it with user & camp data
       const populateReview = await Review.findById(newReview._id)
         .populate('user')
         .populate('camp')
         .exec();
-        
+
       // console.log(`POPULATEREVIEW: ${populateReview}`);
       return populateReview;
     },
@@ -346,7 +346,41 @@ const resolvers = {
       } else {
         return cancelledBooking;
       }
-    }
+    },
+
+
+    // ----------------Stripe payment----------------------//
+
+
+    processPayment: async (_, { cardNumber, cardHolder, expDate }) => {
+      try {
+        // Perform payment processing logic using Stripe or any other payment gateway
+        const charge = await stripe.charges.create({
+          amount: 1000,
+          currency: 'usd',
+          source: cardNumber,
+          metadata: {
+            cardHolder,
+            expDate
+          }
+        });
+
+
+        const payment = {
+          id: charge.id,
+          cardNumber,
+          cardHolder,
+          expDate
+        };
+
+        // Return the Payment object as the result
+        return payment;
+
+      } catch (error) {
+        // Handle payment errors
+        throw new Error('Payment failed');
+      }
+    },
   }
 }
 module.exports = resolvers;
