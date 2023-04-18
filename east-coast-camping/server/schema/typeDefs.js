@@ -46,10 +46,7 @@ const typeDefs = gql`
     bookings: [Booking!]
   }
 
-  type PaymentResponse {
-    clientSecret: String!
-  }
-
+ 
 
   type Query {
     userById(id: ID!): User
@@ -64,6 +61,7 @@ const typeDefs = gql`
     allBookings:[Booking]
     bookingByUserId(userId: ID!): [Booking!]
     userReviews(id: ID!):[Review]
+    createCheckoutSession: String
   }
 
   type Mutation {
@@ -76,7 +74,6 @@ const typeDefs = gql`
     createReview(userId: ID!, campId: ID!, rating: Float!, text: String!): Review!
     createBooking(userId:ID!, campId: ID!, startDate: String!, endDate: String!): Booking!
     cancelBooking(id: ID!):Booking
-    createPaymentIntent(amount: Int!): PaymentResponse!
   }
 `
 

@@ -83,11 +83,5 @@ mutation Mutation($userId: ID!, $campId: ID!, $startDate: String!, $endDate: Str
 }
 `
 
-export const CREATE_PAYMENT_INTENT = gql`
-mutation CreatePaymentIntent($amount: Int!) {
-  createPaymentIntent(amount: $amount) {
-    clientSecret
-  }
-}
-`;
+
 

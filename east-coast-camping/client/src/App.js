@@ -20,14 +20,18 @@ import IndividualCampGround from './pages/IndividualPage';
 import Footer from './components/Footer';
 import Favorite from './components/Favorite';
 import Reservation from './components/Reservation'
-import PaymentForm from './components/paymentForm';
+// import PaymentForm from './components/paymentForm';
+import CheckoutButton from './components/Stripe/CheckoutButton';
+import Success from './components/Stripe/Success';
+import Cancel from './components/Stripe/Cancel';
+
 
 
 
 
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -106,7 +110,15 @@ function App() {
 
             <Route
               path="/checkout"
-              element={<PaymentForm />}
+              element={<CheckoutButton />}
+            />
+            <Route
+              path="/success"
+              element={<Success />}
+            />
+            <Route
+              path="/cancel"
+              element={<Cancel />}
             />
 
             <Route

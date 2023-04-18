@@ -5,6 +5,7 @@ const { signToken } = require('../utils/auth');
 const cors = require('cors')
 const FRONTEND_DOMAIN = "http://localhost:3000";
 const mongoose = require('mongoose');
+
 const resolvers = {
 
 
@@ -147,6 +148,28 @@ const resolvers = {
         .exec()
 
       return userBookings;
+    },
+
+    // ----------------Stripe payment----------------------//
+    // no parameter from query
+    createCheckoutSession: async () => {
+      const session = await stripe.checkout.create({
+        // define by stripe
+        line_items: [
+          {
+            price: 'price_1My081H5nMicWc7BNUEGrtbM',
+            quantity: 1
+          }
+        ],
+        mode: 'payment',
+        success_url: FRONTEND_DOMAIN + "/success", //return to success page
+        cancel_url: FRONTEND_DOMAIN + "/cancel", //return to cancel page
+      });
+      //send to front end
+      // redirect to stripe payment page
+      return JSON.stringify({
+        url: session.url
+      });
     }
 
   },
@@ -352,21 +375,7 @@ const resolvers = {
     },
 
 
-    // ----------------Stripe payment----------------------//
 
-
-    async createPaymentIntent(parent, { amount }, context) {
-      try {
-        const paymentIntent = await stripe.paymentIntents.create({
-          amount,
-          currency: 'usd',
-        });
-        return { clientSecret: paymentIntent.client_secret };
-      } catch (err) {
-        console.error(err);
-        throw new Error('Failed to create payment intent');
-      }
-    },
   },
 }
 

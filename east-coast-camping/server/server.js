@@ -32,9 +32,9 @@ const server = new ApolloServer({
 
       // populate userBookings and return
       const userBookings = await Booking.find({ user: userId })
-      .populate('user')
-      .populate('camp')
-      .exec()
+        .populate('user')
+        .populate('camp')
+        .exec()
 
       return userBookings;
     }
@@ -57,14 +57,14 @@ app.get('/', (req, res) => {
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
-  
+
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}!`);
       console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     })
   })
-  };
-  
+};
+
 // Call the async function to start the server
-  startApolloServer(typeDefs, resolvers);
+startApolloServer(typeDefs, resolvers);
