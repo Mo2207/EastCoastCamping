@@ -63,9 +63,10 @@ const typeDefs = gql`
     allBookings:[Booking]
     bookingByUserId(userId: ID!): [Booking!]
     userReviews(id: ID!):[Review]
+    
   }
 
-  type CampGround {
+  type CampGroundReview {
     _id: ID!
     name: String!
     location: String!
@@ -76,6 +77,7 @@ const typeDefs = gql`
     campImages: [String]
     features: String
     reviews: [Review!]
+    allCampReviews:[CampGround]
   }
   
   type Mutation {

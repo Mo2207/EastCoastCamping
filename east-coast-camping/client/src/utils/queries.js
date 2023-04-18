@@ -13,10 +13,6 @@ query Query {
     location
     name
     price
-    reviews {
-      rating
-      text
-    }
   }
 }
 `;

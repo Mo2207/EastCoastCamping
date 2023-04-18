@@ -37,7 +37,6 @@ function Review(){
         id = Auth.getToken()
     };
     const location = useLocation();
-    const [ validated, setValidated] = useState(false);
     const [ formData, setFormData ] = useState({ message:'', rating:''});
 
     const campgroundId = location.pathname.split('/').pop();
@@ -59,13 +58,18 @@ function Review(){
     const { loading, error, data } = useQuery(GET_CAMP_REVIEWS, {
         variables: { campId: campgroundId }
     });
-    if (loading) {
-        return <p>Loading...</p>;
-    }
-    if (error) {
-        return <p>Loading...</p>;
-    }
 
+    const handleReviewSubmit = async (event) => {
+      event.preventDefault();
+      // console.log(formData)
+      
+        console.log(id, campgroundId, formData.message, formData.rating )
+        const {createData} = createReview({
+            variables: { userId: id, campId: campgroundId, rating: formData.rating, text: formData.message
+            }            
+           })
+           console.log(createData)
+      }
     
     const campInfo = data?.campReviews || {};
     // console.log(data.campReviews)
@@ -90,18 +94,6 @@ function Review(){
     fullText.push(campInfo[i].text)
     }
     // console.log(fullName)
-    const handleReviewSubmit = async (event) => {
-      event.preventDefault();
-      // console.log(formData)
-      
-        console.log(id, campgroundId, formData.message, formData.rating )
-        const {createData} = createReview({
-            variables: { userId: id, campId: campgroundId, rating: formData.rating, text: formData.message
-            }            
-           })
-           console.log(createData)
-      }
-
 
     return(
         <>    

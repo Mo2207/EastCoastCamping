@@ -27,16 +27,12 @@ export default function Favorite() {
   }
   
   const [deleteSaved, { loading1, error1, data1}] = useMutation(DELETE_CAMP);
-  
+
+
   const { loading, error, data } = useQuery(GET_USER_BOOKING_SAVED, {
     variables: { userId: id }
   });
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-  if (error) {
-      return <p>Error: {error.message}</p>;
-  }
+
   
   
 
@@ -47,10 +43,11 @@ export default function Favorite() {
   }
     // Delete Favorite    
 
-    function handleToDelete(deleteUserId) {
+    function handleToDelete(deleteUserId, camp) {
       deleteSaved({
-        variables: { deleteUserId }
+        variables: { userId: deleteUserId, campId: camp}        
       })
+      Auth.reload();
     }
   // console.log(profile);
 
@@ -118,7 +115,7 @@ export default function Favorite() {
                               <Col className="d-flex justify-content-end">                          
                                 <Button                       
                                   className="btn-danger"
-                                  onClick={() => {handleToDelete(id)}}
+                                  onClick={() => {handleToDelete(id, campground._id)}}
                                   size="sm"
                                   >Remove</Button> 
                               </Col>

@@ -15,18 +15,25 @@ export const CREATE_USER = gql`
 
 // createReview Query
 export const CREATE_REVIEW = gql`
-  mutation Mutation($userId: ID!, $campId: ID!, $rating: Float!, $text: String!) {
-    createReview(userId: $userId, campId: $campId, rating: $rating, text: $text) {
-      camp {
-        location
-        name
-      }
-      user {
-        email
-        firstName
-      }
+mutation CreateReview($userId: ID!, $campId: ID!, $rating: Float!, $text: String!) {
+  createReview(userId: $userId, campId: $campId, rating: $rating, text: $text) {
+    _id
+    camp {
+      _id
+      image
+      location
+      name
+    }
+    rating
+    text
+    user {
+      _id
+      email
+      firstName
+      lastName
     }
   }
+}
 `;
 
 export const USER_LOGIN = gql `
