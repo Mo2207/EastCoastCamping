@@ -36,7 +36,8 @@ const campGroundSchema = new Schema({
   },
   campImages: {
     type: Array
-  }
+  },
+
 })
 
 const CampGround = model('CampGround', campGroundSchema);

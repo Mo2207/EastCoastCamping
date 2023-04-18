@@ -148,11 +148,12 @@ const resolvers = {
     }
 
   },
-  CampGround: {
+  CampGroundReview: {
     reviews: async (camp) =>{
       const reviews = await Review.find({camp: camp._id });
       return reviews;
-    }
+    },
+
   },
   // MUTATIONS
   Mutation: {
@@ -290,7 +291,7 @@ const resolvers = {
       if (!camp) {
         throw new Error(`Invalid campground id: ${campId}`);
       }
-
+      console.log( userId, campId, rating, text)
       // write the newReview
       const newReview = new Review({
         user: userId,
