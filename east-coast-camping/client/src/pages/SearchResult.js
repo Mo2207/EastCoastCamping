@@ -62,7 +62,7 @@ function SearchResult() {
                             <option value="Minto">Minto</option>
                             <option value="Edmundston">Edmundston</option>
                             <option value="Shediac">Shediac</option>
-                            <option value="Miramichi">All Camps</option>
+                            <option value="All">Search All</option>
                         </select>
                         <button className='btn mt-3 m' style={{ background: '#ADFB2F' }} type="submit">Search</button>
                     </form>
