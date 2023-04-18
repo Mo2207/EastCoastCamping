@@ -2,8 +2,11 @@ const stripe = require('stripe')('sk_test_51Mxv6VH5nMicWc7Be0OaN1K36NYHqV28ZazmJ
 const { User, CampGround, Review, Booking } = require('../models');
 const bcrypt = require('bcrypt');
 const { signToken } = require('../utils/auth');
+const cors = require('cors')
+const FRONTEND_DOMAIN = "http://localhost:3000";
 const mongoose = require('mongoose');
 const resolvers = {
+
 
   // QUERIES
   Query:
@@ -352,13 +355,20 @@ const resolvers = {
     // ----------------Stripe payment----------------------//
 
 
-    createStripePayment: async (_, { amount }) => {
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(amount * 100),
-        currency: 'usd',
-      });
-      return paymentIntent.client_secret;
+    async createPaymentIntent(parent, { amount }, context) {
+      try {
+        const paymentIntent = await stripe.paymentIntents.create({
+          amount,
+          currency: 'usd',
+        });
+        return { clientSecret: paymentIntent.client_secret };
+      } catch (err) {
+        console.error(err);
+        throw new Error('Failed to create payment intent');
+      }
     },
-  }
+  },
 }
+
 module.exports = resolvers;
+

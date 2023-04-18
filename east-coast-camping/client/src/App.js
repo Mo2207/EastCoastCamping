@@ -20,7 +20,7 @@ import IndividualCampGround from './pages/IndividualPage';
 import Footer from './components/Footer';
 import Favorite from './components/Favorite';
 import Reservation from './components/Reservation'
-import StripeCheckout from './components/Stripe';
+import PaymentForm from './components/paymentForm';
 
 
 
@@ -106,7 +106,7 @@ function App() {
 
             <Route
               path="/checkout"
-              element={<StripeCheckout />}
+              element={<PaymentForm />}
             />
 
             <Route

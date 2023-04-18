@@ -46,12 +46,10 @@ const typeDefs = gql`
     bookings: [Booking!]
   }
 
-  type Payment {
-    id: ID!
-    cardNumber: String!
-    cardHolder: String!
-    expDate: String!
+  type PaymentResponse {
+    clientSecret: String!
   }
+
 
   type Query {
     userById(id: ID!): User
@@ -78,7 +76,7 @@ const typeDefs = gql`
     createReview(userId: ID!, campId: ID!, rating: Float!, text: String!): Review!
     createBooking(userId:ID!, campId: ID!, startDate: String!, endDate: String!): Booking!
     cancelBooking(id: ID!):Booking
-    createStripePayment(amount: Float!): String
+    createPaymentIntent(amount: Int!): PaymentResponse!
   }
 `
 
