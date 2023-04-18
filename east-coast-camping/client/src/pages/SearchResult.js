@@ -9,8 +9,12 @@ import { QUERY_CAMPGROUNDBYLOCATION } from '../utils/queries';
 import { useLazyQuery } from '@apollo/client';
 import Footer from '../components/Footer';
 import AllCamps from '../components/Homepage/Allcamps';
+import StarRating from "../components/StarRating";
 
 function SearchResult() {
+    const Start =(j)=>{
+        return <StarRating rating={j}/>;
+    }
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);    
 
@@ -36,13 +40,10 @@ function SearchResult() {
         if (locationParam) {
             setDestination(locationParam);
             searchCampgrounds({ variables: { location: locationParam } });
-        }
+        }// eslint-disable-next-line
     }, []);
-
     if (loading) return <p>Loading...</p>;
-
     if (error) return <p>{error.message}</p>;
-
     return (
         <>
             {/* ------------------dropdown for search campground-------------------- */}
@@ -74,8 +75,6 @@ function SearchResult() {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-
-
                 ) : null}
 
                 {!data || !data.campByLocation || data.campByLocation.length === 0 ? (
@@ -114,7 +113,9 @@ function SearchResult() {
                                             <Card.Title>{campground.name}</Card.Title>
                                             <Card.Text>
                                               Location: {campground.location}<br />
-                                              Price: {campground.price}
+                                              Price: {campground.price}<br/>
+                                              Rating: {Start(campground.reviews[0].rating)}<br />
+                                              Review: {campground.reviews[0].text}<br />
                                             </Card.Text>
                                           </Card.Body>
                                           <div className="d-flex justify-content-end btn">

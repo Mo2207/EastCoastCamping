@@ -18,7 +18,8 @@ import SignupForm from './pages/SignupForm';
 import SearchResult from './pages/SearchResult'
 import IndividualCampGround from './pages/IndividualPage';
 import Favorite from './components/Favorite';
-import Reservation from './components/Reservation'
+import Reservation from './components/Reservation';
+import Review from './pages/Review';
 
 
 
@@ -100,6 +101,10 @@ function App() {
               path="/reservation"
               element={<Reservation />}
               />
+            <Route
+              path="/review/:id"
+              element={<Review />}
+            />
             <Route
               path="*"
               element={<NoMatch />}

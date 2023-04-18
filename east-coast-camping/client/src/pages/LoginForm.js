@@ -9,7 +9,7 @@ import Auth from '../utils/auth';
 import { useMutation } from "@apollo/react-hooks";
 
 const LoginForm = () => {
-    const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+    const [userFormData, setUserFormData] = useState({ email: '', password: '' });// eslint-disable-next-line
     const [login, { error, data }] = useMutation(USER_LOGIN)
 
     const [validated] = useState(false);

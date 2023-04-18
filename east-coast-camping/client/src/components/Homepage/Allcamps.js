@@ -9,8 +9,12 @@ import {
   } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css'
 import { Link } from 'react-router-dom';
+import StarRating from "../StarRating";
 
 const AllCamps = () => {
+  const Start =(j)=>{
+    return <StarRating rating={j}/>;
+}
     //All camps query 
     const { loading, error, data } = useQuery(QUERY_ALLCAMPS);
     if (loading) {
@@ -19,6 +23,7 @@ const AllCamps = () => {
     if (error) {
         return <p>Error: {error.message}</p>;
     }
+    // console.log(data)
 
     return (
         <Container>
@@ -44,7 +49,9 @@ const AllCamps = () => {
                                     <Card.Title>{campground.name}</Card.Title>
                                     <Card.Text>
                                       Location: {campground.location}<br />
-                                      Price: {campground.price}
+                                      Price: {campground.price}<br />
+                                      Rating: {Start(campground.reviews[0].rating)}<br />
+                                      Review: {campground.reviews[0].text}<br />
                                     </Card.Text>
                                   </Card.Body>
                                   <div className="d-flex justify-content-end btn">

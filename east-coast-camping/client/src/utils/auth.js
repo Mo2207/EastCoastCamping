@@ -54,6 +54,10 @@ class AuthService {
     localStorage.setItem("name", firstName+" "+lastName )
     localStorage.setItem("email", email )
   }
+  removeInfo( firstName, lastName, email){
+    localStorage.removeItem("name")
+    localStorage.removeItem("email")
+  }
 }
-
+// eslint-disable-next-line
 export default new AuthService();

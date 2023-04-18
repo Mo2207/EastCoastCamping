@@ -1,6 +1,5 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button, CardGroup } from "react-bootstrap";
 import { QUERY_ALLCAMPS } from "../../utils/queries";
 

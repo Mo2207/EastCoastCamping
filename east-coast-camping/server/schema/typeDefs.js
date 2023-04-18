@@ -21,7 +21,7 @@ const typeDefs = gql`
     available: Boolean!
     price: Int
     campImages: [String]
-
+    features: String
   }
 
   type Review {
@@ -65,6 +65,19 @@ const typeDefs = gql`
     userReviews(id: ID!):[Review]
   }
 
+  type CampGround {
+    _id: ID!
+    name: String!
+    location: String!
+    image: String
+    availability: Int
+    available: Boolean!
+    price: Int
+    campImages: [String]
+    features: String
+    reviews: [Review!]
+  }
+  
   type Mutation {
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): User!
     userLogin(email: String!, password: String!): User!

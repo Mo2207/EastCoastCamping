@@ -2,15 +2,21 @@ import { gql } from '@apollo/client';
 
 
 export const QUERY_ALLCAMPS = gql`
-query AllCamps {
+query Query {
   allCamps {
     _id
-    name
-    location
-    price
-    image
-    available
     availability
+    available
+    campImages
+    features
+    image
+    location
+    name
+    price
+    reviews {
+      rating
+      text
+    }
   }
 }
 `;
@@ -38,6 +44,10 @@ query Query($location: String!) {
     image
     available
     availability
+    reviews {
+      rating
+      text
+    }
   }
 }
 
@@ -72,17 +82,23 @@ query Query($campById: ID!) {
 `;
 
 export const GET_CAMP_REVIEWS = gql`
-  query Query($campId: ID!) {
-    campReviews(campId: $campId) {
-      _id
-      rating
-      text
-      user {
-        firstName
-        lastName
-      }
+query Query($campId: ID!) {
+  campReviews(campId: $campId) {
+    camp {
+      name
+      location
+      image
+      price
+      features
+    }
+    rating
+    text
+    user {
+      firstName
+      lastName
     }
   }
+}
 `
 
 export const GET_USER_SAVECAMP = gql`
@@ -111,6 +127,8 @@ query Query($userId: ID!) {
       name
       location
       _id
+      price
+      features
     }
     user {
       email

@@ -1,8 +1,8 @@
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
-import '../styles/Individualpage.css'
-import React, { useState, useEffect } from 'react';
+import '../styles/Individualpage.css'// eslint-disable-next-line
+import React, { useState, useEffect } from 'react';// eslint-disable-next-line
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css' //date-picker css
@@ -15,20 +15,27 @@ import {
     OverlayTrigger,
     Popover
   } from 'react-bootstrap';
-import { useMutation, useQuery } from '@apollo/client';
-import { SAVE_CAMP, CREATE_REVIEW } from '../utils/mutations';
+import { useMutation, useQuery } from '@apollo/client';// eslint-disable-next-line
+import { SAVE_CAMP, CREATE_REVIEW } from '../utils/mutations';// eslint-disable-next-line
 import { QUERY_CAMPBYID, GET_CAMP_REVIEWS, QUERY_ME } from '../utils/queries';
-import Auth from '../utils/auth';
+import Auth from '../utils/auth';// eslint-disable-next-line
 import Footer from '../components/Footer';
 import Amenities from '../components/detailPage/Amenities';
 import ReservationInfo from '../components/detailPage/ReservationInfo';
+import StarRating from "../components/StarRating";
 
 // Install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination]);
-
+  //Just chat icon
+  const chaticon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-square-text" viewBox="0 0 16 16">
+  <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+  <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+</svg>;
 
 function IndividualCampground() {
-
+    const Start =(j)=>{
+        return <StarRating rating={j}/>;
+    }
     let id;
     if (Auth.loggedIn()) {
         id = Auth.getToken()
@@ -51,6 +58,7 @@ function IndividualCampground() {
     // console.log(`CAMPREVIEWS: ${reviews}`)
 
     // query individual camp data
+    // eslint-disable-next-line
     const { loading, data } = useQuery(QUERY_CAMPBYID, {
         variables: { campById: campgroundId }
 
@@ -68,25 +76,11 @@ function IndividualCampground() {
         </Popover>
       );
 
-    const handleBook = (id, campId, campground, start, end, price) => {
+    const handleBook = (id, campId, name, location, price, start, end) => {
 
-        // var date1 = new Date('4/23/2023');
-        // var date2 = new Date('4/28/2023');
-        // var totalNight = days(date1,date2);
-        
-        // var shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format;
-        // // var shortMonth = shortMonthName(date); // "Jul"  
-      
-        // var start = `${shortMonthName(date1)} ${date1.getDate()}, ${date1.getFullYear()}`;
-        // var end = `${shortMonthName(date2)} ${date2.getDate()}, ${date2.getFullYear()}`;
-
-        // var ratePerNight = price;
-        // var totalAmount = ratePerNight * totalNight;
-
-        // e.preventDefault();
-        console.log("1", id, campId, campground, start, end, price)
+        console.log("1", id, campId, name, location, start, end, price)
         if(start && end ){
-        navigate('/reservation', {state:{userid: id, campid: campgroundId, campName: campInfo.name, campPrice: campInfo.price, checkin: startDate, checkout: endDate}})
+        navigate('/reservation', {state:{userid: id, campid: campgroundId, campName: name, campLocation: location, campPrice: price, checkin: startDate, checkout: endDate}})
         }         
     };
 
@@ -94,14 +88,15 @@ function IndividualCampground() {
 
     function handleSaveCamp(id, campgroundId) {
         console.log("2", id, campgroundId)
+        // eslint-disable-next-line
         const { savedData } = saveCamp({
             variables: { userId: id, campId: campgroundId }
 
         })          
-        console.log(savedData)
+        // console.log(savedData)
     }
 
-    function handleSwitch(e,start,end){
+    function handleSwitch(e,start,end){// eslint-disable-next-line
         switch(e){
             case 1: 
                 handleBook(id, campgroundId, campInfo.name, campInfo.location, campInfo.price, start, end);
@@ -220,10 +215,10 @@ function IndividualCampground() {
                 <Row className='mt-5'>
                     <p className="mb-5 pb-lg-2 text-center" style={{ color: '#393f81' }}>Please <a href="/Login" style={{ color: '#393f81' }}>sign in</a> to continue.Don't have an account? <a href="/register" style={{ color: '#393f81' }}>Register here</a></p>
                     <Col >
-                        <Button type="submit" size="sm" variant="success" disabled>Book now</Button>
+                    <Button style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px'}} disabled>Book Now</Button>
                     </Col>
                     <Col >
-                        <Button onClick={() => { handleSaveCamp(id, campgroundId) }} style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px'}} disabled>Favorite</Button>
+                    <Button key='2' style={{ border: 'none', color: 'white', maxHeight: '50px', marginLeft: '150px'}} disabled>Favorite</Button>
                     </Col>
                 </Row>
                 )}
@@ -243,10 +238,11 @@ function IndividualCampground() {
                         </button> */}
                         {reviews.map(review => (
                             <div key={review.id} className='mt-3'>
-                                <h4>{review.user.firstName} {review.user.lastName} {review.rating}</h4>
+                                <h4>{review.user.firstName} {review.user.lastName} {Start(review.rating)} {review.rating}</h4>
                                 <p>{review.text}</p>
                             </div>
                         ))}
+                        <Link style={{ textDecoration: 'none', fontWeight:'bolder', color:'black'}} to={`/review/${campgroundId}?name=${campInfo.name}`}><p><strong>{chaticon} Submit your review</strong></p></Link>
                     </Col>
                 </Row>
                 {/*----------------------- review section -------------------------------*/}
