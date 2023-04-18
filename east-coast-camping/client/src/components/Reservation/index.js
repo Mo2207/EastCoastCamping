@@ -14,6 +14,8 @@ import reservation from '../images/reservation.png'
 import creditcard from '../images/card.png'
 import { useLocation } from 'react-router-dom'
 import Auth from '../../utils/auth';
+import { useMutation } from '@apollo/client';// eslint-disable-next-line
+import { BOOK_CAMP } from '../../utils/mutations';// eslint-disable-next-line
 
 const days = ( date1 , date2 ) => {
     let difference = date2.getTime() - date1.getTime();
@@ -23,6 +25,8 @@ const days = ( date1 , date2 ) => {
 
 function Reservation() {
     //Grab camp data from individual page and use for reservation page
+    const [ bookCamp ] = useMutation(BOOK_CAMP);
+    
     const location = useLocation();
     console.log(location.state)
     const name = Auth.getName()
@@ -42,6 +46,28 @@ function Reservation() {
     var ratePerNight = location.state.campPrice;
     var totalAmount = ratePerNight * totalNight;
     console.log(location.state.price)
+
+    let id = Auth.getToken()
+
+    function handleBookCamp() {
+        const bookingData = localStorage.getItem('userinfo')
+        console.log(location.state.userid, location.state.campId, location.state.checkin, location.state.checkout, location.state.price)
+        // eslint-disable-next-line
+        try{
+        const { savedData } = bookCamp({
+            variables: {
+                userId: location.state.userid, 
+                campId: location.state.campId, 
+                startDate:location.state.checkin, 
+                endDate: location.state.checkout, 
+                price: location.state.price 
+            }
+        })  
+        } catch(err){
+            console.log(err)
+        }
+        // console.log(savedData);
+    }
 
   return (
     <>
@@ -128,7 +154,7 @@ function Reservation() {
                                     <Image src={creditcard}/>
                                     </Row>                                               
                                 </Row>
-                                    <Button variant="secondary">PAY & CONFIRM</Button>           
+                                    <Button onClick={() =>handleBookCamp(id, location.state.camp, location.state.checkin, location.state.checkout, location.state.campPrice)} variant="secondary">PAY & CONFIRM</Button>           
                                 </Col>
                             </Row>
                         </Card.Body>

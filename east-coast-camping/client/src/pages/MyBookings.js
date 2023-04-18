@@ -102,7 +102,7 @@ function MyBookings() {
                           </Row>
                         </Card.Body>
                         <Row>
-                          <Col md="9" className="mb-1 ml-2"><Link style={{ textDecoration: 'none' }} to={`/review/${campground._id}?name=${campground.name}`}><p>{chaticon} Submit your review</p></Link></Col>
+                          <Col md="9" className="mb-1 ml-2"><Link style={{ textDecoration: 'none' }} to={`/review/${campground._id}?name=${campground.name}`}><p>{chaticon} Check Out Review</p></Link></Col>
                           {/* <Col md="2" className="mb-1 ml-5">
                             <Button color="primary" size="sm">
                                 View Details

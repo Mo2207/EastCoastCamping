@@ -54,9 +54,15 @@ class AuthService {
     localStorage.setItem("name", firstName+" "+lastName )
     localStorage.setItem("email", email )
   }
-  removeInfo( firstName, lastName, email){
+  removeInfo(){
     localStorage.removeItem("name")
     localStorage.removeItem("email")
+  }
+  setBookingInfo( id, camp, start, end){
+    localStorage.setItem("user", id)
+    localStorage.setItem("camp", camp )
+    localStorage.setItem("start", start )
+    localStorage.setItem("end", end )
   }
   reload(){
     window.location.reload()
