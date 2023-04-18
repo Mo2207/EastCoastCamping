@@ -8,6 +8,7 @@ const stripePromise = loadStripe('pk_test_51Mxv6VH5nMicWc7BtPbaCqJWzojNjJ5CWvmtA
 
 function PaymentForm() {
     const [amount, setAmount] = useState(0);
+    // created createPaymentIntent function using mutation
     const [createPaymentIntent] = useMutation(CREATE_PAYMENT_INTENT);
 
     const handleSubmit = async (event) => {
@@ -18,6 +19,7 @@ function PaymentForm() {
             const clientSecret = data.createPaymentIntent.clientSecret;
             const stripe = await stripePromise;
             const result = await stripe.confirmCardPayment(clientSecret, {
+                //   hardcode credit card data
                 payment_method: {
                     card: {
                         number: '4242424242424242',

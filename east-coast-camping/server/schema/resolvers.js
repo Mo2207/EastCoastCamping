@@ -357,10 +357,12 @@ const resolvers = {
 
     async createPaymentIntent(parent, { amount }, context) {
       try {
+        // to create a new payment intent with the specified amount and currency 
         const paymentIntent = await stripe.paymentIntents.create({
           amount,
           currency: 'usd',
         });
+        // if payment created, return clientSecret object
         return { clientSecret: paymentIntent.client_secret };
       } catch (err) {
         console.error(err);
