@@ -12,7 +12,6 @@ const resolvers = {
     // ---------- USER QUERIES ----------
     // get user by id
     userById: async (parent, args) => {
-      
       const user = await User.findById(args.id);
       if (!user) {
         throw new Error(`user with id: ${args.id} not found!`);
@@ -32,6 +31,7 @@ const resolvers = {
         return user;
       }
     },
+
     // get all users
     allUsers: async (parent, args) => {
       return await User.find();
@@ -51,8 +51,7 @@ const resolvers = {
     campByLocation: async (_, { location }) => {
       const camps = await CampGround.find({ location });
      // .populate({path:'location', model:'CampGround'});
-      
-      return camps
+       return camps
     },
     
     // get all camps
@@ -79,7 +78,6 @@ const resolvers = {
       if (!user) {
         throw new Error(`User with ID ${userId} not found!`);
       }
-
       const savedCamps = 
       await context.getArrayOfCamps(user.saved, context)
 
@@ -91,11 +89,12 @@ const resolvers = {
     },
 
     // ---------- REVIEW QUERIES ----------
+
     // get all reviews
     allReviews: async (parent, args) => {
       return await Review.find().populate('user').populate('camp');
     },
-
+     //get all reviews by a specific user
     userReviews: async (parent, args) => {
       const reviews = await Review.find({user:args.id});
       if (!reviews) {
