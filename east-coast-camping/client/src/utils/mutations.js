@@ -17,14 +17,14 @@ export const CREATE_USER = gql`
 export const CREATE_REVIEW = gql`
   mutation Mutation($userId: ID!, $campId: ID!, $rating: Float!, $text: String!) {
     createReview(userId: $userId, campId: $campId, rating: $rating, text: $text) {
-      user {
-        _id
-      }
       camp {
-        _id
+        location
+        name
       }
-      rating
-      text
+      user {
+        email
+        firstName
+      }
     }
   }
 `;

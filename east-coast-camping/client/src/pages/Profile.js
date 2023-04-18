@@ -18,10 +18,11 @@ import Auth from '../utils/auth';
 import { QUERY_ME } from '../utils/queries';
 import { DELETE_ME } from '../utils/mutations';
 import { EDIT_ME } from '../utils/mutations';
-// import NoMatch from './NoMatch';
 
 
 function Profile() {
+
+
   let id;
   if (Auth.loggedIn()) {
     id = Auth.getToken()
@@ -109,17 +110,17 @@ function Profile() {
                 <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
                   <MDBRow>
                     <MDBBreadcrumbItem active>ACCOUNT SETTING</MDBBreadcrumbItem>
-                      <MDBRow>
+                      <MDBRow className="d-flex justify-content-between">
                         {editMode ? (
-                        <MDBCol size="6">
+                        <MDBCol size="sm">
                           <Button onClick={handleToEdit}>Save</Button> 
                         </MDBCol>
                         ):(
-                        <MDBCol size="6">
+                        <MDBCol size="sm">
                           <Button onClick={() => setEditMode(true)}>Edit</Button> 
                         </MDBCol>
                         )}
-                        <MDBCol size="6">
+                        <MDBCol size="sm">
                           <Button                       
                             className="btn-danger"
                             onClick={() => {handleToDelete(id)}}>Delete</Button> 
@@ -179,18 +180,18 @@ function Profile() {
                     <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
                     <MDBRow>
                       <MDBBreadcrumbItem active>MY BOOKING</MDBBreadcrumbItem>
-                        <MDBRow >
-                          <MDBCol sm="3" size="md" className="align-items-center">
+                        <MDBRow className="d-flex justify-content-between">
+                          <MDBCol sm="3" size="sm" className="align-items-center">
                             <a href="/myBookings">
                               <Button>Upcoming</Button>
                             </a>
                           </MDBCol> 
-                          <MDBCol sm="3" size="md" className="align-items-center">
+                          <MDBCol sm="3" size="sm" className="align-items-center">
                             <a href="/completed">
                               <Button>Completed</Button>
                             </a>
                           </MDBCol> 
-                          <MDBCol sm="5" size="md" className="align-items-center">                
+                          <MDBCol sm="5" size="sm" className="align-items-center">                
                             <a href="/favorite">
                               <Button>Favorite Camps</Button>
                             </a>

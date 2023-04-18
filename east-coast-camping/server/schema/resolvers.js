@@ -298,6 +298,7 @@ const resolvers = {
         rating,
         text
       })
+      console.log(newReview)
       // save the newReview to database
       await newReview.save()
       

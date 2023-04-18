@@ -109,18 +109,18 @@ export default function Favorite() {
                             </Row>
                             <Row>
                               <Col xs={9}><Link style={{ textDecoration: 'none' }} to={`/review/${campground._id}?name=${campground.name}`}><p>{chaticon} Submit your review</p></Link></Col> 
-                              <Col>                          
+
+                            </Row>
+                            <Row >
+                              <Col className="d-flex justify-content-start">
+                              <Button href={`/campground/${campground._id}?name=${campground.name}`} variant="primary" size="sm">View Details</Button>
+                              </Col>
+                              <Col className="d-flex justify-content-end">                          
                                 <Button                       
                                   className="btn-danger"
                                   onClick={() => {handleToDelete(id)}}
+                                  size="sm"
                                   >Remove</Button> 
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col>
-                                <Link to={`/campground/${campground._id}?name=${campground.name}`}>
-                                  <Button color="primary" size="sm">View Details</Button>
-                                </Link>
                               </Col>
                             </Row>
                           </Card.Body>
