@@ -34,19 +34,16 @@ export const QUERY_CAMPGROUNDBYLOCATION = gql`
 query Query($location: String!) {
   campByLocation(location: $location) {
     _id
-    name
-    location
-    price
-    image
-    available
     availability
-    reviews {
-      rating
-      text
-    }
+    available
+    campImages
+    features
+    image
+    location
+    name
+    price
   }
 }
-
 `;
 
 export const QUERY_CAMPBYARRAY = gql`
@@ -80,12 +77,13 @@ query Query($campById: ID!) {
 export const GET_CAMP_REVIEWS = gql`
 query Query($campId: ID!) {
   campReviews(campId: $campId) {
+    _id
     camp {
-      name
-      location
       image
-      price
       features
+      location
+      name
+      price
     }
     rating
     text

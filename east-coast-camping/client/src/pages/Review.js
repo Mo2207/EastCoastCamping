@@ -32,22 +32,22 @@ function Review(){
     //   storeCurrentUrl();
     //   navigate('/login')
     // }
-    let id;
-    if (Auth.loggedIn()) {
-        id = Auth.getToken()
-    };
+    // let id;
+    // if (Auth.loggedIn()) {
+    //     id = Auth.getToken()
+    // };
     const location = useLocation();
-    const [ formData, setFormData ] = useState({ message:'', rating:''});
+    // const [ formData, setFormData ] = useState({ message:'', rating:''});
 
     const campgroundId = location.pathname.split('/').pop();
-    const [ createReview] = useMutation(CREATE_REVIEW);
+    // const [ createReview] = useMutation(CREATE_REVIEW);
 
 
   
-    const handleChange = (event) => {     
-      const { name, value } = event.target;
-      setFormData({ ...formData, [name]: value });
-  };
+  //   const handleChange = (event) => {     
+  //     const { name, value } = event.target;
+  //     setFormData({ ...formData, [name]: value });
+  // };
 
 
 
@@ -58,18 +58,24 @@ function Review(){
     const { loading, error, data } = useQuery(GET_CAMP_REVIEWS, {
         variables: { campId: campgroundId }
     });
+    if (loading) {
+      return <p>Loading...</p>;
+  }
+  if (error) {
+      return <p>Error: {error.message}</p>;
+  }
 
-    const handleReviewSubmit = async (event) => {
-      event.preventDefault();
-      // console.log(formData)
+    // const handleReviewSubmit = async (event) => {
+    //   event.preventDefault();
+    //   // console.log(formData)
       
-        console.log(id, campgroundId, formData.message, formData.rating )
-        const {createData} = createReview({
-            variables: { userId: id, campId: campgroundId, rating: formData.rating, text: formData.message
-            }            
-           })
-           console.log(createData)
-      }
+    //     console.log(id, campgroundId, formData.message, formData.rating )
+    //     const {createData} = createReview({
+    //         variables: { userId: id, campId: campgroundId, rating: formData.rating, text: formData.message
+    //         }            
+    //        })
+    //        console.log(createData)
+    //   }
     
     const campInfo = data?.campReviews || {};
     // console.log(data.campReviews)
@@ -80,9 +86,9 @@ function Review(){
     for(let i=0; i<campInfo.length; i++){
         users.push(campInfo[i].user);
     }
-    // console.log(campInfo)
-    // console.log(campInfo[0].rating)
-    // console.log(campInfo[0].text)
+    console.log(campInfo)
+    console.log(campInfo[0].rating)
+    console.log(campInfo[0].text)
 
     var fullRating=[];
     var fullText=[];    
@@ -93,7 +99,7 @@ function Review(){
     fullRating.push(campInfo[i].rating)
     fullText.push(campInfo[i].text)
     }
-    // console.log(fullName)
+    console.log(fullName)
 
     return(
         <>    
@@ -133,12 +139,12 @@ function Review(){
                                 ))}
                             </Row>
                           </Card.Body>
-                          <Card.Body>
+                          {/* <Card.Body>
                             <Row className="m-2">                            
                               <Form onSubmit={handleReviewSubmit} >
-                              {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                              <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                                                 Please add proper information
-                                            </Alert> */}
+                                            </Alert>
                               {!Auth.loggedIn()?( 
                                 <Form.Group controlId="formBasicEmail">                                  
                                     <Row>                                    
@@ -187,14 +193,14 @@ function Review(){
                                         </Form.Group>
                                       </>
                                       )}
-                                      {/* {error && (
+                                      {error && (
                                             <div className="my-3 p-3 bg-danger text-white">
                                                 {error.message}
                                             </div>
-                                        )} */}
+                                        )}
                               </Form>
                             </Row>
-                          </Card.Body>
+                          </Card.Body> */}
                         </Card>
                       </Col>
                     </Row>

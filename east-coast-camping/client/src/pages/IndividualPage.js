@@ -223,7 +223,7 @@ function IndividualCampground() {
                                 <p>{review.text}</p>
                             </div>
                         ))}
-                        <Link style={{ textDecoration: 'none', fontWeight:'bolder', color:'black'}} to={`/review/${campgroundId}?name=${campInfo.name}`}><p><strong>{chaticon} Submit your review</strong></p></Link>
+                        <Link style={{ textDecoration: 'none', fontWeight:'bolder', color:'black'}} to={`/review/${campgroundId}?name=${campInfo.name}`}><p><strong>{chaticon} Check Out Review</strong></p></Link>
                     </Col>
                 </Row>
                 {/*----------------------- review section -------------------------------*/}

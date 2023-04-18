@@ -58,7 +58,7 @@ const resolvers = {
     // get all camps
     allCamps: async (parent, args) => {
       // return await CampGround.find();
-      const camps = await CampGround.find();
+      const camps = await CampGround.find().populate({ path: 'reviews', options: { strictPopulate: false } });
       return camps;
     },
 
