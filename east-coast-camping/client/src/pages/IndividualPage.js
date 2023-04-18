@@ -36,9 +36,9 @@ function IndividualCampground() {
     const Start =(j)=>{
         return <StarRating rating={j}/>;
     }
-    let id;
+    let idUser;
     if (Auth.loggedIn()) {
-        id = Auth.getToken()
+        idUser = Auth.getToken()
     };
 
     // const [destination, setDestination] = useState('');
@@ -76,21 +76,24 @@ function IndividualCampground() {
         </Popover>
       );
 
-    const handleBook = (id, campId, name, location, price, start, end) => {
-
-        console.log("1", id, campId, name, location, start, end, price)
+    const handleBook = (userid, campId, name, location, price, start, end) => {
+        // id= Auth.getToken();
+        console.log("1", userid, campId, name, location, start, end, price)
+        const userinfo = [userid, campId, start, end, price]
+        localStorage.setItem("userinfo", userinfo)
         if(start && end ){
-        navigate('/reservation', {state:{userid: id, campid: campgroundId, campName: name, campLocation: location, campPrice: price, checkin: startDate, checkout: endDate}})
+        navigate('/reservation', {state:{userid: userid, campid: campgroundId, campName: name, campLocation: location, campPrice: price, checkin: startDate, checkout: endDate}})
         }         
     };
 
     const [saveCamp] = useMutation(SAVE_CAMP);
 
-    function handleSaveCamp(id, campgroundId) {
+    function handleSaveCamp(userid, campgroundId) {
+         const id=Auth.getToken()
         console.log("2", id, campgroundId)
         // eslint-disable-next-line
         const { savedData } = saveCamp({
-            variables: { userId: id, campId: campgroundId }
+            variables: { userId: userid, campId: campgroundId }
 
         })          
         // console.log(savedData)
@@ -99,10 +102,10 @@ function IndividualCampground() {
     function handleSwitch(e,start,end){// eslint-disable-next-line
         switch(e){
             case 1: 
-                handleBook(id, campgroundId, campInfo.name, campInfo.location, campInfo.price, start, end);
+                handleBook(idUser, campgroundId, campInfo.name, campInfo.location, campInfo.price, start, end);
                 break;
             case 2: 
-                handleSaveCamp(id, campgroundId);
+                handleSaveCamp(idUser, campgroundId);
                 break;
         }
     }
@@ -223,7 +226,7 @@ function IndividualCampground() {
                                 <p>{review.text}</p>
                             </div>
                         ))}
-                        <Link style={{ textDecoration: 'none', fontWeight:'bolder', color:'black'}} to={`/review/${campgroundId}?name=${campInfo.name}`}><p><strong>{chaticon} Submit your review</strong></p></Link>
+                        <Link style={{ textDecoration: 'none', fontWeight:'bolder', color:'black'}} to={`/review/${campgroundId}?name=${campInfo.name}`}><p><strong>{chaticon} Check Out Review</strong></p></Link>
                     </Col>
                 </Row>
                 {/*----------------------- review section -------------------------------*/}

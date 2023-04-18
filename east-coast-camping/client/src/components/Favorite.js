@@ -105,7 +105,7 @@ export default function Favorite() {
                               </Col>                
                             </Row>
                             <Row>
-                              <Col xs={9}><Link style={{ textDecoration: 'none' }} to={`/review/${campground._id}?name=${campground.name}`}><p>{chaticon} Submit your review</p></Link></Col> 
+                              <Col xs={9}><Link style={{ textDecoration: 'none' }} to={`/review/${campground._id}?name=${campground.name}`}><p>{chaticon} Check Out Review</p></Link></Col> 
 
                             </Row>
                             <Row >
