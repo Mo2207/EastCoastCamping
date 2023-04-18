@@ -16,7 +16,7 @@ import { useQuery } from '@apollo/client';
 import { GET_USER_BOOKING } from '../utils/queries';
 import Auth from '../utils/auth';
 import Footer from '../components/Footer';
-
+import { Link } from 'react-router-dom';
 
   //Just chat icon
   const chaticon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-square-text" viewBox="0 0 16 16">
@@ -40,7 +40,7 @@ function MyBookings() {
   }
 
   const booking = data?.bookingByUserId || {};
-  
+  console.log(booking)
   return (
     <>
       <div className="container my-1" style={{ minHeight: '100vh' }}>
@@ -102,7 +102,7 @@ function MyBookings() {
                           </Row>
                         </Card.Body>
                         <Row>
-                          <Col md="9" className="mb-1 ml-2"><p >{chaticon} Submit your review</p></Col>
+                          <Col md="9" className="mb-1 ml-2"><Link style={{ textDecoration: 'none' }} to={`/review/${campground._id}?name=${campground.name}`}><p>{chaticon} Submit your review</p></Link></Col>
                           {/* <Col md="2" className="mb-1 ml-5">
                             <Button color="primary" size="sm">
                                 View Details

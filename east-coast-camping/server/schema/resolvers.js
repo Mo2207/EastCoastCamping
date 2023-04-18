@@ -57,7 +57,9 @@ const resolvers = {
     
     // get all camps
     allCamps: async (parent, args) => {
-      return await CampGround.find();
+      // return await CampGround.find();
+      const camps = await CampGround.find();
+      return camps;
     },
 
     // get array of camps
@@ -84,7 +86,6 @@ const resolvers = {
       let userBookings =
       await context.bookingByUserId(userId, context)
     
-      console.log(userBookings)
 
       return { user, savedCamps, userBookings };
     },
@@ -147,6 +148,12 @@ const resolvers = {
     }
 
   },
+  CampGround: {
+    reviews: async (camp) =>{
+      const reviews = await Review.find({camp: camp._id });
+      return reviews;
+    }
+  },
   // MUTATIONS
   Mutation: {
 
@@ -163,7 +170,6 @@ const resolvers = {
       args.password = hashedPassword;
 
       const newUser = new User(args);
-      console.log(newUser);
       // const token = signToken(newUser);
       await newUser.save();
       return newUser;
@@ -209,15 +215,13 @@ const resolvers = {
     // user login
     userLogin: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-      console.log(email, password)
       // checks to make sure user with given email exists
       if (!user) {
         throw new Error(`user with email: ${email} not found!`);
       }
-      console.log(user)
       // bcrypt password comparing upon login
       const validatePassword = await bcrypt.compare(password, user.password);
-      console.log(validatePassword)
+      // console.log(validatePassword)
       if (!validatePassword) {
         throw new Error(`Invalid Email or Password provided.`);
       }
@@ -246,7 +250,7 @@ const resolvers = {
         {new: true}
       ).populate('saved');
 
-      console.log(updateUser)
+      // console.log(updateUser)
       if (!updateUser) {
         throw new Error(`user with id: ${userId} not found!`);
       }

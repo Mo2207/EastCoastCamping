@@ -1,6 +1,6 @@
 
 const { Schema, model } = require('mongoose');
-
+const { Review } = require('./index');
 const campGroundSchema = new Schema({
   name: {
     type: String,
@@ -36,6 +36,11 @@ const campGroundSchema = new Schema({
   },
   campImages: {
     type: Array
+  },
+  review: {
+    type: Schema.Types.ObjectId,
+    ref: 'Review',
+    required: true,
   }
 })
 

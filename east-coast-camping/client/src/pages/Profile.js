@@ -25,11 +25,11 @@ function Profile() {
   let id;
   if (Auth.loggedIn()) {
     id = Auth.getToken()
-  };
+  };// eslint-disable-next-line
   const { loading, data } = useQuery(QUERY_ME, {
     variables: { userId: id }
   });
-  
+  // eslint-disable-next-line
   const profile = data?.userById || {};
 //  console.log(profile.saved)
  Auth.setInfo(profile.firstName, profile.lastName, profile.email)
@@ -37,7 +37,7 @@ function Profile() {
 
   const [deleteMe] = useMutation(DELETE_ME)
 
-  function handleToDelete(deleteUserId) {
+  function handleToDelete(deleteUserId) {// eslint-disable-next-line
     const { data } = deleteMe({
       variables: { deleteUserId }
     })

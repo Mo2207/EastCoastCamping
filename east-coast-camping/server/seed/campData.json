@@ -24,6 +24,7 @@
     "availability": 50,
     "available": true,
     "price": 25,
+    "features": "Each lot has power and water, Campfires allowed after 8pm and Wifi available",
     "campImages": [
       "https://user-images.githubusercontent.com/112873819/232251266-b5623504-0292-4546-977e-543a1d1e3a57.jpeg",
       "https://user-images.githubusercontent.com/112873819/232251306-532c5c71-bb91-40aa-a2fc-35a19f04e4af.jpeg",
@@ -39,6 +40,7 @@
     "availability": 40,
     "available": false,
     "price": 45,
+    "features": "Each lot has power and water, Campfires allowed after 8pm and Wifi available",
     "campImages": [
       "https://user-images.githubusercontent.com/112873819/232252226-efbe6fc2-880e-4a3e-af67-42acf3d2f512.jpg",
       "https://user-images.githubusercontent.com/112873819/232252250-aa6dcc56-ea1a-4356-b467-1652ac6e8099.jpg",
@@ -54,6 +56,7 @@
     "availability": 100,
     "available": true,
     "price": 50,
+    "features": "Each lot has power and water, Campfires allowed after 8pm and Wifi available",
     "campImages": [
       "https://user-images.githubusercontent.com/112873819/232252347-ae2cc86a-deff-4745-9670-a3e40195d43a.jpg",
       "https://user-images.githubusercontent.com/112873819/232252350-69d3c3f6-1535-4153-9ce1-abd772ba734b.jpg",

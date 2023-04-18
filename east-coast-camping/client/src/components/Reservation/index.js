@@ -62,7 +62,7 @@ function Reservation() {
                                     <Row style={{ height:'50%', marginTop:30 }}>
                                         <Card.Title className="text-center" >Reservation Details</Card.Title>
                                         <Card.Subtitle>Name of Camp: {location.state.campName}</Card.Subtitle>
-                                        <Card.Subtitle>Location:</Card.Subtitle>
+                                        <Card.Subtitle>Location: {location.state.campLocation}</Card.Subtitle>
                                         <Row className="text-center">
                                             <Col sm="5" className="ml-1"><Row><Card.Subtitle>Check-in:</Card.Subtitle></Row><Row><Card.Text>{startdate}</Card.Text></Row></Col>
                                             <Col sm="5" className="ml-1"><Row><Card.Subtitle>Check-out</Card.Subtitle></Row><Row><Card.Text>{enddate}</Card.Text></Row></Col>
