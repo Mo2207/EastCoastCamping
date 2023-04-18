@@ -41,24 +41,10 @@ function Review(){
     const [ formData, setFormData ] = useState({ message:'', rating:''});
 
     const campgroundId = location.pathname.split('/').pop();
-    const [ createReview, { error1 , data1}] = useMutation(CREATE_REVIEW);
+    const [ createReview] = useMutation(CREATE_REVIEW);
 
 
-  const handleReviewSubmit = async (event) => {
-      event.preventDefault();
-      // console.log(formData)
-      
-           console.log(id, campgroundId, formData.message, formData.rating )
-          const {createData} = createReview({
-            variables: {
-              userId: id,
-              campId: campgroundId,
-              rating: formData.rating,
-              text: formData.message
-            }            
-           })
-  }
-
+  
     const handleChange = (event) => {     
       const { name, value } = event.target;
       setFormData({ ...formData, [name]: value });
@@ -104,6 +90,17 @@ function Review(){
     fullText.push(campInfo[i].text)
     }
     // console.log(fullName)
+    const handleReviewSubmit = async (event) => {
+      event.preventDefault();
+      // console.log(formData)
+      
+        console.log(id, campgroundId, formData.message, formData.rating )
+        const {createData} = createReview({
+            variables: { userId: id, campId: campgroundId, rating: formData.rating, text: formData.message
+            }            
+           })
+           console.log(createData)
+      }
 
 
     return(
@@ -198,11 +195,11 @@ function Review(){
                                         </Form.Group>
                                       </>
                                       )}
-                                      {error1 && (
+                                      {/* {error && (
                                             <div className="my-3 p-3 bg-danger text-white">
                                                 {error.message}
                                             </div>
-                                        )}
+                                        )} */}
                               </Form>
                             </Row>
                           </Card.Body>

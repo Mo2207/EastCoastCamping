@@ -36,11 +36,6 @@ const campGroundSchema = new Schema({
   },
   campImages: {
     type: Array
-  },
-  review: {
-    type: Schema.Types.ObjectId,
-    ref: 'Review',
-    required: true,
   }
 })
 
