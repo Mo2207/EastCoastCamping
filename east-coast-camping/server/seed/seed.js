@@ -1,13 +1,14 @@
 
 const db = require('../config/connection');
 const { User, CampGround, Review, Booking} = require('../models');
-
 const userData = require('./userData.json');
 const campData = require('./campData.json');
 const reviewData = require('./reviewData.json');
+ 
 
 db.once('open', async () => {
-  // clears the existing data if any
+  
+// clears the existing data if any
   await User.collection.drop();
   await CampGround.collection.drop();
   await Review.collection.drop();
@@ -19,8 +20,11 @@ db.once('open', async () => {
   const campGrounds = await CampGround.insertMany(campData);
   const reviews = await Review.insertMany(reviewData);
 
+  // logs that data has been inserted. 
   console.log('userData seeded successfully!');
   console.log('campData seeded successfully!');
   console.log('reviewData seeded successfully!');
+ 
+ // ends process 
   process.exit(0);
 })
