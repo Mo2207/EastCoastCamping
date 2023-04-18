@@ -58,6 +58,9 @@ class AuthService {
     localStorage.removeItem("name")
     localStorage.removeItem("email")
   }
+  reload(){
+    window.location.reload()
+  }
 }
 // eslint-disable-next-line
 export default new AuthService();

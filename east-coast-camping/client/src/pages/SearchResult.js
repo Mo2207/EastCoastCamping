@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { Container } from 'react-bootstrap';
+import { 
+    Container,
+    Row,
+    Col,
+    Card,
+    Button
+  } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css'
 import { Link, useLocation } from 'react-router-dom';
 import { QUERY_CAMPGROUNDBYLOCATION } from '../utils/queries';
@@ -47,7 +50,7 @@ function SearchResult() {
     return (
         <>
             {/* ------------------dropdown for search campground-------------------- */}
-            <Card>
+            <Card className='m-2'>
                 <Card.Body className='d-flex align-items-center searchBar '>
                     <form onSubmit={handleSubmit}>
                         <select value={destination} onChange={(e) => setDestination(e.target.value)}>
@@ -59,7 +62,7 @@ function SearchResult() {
                             <option value="Minto">Minto</option>
                             <option value="Edmundston">Edmundston</option>
                             <option value="Shediac">Shediac</option>
-                            <option value="Miramichi">Miramichi</option>
+                            <option value="Miramichi">All Camps</option>
                         </select>
                         <button className='btn mt-3 m' style={{ background: '#ADFB2F' }} type="submit">Search</button>
                     </form>
@@ -68,7 +71,7 @@ function SearchResult() {
 
             <div style={{ minHeight: '100vh' }}>
                 {!data || !data.campByLocation || data.campByLocation.length === 0 ? (
-                    <Card>
+                    <Card className='m-2'>
                         <Card.Body>
                             <Card.Text>
                                 <header className='text-black '>All Camps</header>
@@ -82,10 +85,10 @@ function SearchResult() {
                 ) : null}
 
                 {data && data.campByLocation && data.campByLocation.length > 0 && (
-                    <Card>
+                    <Card className='m-2'>
                         <Card.Body>
                             <Card.Text>
-                                <header className='text-black p-5 '>Available Campsites</header>
+                                <header className='text-black p-1 m-1'>Available Campsites</header>
                             </Card.Text>
                         </Card.Body>
                     </Card>
@@ -94,7 +97,7 @@ function SearchResult() {
                 <Container>
                     <Row >
                         <Col >
-                            <Row xs={1} md={3} className="g-4 ">
+                            <Row xs={1} md={3}>
                                 {data &&
                                     data.campByLocation &&
                                     data.campByLocation.map((campground, idx) => (
@@ -112,17 +115,20 @@ function SearchResult() {
                                           <Card.Body>
                                             <Card.Title>{campground.name}</Card.Title>
                                             <Card.Text>
-                                              Location: {campground.location}<br />
-                                              Price: {campground.price}<br/>
-                                              Rating: {Start(campground.reviews[0].rating)}<br />
-                                              Review: {campground.reviews[0].text}<br />
+                                              <strong>Location: </strong>{campground.location}<br />
+                                              <strong>Price: </strong>{campground.price}<br/>
+                                              <strong>Rating: </strong>{Start(campground.reviews[0].rating)}<br />
+                                              <strong>Review: </strong>{campground.reviews[0].text}<br />
                                             </Card.Text>
-                                          </Card.Body>
-                                          <div className="d-flex justify-content-end btn">
-                                            <Link to={`/campground/${campground._id}?name=${campground.name}`}>
-                                              <button className="btn btn-primary">View Details</button>
-                                            </Link>
-                                          </div>
+                                            </Card.Body>
+                                            <Row className="d-flex justify-content-between">
+                                                <Col className="btn">
+                                                <Button href={`/review/${campground._id}?name=${campground.name}`} variant="primary" size="sm">Review</Button>
+                                                </Col>
+                                                <Col className="btn">
+                                                <Button href={`/campground/${campground._id}?name=${campground.name}`} variant="primary" size="sm">View Details</Button>
+                                                </Col>
+                                            </Row>
                                         </Card>
                                       </Col>   
                                     ))}

@@ -5,7 +5,8 @@ import {
     Container,
     Row,
     Col,
-    Card
+    Card,
+    Button
   } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css'
 import { Link } from 'react-router-dom';
@@ -38,7 +39,7 @@ const AllCamps = () => {
                                 className="row d-flex flex-wrap justify-content-center mb-3"
                                 style={{ marginRight: '15px' }}>
                                        
-                                <Card className="card" style={{ minWidth: '19rem', minHeight: '450px', margin: '20px' }}>
+                                <Card className="card d-grid gap-2" style={{ minWidth: '19rem', minHeight: '450px', margin: '20px' }}>
                                   <Card.Img
                                     variant="top"
                                     src={campground.image}
@@ -48,17 +49,20 @@ const AllCamps = () => {
                                   <Card.Body>
                                     <Card.Title>{campground.name}</Card.Title>
                                     <Card.Text>
-                                      Location: {campground.location}<br />
-                                      Price: {campground.price}<br />
-                                      Rating: {Start(campground.reviews[0].rating)}<br />
-                                      Review: {campground.reviews[0].text}<br />
+                                              <strong>Location: </strong>{campground.location}<br />
+                                              <strong>Price: </strong>{campground.price}<br/>
+                                              <strong>Rating: </strong>{Start(campground.reviews[0].rating)}<br />
+                                              <strong>Review: </strong>{campground.reviews[0].text}<br />
                                     </Card.Text>
                                   </Card.Body>
-                                  <div className="d-flex justify-content-end btn">
-                                    <Link to={`/campground/${campground._id}?name=${campground.name}`}>
-                                      <button className="btn btn-primary">View Details</button>
-                                    </Link>
-                                  </div>
+                                  <Row className="d-flex justify-content-between">
+                                    <Col className="btn">
+                                      <Button href={`/review/${campground._id}?name=${campground.name}`} variant="primary" size="sm">Review</Button>
+                                    </Col>
+                                    <Col className="btn">
+                                      <Button href={`/campground/${campground._id}?name=${campground.name}`} variant="primary" size="sm">View Details</Button>
+                                    </Col>
+                                  </Row>
                                 </Card>
                               </Col>                              
                             ))}

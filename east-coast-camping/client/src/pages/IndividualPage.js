@@ -105,26 +105,7 @@ function IndividualCampground() {
                 handleSaveCamp(id, campgroundId);
                 break;
         }
-
     }
-
-    // function handleOpenReviewInput() {
-
-    // }
-
-    // const [ createReview ] = useMutation(CREATE_REVIEW)
-
-    // function handleCreateReview(userId, campId, rating, text) {
-    //     const { leaveReview } = createReview({
-    //         variables: {
-    //             user: userId,
-    //             camp: campId,
-    //             rating: rating,
-    //             text: text
-    //         }
-    //     })
-    // }
-
     return (
         <>
             {/*----------------------- camp images to display on page using swiper.js -------------------------------*/}

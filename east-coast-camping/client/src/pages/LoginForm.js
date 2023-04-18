@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import { Form, Button, Alert, Container, Card, Row, Col, Image } from 'react-bootstrap';
 import { USER_LOGIN } from '../utils/mutations';
 import '../styles/login-signUp.css'
-
+import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useMutation } from "@apollo/react-hooks";
+import { setShouldReload } from './Profile'
 
 const LoginForm = () => {
+    const navigate = useNavigate();
+    const storedUrl = sessionStorage.getItem('currentUrl');
+
     const [userFormData, setUserFormData] = useState({ email: '', password: '' });// eslint-disable-next-line
     const [login, { error, data }] = useMutation(USER_LOGIN)
 
@@ -25,7 +29,7 @@ const LoginForm = () => {
         // check if form has everything (as per react-bootstrap docs)
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
-            event.preventDefault();
+            // event.preventDefault();
             event.stopPropagation();
         }
 
@@ -34,8 +38,12 @@ const LoginForm = () => {
                 variables: { ...userFormData },
             });
             const data1 = Object.values(data)
-            console.log(data1[0]._id)
-            Auth.login(data1[0]._id, data1[0].saved);
+            Auth.login(data1[0]._id);
+            // if(Auth.loggedIn() && storedUrl){
+            //     console.log('You have succeeded.')
+            //     sessionStorage.removeItem('currentUrl');
+            //     navigate('/', {reload: true});
+            // }
 
         } catch (err) {
             console.error(err);
@@ -46,7 +54,6 @@ const LoginForm = () => {
             email: '',
             password: '',
         });
-
     };
 
     return (
