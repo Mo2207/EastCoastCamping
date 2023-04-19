@@ -1,5 +1,11 @@
 # EastCoastCamping
 
+![app](https://img.shields.io/badge/React-blue)
+![app](https://img.shields.io/badge/Express-yellow)
+![app](https://img.shields.io/badge/MongoDB-green)
+![app](https://img.shields.io/badge/Graphql-red)
+![app](https://img.shields.io/badge/Bootstrap-blueviolet)
+
 ## Description:
   
 A React application that uses Graphql and a mongodb database. It allows users to create accounts, search for campgrounds, 
@@ -11,9 +17,9 @@ add camps to favorites, look at reviews, and make a reservations.
 This project can be viewed on heroku here: https://east-coast-camping.herokuapp.com/
 
 ## Usage:
-!["picture of home page"](/client/readmeImages/home-page.png)
-!["picture of camp page"](/client/readmeImages/camp-page.png)
-!["picture of review page"](/client/readmeImages/review-page.png)
+!["picture of home page"](/east-coast-camping/client/readmeImages/home-page.png)
+!["picture of camp page"](/east-coast-camping/client/readmeImages/camp-page.png)
+!["picture of review page"](/east-coast-camping/client/readmeImages/review-page.png)
 
 ## Credits:
 This project was built by:
