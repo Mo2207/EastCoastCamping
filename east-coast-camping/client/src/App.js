@@ -20,6 +20,7 @@ import IndividualCampGround from './pages/IndividualPage';
 import Favorite from './components/Favorite';
 import Reservation from './components/Reservation';
 import Review from './pages/Review';
+import ThankYouPage from './pages/ThankYouPage';
 
 
 
@@ -70,23 +71,23 @@ function App() {
             />
             <Route
               path="/me"
-              element={<Profile fluid="true"/>}
+              element={<Profile fluid="true" />}
             />
             <Route
               path="/myBookings"
-              element={<MyBookings fluid="true"/>}
+              element={<MyBookings fluid="true" />}
             />
             <Route
               path="/completed"
               element={<Completed />}
-            />     
+            />
             <Route
               path="/favorite"
               element={<Favorite />}
-            />                
+            />
             <Route
               path="/search"
-              element={<SearchResult fluid="true"/>}
+              element={<SearchResult fluid="true" />}
             />
             <Route
               path="/campground/:id"
@@ -98,15 +99,19 @@ function App() {
             />
             <Route
               path="/reservation"
-              element={<Reservation fluid="true"/>}
-              />
+              element={<Reservation fluid="true" />}
+            />
             <Route
               path="/review/:id"
-              element={<Review fluid="true"/>}
+              element={<Review fluid="true" />}
             />
             <Route
               path="*"
               element={<NoMatch />}
+            />
+            <Route
+              path="/thankyou"
+              element={<ThankYouPage />}
             />
           </Routes>
         </div>
@@ -116,3 +121,4 @@ function App() {
 }
 
 export default App;
+
