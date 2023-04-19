@@ -58,11 +58,11 @@ const LoginForm = () => {
 
     return (
         <>
-            <div style={{ backgroundColor: '#D8D8D8', height: '100vh' }}>
+            <div style={{ backgroundColor: 'rgb(108, 103, 103)', height: '100vh' }}>
 
                 <Container className=' login-page' >
                     <Card>
-                        <Row className='g-0'>
+                        <Row className='g-0 mr-3'>
                             <Col md='6'>
                                 <Image src='https://user-images.githubusercontent.com/112873819/232332432-4e2e0ad9-7647-4166-aefc-720457ab531f.jpg' alt="login form" className='w-100 h-100 rounded' />
                             </Col>

@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 // importing style for contact page
 import Footer from '../components/Footer';
+import '../styles/Contact.css'
 
 
 export default function Contact() {
@@ -65,60 +66,62 @@ export default function Contact() {
 
     return (
         <>
-            <div className="container my-1">
-                {/* <Link to="/">← Go to Home</Link> */}
-                <div className="contact-bg vh-100 text-white">
-                    <form
-                        ref={form}
-                        onSubmit={handleSubmit}
-                        className="mx-auto col-10 col-md-8 col-lg-6 form-container"
-                    >
-                        <h1 className='text-black mt-5'>Contact Us</h1>
-                        <div className="form-group mt-4">
-                            <label className='text-black'>Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-                                value={values.name}
-                                onChange={handleChange}
-                            />
-                            {/* to display the error msg if there is no input */}
-                            {/* invalid-feedback is from bootstrap and used to show err msg */}
-                            {errors.name && (
-                                <div className="invalid-feedback">{errors.name}</div>
-                            )}
-                        </div>
+            <div style={{ backgroundColor: '#e0e0e0' }}>
+                <div className="container my-1">
+                    {/* <Link to="/">← Go to Home</Link> */}
+                    <div className=" vh-100 text-white">
+                        <form
+                            ref={form}
+                            onSubmit={handleSubmit}
+                            className="mx-auto col-10 col-md-8 col-lg-6 form-container bgImg">
 
-                        <div className="form-group mt-4">
-                            <label className='text-black'>Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-                                value={values.email}
-                                onChange={handleChange}
-                            />
-                            {errors.email && (
-                                <div className="invalid-feedback">{errors.email}</div>
-                            )}
-                        </div>
+                            <h1 className='text-black mt-5'>Contact Us</h1>
+                            <div className="form-group mt-4">
+                                <label className='text-black'>Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                                    value={values.name}
+                                    onChange={handleChange}
+                                />
+                                {/* to display the error msg if there is no input */}
+                                {/* invalid-feedback is from bootstrap and used to show err msg */}
+                                {errors.name && (
+                                    <div className="invalid-feedback">{errors.name}</div>
+                                )}
+                            </div>
 
-                        <div className="form-group mt-4">
-                            <label className='text-black'>Message</label>
-                            <textarea
-                                name="message"
-                                className={`form-control textbox-height ${errors.message ? 'is-invalid' : ''
-                                    }`}
-                                value={values.message}
-                                onChange={handleChange}
-                            />
-                            {errors.message && (
-                                <div className="invalid-feedback">{errors.message}</div>
-                            )}
-                        </div>
-                        <input type="submit" value="Send" className="btn mt-4" style={{ backgroundColor: '#ADFB2F' }} />
-                    </form>
+                            <div className="form-group mt-4">
+                                <label className='text-black'>Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                                    value={values.email}
+                                    onChange={handleChange}
+                                />
+                                {errors.email && (
+                                    <div className="invalid-feedback">{errors.email}</div>
+                                )}
+                            </div>
+
+                            <div className="form-group mt-4">
+                                <label className='text-black'>Message</label>
+                                <textarea
+                                    name="message"
+                                    className={`form-control textbox-height ${errors.message ? 'is-invalid' : ''
+                                        }`}
+                                    value={values.message}
+                                    onChange={handleChange}
+                                />
+                                {errors.message && (
+                                    <div className="invalid-feedback">{errors.message}</div>
+                                )}
+                            </div>
+                            <input type="submit" value="Send" className="btn mt-4" style={{ backgroundColor: '#ADFB2F' }} />
+                        </form>
+                    </div>
                 </div>
             </div>
             <Footer />
