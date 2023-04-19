@@ -72,8 +72,8 @@ export default function Contact() {
                     <form
                         ref={form}
                         onSubmit={handleSubmit}
-                        className="mx-auto col-10 col-md-8 col-lg-6 form-container bgImg"
-                    >
+                        className="mx-auto col-10 col-md-8 col-lg-6 form-container bgImg">
+
                         <h1 className='text-black mt-5'>Contact Us</h1>
                         <div className="form-group mt-4">
                             <label className='text-black'>Name</label>
