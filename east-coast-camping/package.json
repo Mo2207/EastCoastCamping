@@ -23,6 +23,7 @@
     "node": "16.19.1"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.12",
     "graphql": "^16.6.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0"

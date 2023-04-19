@@ -15,11 +15,9 @@ const bookingSchema = new Schema({
   },
   startDate: {
     type: String,
-    required: true
   },
   endDate: {
     type: String,
-    required: true
   },
   price: {
     type: Number,
@@ -35,7 +33,6 @@ const bookingSchema = new Schema({
   },
   bookingID: {
     type: Number,
-    required: true
   }  
 
 });

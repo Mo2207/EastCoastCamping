@@ -12,7 +12,7 @@ import {
 import "../../styles/Upcoming.css";
 import reservation from '../images/reservation.png'
 import creditcard from '../images/card.png'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';// eslint-disable-next-line
 import { BOOK_CAMP } from '../../utils/mutations';// eslint-disable-next-line
@@ -25,27 +25,39 @@ const days = ( date1 , date2 ) => {
 
 function Reservation() {
     //Grab camp data from individual page and use for reservation page
-    const [ bookCamp ] = useMutation(BOOK_CAMP);
+    const [ bookCamp, { loading, error } ] = useMutation(BOOK_CAMP);
+
+
+    //   //Generate Booking ID
+    // var generatedBookingID = '';
+    //   generatedBookingID = parseInt(Math.floor(Math.random() * 900000000) + 100000000);
+    
+
+
     function handleBookCamp() {
 
-        console.log(location.state.userid, location.state.campId, location.state.checkin, location.state.checkout, location.state.price)
+        // console.log(location.state.userid, location.state.campId, date1, date2, location.state.campPrice)
         // eslint-disable-next-line
         // try{
             bookCamp({
                 variables: {
                     userId: location.state.userid, 
-                    campId: location.state.campId, 
-                    startDate:location.state.checkin, 
-                    endDate: location.state.checkout, 
-                    price: location.state.price 
-                }
+                    campId: location.state.campid, 
+                    startDate: dateToString1, 
+                    endDate: dateToString2, 
+                    price: parseInt(location.state.campPrice) ,
+                    totalP: parseInt( totalAmount),
+                    totalN:parseInt(totalNight),
+                    // bookingID: (generatedBookingID)
+                },
+                onCompleted: (data) => console.log('Booking info:', data.bookCamp),
             })
-        //     .then(response => {
-        //         console.log(response);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error);
+            });
         // } catch(err){
         //     console.log(err)
         // }    
@@ -53,9 +65,10 @@ function Reservation() {
     }
     const location = useLocation();
     console.log(location.state)
+ 
     const name = Auth.getName()
     const email = Auth.getEmail()
-    console.log((location.state.checkin).toString())
+    // console.log((location.state.checkin).toString())
 
     // Calculate Total Nights and Amount
     var date1 = new Date(location.state.checkin);
@@ -69,11 +82,10 @@ function Reservation() {
     var enddate = `${shortMonthName(date2)} ${date2.getDate()}, ${date2.getFullYear()}`;
     var ratePerNight = location.state.campPrice;
     var totalAmount = ratePerNight * totalNight;
-    console.log(location.state.price)
-
-    let id = Auth.getToken()
-
-    
+    console.log(location.state.campPrice)
+    const dateToString1 = date1.toISOString()
+    const dateToString2 = date2.toISOString()
+    let id = Auth.getToken()    
 
   return (
     <>
@@ -160,7 +172,9 @@ function Reservation() {
                                     <Image src={creditcard}/>
                                     </Row>                                               
                                 </Row>
-                                    <Button onClick={() =>handleBookCamp(id, location.state.camp, location.state.checkin, location.state.checkout, location.state.campPrice)} variant="secondary">PAY & CONFIRM</Button>           
+                                    <a href="/myBookings">
+                                    <Button onClick={() =>handleBookCamp(id, location.state.camp, date1, date2, location.state.campPrice)} variant="secondary">PAY & CONFIRM</Button>           
+                                    </a>
                                 </Col>
                             </Row>
                         </Card.Body>

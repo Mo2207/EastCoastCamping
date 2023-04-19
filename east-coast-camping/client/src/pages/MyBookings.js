@@ -30,8 +30,12 @@ if (Auth.loggedIn()) {
 };
 
 
+  
+ 
+
 function MyBookings() {
   // Query user data
+
   const { loading, error, data } = useQuery(GET_USER_BOOKING, {
     variables: { userId: id }
   });
@@ -39,7 +43,33 @@ function MyBookings() {
   if (error) return <p>{error.message}</p>;
 
   const booking = data?.bookingByUserId || {};
-  console.log(booking)
+  var date1 = new Date();
+  var date2 = new Date();
+
+  // if(booking[0].startDate) { 
+  //   date1 = new Date(booking[0].startDate)
+  //   date2 = new Date(booking[0].startDate)
+  // }
+  function textToDate(dateString) {
+    var year = dateString.substring(0, 4);
+    var month = getMonthName(dateString.substring(5, 7));
+    var day = dateString.substring(8, 10);
+    var formatDate = month  + " " + day + ", "+ year ;
+    return formatDate;
+  }
+
+  function getMonthName(monthNumber) {
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return monthNames[Number(monthNumber) - 1];
+  }
+  var shortMonthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format;
+
+  var checkin = `${shortMonthName(date1)} ${date1.getDate()}, ${date1.getFullYear()}`;
+  var checkout = `${shortMonthName(date2)} ${date2.getDate()}, ${date2.getFullYear()}`;
+  
+  // console.log(booking[0].endDate)
+  // console.log(booking)booking[0].endDate
+  console.log(data)
   return (
     <>
       <div className="container my-1" style={{ minHeight: '100vh' }}>
@@ -76,8 +106,8 @@ function MyBookings() {
                             </Col>
                             <Col md="6">
                               <Card.Title>{campground.camp.name}</Card.Title>
-                              <br />
-                              <Card.Subtitle>Booking ID: {campground.bookingID}</Card.Subtitle>
+                              {/* <br />
+                              <Card.Subtitle>Booking ID: {campground.bookingID}</Card.Subtitle> */}
                               <br />
                               <Card.Subtitle>Location:  {campground.camp.location}</Card.Subtitle>
                               <p>
@@ -88,8 +118,8 @@ function MyBookings() {
                             <Col md="6" lg="3" className="border-sm-start-none border-start"
                             >
                               <Row>
-                                <Col sm="5" className="ml-1"><Row>CHECK IN</Row><Row>{campground.startDate}</Row></Col>
-                                <Col sm="5" className="ml-1"><Row>CHECK OUT</Row><Row>{campground.endDate}</Row></Col>
+                                <Col sm="5" className="ml-1"><Row>CHECK IN</Row><Row>{textToDate(campground.startDate)}</Row></Col>
+                                <Col sm="5" className="ml-1"><Row>CHECK OUT</Row><Row>{textToDate(campground.endDate)}</Row></Col>
                               </Row>
                               <br />
                               <div className="d-flex flex-row align-items-center mb-1">

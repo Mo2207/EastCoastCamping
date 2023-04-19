@@ -315,29 +315,9 @@ const resolvers = {
     // Booking Mutations
     createBooking: async (parent, data) => {
       
-      // console.log(data)
+      console.log(data)
       // console.log(data.userId)
 
-      var totalP=0;
-      var totalN=0; 
-      var bookingID ='';
-      
-      const days = ( date1 , date2 ) => {
-        let difference = date2.getTime() - date1.getTime();
-        let total = Math.ceil( difference / (1000 * 3600 * 24));
-        return total;
-      }
-
-      //   //Calculate duration of nights and total
-        var date1 = new Date(data.startDate);
-        var date2 = new Date(data.endDate);
-        totalN = days(date1,date2);       
-        
-        totalP = data.price * totalN;     
-        // console.log(totalP)
-      //   //Generate Booking ID
-        bookingID = Math.floor(Math.random() * 900000000) + 100000000;
-      
 
       // // validation to check if userId and campId exist
       const validUser = await User.findById(data.userId);
@@ -358,9 +338,9 @@ const resolvers = {
         startDate: data.startDate,
         endDate: data.endDate,
         price: data.price,
-        totalP: totalP,
-        totalN: totalN,
-        bookingID: bookingID
+        totalP: data.totalP,
+        totalN: data.totalN,
+        bookingID: data.bookingID
       })
       // // save the booking
       // console.log (newBooking)
