@@ -53,6 +53,8 @@ function IndividualCampground() {
     const { data: reviewData } = useQuery(GET_CAMP_REVIEWS, {
         variables: { campId: campgroundId }
     });
+    // if (loading) return <p>Loading...</p>;
+    // if (error) return <p>{error.message}</p>;
 
     const reviews = reviewData?.campReviews || [];
     // console.log(`CAMPREVIEWS: ${reviews}`)
@@ -64,7 +66,7 @@ function IndividualCampground() {
 
     })
     const campInfo = data?.campById || {};
-    // console.log(campInfo)
+    console.log(reviews.camp[0])
 
     const navigate = useNavigate();
     const popover = (

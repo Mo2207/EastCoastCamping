@@ -70,35 +70,36 @@ query Query($ids: [ID!]!) {
 `;
 
 export const QUERY_CAMPBYID = gql`
-query Query($campById: ID!) {
-  campById(id: $campById) {
-    _id
-    availability
-    available
+query CampById($campByIdId: ID!) {
+  campById(id: $campByIdId) {
+    campImages
+    image
+    features
     location
     name
     price
-    campImages
   }
 }
 `;
 
 export const GET_CAMP_REVIEWS = gql`
-query Query($campId: ID!) {
+query CampById($campId: ID!) {
   campReviews(campId: $campId) {
     _id
-    camp {
-      image
-      features
-      location
-      name
-      price
-    }
     rating
     text
     user {
       firstName
       lastName
+    }
+    camp {
+      _id
+      campImages
+      features
+      image
+      location
+      name
+      price
     }
   }
 }

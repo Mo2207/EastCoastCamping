@@ -13,10 +13,11 @@ import {
 import "../styles/Upcoming.css";
 
 import { useQuery } from '@apollo/client';
-import { GET_USER_BOOKING } from '../utils/queries';
+import { GET_USER_BOOKING, QUERY_CAMPBYID } from '../utils/queries';
 import Auth from '../utils/auth';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import Upcoming from '../components/Upcoming';
 
   //Just chat icon
   const chaticon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-square-text" viewBox="0 0 16 16">
@@ -31,18 +32,32 @@ if (Auth.loggedIn()) {
 
 
 function MyBookings() {
+  
 // Query user data
-  const { loading, data } = useQuery(GET_USER_BOOKING, {
+  const { data } = useQuery(GET_USER_BOOKING,{
     variables: { userId: id }
   });
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
-  const booking = data?.bookingByUserId || {};
+var booking;
+
+  if(!data){
+      booking = {
+        // camp:{image:'', name:'', location},
+        // bookingID:'',
+
+
+
+
+      }
+  } else {
+  booking = data?.bookingByUserId || {};
   console.log(booking)
+}
   return (
     <>
+    {!data ? (
+      <Upcoming />
+    ):(
       <div className="container my-1" style={{ minHeight: '100vh' }}>
         <Navbar.Brand><h2>My Bookings</h2></Navbar.Brand>
         <a href="/myBookings">
@@ -111,50 +126,7 @@ function MyBookings() {
                       </Row>
                       </Card>
                     </Col>
-                    ))}
-                    <Col md="12" xl="10">
-                      <Card className="shadow-0 border rounded-3 mt-5 mb-3">
-                        <Card.Body>
-                          <Row>
-                            <Col md="12" lg="3" className="mb-1 mb-lg-0">
-                                <Image
-                                  src={'campground.camp.image'}
-                                  fluid
-                                  className="w-100"
-                                />                      
-                            </Col>
-                            <Col md="6">
-                              <Card.Title>{'campground.camp.name'}</Card.Title>
-                              <br/>
-                              <Card.Subtitle>Booking ID: {'campground.bookingID'}</Card.Subtitle>
-                              <br/>
-                              <Card.Subtitle>Location:  {'campground.camp.location'}</Card.Subtitle>
-                              <p>
-                                There are many variations of passages of Lorem Ipsum 
-                                available.
-                              </p>
-                            </Col>
-                            <Col md="6" lg="3" className="border-sm-start-none border-start"
-                            >
-                              <Row>
-                                <Col sm="5" className="ml-1"><Row>CHECK IN</Row><Row>{'campground.startDate'}</Row></Col>
-                                <Col sm="5" className="ml-1"><Row>CHECK OUT</Row><Row>{'campground.endDate'}</Row></Col>
-                              </Row>
-                              <br/>
-                              <div className="d-flex flex-row align-items-center mb-1">
-                                <h4 className="mb-1 me-1">CAD $ {'campground.totalP'}</h4>                              
-                              </div>
-                              <h6 className="text-success">{'campground.totalN'} Nights </h6>
-
-                            </Col>
-                          </Row>
-                        </Card.Body>
-                        <Row>
-                          <Col md="9" className="mb-1 ml-2"><Link style={{ textDecoration: 'none' }} to={`/review/${'campground._id'}?name=${'campground.name'}`}><p>{chaticon} Check Out Review</p></Link></Col>
-
-                      </Row>
-                      </Card>
-                    </Col>
+                    ))}                    
                 </Row>                
               </Container> 
             </>
@@ -163,9 +135,11 @@ function MyBookings() {
           <Tab eventKey="favorite"></Tab>
         </Tabs>
       </div>
+      )}
       <Footer />
     </>
   );
+  
 }
 
 export default MyBookings;
