@@ -37,8 +37,8 @@ const typeDefs = gql`
     _id:ID!
     user: User!
     camp: CampGround!
-    startDate: String!
-    endDate: String!
+    startDate: String
+    endDate: String
     price: Int!
     totalP: Int!
     totalN: Int!
@@ -75,7 +75,7 @@ const typeDefs = gql`
     saveCamp(userId: ID!, campId: ID!): User
     deleteSavedCamp(userId: ID!, campId: ID!): User
     createReview(userId: ID!, campId: ID!, rating: Float!, text: String!): Review!
-    createBooking(userId:ID!, campId: ID!, startDate: String!, endDate: String!, price: Int): Booking!
+    createBooking(userId:ID!, campId: ID!, startDate: String!, endDate: String!, price: Int!, totalP: Int!, totalN: Int!, bookingID: Int): Booking!
     cancelBooking(id: ID!):Booking
   }
 `

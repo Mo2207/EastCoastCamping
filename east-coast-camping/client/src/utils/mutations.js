@@ -82,10 +82,13 @@ mutation DeleteSavedCamp($userId: ID!, $campId: ID!) {
 }
 `
 export const BOOK_CAMP = gql`
-mutation Mutation($userId: ID!, $campId: ID!, $startDate: Date!, $endDate: Date!, $price: Int) {
-  createBooking(userId: $userId, campId: $campId, startDate: $startDate, endDate: $endDate, price: $price) {
-    bookingID
+mutation CreateBooking($userId: ID!, $campId: ID!, $startDate: String!, $endDate: String!, $price: Int!, $totalP: Int!, $totalN: Int!, $bookingId: Int) {
+  createBooking(userId: $userId, campId: $campId, startDate: $startDate, endDate: $endDate, price: $price, totalP: $totalP, totalN: $totalN, bookingID: $bookingId) {
+    
+    totalN
+    totalP
+    startDate
+    endDate
   }
 }
-
 `
