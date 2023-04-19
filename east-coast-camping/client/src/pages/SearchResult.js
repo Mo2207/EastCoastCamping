@@ -104,9 +104,9 @@ function SearchResult() {
                                     data.campByLocation.map((campground, idx) => (
                                         <Col key={idx}
                                             className="row d-flex flex-wrap justify-content-center mb-3"
-                                            style={{ marginRight: '80px', marginLeft: '80px' }}>
+                                            style={{ marginRight: '30px', marginLeft: '30px' }}>
 
-                                            <Card style={{ minWidth: '19rem', minHeight: '450px', margin: '30px' }}>
+                                            <Card style={{ minWidth: '19rem', minHeight: '450px', margin: '30px', backgroundColor: '#e0e0e0' }}>
                                                 <Card.Img
                                                     variant="top"
                                                     src={campground.image}
