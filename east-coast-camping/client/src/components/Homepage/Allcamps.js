@@ -30,8 +30,7 @@ const AllCamps = () => {
     <Container>
       <Row >
         <Col >
-          <Row xs={1} md={4} className="g-4  d-flex justify-content-around"
-          >
+          <Row xs={1} md={4} className="g-4  d-flex justify-content-around" >
             {data &&
               data.allCamps &&
               data.allCamps.map((campground, idx) => (
@@ -70,7 +69,7 @@ const AllCamps = () => {
         </Col>
       </Row >
     </Container >
-  );
+  ); 
 };
 
 export default AllCamps;

@@ -22,6 +22,7 @@ const typeDefs = gql`
     price: Int
     campImages: [String]
     features: String
+    reviews: [Review]
   }
 
   type Review {
@@ -38,10 +39,10 @@ const typeDefs = gql`
     camp: CampGround!
     startDate: String!
     endDate: String!
-    price: Int
-    totalP: Int
-    totalN: Int
-    bookingID: Int
+    price: Int!
+    totalP: Int!
+    totalN: Int!
+    bookingID: Int!
   }
 
   type UserSavedCamps {
@@ -63,22 +64,8 @@ const typeDefs = gql`
     allBookings:[Booking]
     bookingByUserId(userId: ID!): [Booking!]
     userReviews(id: ID!):[Review]
-    
   }
 
-  type CampGroundReview {
-    _id: ID!
-    name: String!
-    location: String!
-    image: String
-    availability: Int
-    available: Boolean!
-    price: Int
-    campImages: [String]
-    features: String
-    reviews: [Review!]
-    allCampReviews:[CampGround]
-  }
   
   type Mutation {
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): User!

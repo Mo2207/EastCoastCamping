@@ -32,12 +32,11 @@ if (Auth.loggedIn()) {
 
 function MyBookings() {
   // Query user data
-  const { loading, data } = useQuery(GET_USER_BOOKING, {
+  const { loading, error, data } = useQuery(GET_USER_BOOKING, {
     variables: { userId: id }
   });
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
 
   const booking = data?.bookingByUserId || {};
   console.log(booking)
@@ -102,7 +101,7 @@ function MyBookings() {
                           </Row>
                         </Card.Body>
                         <Row>
-                          <Col md="9" className="mb-1 ml-2"><Link style={{ textDecoration: 'none' }} to={`/review/${campground._id}?name=${campground.name}`}><p>{chaticon} Check Out Review</p></Link></Col>
+                          <Col md="9" className="mb-1 ml-2"><Link style={{ textDecoration: 'none' }} to={`/review/${campground.camp._id}?name=${campground.camp.name}`}><p>{chaticon} Check Out Review</p></Link></Col>
                           {/* <Col md="2" className="mb-1 ml-5">
                             <Button color="primary" size="sm">
                                 View Details

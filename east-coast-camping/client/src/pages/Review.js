@@ -123,9 +123,15 @@ function Review(){
                                 <br/>
                                 <Card.Subtitle><strong>Features: </strong></Card.Subtitle>{campInfo[0].camp.features}
                                 <br/><br/>
-                                <Card.Subtitle><strong>Price: </strong>CAD$ {campInfo[0].camp.price} per night</Card.Subtitle>                              
+                                <Card.Subtitle><strong>Price: </strong>CAD$ {campInfo[0].camp.price} per night</Card.Subtitle>
                               </Col>                
                             </Row>
+                            <Row>
+                            <Col className="justify-content-end mt-4">
+                              <Button  href={`/campground/${campgroundId}`} variant="primary" size="sm">View Details</Button>                       
+                              </Col>
+                            </Row>
+                            
                           </Card.Body>
                           <hr/>
                           <Card.Title className="text-center">Customer Reviews</Card.Title>

@@ -132,6 +132,7 @@ function SearchResult() {
                                                 </Row>
                                             </Card>
                                         </Col>
+                                        
                                     ))}
                             </Row>
                         </Col>

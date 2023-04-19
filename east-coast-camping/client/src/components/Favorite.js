@@ -32,7 +32,9 @@ export default function Favorite() {
   const { loading, error, data } = useQuery(GET_USER_BOOKING_SAVED, {
     variables: { userId: id }
   });
-
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
+  // console.log(data)
   
   
 
