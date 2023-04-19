@@ -27,12 +27,15 @@ const bookingSchema = new Schema({
   },
   totalP: {
     type: Number,
+    required: true
   },
   totalN: {
     type: Number,
+    required: true
   },
   bookingID: {
     type: Number,
+    required: true
   }  
 
 });

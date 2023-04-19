@@ -126,27 +126,35 @@ export const GET_USER_BOOKING_SAVED = gql`
 query Query($userId: ID!) {
   getCampsAndBookingByUserId(userId: $userId) {
     savedCamps {
-      image
-      name
-      location
       _id
-      price
+      availability
+      available
       features
-    }
-    user {
-      email
-      firstName
-      lastName
+      image
+      location
+      name
+      price
+      reviews {
+        text
+        rating
+      }
     }
     userBookings {
+      _id
+      bookingID
       camp {
+        _id
         image
         location
+        features
         name
         price
       }
       endDate
+      price
       startDate
+      totalN
+      totalP
     }
   }
 }
@@ -166,6 +174,7 @@ query Query($userId: ID!) {
       location
       name
       price
+      _id
     }
     user {
       email

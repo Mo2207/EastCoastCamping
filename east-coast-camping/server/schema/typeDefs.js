@@ -39,10 +39,10 @@ const typeDefs = gql`
     camp: CampGround!
     startDate: String!
     endDate: String!
-    price: Int
-    totalP: Int
-    totalN: Int
-    bookingID: Int
+    price: Int!
+    totalP: Int!
+    totalN: Int!
+    bookingID: Int!
   }
 
   type UserSavedCamps {
