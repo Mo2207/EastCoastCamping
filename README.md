@@ -11,9 +11,9 @@ add camps to favorites, look at reviews, and make a reservations.
 This project can be viewed on heroku here: https://east-coast-camping.herokuapp.com/
 
 ## Usage:
-!["picture of home page"](../client/readmeImages/home-page.png)
-!["picture of camp page"](../client/readmeImages/camp-page.png)
-!["picture of review page"](../client/readmeImages/review-page.png)
+!["picture of home page"](/client/readmeImages/home-page.png)
+!["picture of camp page"](/client/readmeImages/camp-page.png)
+!["picture of review page"](/client/readmeImages/review-page.png)
 
 ## Credits:
 This project was built by:
