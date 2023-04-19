@@ -58,7 +58,8 @@ const resolvers = {
     // get all camps
     allCamps: async (parent, args) => {
       // return await CampGround.find();
-      const camps = await CampGround.find().populate({ path: 'reviews', options: { strictPopulate: false } });
+      const camps = await CampGround.find();
+    
       return camps;
     },
 
@@ -145,15 +146,13 @@ const resolvers = {
       .exec()
 
       return userBookings;
-    }
-
+    },
   },
-  CampGroundReview: {
+  CampGround: {
     reviews: async (camp) =>{
       const reviews = await Review.find({camp: camp._id });
       return reviews;
     },
-
   },
   // MUTATIONS
   Mutation: {
@@ -314,55 +313,66 @@ const resolvers = {
     },
 
     // Booking Mutations
-    createBooking: async (parent, { userId, campId, startDate, endDate, price, totalP, totalN, bookingID }) => {
+    createBooking: async (parent, data) => {
+      
+      // console.log(data)
+      // console.log(data.userId)
+
+      var totalP=0;
+      var totalN=0; 
+      var bookingID ='';
       
       const days = ( date1 , date2 ) => {
         let difference = date2.getTime() - date1.getTime();
-        let total = Math.ceil( difference / (1000 * 3600 * 24))-1;
+        let total = Math.ceil( difference / (1000 * 3600 * 24));
         return total;
       }
 
-        //Calculate duration of nights and total
-        var date1 = new Date(startDate);
-        var date2 = new Date(endDate);
+      //   //Calculate duration of nights and total
+        var date1 = new Date(data.startDate);
+        var date2 = new Date(data.endDate);
         totalN = days(date1,date2);       
         
-        totalP = price * totalN;      
-        //Generate Booking ID
+        totalP = data.price * totalN;     
+        // console.log(totalP)
+      //   //Generate Booking ID
         bookingID = Math.floor(Math.random() * 900000000) + 100000000;
       
 
-      // validation to check if userId and campId exist
-      const validUser = await User.findById(userId);
+      // // validation to check if userId and campId exist
+      const validUser = await User.findById(data.userId);
       if (!validUser) {
-        throw new Error(`Invalid userId: ${userId}.`);
+        throw new Error(`Invalid userId: ${data.userId}.`);
       }
-      const validCamp = await CampGround.findById(campId);
+      // console.log(validUser)
+      const validCamp = await CampGround.findById(data.campId);
       if (!validCamp) {
-        throw new Error(`Invalid campground id: ${campId}`);
+        throw new Error(`Invalid campground id: ${data.campId}`);
       }
-
-      // write the Booking
+      // console.log(validCamp)
+      // // write the Booking
+      // console.log(totalP,totalN, bookingID)
       const newBooking = new Booking({
-        user: userId,
-        camp: campId,
-        startDate,
-        endDate,
-        price,
-        totalP,
-        totalN,
-        bookingID
+        user: data.userId,
+        camp: data.campId,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        price: data.price,
+        totalP: totalP,
+        totalN: totalN,
+        bookingID: bookingID
       })
-      // save the booking
+      // // save the booking
+      // console.log (newBooking)
       await newBooking.save();
+      return newBooking;
+      // // find the newBooking now that it is saved and populate it with user & camp data
+      // const populateBooking = await Booking.findById(newBooking._id)
+      //   .populate('user')
+      //   .populate('camp')
+      //   .exec();
 
-      // find the newBooking now that it is saved and populate it with user & camp data
-      const populateBooking = await Booking.findById(newBooking._id)
-        .populate('user')
-        .populate('camp')
-        .exec();
-
-      return populateBooking;
+      // return populateBooking;
     },
 
     cancelBooking: async (parent, args) => {

@@ -70,11 +70,11 @@ function App() {
             />
             <Route
               path="/me"
-              element={<Profile />}
+              element={<Profile fluid="true"/>}
             />
             <Route
               path="/myBookings"
-              element={<MyBookings />}
+              element={<MyBookings fluid="true"/>}
             />
             <Route
               path="/completed"
@@ -86,7 +86,7 @@ function App() {
             />                
             <Route
               path="/search"
-              element={<SearchResult />}
+              element={<SearchResult fluid="true"/>}
             />
             <Route
               path="/campground/:id"
@@ -98,11 +98,11 @@ function App() {
             />
             <Route
               path="/reservation"
-              element={<Reservation />}
+              element={<Reservation fluid="true"/>}
               />
             <Route
               path="/review/:id"
-              element={<Review />}
+              element={<Review fluid="true"/>}
             />
             <Route
               path="*"

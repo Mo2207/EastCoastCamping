@@ -79,8 +79,8 @@ function IndividualCampground() {
     const handleBook = (userid, campId, name, location, price, start, end) => {
         // id= Auth.getToken();
         console.log("1", userid, campId, name, location, start, end, price)
-        const userinfo = [userid, campId, start, end, price]
-        localStorage.setItem("userinfo", userinfo)
+        
+        Auth.setBookingInfo(userid, campId, start, end, price)
         if(start && end ){
         navigate('/reservation', {state:{userid: userid, campid: campgroundId, campName: name, campLocation: location, campPrice: price, checkin: startDate, checkout: endDate}})
         }         

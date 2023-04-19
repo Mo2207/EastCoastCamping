@@ -58,15 +58,17 @@ class AuthService {
     localStorage.removeItem("name")
     localStorage.removeItem("email")
   }
-  setBookingInfo( id, camp, start, end){
+  setBookingInfo( id, camp, start, end, rate){
     localStorage.setItem("user", id)
     localStorage.setItem("camp", camp )
     localStorage.setItem("start", start )
     localStorage.setItem("end", end )
+    localStorage.setItem("rate", rate )
   }
   reload(){
     window.location.reload()
   }
+
 }
 // eslint-disable-next-line
 export default new AuthService();
