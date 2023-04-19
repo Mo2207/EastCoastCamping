@@ -1,0 +1,14 @@
+/* .bgImg {
+    background-color: #313534;
+
+    position: relative;
+    background-size: cover;
+    width: 70vw;
+    height: 60vh;
+    background-position: 50% 50%;
+    background-image: url("https://user-images.githubusercontent.com/112873819/232946038-ccb31940-7ae2-40d1-b7ba-b42402f2567a.jpg");
+} */
+
+body {
+    background-color: rgb(108, 103, 103);
+}

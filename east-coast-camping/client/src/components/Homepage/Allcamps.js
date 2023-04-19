@@ -39,7 +39,7 @@ const AllCamps = () => {
                   className="row d-flex flex-wrap justify-content-center mb-3"
                   style={{ marginRight: '55px', marginLeft: '55px' }}>
 
-                  <Card className="card d-grid gap-2" style={{ minWidth: '19rem', minHeight: '450px', margin: '30px' }}>
+                  <Card className="d-grid gap-2" style={{ minWidth: '19rem', minHeight: '450px', margin: '30px' }}>
                     <Card.Img
                       variant="top"
                       src={campground.image}
@@ -56,10 +56,10 @@ const AllCamps = () => {
                       </Card.Text>
                     </Card.Body>
                     <Row className="d-flex justify-content-between">
-                      <Col className="btn">
+                      <Col>
                         <Button href={`/review/${campground._id}`} variant="primary" size="sm">Review</Button>
                       </Col>
-                      <Col className="btn">
+                      <Col>
                         <Button href={`/campground/${campground._id}?name=${campground.name}`} variant="primary" size="sm">View Details</Button>
                       </Col>
                     </Row>
