@@ -18,5 +18,16 @@
 }
 
 body {
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.bgImg-header {
+    background-color: #313534;
+    height: 20vh;
+    width: 100vw;
+    position: relative;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: url("https://user-images.githubusercontent.com/112873819/232943668-b366cbf2-7916-448e-a894-b398ef588bdb.jpg");
 }
