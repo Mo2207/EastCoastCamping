@@ -112,8 +112,51 @@ function MyBookings() {
                       </Card>
                     </Col>
                     ))}
+                    <Col md="12" xl="10">
+                      <Card className="shadow-0 border rounded-3 mt-5 mb-3">
+                        <Card.Body>
+                          <Row>
+                            <Col md="12" lg="3" className="mb-1 mb-lg-0">
+                                <Image
+                                  src={'campground.camp.image'}
+                                  fluid
+                                  className="w-100"
+                                />                      
+                            </Col>
+                            <Col md="6">
+                              <Card.Title>{'campground.camp.name'}</Card.Title>
+                              <br/>
+                              <Card.Subtitle>Booking ID: {'campground.bookingID'}</Card.Subtitle>
+                              <br/>
+                              <Card.Subtitle>Location:  {'campground.camp.location'}</Card.Subtitle>
+                              <p>
+                                There are many variations of passages of Lorem Ipsum 
+                                available.
+                              </p>
+                            </Col>
+                            <Col md="6" lg="3" className="border-sm-start-none border-start"
+                            >
+                              <Row>
+                                <Col sm="5" className="ml-1"><Row>CHECK IN</Row><Row>{'campground.startDate'}</Row></Col>
+                                <Col sm="5" className="ml-1"><Row>CHECK OUT</Row><Row>{'campground.endDate'}</Row></Col>
+                              </Row>
+                              <br/>
+                              <div className="d-flex flex-row align-items-center mb-1">
+                                <h4 className="mb-1 me-1">CAD $ {'campground.totalP'}</h4>                              
+                              </div>
+                              <h6 className="text-success">{'campground.totalN'} Nights </h6>
+
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                        <Row>
+                          <Col md="9" className="mb-1 ml-2"><Link style={{ textDecoration: 'none' }} to={`/review/${'campground._id'}?name=${'campground.name'}`}><p>{chaticon} Check Out Review</p></Link></Col>
+
+                      </Row>
+                      </Card>
+                    </Col>
                 </Row>                
-              </Container>       
+              </Container> 
             </>
           </Tab>
           <Tab eventKey="completed"></Tab>

@@ -5,14 +5,19 @@ export const QUERY_ALLCAMPS = gql`
 query Query {
   allCamps {
     _id
-    availability
     available
+    availability
     campImages
     features
     image
     location
     name
     price
+    reviews {
+      _id
+      rating
+      text
+    }
   }
 }
 `;
@@ -31,7 +36,7 @@ export const QUERY_ME = gql`
 `
 
 export const QUERY_CAMPGROUNDBYLOCATION = gql`
-query Query($location: String!) {
+query CampByLocation($location: String!) {
   campByLocation(location: $location) {
     _id
     availability
@@ -42,6 +47,10 @@ query Query($location: String!) {
     location
     name
     price
+    reviews {
+      rating
+      text
+    }
   }
 }
 `;

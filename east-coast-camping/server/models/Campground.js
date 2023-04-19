@@ -37,7 +37,7 @@ const campGroundSchema = new Schema({
   campImages: {
     type: Array
   },
-  reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
+  reviews: [{ type: Schema.Types.ObjectId, ref: 'Review', required: true }]
 })
 
 const CampGround = model('CampGround', campGroundSchema);

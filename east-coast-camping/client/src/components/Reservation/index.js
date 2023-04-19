@@ -26,7 +26,31 @@ const days = ( date1 , date2 ) => {
 function Reservation() {
     //Grab camp data from individual page and use for reservation page
     const [ bookCamp ] = useMutation(BOOK_CAMP);
-    
+    function handleBookCamp() {
+        const bookingData = localStorage.getItem('userinfo')
+        console.log(location.state.userid, location.state.campId, location.state.checkin, location.state.checkout, location.state.price)
+        // eslint-disable-next-line
+        // try{
+            bookCamp({
+                variables: {
+                    userId: location.state.userid, 
+                    campId: location.state.campId, 
+                    startDate:location.state.checkin, 
+                    endDate: location.state.checkout, 
+                    price: location.state.price 
+                }
+            })
+        //     .then(response => {
+        //         console.log(response);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+        // } catch(err){
+        //     console.log(err)
+        // }    
+        // console.log(savedData);
+    }
     const location = useLocation();
     console.log(location.state)
     const name = Auth.getName()
@@ -49,25 +73,7 @@ function Reservation() {
 
     let id = Auth.getToken()
 
-    function handleBookCamp() {
-        const bookingData = localStorage.getItem('userinfo')
-        console.log(location.state.userid, location.state.campId, location.state.checkin, location.state.checkout, location.state.price)
-        // eslint-disable-next-line
-        try{
-        const { savedData } = bookCamp({
-            variables: {
-                userId: location.state.userid, 
-                campId: location.state.campId, 
-                startDate:location.state.checkin, 
-                endDate: location.state.checkout, 
-                price: location.state.price 
-            }
-        })  
-        } catch(err){
-            console.log(err)
-        }
-        // console.log(savedData);
-    }
+    
 
   return (
     <>

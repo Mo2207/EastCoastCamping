@@ -23,6 +23,7 @@
     "node": "16.19.1"
   },
   "dependencies": {
+    "graphql": "^16.6.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0"
   }

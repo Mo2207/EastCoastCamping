@@ -58,7 +58,8 @@ const resolvers = {
     // get all camps
     allCamps: async (parent, args) => {
       // return await CampGround.find();
-      const camps = await CampGround.find().populate({ path: 'reviews', options: { strictPopulate: false } });
+      const camps = await CampGround.find();
+    
       return camps;
     },
 
@@ -145,15 +146,13 @@ const resolvers = {
       .exec()
 
       return userBookings;
-    }
-
+    },
   },
-  CampGroundReview: {
+  CampGround: {
     reviews: async (camp) =>{
       const reviews = await Review.find({camp: camp._id });
       return reviews;
     },
-
   },
   // MUTATIONS
   Mutation: {
@@ -314,8 +313,9 @@ const resolvers = {
     },
 
     // Booking Mutations
-    createBooking: async (parent, { userId, campId, startDate, endDate, price, totalP, totalN, bookingID }) => {
-      
+    createBooking: async (parent, { userId, campId, startDate, endDate, price}) => {
+      var totalP, totalN, bookingID;
+      console.log( userId, campId, startDate, endDate, price, totalP, totalN, bookingID )
       const days = ( date1 , date2 ) => {
         let difference = date2.getTime() - date1.getTime();
         let total = Math.ceil( difference / (1000 * 3600 * 24))-1;
