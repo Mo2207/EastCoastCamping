@@ -141,7 +141,6 @@ query Query($userId: ID!) {
     }
     userBookings {
       _id
-      bookingID
       camp {
         _id
         image
@@ -163,7 +162,6 @@ query Query($userId: ID!) {
 export const GET_USER_BOOKING = gql`
 query Query($userId: ID!) {
   bookingByUserId(userId: $userId) {
-    bookingID
     startDate
     endDate
     totalN
