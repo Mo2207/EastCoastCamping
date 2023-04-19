@@ -37,7 +37,7 @@ const AllCamps = () => {
               data.allCamps.map((campground, idx) => (
                 <Col key={idx}
                   className="row d-flex flex-wrap justify-content-center mb-3"
-                  style={{ marginRight: '55px', marginLeft: '55px' }}>
+                  style={{ marginRight: '30px', marginLeft: '30px' }}>
 
                   <Card className="d-grid gap-2" style={{ minWidth: '19rem', minHeight: '450px', margin: '30px', backgroundColor: '#e0e0e0' }}>
                     <Card.Img
