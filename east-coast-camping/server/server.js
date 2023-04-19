@@ -12,6 +12,7 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  playground: true, // enable playground in production
   context: async () => ({
 
     getArrayOfCamps: async (ids, context) => {
