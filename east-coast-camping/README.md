@@ -14,12 +14,35 @@ add camps to favorites, look at reviews, and make a reservations.
   - Building this project we learned how to use graphql with our mongodb database, and use React components.
   
 ## Installation:
-This project can be viewed on heroku here: https://east-coast-camping.herokuapp.com/
+To use this application, first you will need to clone this repository from Github and install necessary dependencies, run the following command:
 
-## Usage:
-!["picture of home page"](/east-coast-camping/client/readmeImages/home-page.png)
-!["picture of camp page"](/east-coast-camping/client/readmeImages/camp-page.png)
-!["picture of review page"](/east-coast-camping/client/readmeImages/review-page.png)
+`````
+npm i
+`````
+And you will need to run the following command to insert existing database
+`````
+npm run seed
+`````
+And you can use the following command to run the application.
+`````
+npm run develop
+`````
+
+This live project can be viewed on heroku here: https://east-coast-camping.herokuapp.com/
+
+This repository was originally started at this [GitHub](https://github.com/Mo2207) with the intention of providing a centralized location for project collaboration and version control.
+
+
+## Screenshots of Application
+!["picture of home page"](/client/readmeImages/home-page.png)
+!["picture of camp page"](/client/readmeImages/camp-page.png)
+!["picture of review page"](/client/readmeImages/review-page.png)
+
+## Demo of Application
+!["GIF of Home Page function"](/client/readmeImages/home-page.png)
+!["GIF of Search All function"](/client/readmeImages/SearchAll.gif)
+!["GIF of My Bookings function"](/client/readmeImages/MyBookings.gif)
+!["GIF of Profile function"](/client/readmeImages/Profile.gif)
 
 ## Credits:
 This project was built by:
