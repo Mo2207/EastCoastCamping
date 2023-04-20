@@ -34,15 +34,15 @@ This repository was originally started at this [GitHub](https://github.com/Mo220
 
 
 ## Screenshots of Application
-!["picture of home page"](/client/readmeImages/home-page.png)
-!["picture of camp page"](/client/readmeImages/camp-page.png)
-!["picture of review page"](/client/readmeImages/review-page.png)
+!["picture of home page"](./client/readmeImages/home-page.png)
+!["picture of camp page"](./client/readmeImages/camp-page.png)
+!["picture of review page"](./client/readmeImages/review-page.png)
 
 ## Demo of Application
-!["GIF of Home Page function"](/client/readmeImages/home-page.png)
-!["GIF of Search All function"](/client/readmeImages/SearchAll.gif)
-!["GIF of My Bookings function"](/client/readmeImages/MyBookings.gif)
-!["GIF of Profile function"](/client/readmeImages/Profile.gif)
+!["GIF of Home Page function"](./client/readmeImages/home-page.png)
+!["GIF of Search All function"](./client/readmeImages/SearchAll.gif)
+!["GIF of My Bookings function"](./client/readmeImages/MyBookings.gif)
+!["GIF of Profile function"](./client/readmeImages/Profile.gif)
 
 ## Credits:
 This project was built by:
