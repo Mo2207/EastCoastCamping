@@ -4,7 +4,6 @@ import emailjs from '@emailjs/browser';
 // importing style for contact page
 import Footer from '../components/Footer';
 import '../styles/Contact.css'
-import contactImage  from '../components/images/contact2.jpg'
 import {
     Container,
     Row,
