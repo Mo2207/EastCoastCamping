@@ -4,9 +4,24 @@ import emailjs from '@emailjs/browser';
 // importing style for contact page
 import Footer from '../components/Footer';
 import '../styles/Contact.css'
-
+import contactImage  from '../components/images/contact2.jpg'
+import {
+    Container,
+    Row,
+    Col,
+    Card,
+    Image
+} from 'react-bootstrap';
+const labelStyle ={
+    fontSize:"150%",
+    padding: "10px",
+    fontFamily:" 'Times New Roman', Times, serif",
+    fontStyle: "italic",
+    color:"rgb(16, 14, 9)",
+    textShadow: "black 1px 1px 5px"}
 
 export default function Contact() {
+     
     // create a reference using useRef hook
     const form = useRef();
     // to get input data from contact form using useState
@@ -16,6 +31,7 @@ export default function Contact() {
         message: '',
     });
     const [errors, setErrors] = useState({});
+    const [ submitted, setSubmitted] = useState(false);
 
     const handleChange = (event) => {
         setValues({
@@ -55,7 +71,8 @@ export default function Contact() {
                 )
                 .then(
                     (result) => {
-                        console.log(result.text);
+                        console.log(result.text);                        
+                        setSubmitted(true);
                     },
                     (error) => {
                         console.log(error.text);
@@ -67,17 +84,25 @@ export default function Contact() {
     return (
         <>
             <div style={{ backgroundColor: '#e0e0e0' }}>
-                <div className="container my-1">
-                    {/* <Link to="/">← Go to Home</Link> */}
+                <div className="container">
+
                     <div className=" vh-100 text-white">
                         <form
                             ref={form}
                             onSubmit={handleSubmit}
                             className="mx-auto col-10 col-md-8 col-lg-6 form-container bgImg">
 
-                            <h1 className='text-black mt-5'>Contact Us</h1>
-                            <div className="form-group mt-4">
-                                <label className='text-black'>Name</label>
+                            <h1 className='text-black' style={{
+                                fontSize:"250%",
+                                padding: "10px",
+                                fontFamily:" 'Times New Roman', Times, serif",
+                                fontStyle: "italic",
+                                fontWeight: "bold",
+                                color:"rgb(16, 14, 9)",
+                                textShadow: "black 1px 1px 5px"
+                                }}>Contact Us</h1>
+                            <div className="form-group mt-2">
+                                <label className='text-black' style={labelStyle}>Name</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -92,8 +117,8 @@ export default function Contact() {
                                 )}
                             </div>
 
-                            <div className="form-group mt-4">
-                                <label className='text-black'>Email</label>
+                            <div className="form-group mt-2">
+                                <label className='text-black' style={labelStyle}>Email</label>
                                 <input
                                     type="email"
                                     name="email"
@@ -106,8 +131,8 @@ export default function Contact() {
                                 )}
                             </div>
 
-                            <div className="form-group mt-4">
-                                <label className='text-black'>Message</label>
+                            <div className="form-group mt-2">
+                                <label className='text-black' style={labelStyle}>Message</label>
                                 <textarea
                                     name="message"
                                     className={`form-control textbox-height ${errors.message ? 'is-invalid' : ''
@@ -121,7 +146,26 @@ export default function Contact() {
                             </div>
                             <input type="submit" value="Send" className="btn mt-4" style={{ backgroundColor: '#ADFB2F' }} />
                         </form>
-                    </div>
+                        {submitted && (
+                        <div className="text-center" >
+                            <Image
+                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                            alt="avatar"
+                            className="rounded-circle"
+                            style={{ width: '100px' }}
+                            fluid />                               
+                            <h1 style={{
+                                fontSize:"150%",
+                                padding: "10px",
+                                fontFamily:" 'Times New Roman', Times, serif",
+                                fontStyle: "italic",
+                                fontWeight: "bold",
+                                color:"rgb(16, 14, 9)",
+                                textShadow: "black 1px 1px 5px"
+                                }}>We got your message. Thank you for contact us!</h1>
+                        </div>
+                    )}
+                    </div>                  
                 </div>
             </div>
             <Footer />
