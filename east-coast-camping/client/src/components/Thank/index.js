@@ -11,7 +11,7 @@ function Regret({ children }) {
         fontSize: 30
       }}
     >
-      You have succefully booked your camp. Enjoy your trip.
+      You have succefully booked your camp. Enjoy your trip!
     </div>
   );
 }

@@ -56,7 +56,7 @@ const AllCamps = () => {
                     </Card.Body>
                     <Row className="d-flex justify-content-between">
                       <Col>
-                        <Button href={`/review/${campground._id}`} variant="primary" size="sm">Review</Button>
+                        <Button href={`/review/${campground._id}`} variant="primary" size="sm">Reviews</Button>
                       </Col>
                       <Col>
                         <Button href={`/campground/${campground._id}?name=${campground.name}`} variant="primary" size="sm">View Details</Button>

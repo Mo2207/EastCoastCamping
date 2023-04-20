@@ -121,7 +121,7 @@ function Reservation() {
                                                 <Col sm="5" className="ml-1"><Row><Card.Subtitle>Check-out</Card.Subtitle></Row><Row><Card.Text>{enddate}</Card.Text></Row></Col>
                                             </Row>
                                             <Card.Subtitle>Total Nights:  <strong>{totalNight} Nights</strong></Card.Subtitle>
-                                            <Card.Subtitle>Total Amounts: CAD $ <strong>{totalAmount}</strong></Card.Subtitle>
+                                            <Card.Subtitle>Total Amount: CAD $ <strong>{totalAmount}</strong></Card.Subtitle>
                                         </Row>
                                         <br />
                                         <Row style={{ height: '30%' }}>
