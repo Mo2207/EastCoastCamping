@@ -32,22 +32,22 @@ function Review(){
     //   storeCurrentUrl();
     //   navigate('/login')
     // }
-    // let id;
-    // if (Auth.loggedIn()) {
-    //     id = Auth.getToken()
-    // };
+    let id;
+    if (Auth.loggedIn()) {
+        id = Auth.getToken()
+    };
     const location = useLocation();
-    // const [ formData, setFormData ] = useState({ message:'', rating:''});
+    const [ formData, setFormData ] = useState({ message:'', rating:''});
 
     const campgroundId = location.pathname.split('/').pop();
-    // const [ createReview] = useMutation(CREATE_REVIEW);
+    const [ createReview] = useMutation(CREATE_REVIEW);
 
 
   
-  //   const handleChange = (event) => {     
-  //     const { name, value } = event.target;
-  //     setFormData({ ...formData, [name]: value });
-  // };
+    const handleChange = (event) => {     
+      const { name, value } = event.target;
+      setFormData({ ...formData, [name]: value });
+  };
 
 
 
@@ -65,17 +65,17 @@ function Review(){
       return <p>Error: {error.message}</p>;
   }
 
-    // const handleReviewSubmit = async (event) => {
-    //   event.preventDefault();
-    //   // console.log(formData)
-      
-    //     console.log(id, campgroundId, formData.message, formData.rating )
-    //     const {createData} = createReview({
-    //         variables: { userId: id, campId: campgroundId, rating: formData.rating, text: formData.message
-    //         }            
-    //        })
-    //        console.log(createData)
-    //   }
+    const handleReviewSubmit = async (event) => {
+      // event.preventDefault();
+      console.log(formData)
+      console.log(parseFloat(formData.rating))
+        console.log(id, campgroundId, formData.message, formData.rating )
+        const {createData} = createReview({
+            variables: { userId: id, campId: campgroundId, rating: parseFloat(formData.rating), text: formData.message
+            }            
+           })
+           console.log(createData)
+      }
     
     const campInfo = data?.campReviews || {};
     // console.log(data.campReviews)
@@ -86,9 +86,9 @@ function Review(){
     for(let i=0; i<campInfo.length; i++){
         users.push(campInfo[i].user);
     }
-    console.log(campInfo)
-    console.log(campInfo[0].rating)
-    console.log(campInfo[0].text)
+    // console.log(campInfo)
+    // console.log(campInfo[0].rating)
+    // console.log(campInfo[0].text)
 
     var fullRating=[];
     var fullText=[];    
@@ -99,7 +99,7 @@ function Review(){
     fullRating.push(campInfo[i].rating)
     fullText.push(campInfo[i].text)
     }
-    console.log(fullName)
+    // console.log(fullName)
 
     return(
         <>    
@@ -145,68 +145,25 @@ function Review(){
                                 ))}
                             </Row>
                           </Card.Body>
-                          {/* <Card.Body>
-                            <Row className="m-2">                            
-                              <Form onSubmit={handleReviewSubmit} >
-                              <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-                                                Please add proper information
-                                            </Alert>
-                              {!Auth.loggedIn()?( 
-                                <Form.Group controlId="formBasicEmail">                                  
-                                    <Row>                                    
-                                      <Col>                                        
-                                        <Form.Text className="text-muted">
-                                        <p className="mb-5 pb-lg-2 text-center" style={{ color: '#393f81' }}>Inorder to share your experience, youw will need to <Link to={{pathname: '/login'}} style={{ color: '#393f81' }}>sign in</Link> to continue.Don't have an account? <Link href="/register" style={{ color: '#393f81' }}>Register here</Link></p>
-                                        </Form.Text>                                 
-                                      </Col>
-                                    </Row>
-                                  </Form.Group>
-                                      ):(
-                                      <>
-                                        <Form.Group>
-                                          <Row>
-                                            <Col md='9'>
-                                            <Form.Label>Please share your experience</Form.Label>
-                                              <Form.Control 
-                                                type="message" 
-                                                placeholder="Write your review here" 
-                                                name='message'
-                                                onChange={handleChange}
-                                                value={formData.message}
-                                                required
-                                                />
-                                            </Col>
-                                            <Col md='3'>
-                                              <Form.Label>Please rate us</Form.Label>
-                                                <Form.Control 
-                                                type='number'
-                                                min ='1'
-                                                max = '5'
-                                                step = '0.1'
-                                                name='rating'
-                                                onChange={handleChange}
-                                                value={formData.rating}
-                                                required
-                                                />
-                                            </Col>  
-                                          </Row>
-                                        </Form.Group>
-                                        <Form.Control.Feedback type='invalid'>Please key in the value from 1 to 5</Form.Control.Feedback>
-                                        <Form.Group className="mt-1">                                          
-                                          <Button variant="primary" type="submit" >
-                                            Submit
-                                          </Button>
-                                        </Form.Group>
-                                      </>
-                                      )}
-                                      {error && (
-                                            <div className="my-3 p-3 bg-danger text-white">
-                                                {error.message}
-                                            </div>
-                                        )}
-                              </Form>
-                            </Row>
-                          </Card.Body> */}
+                          {Auth.loggedIn()?( 
+                          <Card.Body>
+                                <Row className="m-2">                            
+                                  <Form onSubmit={handleReviewSubmit}>
+                                    <Form.Group controlId="formRating">
+                                      <Form.Label>Rating:</Form.Label>
+                                      <Form.Control type="number" name="rating" min="1" max="5" onChange={handleChange} required />
+                                    </Form.Group>
+                                    <Form.Group controlId="formMessage">
+                                      <Form.Label>Review:</Form.Label>
+                                      <Form.Control as="textarea" rows={3} name="message" onChange={handleChange} required />
+                                    </Form.Group>
+                                    <Button variant="primary" type="submit">
+                                      Submit
+                                    </Button>
+                                  </Form>
+                                </Row>
+                              </Card.Body>
+                          ):null}
                         </Card>
                       </Col>
                     </Row>
