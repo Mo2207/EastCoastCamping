@@ -145,6 +145,7 @@ function Review(){
                                 ))}
                             </Row>
                           </Card.Body>
+                          {Auth.loggedIn()?( 
                           <Card.Body>
                                 <Row className="m-2">                            
                                   <Form onSubmit={handleReviewSubmit}>
@@ -162,6 +163,7 @@ function Review(){
                                   </Form>
                                 </Row>
                               </Card.Body>
+                          ):null}
                         </Card>
                       </Col>
                     </Row>
