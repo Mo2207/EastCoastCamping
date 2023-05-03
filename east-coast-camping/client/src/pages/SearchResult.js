@@ -21,7 +21,7 @@ function SearchResult() {
     }
     const [destination, setDestination] = useState('');
     const [searchCampgrounds, { loading, error, data }] = useLazyQuery(QUERY_CAMPGROUNDBYLOCATION);
-
+    
     const location = useLocation();
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,11 +43,12 @@ function SearchResult() {
         const locationParam = searchParams.get('destination');
         if (locationParam) {
             setDestination(locationParam);
-            searchCampgrounds({ variables: { location: locationParam } });
+            searchCampgrounds({ variables: { location: locationParam } });     
         }// eslint-disable-next-line
     }, []);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error.message}</p>;
+    console.log(data)
     return (
         <>
             {/* ------------------dropdown for search campground-------------------- */}
@@ -118,8 +119,8 @@ function SearchResult() {
                                                     <Card.Text>
                                                         <strong>Location: </strong>{campground.location}<br />
                                                         <strong>Price: </strong>{campground.price}<br />
-                                                        {/* <strong>Rating: </strong>{Start(campground.reviews[0].rating)}<br />
-                                              <strong>Review: </strong>{campground.reviews[0].text}<br /> */}
+                                                        <strong>Rating: </strong>{Start(campground.reviews[0].rating)}<br />
+                                              <strong>Review: </strong>{campground.reviews[0].text}<br />
                                                     </Card.Text>
                                                 </Card.Body>
                                                 <Row className="d-flex justify-content-between">
