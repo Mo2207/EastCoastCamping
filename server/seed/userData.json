@@ -1,0 +1,37 @@
+[
+  {
+    "_id": "000000000000000000000001",
+    "firstName": "Gabe",
+    "lastName": "Morris",
+    "email": "gabemorris1042@gmail.com",
+    "password": "gabepassword"
+  },
+  {
+    "_id": "000000000000000000000002",
+    "firstName": "Stephen",
+    "lastName": "Brown",
+    "email": "stephen@email.com",
+    "password": "stephenpassword"
+  },
+  {
+    "_id": "000000000000000000000003",
+    "firstName": "Yel",
+    "lastName": "Aung",
+    "email": "yel@email.com",
+    "password": "yelpassword"
+  },
+  {
+    "_id": "000000000000000000000004",
+    "firstName": "Aung",
+    "lastName": "Han",
+    "email": "aung@email.com",
+    "password": "aungpassword"
+  },
+  {
+    "_id": "000000000000000000000005",
+    "firstName": "Bob",
+    "lastName": "Builder",
+    "email": "bob@email.com",
+    "password": "bobpassword"
+  }
+]
