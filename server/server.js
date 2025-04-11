@@ -35,20 +35,20 @@ app.use(express.json());
 // }
 
 // Create a new instance of an Apollo server with the GraphQL schema
-const startApolloServer = async (typeDefs, resolvers) => {
+const startApolloServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
   
   db.once('open', () => {
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+      // console.log(`Server running on port ${PORT}!`);
+      // console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     })
   })
   };
   
 // Call the async function to start the server
-  // startApolloServer(typeDefs, resolvers);
+startApolloServer();
   // app.get('*', (req, res) => {
   //   res.sendFile(path.join(__dirname, '../client/build/index.html'));
   // });
