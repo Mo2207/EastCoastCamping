@@ -9,40 +9,23 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  playground: true, // enable playground in production
   context: async () => ({
-
-    getArrayOfCamps: async (ids, context) => {
-      // converts string ids to object ids
+    getArrayOfCamps: async (ids) => {
       const objectIds = ids.map(id => mongoose.Types.ObjectId(id));
-
-      //find all camps based on the object ids
-      const allCamps = await CampGround.find({ _id: { $in: objectIds } });
-
-      return allCamps;
+      return CampGround.find({ _id: { $in: objectIds } });
     },
-
-    bookingByUserId: async (userId, context) => {
+    bookingByUserId: async (userId) => {
       const user = await User.findById(userId);
-      if (!user) {
-        throw new Error(`User with ID ${userId} not found!`);
-      }
-
-      // populate userBookings and return
-      const userBookings = await Booking.find({ user: userId })
-      .populate('user')
-      .populate('camp')
-      .exec()
-
-      return userBookings;
+      if (!user) throw new Error(`User with ID ${userId} not found!`);
+      return Booking.find({ user: userId }).populate('user').populate('camp').exec();
     }
-  })
+  }),
+  introspection: true
 });
-
-
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -50,9 +33,6 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
-
-
-
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
