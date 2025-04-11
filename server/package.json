@@ -4,9 +4,11 @@
     "description": "server for the eastcoastcamping website",
     "main": "server.js",
     "scripts": {
-        "start": "nodemon server.js",
-        "watch": "nodemon",
+        "start": "node server.js",
         "seed": "node seed/seed.js"
+    },
+    "engines": {
+        "node": "18.x"
     },
     "keywords": [],
     "author": "",
