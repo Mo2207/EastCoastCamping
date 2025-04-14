@@ -26,7 +26,7 @@ import ThankYouPage from './pages/ThankYouPage';
 
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'https://eastcoastcamping-htpg.onrender.com/graphql', 
 });
 
 const authLink = setContext((_, { headers }) => {
