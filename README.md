@@ -24,6 +24,7 @@ The backend is powered by a secure GraphQL API with Express and MongoDB, while t
 ## 🚀 Installation & Deployment
 
 This project's frontend is deployed on **Vercel**, while the backend (GraphQL API) is hosted on **[Render](https://render.com/)**.
+The backend is hosted on a free plan on Render so requests may take some time to load. In a real world application a more responsive server would be used.
 
 🔗 **Live Site:** [east-coast-camping.vercel.app](https://east-coast-camping.vercel.app/)
 
